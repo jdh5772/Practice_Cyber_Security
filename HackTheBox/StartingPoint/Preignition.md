@@ -7,7 +7,7 @@ sudo nmap -p 80 -sC -sV -vv -oA preignition 10.129.4.69
 
 - HTTP(80)
 
-##  Enumerate Directory
+## Directory Enumeration
 ```bash
 gobuster dir -u http://10.129.4.69 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -x php,md
 ```
