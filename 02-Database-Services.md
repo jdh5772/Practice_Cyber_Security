@@ -107,7 +107,7 @@ GO
 
 -- 명령 실행
 -- SQL Server 서비스 계정의 권한으로 OS 명령 실행
-xp_cmdshell 'whoami'
+EXECUTE xp_cmdshell 'whoami'
 GO
 ```
 ---
