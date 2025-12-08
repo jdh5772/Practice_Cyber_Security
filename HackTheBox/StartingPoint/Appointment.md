@@ -24,6 +24,6 @@ gobuster dir -u http://10.129.5.225 -w /usr/share/seclists/Discovery/Web-Content
 ## SQL INJECTION
 - SQL INJECTION 기본 테스트가 작동되는지 해보았고, 성공하여 플래그 얻을 수 있었음.
 ```SQL
-admin';-- -
+admin'-- -
 ```
 <img width="1103" height="888" alt="image" src="https://github.com/user-attachments/assets/1fc589ff-f016-4c97-b67b-8884e686de05" />
