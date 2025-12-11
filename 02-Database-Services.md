@@ -1,4 +1,18 @@
 # Database Services - 데이터베이스 보안 테스트 가이드
+## POSTGRESQL
+```bash
+psql -h localhost -p 5432 -U christine
+```
+```psql
+\l
+
+\c secrets
+
+\d
+
+select * from flag;
+```
+
 ## 🔐 SQL Injection
 
 SQL Injection은 애플리케이션의 입력값 검증 취약점을 이용하여 데이터베이스에 임의의 SQL 쿼리를 실행하는 공격 기법입니다.
