@@ -189,6 +189,9 @@ gobuster vhost -u http://94.237.120.112:44025 -w /usr/share/seclists/Discovery/D
 ```bash
 # Host 헤더 퍼징 (응답 크기로 필터링)
 ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H 'Host: FUZZ.inlanefreight.htb' -u http://83.136.253.132:32685
+
+# 404 코드를 수집할 필요가 있음.
+ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H 'Host: FUZZ.inlanefreight.htb' -u http://83.136.253.132:32685 -mc all
 ```
 
 > **Important**: 비표준 포트 사용 시 VHOST URL에도 포트 명시 필수 (예: `http://dev.example.com:8443`)
