@@ -1,4 +1,4 @@
-# Database Services - 데이터베이스 보안 테스트 가이드
+# Database Services
 ## POSTGRESQL
 ```bash
 psql -h localhost -p 5432 -U christine
