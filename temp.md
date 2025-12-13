@@ -1,6 +1,3 @@
-# LFI
-- responder
-
 # awscli
 ```bash
 aws configure
