@@ -261,6 +261,11 @@ https://example.com/.well-known/openid-configuration
 
 사이트맵 자동 생성. `robots.txt`로 차단된 경로도 발견 가능.
 
+### Burpsuite
+- `Target-Site map`
+<img width="1920" height="1051" alt="image" src="https://github.com/user-attachments/assets/486c7a0f-7019-47de-8e56-6f653ea67bb0" />
+
+
 ### Scrapy
 
 ```bash
