@@ -7,7 +7,10 @@
 echo 'hi!' | jq -srR '@uri'
 
 # 16진수 변환
-echo 'hi!' | xxd -p -c 1000 
+echo 'hi!' | xxd -p -c 1000
+
+# md5 변환
+echo 'hi!' | md5sum
 ```
 
 </details>
