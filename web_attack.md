@@ -1,8 +1,7 @@
 # 웹 취약점 공격 기법 모음
 
-<details><summary><strong>URI Encoding</strong></summary>
+<details><summary><strong>Encoding</strong></summary>
 
-## Encoding
 ```bash
 # 문자열을 URI 인코딩으로 변환
 echo 'hi!' | jq -srR '@uri'
