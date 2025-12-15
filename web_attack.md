@@ -2,14 +2,13 @@
 
 <details><summary><strong>URI Encoding</strong></summary>
 
-## URI Encoding
-
-> URL에 특수 문자를 안전하게 전송하기 위한 인코딩 기법
-
-### 기본 사용법
+## Encoding
 ```bash
 # 문자열을 URI 인코딩으로 변환
 echo 'hi!' | jq -srR '@uri'
+
+# 16진수 변환
+echo 'hi!' | xxd -p -c 1000 
 ```
 
 </details>
