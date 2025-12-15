@@ -26,3 +26,12 @@ sudo nmap --open -sV 10.129.201.50
 eyewitness --web -x web_discovery.xml -d inlanefreight_eyewitness
 ```
 </details>
+
+---
+<details>
+  <summary><strong>TTY</strong></summary>
+
+```bash
+/usr/bin/script -qc /bin/bash
+```
+</details>
