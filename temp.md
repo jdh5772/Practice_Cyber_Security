@@ -1,5 +1,5 @@
 <details>
-<summary><h1>awscli</h1></summary>
+<summary><strong>awscli</strong></summary>
   
 ```bash
 aws configure
@@ -34,4 +34,9 @@ eyewitness --web -x web_discovery.xml -d inlanefreight_eyewitness
 ```bash
 /usr/bin/script -qc /bin/bash
 ```
+</details>
+
+---
+<details>
+  <summary><strong>LDAP(389)</strong></summary>
 </details>
