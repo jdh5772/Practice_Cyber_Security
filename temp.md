@@ -40,3 +40,21 @@ eyewitness --web -x web_discovery.xml -d inlanefreight_eyewitness
 <details>
   <summary><strong>LDAP(389)</strong></summary>
 </details>
+
+---
+<details>
+  <summary><strong>mongosh</strong></summary>
+
+```
+mongosh --host 10.129.5.3
+
+test> show dbs;
+
+test> use sensitive_information;
+
+sensitive_information> show collections;
+
+sensitive_information> db.flag.find()
+```
+
+</details>
