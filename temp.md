@@ -1,4 +1,20 @@
 <details>
+  <summary><strong>CHECK</strong></summary>
+  
+```
+web - whatweb/curl/burpsuite crawler
+sql - injection/connect/enumeration/update
+ftp - upload/download/hidden files
+windows - powershell history/whoami/inside files(password leaking,source code,configurations)/responder-ntlm/
+linux - inside files(password leaking,source code,configurations)
+
+ffuf - `mc all`
+```
+
+</details>
+
+---
+<details>
 <summary><strong>awscli</strong></summary>
   
 ```bash
