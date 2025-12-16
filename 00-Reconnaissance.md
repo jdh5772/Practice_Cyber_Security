@@ -12,6 +12,8 @@ sudo nmap -sn -oA tnet -iL ip.list
 
 # ICMP Echo 기반 호스트 발견 (라우터 너머 타겟용)
 sudo nmap 10.129.2.18 -sn -oA host -PE --packet-trace --disable-arp-ping
+
+sudo nmap --top-ports 100 -sU <ip>
 ```
 
 **주요 옵션**
