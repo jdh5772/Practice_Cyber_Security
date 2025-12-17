@@ -2,7 +2,7 @@
   <summary><strong>CHECK</strong></summary>
   
 ```
-web - whatweb/curl/burpsuite crawler
+web - whatweb/curl/burpsuite crawler/all html code
 sql - injection/connect/enumeration/update
 ftp - upload/download/hidden files
 windows - powershell history/whoami/inside files(password leaking,source code,configurations)/responder-ntlm/
