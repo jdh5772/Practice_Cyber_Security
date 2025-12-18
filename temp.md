@@ -126,3 +126,16 @@ ace> db.admin.updateOne({name:'administrator'},{$set:{x_shadow:'$6$MAQvinWPLqmiL
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>PHP</strong></summary>
+
+```php
+if (strcmp($username, $_POST['username']) == 0)
+```
+- `strcmp`함수가 같은 값이면 0을 반환.
+- PHP에서 파라미터를 제대로 검사하지 않으면 array를 전달할 수 있게 됨.(username=value 대신에 username[]=value)
+- NULL 값은 0
+
+</details>
