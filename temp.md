@@ -137,5 +137,6 @@ if (strcmp($username, $_POST['username']) == 0)
 - `strcmp`함수가 같은 값이면 0을 반환.
 - PHP에서 파라미터를 제대로 검사하지 않으면 array를 전달할 수 있게 됨.(username=value 대신에 username[]=value)
 - NULL 값은 0
+<img width="775" height="372" alt="image" src="https://github.com/user-attachments/assets/8cfd0a24-61ef-425f-8354-9d05d5c0c5e8" />
 
 </details>
