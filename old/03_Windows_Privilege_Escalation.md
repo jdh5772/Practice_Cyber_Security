@@ -40,11 +40,10 @@ icacls root.txt /grant alfred:F
 
 ## 파일 검색
 ```powershell
-findstr /SIM /C:"pass" *.txt *.pdf *.xls *.xlsx *.doc *.docx *kdbx,*ini *.xml *.cfg *.config
+findstr /SIM /C:"password" *.txt *.ini *.cfg *.config *.xml
+
+gc 'C:\Users\htb-student\AppData\Local\Google\Chrome\User Data\Default\Custom Dictionary.txt' | Select-String password
 ```
-- `/S`: 현재 디렉토리뿐 아니라 하위 디렉토리까지 재귀적으로 검색
-- `/I`: 대소문자를 구분하지 않고 검색
-- `/M`: 문자열이 포함된 파일 이름만 출력
 
 ---
 
