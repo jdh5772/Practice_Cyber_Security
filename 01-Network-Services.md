@@ -1,6 +1,5 @@
-# Network Services - 침투 테스트 가이드
-
-## 📡 FTP SSL Certificate
+<details>
+  <summary><strong>📡 FTP SSL Certificate</strong></summary>
 
 ### FTP over SSL 연결 테스트
 FTP 서버가 SSL/TLS를 지원하는지 확인하고 암호화된 연결을 수립합니다.
@@ -16,10 +15,12 @@ openssl s_client -connect 10.129.14.136:21 -starttls ftp
 - ✅ 파일 업로드 권한 테스트 (익명 사용자 쓰기 권한 확인)
 
 > **Security Note**: 익명 로그인이 허용되고 쓰기 권한이 있다면 웹 쉘 업로드 가능성이 있습니다.
+  
+</details>
 
 ---
-
-## 🖥️ SMB & RPC Client
+<details>
+  <summary><strong>🖥️ SMB & RPC Client</strong></summary>
 
 ### SMB (Server Message Block)
 Windows 환경에서 파일 및 프린터 공유에 사용되는 프로토콜입니다.
@@ -74,10 +75,12 @@ queryuser <RID>
 | `queryuser` | 특정 사용자의 상세 정보 (RID 필요) | 그룹 멤버십, 로그온 시간 등 |
 
 > **Tip**: RID 500은 일반적으로 Administrator 계정입니다.
+  
+</details>
 
 ---
-
-## 📂 NFS (Network File System)
+<details>
+  <summary><strong>📂 NFS (Network File System)</strong></summary>
 
 **포트**: 111 (rpcbind), 2049 (nfsd)  
 **설명**: Unix/Linux 시스템 간 파일 공유 프로토콜
@@ -100,9 +103,11 @@ sudo umount ./target
 > **Security Note**: NFS는 기본적으로 인증이 약하므로, 민감한 데이터가 노출될 수 있습니다.  
 > **Tip**: `no_root_squash` 옵션이 설정된 경우 root 권한 상승이 가능합니다.
 
----
+</details>
 
-## 📧 SMTP Enumeration
+---
+<details>
+  <summary><strong>📧 SMTP Enumeration</strong></summary>
 
 **포트**: 25 (SMTP), 465 (SMTPS), 587 (Submission)  
 **설명**: 이메일 전송 프로토콜, 사용자 열거 및 인증 테스트 가능
@@ -143,10 +148,12 @@ hydra -l 'marlin@inlanefreight.htb' -P pws.list smtp://10.129.203.12
 
 > **Note**: 일부 SMTP 서버는 응답 시간이 길 수 있으므로 타임아웃을 충분히 설정하세요.  
 > **Warning**: 과도한 열거 시도는 로그에 기록되거나 IP가 차단될 수 있습니다.
+  
+</details>
 
 ---
-
-## 📬 IMAP & POP3
+<details>
+  <summary><strong>📬 IMAP & POP3</strong></summary>
 
 **포트**: 143 (IMAP), 993 (IMAPS), 110 (POP3), 995 (POP3S)  
 **설명**: 이메일 수신 프로토콜
@@ -192,10 +199,12 @@ a LOGOUT
 
 > **Warning**: 메일박스 이름은 대소문자를 구분합니다. `INBOX`와 `inbox`는 다릅니다.  
 > **Tip**: `a`는 태그(tag)로, 명령어 식별자입니다. 임의의 문자열 사용 가능합니다.
+  
+</details>
 
 ---
-
-## 🔐 SNMP (Simple Network Management Protocol)
+<details>
+  <summary><strong>🔐 SNMP (Simple Network Management Protocol)</strong></summary>
 
 **포트**: 161 (UDP)  
 **설명**: 네트워크 장비 모니터링 및 관리 프로토콜
@@ -229,10 +238,12 @@ onesixtyone -c /opt/useful/seclists/Discovery/SNMP/snmp.txt 10.129.14.128
 > - `snmpbulkwalk`는 SNMP v2c부터 사용 가능  
 > - 타임아웃 발생 시 다른 community string 시도  
 > - 기본 Community String "public"은 읽기 전용, "private"는 읽기/쓰기 가능한 경우가 많습니다.
+  
+</details>
 
 ---
-
-## 🖧 IPMI (Intelligent Platform Management Interface)
+<details>
+  <summary><strong>🖧 IPMI (Intelligent Platform Management Interface)</strong></summary>
 
 **포트**: 623 (UDP)  
 **설명**: 원격 서버 관리를 위한 인터페이스 (Dell iDRAC, HP iLO 등)
@@ -264,10 +275,12 @@ run
 
 > **Security Note**: 덤프된 해시는 Hashcat으로 크랙 가능합니다 (mode 7300).  
 > **Tip**: 기본 계정은 ADMIN, Administrator, root 등을 시도해보세요.
+  
+</details>
 
 ---
-
-## 🖥️ RDP (Remote Desktop Protocol)
+<details>
+  <summary><strong>🖥️ RDP (Remote Desktop Protocol)</strong></summary>
 
 **포트**: 3389  
 **설명**: Windows 원격 데스크톱 프로토콜
@@ -303,3 +316,5 @@ xfreerdp /v:10.10.10.132 /u:administrator /p:'Password0@' /drive:linux,/home/pla
 
 > **Tip**: `/drive` 옵션으로 로컬 파일을 원격 시스템으로 쉽게 전송할 수 있습니다.  
 > **Warning**: BlueKeep (CVE-2019-0708) 등 RDP 취약점 존재 시 익스플로잇 가능성을 확인하세요.
+  
+</details>
