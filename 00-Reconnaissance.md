@@ -1,8 +1,7 @@
-# Reconnaissance
+<details>
+  <summary><strong>Nmap Scanning</strong></summary>
 
-## 🗺️ Nmap Scanning
-
-### Host Discovery
+## Host Discovery
 
 네트워크 내 활성 호스트 식별. 포트 스캔 없이 빠르게 타겟 범위 파악.
 
@@ -25,9 +24,11 @@ sudo nmap --top-ports 100 -sU <ip>
 
 > **Note**: 라우터 너머 호스트는 ARP로 도달 불가. ICMP 또는 TCP 필수.
 
----
+</details>
 
-## 🔍 Banner Grabbing
+---
+<details>
+  <summary><strong>Banner Grabbing</strong></summary>
 
 서비스 식별 및 버전 정보 수집. 취약점 매칭의 기초 단계.
 
@@ -47,9 +48,11 @@ whatweb --no-errors 10.10.10.0/24
 - **robots.txt**: `http://target.com/robots.txt` - 크롤러 제한 경로 = 잠재적 공격 벡터
 - **JavaScript 소스**: API 엔드포인트, 하드코딩된 키/토큰 탐색
 
----
+</details>
 
-## 🔎 Footprinting
+---
+<details>
+  <summary><strong>Footprinting</strong></summary>
 
 ### SSL Certificate 기반 서브도메인 열거
 
@@ -62,9 +65,11 @@ curl -s "https://crt.sh/?q=facebook.com&output=json" | jq -r '.[] | select(.name
 
 > **Tip**: 와일드카드 인증서 `*.example.com` 발견 시 서브도메인 브루트포싱 수행
 
----
+</details>
 
-## 🔍 WHOIS
+---
+<details>
+  <summary><strong>WHOIS</strong></summary>
 
 도메인 등록자 정보 조회. Social Engineering 및 ASN 추적에 활용.
 
@@ -78,9 +83,12 @@ whois <domain>
 - 등록/갱신/만료 날짜
 - Admin/Tech Contact (GDPR로 인해 종종 비공개)
 
+</details>
+
 ---
 
-## 🌐 DNS Enumeration
+<details>
+  <summary><strong>DNS Enumeration</strong></summary>
 
 ### 기본 레코드 조회
 
@@ -139,9 +147,11 @@ dnsenum --dnsserver 10.129.167.221 --enum -p 0 -s 0 -f /usr/share/seclists/Disco
 - **Zone**: DNS 관리 단위 (도메인과 서브도메인 집합)
 - **CNAME**: Canonical Name, 도메인 별칭 (CDN에서 자주 사용)
 
----
+</details>
 
-## 🔥 Firewall Evasion
+---
+<details>
+  <summary><strong>🔥 Firewall Evasion</strong></summary>
 
 ### DNS 포트 우회
 
@@ -170,9 +180,12 @@ ncat -nv -p 53 10.129.2.28 50000
 - **UDP 53**: 일반 DNS 쿼리 (512 바이트 이하)
 - **TCP 53**: 큰 응답이나 Zone Transfer (512 바이트 초과)
 
+</details>
+
 ---
 
-## 🌍 Virtual Host Discovery
+<details>
+  <summary><strong>Virtual Host Discovery</strong></summary>
 
 하나의 IP에서 여러 도메인 호스팅. `Host` 헤더 기반 라우팅.
 
@@ -198,9 +211,11 @@ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H '
 
 > **Important**: 비표준 포트 사용 시 VHOST URL에도 포트 명시 필수 (예: `http://dev.example.com:8443`)
 
----
+</details>
 
-## 🎯 Web Fingerprinting
+---
+<details>
+  <summary><strong>Web Fingerprinting</strong></summary>
 
 웹 스택 식별. 버전 특정 취약점(CVE) 매칭에 필수.
 
@@ -238,9 +253,11 @@ nikto -h inlanefreight.com -Tuning b
 3. **Specific Responses 프로빙**: 특정 요청에 대한 응답 패턴 분석
 4. **Page Content 분석**: HTML, JavaScript 분석
 
----
+</details>
 
-## 🔗 Well-Known URIs
+---
+<details>
+  <summary><strong>Well-Known URIs</strong></summary>
 
 RFC 8615 표준 경로. 서비스 메타데이터 및 정책 정보 제공.
 
@@ -257,9 +274,11 @@ https://example.com/.well-known/openid-configuration
 
 > **Use Case**: `security.txt` 존재 시 책임 있는 공개(Responsible Disclosure) 가능
 
----
+</details>
 
-## 🕷️ Web Crawlers
+---
+<details>
+  <summary><strong>🕷️ Web Crawlers</strong></summary>
 
 사이트맵 자동 생성. `robots.txt`로 차단된 경로도 발견 가능.
 
@@ -280,9 +299,11 @@ python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:41954
 
 > **Note**: JavaScript 렌더링 필요 시 Selenium/Puppeteer 사용
 
----
+</details>
 
-## 🕰️ Wayback Machine
+---
+<details>
+  <summary><strong>🕰️ Wayback Machine</strong></summary>
 
 과거 웹사이트 스냅샷 조회. 삭제된 페이지 및 설정 파일 복구.
 
@@ -294,10 +315,12 @@ python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:41954
 - 도메인 소유권 변경 이력 추적
 - 과거 코드나 설정 파일 분석
 
+</details>
+
 ---
-
-## 📊 Information Gathering - Web
-
+<details>
+  <summary><strong>📊 Information Gathering - Web</strong></summary>
+  
 ### 디렉토리 슬래시 차이
 
 ```
@@ -307,9 +330,11 @@ python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:41954
 
 > **Tip**: 슬래시 유무에 따라 서버 응답이 다를 수 있으며, 접근 제어 우회 가능성 존재
 
----
+</details>
 
-## 🔧 FinalRecon
+---
+<details>
+  <summary><strong>🔧 FinalRecon</strong></summary>
 
 > **⚠️ OSCP 시험에서 사용 불가**
 
@@ -319,3 +344,5 @@ python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:41954
 # 헤더 및 WHOIS 정보 수집
 ./finalrecon.py --headers --whois --url http://inlanefreight.com
 ```
+
+</details>
