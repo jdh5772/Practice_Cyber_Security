@@ -41,6 +41,8 @@ sudo  nmap -p 80,443,8000,8080,8180,8888,10000 --open -oA web_discovery -iL scop
 
 sudo nmap --open -sV 10.129.201.50
 
+eyewitness -f ilfreight_subdomains -d ILFREIGHT_subdomain_EyeWitness
+
 eyewitness --web -x web_discovery.xml -d inlanefreight_eyewitness
 ```
 
