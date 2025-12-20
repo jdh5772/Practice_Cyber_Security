@@ -204,6 +204,23 @@ a LOGOUT
 
 ---
 <details>
+  <summary><strong>🔍 LDAP (Lightweight Directory Access Protocol)</strong></summary>
+
+**포트**: 389 (LDAP), 636 (LDAPS), 3268 (Global Catalog)  
+**설명**: 디렉터리 서비스 조회 및 수정 프로토콜, Active Directory 정보 수집에 필수
+
+### LDAP 검색
+
+```bash
+ldapsearch -H ldap://ldap.example.com:389 -D "cn=admin,dc=example,dc=com" -w secret123 -b "ou=people,dc=example,dc=com" "(mail=john.doe@example.com)"
+
+ldapsearch -H ldap://10.129.14.128 -x -b "dc=inlanefreight,dc=local" "(objectClass=user)"
+```
+  
+</details>
+
+---
+<details>
   <summary><strong>🔐 SNMP (Simple Network Management Protocol)</strong></summary>
 
 **포트**: 161 (UDP)  
