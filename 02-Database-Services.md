@@ -485,3 +485,56 @@ SELECT name, password FROM sys.user$;
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>MongoDB (27017)</strong></summary>
+
+### Mongosh (MongoDB Shell)
+```bash
+# MongoDB 서버 연결
+mongosh --host 10.129.5.3
+
+# 또는 인증 정보와 함께 연결
+mongosh "mongodb://username:password@10.129.5.3:27017/admin"
+```
+
+### 기본 명령어
+
+```javascript
+// 데이터베이스 목록 확인
+test> show dbs;
+
+// 특정 데이터베이스 선택
+test> use sensitive_information;
+
+// 컬렉션(테이블) 목록 확인
+sensitive_information> show collections;
+
+// 컬렉션의 모든 문서 조회
+sensitive_information> db.flag.find()
+
+// 특정 조건으로 문서 조회
+db.users.find({role: "admin"})
+
+// 문서 개수 확인
+db.users.countDocuments()
+```
+
+### 데이터 조작
+
+```javascript
+// 문서 삽입
+db.users.insertOne({name: "test", password: "test123"})
+
+// 문서 업데이트
+ace> db.admin.updateOne(
+  {name:'administrator'},
+  {$set:{x_shadow:'$6$MAQvinWPLqmiLt9t$axLwiLf0fW7Ln60XYQoe2wwy1AbTMMXZw6mHB0vGRdVvPAXqIn9v4kPJiuYYwkrKvLzvhmwzbr0FbO6vRKFzT/'}}
+);
+
+// 문서 삭제
+db.users.deleteOne({name: "test"})
+```
+
+</details>
