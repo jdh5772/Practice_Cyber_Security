@@ -128,3 +128,15 @@ keepassxc <file.kdbx>
 - https://github.com/matro7sh/keepass-dump-masterkey
 
 </details>
+
+---
+<details>
+  <summary><strong>PPK (PuTTY Private Key File) to PEM</strong></summary>
+
+```bash
+puttygen <file.ppk> -O private-openssh -o <file.pem>
+
+ssh -i <file.pem> host@local
+```
+  
+</details>
