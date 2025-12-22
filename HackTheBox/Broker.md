@@ -25,14 +25,14 @@ sudo nmap -p 22,80,1883,5672,8161,46159,61613,61614,61616 -sC -sV -vv -oA broker
 
 ### CVE-2023-46604
 - https://nvd.nist.gov/vuln/detail/CVE-2023-46604
-- `Openwire Protocol`의 직렬화된 클래스를 조작해서 임의의 명령어를 실행할 수 있는 취약점.
+- `Openwire Protocol`의 역직렬화 과정의 취약점을 이용.
 <img width="1239" height="221" alt="image" src="https://github.com/user-attachments/assets/df433cc9-359a-4566-b172-cba8fb93e498" />
 
 <br>
 <br>
 
 - https://github.com/rootsecdev/CVE-2023-46604/blob/main/main.go
-- 스크립트를 완전히 이해하지는 못했으나 조작할 클래스와 메세지(xml을 공유할 url)와 헤더를 16진수로 바꿔서 페이로드로 전달한다는 것을 확인.
+- 스크립트를 완전히 이해하지는 못했으나 ClassPathXmlApplicationContext를 통해 원격 XML 설정 파일을 로드하여 명령어 실행을 확인.
 <img width="1239" height="406" alt="image" src="https://github.com/user-attachments/assets/ef569abe-d1a8-446a-9f05-5bf740193d8a" />
 
 <br>
