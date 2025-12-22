@@ -32,7 +32,7 @@ sudo nmap -p 22,80,1883,5672,8161,46159,61613,61614,61616 -sC -sV -vv -oA broker
 <br>
 
 - https://github.com/rootsecdev/CVE-2023-46604/blob/main/main.go
-- 스크립트를 완전히 이해하지는 못했으나 `ClassPathXmlApplicationContext`를 통해 XML 설정 파일을 16진수로 인코딩 하여 OpenWire Protocol(61616)으로 전달한다는 것을 확인.
+- `ClassPathXmlApplicationContext`클래스와 원격 XML 설정 파일을 16진수로 인코딩 하여 OpenWire Protocol(61616)으로 전달한다는 것을 확인.
 <img width="1239" height="406" alt="image" src="https://github.com/user-attachments/assets/ef569abe-d1a8-446a-9f05-5bf740193d8a" />
 
 <br>
