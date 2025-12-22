@@ -3,6 +3,10 @@
 
 - https://github.com/rasta-mouse/Sherlock
 - 예전 버전 윈도우 취약점 발견.
+```powershell
+. .\sherlock.ps1
+Find-AllVulns
+```
 
 </details>
 
