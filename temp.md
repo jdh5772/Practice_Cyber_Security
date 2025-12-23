@@ -7,7 +7,7 @@ sql - injection/connect/enumeration/update
 ftp - upload/download/hidden files
 http - gobuster/ffuf/error page
 windows - powershell history/whoami/inside files(password leaking,source code,configurations)/responder-ntlm/
-linux - inside files(password leaking,source code,configurations)
+linux - inside files(password leaking,source code,configurations)/env
 
 nmap - `-sU --top-ports 100`
 ffuf - `mc all`
