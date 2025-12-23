@@ -141,3 +141,13 @@ ssh -i <file.pem> host@local
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>Hex to ASCII</strong></summary>
+
+```bash
+# password : 504073737730726440313233212131323313917181922232526273031333435373839424349505154575861657475798283869091949598103106111114115119122123126130131134135
+cat password | xxd -r -p
+```
+</details>
