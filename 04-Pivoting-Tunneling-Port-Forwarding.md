@@ -64,6 +64,13 @@ start
 ---
 <details>
   <summary><strong>Chisel</strong></summary>
+### Port Forwarding
+```bash
+./chisel server -p 8000 --reverse
+
+chisel client 10.10.14.3:8000 R:80:127.0.0.1:80
+```
+
 
 ### Forward Proxy 모드
 ```bash
