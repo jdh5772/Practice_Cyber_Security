@@ -11,6 +11,7 @@ linux - inside files(password leaking,source code,configurations)/env
 
 nmap - `-sU --top-ports 100`/`-Pn`
 ffuf - `mc all`
+netexec - `--rid-brute`/`--users`(description 확인)
 ```
 
 </details>
