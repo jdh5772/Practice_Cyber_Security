@@ -5,7 +5,7 @@
 web - whatweb/curl/burpsuite crawler/all html code
 sql - injection/connect/enumeration/update
 ftp - upload/download/hidden files
-http - robots.txt/gobuster/ffuf/error page
+http - robots.txt/gobuster/feroxbuster/ffuf/error page
 windows - powershell history/whoami/inside files(password leaking,source code,configurations)/responder-ntlm/
 linux - inside files(password leaking,source code,configurations)/env
 
