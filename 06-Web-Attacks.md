@@ -1321,7 +1321,15 @@ java -jar iis_shortname_scanner.jar 0 5 http://10.129.204.231/
 ```
 
 ### davtest
+```bash
+davtest -url http://10.10.10.15
+```
 
 ### cadaver
+```
+cadaver http://10.10.10.15
+
+help
+```
 
 </details>
