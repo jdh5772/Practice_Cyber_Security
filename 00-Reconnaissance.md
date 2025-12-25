@@ -330,6 +330,9 @@ python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:41954
 
 > **Tip**: 슬래시 유무에 따라 서버 응답이 다를 수 있으며, 접근 제어 우회 가능성 존재
 
+### Apache /cgi-bin/
+- `gobuster`를 사용할시 `/cgi-bin`을 파일로 취급하는 경우가 있어 wordlist에서 `/cgi-bin/` 추가해주기.
+
 </details>
 
 ---
