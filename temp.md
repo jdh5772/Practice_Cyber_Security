@@ -164,3 +164,18 @@ sed -i '1i /cgi-bin/' test.txt
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>tar</strong></summary>
+
+```bash
+# 압축
+tar -cf target.tar foo bar
+
+# 압축 해제
+tar -xvzf target.tar
+tar -xvzf target.tar.gz
+```
+
+</details>
