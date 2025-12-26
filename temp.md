@@ -152,3 +152,13 @@ ssh -i <file.pem> host@local
 cat password | xxd -r -p
 ```
 </details>
+
+---
+<details>
+  <summary><strong>sed</strong></summary>
+
+```bash
+sed -i '1i /cgi-bin/' test.txt
+```
+
+</details>
