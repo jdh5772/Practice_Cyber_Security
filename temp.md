@@ -12,7 +12,7 @@
 <br>
 
 - nmap : `-sU --top-ports 100`/`-Pn`
-- ffuf : `mc all`
+- ffuf : `-mc all`
 - netexec : `--rid-brute`/`--users`(description 확인)
 - grep : `-r '@dog.htb'`
 
