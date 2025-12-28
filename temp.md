@@ -17,6 +17,7 @@
 - grep : `-r '@dog.htb'`
 - strings : `raw data catch flag`
 - gobuster : `txt,md`
+- dirbuster : `~2017년도까지 대체재.`
 
 </details>
 
