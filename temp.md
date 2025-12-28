@@ -15,6 +15,7 @@
 - ffuf : `-mc all`
 - netexec : `--rid-brute`/`--users`(description 확인)
 - grep : `-r '@dog.htb'`
+- strings : `raw data catch flag`
 
 </details>
 
