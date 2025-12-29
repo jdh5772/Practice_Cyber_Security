@@ -204,7 +204,10 @@ select * from user;
 
 ```bash
 curl --path-as-is http://10.10.10.10/../../../../etc/passwd
+
+curl -v http://localhost:8000
 ```
 - `../../`와 같은 경로를 그대로 전달
+- `-v`옵션으로 접속이 `NOT FOUND`인지 `UNAUTHORIZED`인지 확인.
 
 </details>
