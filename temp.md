@@ -169,6 +169,7 @@ curl http://localhost -o output.txt
 <details>
   <summary><strong>PYTHON</strong></summary>
 
+- https://book.hacktricks.wiki/en/generic-methodologies-and-resources/python/bypass-python-sandboxes/index.html?highlight=python#misc-python
 - `CLASS`를 찾아서 RCE 실행.(Popen)
 ```python3
 #i = 0;
