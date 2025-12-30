@@ -130,6 +130,7 @@ tar -cf target.tar foo bar
 # 압축 해제
 tar -xvzf target.tar
 tar -xvzf target.tar.gz
+tar -xvf filename.tar.bz2
 ```
 
 </details>
