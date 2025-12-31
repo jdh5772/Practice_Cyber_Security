@@ -142,6 +142,7 @@ tar -xvf filename.tar.bz2
   
 ```bash
 sqlite3 <dbname> .dump
+sqlite3 credentials.db 'select name,password from users'
 
 sqlite3 {dbname}
 .headers on   # 컬럼 이름 출력
