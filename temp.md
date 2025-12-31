@@ -15,7 +15,7 @@
 - ffuf : `-mc all`
 - netexec : `--rid-brute`/`--users`(description 확인)
 - grep : `-r '@dog.htb'`
-- strings : `raw data catch flag`
+- strings : `raw data catch flag recover deleted files`
 - gobuster : `txt,md`
 - dirbuster : `~2017년도까지 대체재.`
 - input : `우회를 시도하여서 다른 공격방법 테스트(command injection만 우회가 되는 것이 아니다.)`
