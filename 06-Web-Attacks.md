@@ -19,7 +19,7 @@ echo 'hi!' | md5sum
 <details>
     <summary><strong>INPUT</strong></summary>
 
-- `INPUT`란에 아래 페이로드를 테스트 해본 뒤 SQLI/LFI/RFI/SSTI/XSS 테스트.
+- `INPUT`란에 아래 페이로드를 테스트 해본 뒤 `SQLI`/`LFI`/`RFI`/`SSTI`/`XSS`/`COMMAND INJECTION` 테스트.
 ```bash
 # 세미콜론 - 이전 명령과 관계없이 다음 명령 실행
 127.0.0.1;whoami
