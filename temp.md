@@ -141,6 +141,8 @@ tar -xvf filename.tar.bz2
   <summary><strong>sqlite3</strong></summary>
   
 ```bash
+sqlite3 <dbname> .dump
+
 sqlite3 {dbname}
 .headers on   # 컬럼 이름 출력
 .mode column  # 표 형식으로 출력
