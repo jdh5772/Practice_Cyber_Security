@@ -189,3 +189,14 @@ curl http://localhost -o output.txt
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>BASH</strong></summary>
+
+```bash
+# 해당 경로 bashrc 내부의 환경변수,함수,명령어 등을 현재 셸에서 실행하는 명령.
+. /opt/.bashrc
+```
+  
+</details>
