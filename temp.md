@@ -197,6 +197,12 @@ curl http://localhost -o output.txt
 ```bash
 # 해당 경로 bashrc 내부의 환경변수,함수,명령어 등을 현재 셸에서 실행하는 명령.
 . /opt/.bashrc
+
+# 파일 크기가 0보다 큰지 검사.
+[ -s log/photobomb.log ]
+
+# 파일이 링크파일인지 검사.
+[ -L log/photobomb.log ]
 ```
   
 </details>
