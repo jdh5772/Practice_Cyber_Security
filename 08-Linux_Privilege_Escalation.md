@@ -94,10 +94,10 @@ find / -perm -6000 -type f 2>/dev/null
 ```
 
 ### Sudo 권한 확인
-```bash
-sudo -l
-```
-- `(root) SETENV: NOPASSWD: /opt/cleanup.sh` : 외부 환경 변수를 해당 스크립트에 전달 가능.
+<img width="1106" height="131" alt="image" src="https://github.com/user-attachments/assets/b532742c-c518-4932-b5b2-4f829f2ef0e5" />
+
+- `env_reset` : `sudo`실행시 환경변수 초기화
+- `SETENV:` : 환경변수 전달 가능.
 
 ---
 
