@@ -230,3 +230,18 @@ XAUTHORITY=/tmp/.Xauthority xwd -root -screen -silent -display :0 > screenshot.x
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>DOCKER</strong></summary>
+
+```bash
+sudo docker images
+
+sudo docker ps -a
+```
+- `image` : 레시피
+- `container` : 레시피로 만든 요리.
+
+  
+</details>
