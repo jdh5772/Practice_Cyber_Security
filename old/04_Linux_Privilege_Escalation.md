@@ -97,6 +97,7 @@ find / -perm -6000 -type f 2>/dev/null
 ```bash
 sudo -l
 ```
+- `(root) SETENV: NOPASSWD: /opt/cleanup.sh` : 외부 환경 변수를 해당 스크립트에 전달 가능.
 
 ---
 
