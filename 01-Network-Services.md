@@ -100,8 +100,10 @@ sudo mount -t nfs 10.129.14.128:/target ./target/ -o nolock
 sudo umount ./target
 ```
 
-> **Security Note**: NFS는 기본적으로 인증이 약하므로, 민감한 데이터가 노출될 수 있습니다.  
+> **Security Note**: NFS는 기본적으로 인증이 약하므로, 민감한 데이터가 노출될 수 있습니다.
+
 > **Tip**: `no_root_squash` 옵션이 설정된 경우 root 권한 상승이 가능합니다.
+
 > 접근이 불가능할 경우 `UID`를 `usermod`로 바꿔서 시도.
 
 </details>
