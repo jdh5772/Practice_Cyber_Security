@@ -243,5 +243,13 @@ sudo docker ps -a
 - `image` : 레시피
 - `container` : 레시피로 만든 요리.
 
+<br>
+
+```bash
+sudo docker run -it -v $(pwd):/share <image>:latest
+```
+- `-it` : 대화형 터미널 모드 (interactive + tty)
+- `-v` : 마운트
+
   
 </details>
