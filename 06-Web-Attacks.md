@@ -1017,6 +1017,8 @@ curl -i -X OPTIONS http://SERVER_IP:PORT/
 
 > 사용자가 접근 권한 없는 객체에 직접 참조하여 접근할 수 있는 취약점입니다.
 
+> `ffuf`를 사용하여 `Username` fuzzing 가능.
+
 ### 기본 공격 기법
 
 #### URL 파라미터 조작
