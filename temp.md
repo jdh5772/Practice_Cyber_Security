@@ -2,7 +2,7 @@
   <summary><strong>CHECK</strong></summary>
   
 
-- web : `whatweb`/`curl`/`burpsuite crawler`/`*html code*`
+- web : `whatweb`/`curl`/`burpsuite crawler`/`⭐html code⭐`
 - sql : `injection`/`connect`/`enumeration`/`update`
 - ftp : `upload`/`download`/`hidden files`
 - http : `robots.txt`/`gobuster`/`feroxbuster`/`ffuf`/`error page`/`cookie에 따라서 redirection`/`.git`/`configuration file location`
