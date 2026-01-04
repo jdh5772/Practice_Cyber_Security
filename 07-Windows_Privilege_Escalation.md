@@ -11,6 +11,16 @@ Find-AllVulns
 </details>
 
 ---
+<details>
+ <summary><strong>tasklist</strong></summary>
+
+```powershell
+tasklist /v |findstr -i cloudme
+```
+ 
+</details>
+
+---
 
 ## use nc to transfer files
 ```powershell
