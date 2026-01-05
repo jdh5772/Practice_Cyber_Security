@@ -14,8 +14,6 @@
 ## 취약점: Shebang Bypass
 - SUID가 설정되어 있어야 한다.
 
-**두 가지 실행 방식의 차이:**
-
 방법 1: perl 직접 호출 (차단됨)
 ```bash
 perl exploit.pl
