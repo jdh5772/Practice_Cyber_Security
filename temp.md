@@ -12,7 +12,7 @@
 <br>
 
 - nmap : `-sU --top-ports 100`/`-Pn`
-- ffuf : `-mc all`
+- ffuf : `-mc all`/`http 인지 https 인지 제대로 확인`
 - netexec : `--rid-brute`/`--users`(description 확인)
 - grep : `-r '@dog.htb'`
 - strings : `raw data catch flag recover deleted files`
