@@ -13,14 +13,15 @@
 
 - nmap : `-sU --top-ports 100`/`-Pn`
 - ffuf : `-mc all`/`http 인지 https 인지 제대로 확인`
-- netexec : `--rid-brute`/`--users`(description 확인)
+- netexec : `--rid-brute`/`--users(description 확인)`
 - grep : `-r '@dog.htb'`
 - strings : `raw data catch flag recover deleted files`
 - gobuster : `txt,md`/`-k(tls)`
 - dirbuster : `~2017년도까지 대체재.`
 - input : `우회를 시도하여서 다른 공격방법 테스트(command injection만 우회가 되는 것이 아니다.)`/`⭐모든 공격을 전부 시도해봐야 한다.⭐`
 - searchsploit : `버전을 확인할 수 없어도 페이로드 시도.`
-- Docker : `Docker`버전을 확인하여 Privesc 시도.
+- Docker : `Docker 버전을 확인하여 Privesc 시도.`
+- burpsuite : `요청시 파라미터 전송(위)과 body 전송(아래) 바꿔서 전달해보기.`
 
 </details>
 
