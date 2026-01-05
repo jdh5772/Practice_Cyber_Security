@@ -33,6 +33,10 @@ echo 'hi!' | md5sum
 # 개행 문자 - 새 줄에서 명령 실행
 127.0.0.1%0awhoami
 ```
+
+- 파라미터를 공백으로 만든 뒤 어떻게 전달되는지 확인.
+<img width="1548" height="472" alt="image" src="https://github.com/user-attachments/assets/2284e992-7dc2-4885-a5ad-4af0c9efe800" />
+
     
 </details>
 
