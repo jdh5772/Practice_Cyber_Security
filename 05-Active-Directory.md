@@ -550,3 +550,13 @@ mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>Rusthound</strong></summary>
+
+```bash
+rusthound-ce -d <domain> -u <user> -p <password>
+```
+  
+</details>
