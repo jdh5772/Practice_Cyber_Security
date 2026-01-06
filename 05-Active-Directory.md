@@ -382,7 +382,9 @@ Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
 <details>
   <summary><strong>AS-REP Roasting</strong></summary>
 
-- Kerberos 사전 인증(Pre-authentication)이 비활성화된 계정이 존재할 때, 인증 없이 암호화된 AS-REP 응답을 획득하여 오프라인에서 비밀번호를 크랙하는 공격
+- Kerberos 사전 인증(Pre-authentication)이 비활성화된 계정이 존재
+- 인증 없이 암호화된 AS-REP 응답을 획득하여 오프라인에서 비밀번호를 크랙하는 공격
+- 인증이 필요없기 때문에 `Kerberoasting`이전에 시도.
 
 ```bash
 impacket-GetNPUsers -dc-ip 192.168.50.70 -request -outputfile hash corp.com/pete
