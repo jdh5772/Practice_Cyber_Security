@@ -53,6 +53,18 @@ Shebang의 "간접 호출"은 감지 못함 (설계상 버그)
   
 </details>
 
+---
+<details>
+  <summary><strong>Apache VHOST</strong></summary>
+
+- `/etc/apache2/sites-enabled`에서 VHOST확인.
+<img width="1105" height="119" alt="image" src="https://github.com/user-attachments/assets/2d23850a-94b7-4f05-b159-918eea76f4d6" />
+
+  
+</details>
+
+---
+
 ## Add New Root User
 ```bash
 # 패스워드 해시 생성
