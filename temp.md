@@ -7,7 +7,7 @@
 - ftp : `upload`/`download`/`hidden files`
 - http : `robots.txt`/`gobuster`/`feroxbuster`/`ffuf`/`error page`/`cookie에 따라서 redirection`/`.git`/`configuration file location`
 - windows : `powershell history`/`whoami`/`⭐inside files(password leaking,source code,configurations)⭐`/`responder-ntlm`
-- linux : `inside files(password leaking,source code,configurations)`/`env`/`open ports`/⭐`who have permissions(root or user?)`⭐/`/var/mail`/`login user's group files`/`vhost(/etc/apache2/sites-enabled)`
+- linux : `inside files(password leaking,source code,configurations)`/`env`/`open ports`/`⭐who have permissions(root or user?)⭐`/`/var/mail`/`login user's group files`/`vhost(/etc/apache2/sites-enabled)`
 
 <br>
 
