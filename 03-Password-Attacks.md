@@ -940,3 +940,33 @@ sqlite3 gitea.db "select passwd,salt,name from user" | while read data; do diges
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>ZipCrypto</strong></summary>
+
+```bash
+7z l -slt <zip file>
+```
+- 압축된 파일의 내용들과 세부 정보 확인.
+
+<br>
+
+```bash
+crc32 ~/.bash_logout
+```
+- `.bash_logout`의 경우 리눅스 설치시 동일하게 설치 됨.
+- `crc`값을 비교하여 같은 파일인지 확인할 수 있음.
+
+<br>
+
+```bash
+/opt/bkcrack/bkcrack -C uploaded-file-3422.zip -c .bash_logout -P plain.zip -p .bash_logout
+
+/opt/bkcrack/bkcrack -C uploaded-file-3422.zip -k 6230b158 1cf90fe7 97778c9c -U uploaded-file-3422-pass.zip <password>
+```
+- https://github.com/kimci86/bkcrack
+- `.bash_logout`을 `plain.zip`으로 압축하여 진행.
+- 발견한 `Key`를 가지고 새로운 암호로 새로운 zip파일을 생성.
+  
+</details>
