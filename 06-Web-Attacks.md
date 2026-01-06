@@ -37,6 +37,14 @@ echo 'hi!' | md5sum
 - 파라미터를 공백으로 만든 뒤 어떻게 전달되는지 확인.
 <img width="1548" height="472" alt="image" src="https://github.com/user-attachments/assets/2284e992-7dc2-4885-a5ad-4af0c9efe800" />
 
+<br>
+<br>
+
+- 타입 검사가 제대로 되지 않을 경우 우회 가능.
+<img width="1548" height="472" alt="image" src="https://github.com/user-attachments/assets/5abcfd91-a27d-4da9-9cd6-bf845c9213fd" />
+
+
+
     
 </details>
 
