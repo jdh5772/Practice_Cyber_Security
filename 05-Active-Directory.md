@@ -52,6 +52,8 @@ crackmapexec smb 172.16.5.5 --users
 > LDAP 프로토콜을 이용한 사용자 계정 검색
 
 ```bash
+ldapsearch -v -x -b "DC=hutch,DC=offsec" -H "ldap://192.168.160.122" "(objectclass=*)"
+
 # LDAP 쿼리를 통한 사용자 계정 추출
 ldapsearch -H 172.16.5.5 -x -b "DC=INLANEFREIGHT,DC=LOCAL" -s sub "(&(objectclass=user))" | grep sAMAccountName: | cut -f2 -d" "
 ```
