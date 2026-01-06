@@ -262,3 +262,15 @@ mount
 - `mount`포인트에서 `overlay`를 캡쳐해서 컨테이너 확인.
   
 </details>
+
+---
+<details>
+  <summary><strong>7z</strong></summary>
+
+```bash
+7z l -slt uploaded-file-3422.zip 
+```
+- `l` : 리스팅
+- `-slt` : 기술 정보 목록 표시.
+  
+</details>
