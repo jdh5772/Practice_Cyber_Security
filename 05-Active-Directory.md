@@ -556,6 +556,7 @@ mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
   <summary><strong>BloodHound</strong></summary>
 
 - 공격 대상을 `Administrator`로 잡고 시작.
+- `SharpHound`를 먼저 써보기.
 
 ## bloodhound-python
 ```bash
