@@ -553,10 +553,10 @@ mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
 
 ---
 <details>
-  <summary><strong>Rusthound</strong></summary>
+  <summary><strong>BloodHound Python</strong></summary>
 
 ```bash
-rusthound-ce -d <domain> -u <user> -p <password>
+bloodhound-python -u "hrapp-service" -p 'Untimed$Runny' -d hokkaido-aerospace.com -c all --zip -ns 192.168.208.40
 ```
   
 </details>
