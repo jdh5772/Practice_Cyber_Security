@@ -553,8 +553,11 @@ mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
 
 ---
 <details>
-  <summary><strong>BloodHound Python</strong></summary>
+  <summary><strong>BloodHound</strong></summary>
 
+- 공격 대상을 `Administrator`로 잡고 시작.
+
+## bloodhound-python
 ```bash
 bloodhound-python -u "hrapp-service" -p 'Untimed$Runny' -d hokkaido-aerospace.com -c all --zip -ns 192.168.208.40
 ```
