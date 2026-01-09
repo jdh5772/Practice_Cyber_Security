@@ -970,3 +970,22 @@ crc32 ~/.bash_logout
 - 발견한 `Key`를 가지고 새로운 암호로 새로운 zip파일을 생성.
   
 </details>
+
+---
+<details>
+  <summary><strong>Encrypted RSA</strong></summary>
+
+<img width="1201" height="109" alt="image" src="https://github.com/user-attachments/assets/5a6f1794-b6c9-41fc-a6ae-0c3a02dedb27" />
+
+- 암호화가 되어있다는 표시.
+
+<br>
+
+```bash
+openssl rsa -in private -out id_rsa
+
+ssh -i hype_key_decrypted -o PubkeyAcceptedKeyTypes=+ssh-rsa hype@10.10.10.79
+```
+- 오래된 SSH의 경우 `ssh-rsa`알고리즘을 활성화해서 접속해야한다.
+  
+</details>
