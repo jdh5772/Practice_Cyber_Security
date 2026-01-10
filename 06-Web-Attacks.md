@@ -1384,3 +1384,11 @@ help
 ```
 
 </details>
+
+---
+<details>
+    <summary><strong>JS 난독화 해제</strong></summary>
+
+- `eval()`를 `console.log()`로 바꿔서 콘솔에서 실행.
+    
+</details>
