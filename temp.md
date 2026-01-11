@@ -5,7 +5,7 @@
 - web : `whatweb`/`curl`/`burpsuite crawler`/`⭐html code⭐`/`JS code`
 - sql : `injection`/`connect`/`enumeration`/`update`
 - ftp : `upload`/`download`/`hidden files`
-- http : `robots.txt`/`gobuster`/`feroxbuster`/`ffuf`/`error page`/`cookie에 따라서 redirection`/`.git`/`configuration file location`
+- http : `robots.txt`/`gobuster`/`feroxbuster`/`ffuf`/`error page`/`cookie에 따라서 redirection`/`.git`/`configuration file location`/`페이지의 내용 먼저 확인`
 - windows : `powershell history`/`whoami`/`⭐inside files(password leaking,source code,configurations)⭐`/`responder-ntlm`
 - linux : `inside files(password leaking,source code,configurations)`/`env`/`open ports`/`⭐who have permissions(root or user?)⭐`/`/var/mail`/`login user's group files`/`vhost(/etc/apache2/sites-enabled)`
 - Active Directory : `Privesc > return`
