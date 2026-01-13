@@ -15,7 +15,12 @@ openssl s_client -connect 10.129.14.136:21 -starttls ftp
 - ✅ 파일 업로드 권한 테스트 (익명 사용자 쓰기 권한 확인)
 
 > **Security Note**: 익명 로그인이 허용되고 쓰기 권한이 있다면 웹 쉘 업로드 가능성이 있습니다.
-  
+
+### FTP 다운로드 실패시.
+```bash
+wget -m --no-passive ftp://anonymous:anonymous@10.10.10.98
+```
+
 </details>
 
 ---
