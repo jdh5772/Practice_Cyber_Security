@@ -28,6 +28,9 @@ admin')-- -     # 괄호가 있는 경우
 # 결과: WHERE username='admin' OR '1'='1' AND password='password' OR '1'='1'
 username : admin' or '1'='1
 password : password' or '1'='1
+
+# 매번 `이나 '를 붙여서 작동하는 것은 아니다.
+username : admin or 1=1;-- -
 ```
 
 ### UNION 기반 데이터 추출
