@@ -185,7 +185,7 @@ ncat -nv -p 53 10.129.2.28 50000
 ---
 
 <details>
-  <summary><strong>Virtual Host Discovery</strong></summary>
+  <summary><strong>Virtual Host Discovery(VHOST)</strong></summary>
 
 하나의 IP에서 여러 도메인 호스팅. `Host` 헤더 기반 라우팅.
 
@@ -210,6 +210,9 @@ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H '
 ```
 
 > **Important**: 비표준 포트 사용 시 VHOST URL에도 포트 명시 필수 (예: `http://dev.example.com:8443`)
+
+- `Apache` : `/etc/apache2/sites-enabled`
+- `Nginx` : `/etc/nginx/sites-enabled`
 
 </details>
 
