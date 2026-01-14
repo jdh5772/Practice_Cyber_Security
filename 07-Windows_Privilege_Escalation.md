@@ -80,7 +80,7 @@ sc.exe qc usosvc
 
 sc.exe stop usosvc
 
-sc.exe config binpath="c:\temp\shell.exe"
+sc.exe config usosvc binpath="c:\temp\shell.exe"
 
 # 바뀐 BINARY_PATH_NAME 확인.
 sc.exe qc usosvc
