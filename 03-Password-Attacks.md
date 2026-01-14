@@ -1009,3 +1009,25 @@ gpp-decrypt -f groups.xml
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>PFX</strong></summary>
+
+```bash
+# PFX 파일 크래킹
+pfx2john filename > hash
+john hash
+
+# PFX에서 키 추출
+openssl pkcs12 -in <pfx file> -nocerts -nodes -out private.key
+openssl pkcs12 -in <pfx file> -nokeys -clcerts -out public.key
+
+# SSH 접속
+ssh -i <file.pem> host@local
+
+# Evil-WinRM 접속
+evil-winrm -i <ip> -c <public key> -k <private key> -S 
+```
+  
+</details>
