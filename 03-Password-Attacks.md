@@ -998,3 +998,14 @@ ssh -i hype_key_decrypted -o PubkeyAcceptedKeyTypes=+ssh-rsa hype@10.10.10.79
 - 오래된 SSH의 경우 `ssh-rsa`알고리즘을 활성화해서 접속해야한다.
   
 </details>
+
+---
+<details>
+  <summary><strong>cpassword</strong></summary>
+
+```bash
+# pip install gpp-decrypt
+gpp-decrypt -f groups.xml
+```
+  
+</details>
