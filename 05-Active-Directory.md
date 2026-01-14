@@ -46,6 +46,8 @@ enum4linux -U 172.16.5.5 | grep "user:" | cut -f2 -d"[" | cut -f1 -d"]"
 ```bash
 # SMB를 통한 사용자 열거
 crackmapexec smb 172.16.5.5 --users
+
+netexec smb <ip> -u 'guest' -p '' --rid-brute
 ```
 
 ### LDAP Search
