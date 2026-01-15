@@ -7,7 +7,7 @@
 - ftp : `upload`/`download`/`hidden files`
 - http : `robots.txt`/`gobuster`/`feroxbuster`/`ffuf`/`error page`/`cookie에 따라서 redirection`/`.git`/`configuration file location`
 - windows : `powershell history`/`whoami`/`⭐inside files(password leaking,source code,configurations)⭐`/`responder-ntlm`/`public folder`
-- linux : `inside files(password leaking,source code,configurations)`/`env`/`open ports`/`⭐who have permissions(root or user?)⭐`/`/var/mail`/`login user's group files`
+- linux : `inside files(password leaking,source code,configurations)`/`env`/`open ports`/`⭐who have permissions(root or user?)⭐`/`/var/mail`/`login user's group files`/`Unkonwn port telnet or nc banner grabbing`
 - Active Directory : `Privesc > return`/`ntpdate로 먼저 시간을 맞춰주고 시작.`
 
 <br>
