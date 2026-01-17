@@ -924,6 +924,15 @@ keepassxc <file.kdbx>
 ```
 - https://github.com/matro7sh/keepass-dump-masterkey
 
+## kpcli
+```bash
+kpcli -kdb=<file.kdbx>
+
+find .
+
+show -f <number>
+```
+
 </details>
 
 ---
