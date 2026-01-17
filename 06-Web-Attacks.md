@@ -1342,6 +1342,8 @@ ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.204.227:8080/cgi/F
 <details>
     <summary><strong>Jenkins</strong></summary>
 
+- `workspace`를 통해서 원격에서 로컬로 파일 공유가 가능.    
+
 ## New Item
 - `New Item` -> `Freestyle project` -> `Build` -> `Select Windows batch Command`
 - `Build Now` -> `Console Output`
