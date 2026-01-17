@@ -1,4 +1,43 @@
 <details>
+ <summary><strong>NTFS 대체 데이터 스트림(dir /R)</strong></summary>
+ 
+## NTFS 대체 데이터 스트림(ADS)이란?
+NTFS 파일 시스템의 특성으로, 하나의 파일에 여러 개의 데이터 스트림을 추가할 수 있는 기능입니다.
+
+### 일반적인 용도
+- 인터넷에서 다운로드한 파일의 출처 정보 저장
+- 파일의 메타데이터 저장
+- macOS의 리소스 포크 호환성
+
+### 보안 위협
+- **악성코드 은닉 공간**으로 악용 가능
+- 일반 탐색기나 `dir` 명령어로는 보이지 않음
+- 파일 크기가 0바이트로 보여도 실제 데이터 존재 가능
+
+## ADS 읽기 방법
+
+### 1. Notepad 사용
+```cmd
+notepad 파일명:스트림명
+notepad test.txt:Zone.Identifier
+```
+
+### 2. more 명령어 (리다이렉션)
+```cmd
+more < 파일명:스트림명
+more < test.txt:Zone.Identifier
+```
+
+### 3. PowerShell (권장)
+```powershell
+Get-Content 파일명 -Stream 스트림명
+Get-Content test.txt -Stream Zone.Identifier
+```
+ 
+</details>
+
+---
+<details>
  <summary><strong>Sherlock</strong></summary>
 
 - https://github.com/rasta-mouse/Sherlock
