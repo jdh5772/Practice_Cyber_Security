@@ -283,3 +283,14 @@ mount
 - `-slt` : 기술 정보 목록 표시.
   
 </details>
+
+---
+<details>
+  <summary><strong>cross compile</strong></summary>
+
+```bash
+# 크로스 컴파일
+x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
+```
+  
+</details>
