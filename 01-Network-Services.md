@@ -111,6 +111,16 @@ sudo umount ./target
 
 > 접근이 불가능할 경우 `UID`를 `usermod`로 바꿔서 시도.
 
+### usermod
+
+<img width="1103" height="128" alt="image" src="https://github.com/user-attachments/assets/a3b3641e-69f5-4310-abe2-a4c93982b734" />
+
+```bash
+sudo adduser dummy
+
+sudo usermod -u 2017 dummy
+```
+
 </details>
 
 ---
