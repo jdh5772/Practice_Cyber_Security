@@ -610,3 +610,15 @@ Remove-Item -Path "C:\Path\To\YourFile.txt"
 ```
  
 </details>
+
+---
+<details>
+ <summary><strong>procdump</strong></summary>
+
+- https://live.sysinternals.com/
+- 프로세스에서 특히 브라우저가 실행 되고 있을 경우 덤핑하여 확인.
+```powershell
+.\procdump64 -ma 6252 -accepteula
+```
+ 
+</details>
