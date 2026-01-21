@@ -27,6 +27,7 @@
 - burpsuite : `요청시 파라미터 전송(위)과 body 전송(아래) 바꿔서 전달해보기. 이에 따라서 Content-Type을 바꿔야할 수도 있음.`
 - man page : `익숙하지 않은 프로그램의 경우 man page를 찾아볼 것.`
 - code script : `입력 검증이 제대로 되고 있는지 확인.`
+- process : `ps 명령어를 사용하여 어떤 프로그램이 실행되고 있는지 의심.(특히나 브라우저)`
 
 </details>
 
