@@ -26,6 +26,7 @@
 - Docker : `Docker 버전을 확인하여 Privesc 시도.`
 - burpsuite : `요청시 파라미터 전송(위)과 body 전송(아래) 바꿔서 전달해보기. 이에 따라서 Content-Type을 바꿔야할 수도 있음.`
 - man page : `익숙하지 않은 프로그램의 경우 man page를 찾아볼 것.`
+- code script : `입력 검증이 제대로 되고 있는지 확인.`
 
 </details>
 
