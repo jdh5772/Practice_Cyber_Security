@@ -1045,6 +1045,9 @@ evil-winrm -i <ip> -c <public key> -k <private key> -S
 <details>
   <summary><strong>CISCO</strong></summary>
 
+## Configuration
+<img width="564" height="637" alt="image" src="https://github.com/user-attachments/assets/71376984-d33a-44b2-8836-5988f58154c5" />
+
 ## TYPE 7
 - https://github.com/theevilbit/ciscot7
 ```bash
