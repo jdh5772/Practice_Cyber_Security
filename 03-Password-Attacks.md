@@ -1040,3 +1040,15 @@ evil-winrm -i <ip> -c <public key> -k <private key> -S
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>CISCO</strong></summary>
+
+## TYPE 7
+- https://github.com/theevilbit/ciscot7
+```bash
+python3 ciscot7.py -d -p '02375012182C1A1D751618034F36415408'
+```
+
+</details>
