@@ -19,7 +19,7 @@
 - netexec : `--rid-brute`/`--users(description 확인)`
 - grep : `-r '@dog.htb'`
 - strings : `raw data catch flag recover deleted files`
-- gobuster : `txt,md`/`-k(tls)`
+- gobuster : `txt,md`/`-k(tls)`/`경로를 못찾을 때는 feroxbuster 사용해보기.`
 - dirbuster : `~2017년도까지 대체재.`
 - input : `우회를 시도하여서 다른 공격방법 테스트(command injection만 우회가 되는 것이 아니다.)`/`⭐모든 공격을 전부 시도해봐야 한다.⭐`/`우선 순위를 먼저 테스트해봐야한다.`
 - searchsploit : `버전을 확인할 수 없어도 페이로드 시도.`
