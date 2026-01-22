@@ -630,6 +630,8 @@ Remove-Item -Path "C:\Path\To\YourFile.txt"
 - `MS SQL Server`가 설치되어 있으면 `sqlcmd`를 실행할 수 있다.
 ```powershell
 sqlcmd -?
+
+sqlcmd -q 'SELECT table_name from adsync.information_schema.tables';
 ```
  
 </details>
