@@ -28,6 +28,7 @@
 - man page : `익숙하지 않은 프로그램의 경우 man page를 찾아볼 것.`
 - code script : `입력 검증이 제대로 되고 있는지 확인.`
 - process : `ps 명령어를 사용하여 어떤 프로그램이 실행되고 있는지 의심.(특히나 브라우저)`
+- banner grabbing : `nc 혹은 telnet을 사용할 경우 버전 출력에 시간이 좀 걸릴 수 있다.`
 
 </details>
 
