@@ -586,7 +586,7 @@ Test-Path "C:\Program Files\Microsoft Azure AD Sync"
 Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Azure AD Connect"
 ```
 
-## Exploit
+## MSOL 추출
 ```powershell
 # ========================================
 # Azure AD Connect MSOL 계정 추출 스크립트
