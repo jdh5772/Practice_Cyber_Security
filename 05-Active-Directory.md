@@ -587,6 +587,7 @@ Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Azure AD Connect"
 ```
 
 ## MSOL 추출
+- `MSOL` : Azure AD Connect가 온프레미스 Active Directory와 Azure AD(Microsoft 365/Entra ID) 간의 동기화를 수행하기 위해 자동으로 생성하는 서비스 계정
 ```powershell
 # ========================================
 # Azure AD Connect MSOL 계정 추출 스크립트
