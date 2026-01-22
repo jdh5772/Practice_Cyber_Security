@@ -217,7 +217,15 @@ a LOGOUT
 
 > **Warning**: 메일박스 이름은 대소문자를 구분합니다. `INBOX`와 `inbox`는 다릅니다.  
 > **Tip**: `a`는 태그(tag)로, 명령어 식별자입니다. 임의의 문자열 사용 가능합니다.
-  
+
+### POP3
+<img width="717" height="231" alt="image" src="https://github.com/user-attachments/assets/efc6609e-aee2-4963-8586-7a9718477f23" />
+
+<br>
+<br>
+
+<img width="764" height="449" alt="image" src="https://github.com/user-attachments/assets/a5a1b905-4b0c-4469-b8d7-ef2a49234642" />
+
 </details>
 
 ---
