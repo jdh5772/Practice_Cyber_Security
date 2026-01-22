@@ -571,6 +571,9 @@ bloodhound-python -u "hrapp-service" -p 'Untimed$Runny' -d hokkaido-aerospace.co
 <details>
   <summary><strong>Azure AD Connect</strong></summary>
 
+## 조건
+- `AD` 환경에서 `AZURE cloud` 서비스를 사용중이어야 한다.
+
 ## Recon
 ```powershell
 # 서비스 확인
