@@ -131,6 +131,14 @@ dir(response)
 print(response.headers);
 ```
 
+## TIME to INT
+- https://strftime.org/
+```python3
+from datetime import datetime;
+
+currentTime = int(datetime.strptime(<currentDate>,<timeFormat>).timestamp());
+```
+
 ## version check
 ```bash
 pip freeze | grep -i git
