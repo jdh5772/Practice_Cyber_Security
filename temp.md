@@ -14,7 +14,7 @@
 
 <br>
 
-- nmap : `-sU --top-ports 100`/`-Pn`
+- nmap : `-sU --top-ports 100`/`-Pn`/`subdomain에서도 .git 확인`
 - ffuf : `-mc all`/`http 인지 https 인지 제대로 확인`
 - netexec : `--rid-brute`/`--users(description 확인)`
 - grep : `-r '@dog.htb'`
