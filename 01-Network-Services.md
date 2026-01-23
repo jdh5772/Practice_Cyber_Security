@@ -361,3 +361,16 @@ xfreerdp /v:10.10.10.132 /u:administrator /p:'Password0@' /drive:linux,/home/pla
 > **Warning**: BlueKeep (CVE-2019-0708) 등 RDP 취약점 존재 시 익스플로잇 가능성을 확인하세요.
   
 </details>
+
+---
+<details>
+  <summary><strong>FINGER(79)</strong></summary>
+
+## User Enum
+```bash
+wget https://raw.githubusercontent.com/pentestmonkey/finger-user-enum/refs/heads/master/finger-user-enum.pl
+
+./finger-user-enum.pl -U users.txt -t 10.0.0.1
+```
+  
+</details>
