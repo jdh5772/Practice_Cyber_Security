@@ -151,6 +151,7 @@ pip freeze | grep -i git
 <details>
   <summary><strong>BASH</strong></summary>
 
+
 ```bash
 # 해당 경로 bashrc 내부의 환경변수,함수,명령어 등을 현재 셸에서 실행하는 명령.
 . /opt/.bashrc
@@ -163,6 +164,13 @@ pip freeze | grep -i git
 ```
 
 - `bash`에서는 `TRUE/FALSE` 값이 존재하지 않는다.
+
+## ENV
+- 환경변수를 전달할 때 `;`를 사용하면 다르게 해석된다.
+- 공백으로 전달.
+```bash
+sudo ENV=<env> ./script
+```
   
 </details>
 
