@@ -161,6 +161,8 @@ pip freeze | grep -i git
 # 파일이 링크파일인지 검사.
 [ -L log/photobomb.log ]
 ```
+
+- `bash`에서는 `TRUE/FALSE` 값이 존재하지 않는다.
   
 </details>
 
