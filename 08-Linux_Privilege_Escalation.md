@@ -330,11 +330,14 @@ gcc -shared -fPIC ex.c -o ex.so
 
 ---
 <details>
-  <summary><strong>Linux Path Variables 설정</strong></summary>
+  <summary><strong>Linux Path Variables</strong></summary>
 
 ```bash
 export PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 ```
+
+- `PATH`에서 앞에 설정 된 경로부터 순차적으로 찾아서 실행.
+- `popen`/`exec`함수를 사용하여 프로그램을 실행할 경우 `PATH`변수에서 새로운 경로를 추가해주고 특정 프로그램의 내용을 변경해서 침투.
   
 </details>
 
