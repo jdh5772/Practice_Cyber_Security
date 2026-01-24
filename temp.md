@@ -161,6 +161,9 @@ pip freeze | grep -i git
 
 # 파일이 링크파일인지 검사.
 [ -L log/photobomb.log ]
+
+# 문자열 길이가 0인지 검사.
+[ -z $CHECK_CONTENT ]
 ```
 
 - `bash`에서는 `TRUE/FALSE` 값이 존재하지 않는다.
