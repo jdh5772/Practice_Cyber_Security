@@ -1459,6 +1459,8 @@ nmap -p- -sC -Pn 10.129.247.30 --open
 <details>
     <summary><strong>IIS</strong></summary>
 
+- 확장자 : `aspx`
+
 ### 8.3 format enabled
 ```
 http://example.com/~s
