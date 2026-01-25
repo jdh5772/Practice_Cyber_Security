@@ -1,4 +1,13 @@
 <details>
+  <summary><strong>ruid euid</strong></summary>
+
+- `ruid` : `Real User ID` / 프로세스를 실행한 유저.
+- `euid` : `Effective User ID` / 프로세스 실제 실행 유저.(SUID가 설정되어 있으면 euid는 0으로 설정 됨.)
+  
+</details>
+
+---
+<details>
   <summary><strong>AppArmor Bypass via Shebang</strong></summary>
 
 ## AppArmor란?
