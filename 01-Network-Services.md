@@ -374,3 +374,19 @@ wget https://raw.githubusercontent.com/pentestmonkey/finger-user-enum/refs/heads
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>VNC(5901)</strong></summary>
+
+- `RFB` 프로토콜 사용.
+<img width="1105" height="60" alt="image" src="https://github.com/user-attachments/assets/bdccb847-f5b0-441a-8018-c393a9c58903" />
+
+<br>
+<br>
+
+```bash
+vncviewer :5901 -passwd secret
+```
+  
+</details>
