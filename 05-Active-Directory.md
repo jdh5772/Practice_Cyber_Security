@@ -56,8 +56,15 @@ netexec smb <ip> -u 'guest' -p '' --rid-brute
 ```bash
 ldapsearch -v -x -b "DC=hutch,DC=offsec" -H "ldap://192.168.160.122" "(objectclass=*)"
 
+ldapsearch -v -x -b "DC=hutch,DC=offsec" -H "ldap://192.168.160.122" "(objectclass=person)"
+
 # LDAP 쿼리를 통한 사용자 계정 추출
 ldapsearch -H 172.16.5.5 -x -b "DC=INLANEFREIGHT,DC=LOCAL" -s sub "(&(objectclass=user))" | grep sAMAccountName: | cut -f2 -d" "
+```
+
+```bash
+# 수집된 정보에서 특별한 정보 찾기.
+cat ldap| awk '{print $1}'|sort|uniq -c|sort -nr
 ```
 
 ### Windapsearch
