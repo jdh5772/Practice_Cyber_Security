@@ -1306,6 +1306,8 @@ AddType application/x-httpd-php .php16
 <details>
     <summary><strong>TOMCAT</strong></summary>
 
+- `JSP`
+
 ```bash
 curl http://app-dev.inlanefreight.local:8080/invalid
 
@@ -1466,7 +1468,7 @@ nmap -p- -sC -Pn 10.129.247.30 --open
 <details>
     <summary><strong>IIS</strong></summary>
 
-- 확장자 : `aspx`
+- `aspx`
 
 ### 8.3 format enabled
 ```
