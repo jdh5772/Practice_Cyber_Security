@@ -398,5 +398,12 @@ wget https://raw.githubusercontent.com/pentestmonkey/finger-user-enum/refs/heads
 ```bash
 vncviewer :5901 -passwd secret
 ```
+
+## Decrypt Password
+- https://github.com/frizb/PasswordDecrypts
+- `hex` 코드를 얻으면 비밀번호를 복호화 할 수 있다.
+```bash
+echo -n 6bcf2a4b6e5aca0f | xxd -r -p | openssl enc -des-cbc --nopad --nosalt -K e84ad660c4721ae0 -iv 0000000000000000 -d | hexdump -Cv
+```
   
 </details>
