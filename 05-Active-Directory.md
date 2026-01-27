@@ -717,7 +717,7 @@ try {
 
 ---
 <details>
-  <summary><strong>AD Recycle Bin</strong></summary>
+  <summary><strong>AD Recycle Bin Group</strong></summary>
 
 - https://book.hacktricks.wiki/en/windows-hardening/active-directory-methodology/privileged-groups-and-token-privileges.html?highlight=ad%20recycle%20bin#ad-recycle-bin
 ```powershell
