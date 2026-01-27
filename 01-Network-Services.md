@@ -402,6 +402,8 @@ vncviewer :5901 -passwd secret
 ## Decrypt Password
 - https://github.com/frizb/PasswordDecrypts
 - `hex` 코드를 얻으면 비밀번호를 복호화 할 수 있다.
+<img width="1103" height="519" alt="image" src="https://github.com/user-attachments/assets/cd0b32b6-a89d-45dd-a70a-03e0a8d48c9c" />
+
 ```bash
 echo -n 6bcf2a4b6e5aca0f | xxd -r -p | openssl enc -des-cbc --nopad --nosalt -K e84ad660c4721ae0 -iv 0000000000000000 -d | hexdump -Cv
 ```
