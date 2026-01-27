@@ -714,3 +714,14 @@ try {
 - https://blog.xpnsec.com/azuread-connect-for-redteam/
   
 </details>
+
+---
+<details>
+  <summary><strong>AD Recycle Bin</strong></summary>
+
+- https://book.hacktricks.wiki/en/windows-hardening/active-directory-methodology/privileged-groups-and-token-privileges.html?highlight=ad%20recycle%20bin#ad-recycle-bin
+```powershell
+Get-ADObject -filter 'isDeleted -eq $true' -includeDeletedObjects -Properties *
+```
+  
+</details>
