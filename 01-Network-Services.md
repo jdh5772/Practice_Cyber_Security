@@ -30,6 +30,16 @@ wget -m --no-passive ftp://anonymous:anonymous@10.10.10.98
 ### SMB (Server Message Block)
 Windows 환경에서 파일 및 프린터 공유에 사용되는 프로토콜입니다.
 
+### SMB 일괄 다운로드
+```
+smbclient --user r.thompson //10.10.10.182/data rY4n5eva
+
+smb: \> mask ""
+smb: \> recurse ON
+smb: \> prompt OFF
+smb: \> mget *
+```
+
 #### NTLM Relay Attack
 인증 정보를 가로채어 다른 서비스로 전달하는 공격 기법입니다.
 
