@@ -748,7 +748,7 @@ export KRB5CCNAME=/path/to/ticket.ccache
 ## 인증
 ```bash
 # KRB5CCNAME 사용하여 psexec 실행
-psexec.py -k -no-pass DOMAIN/USER@TARGET
+psexec.py -k -no-pass DOMAIN/USER@<FQDN>
 ```
   
 </details>
