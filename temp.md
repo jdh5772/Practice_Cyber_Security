@@ -144,6 +144,29 @@ currentTime = int(datetime.strptime(<currentDate>,<timeFormat>).timestamp());
 ```bash
 pip freeze | grep -i git
 ```
+
+## base64
+```python3
+import base64;
+
+str = b"Heloo";
+
+encoded = base64.b64encode(str);
+decoded = base64.b64decode(encoded);
+```
+
+## cycle
+```python3
+import itertools;
+
+array = [e^k^223 for e,k in zip(decoded,itertools.cycle(key))];
+```
+
+## bytearray
+```python3
+# array = [110, 118, 69, 102, 69, 75, 49, 54, 94, 49, 97, 77, 52, 36, 101, 55, 65, 99, 108, 85, 102, 56, 120, 36, 116, 82, 87, 120, 80, 87, 79, 49, 37, 108, 109, 122]
+str = bytearray(array).decode;
+```
   
 </details>
 
