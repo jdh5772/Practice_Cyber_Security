@@ -417,6 +417,8 @@ impacket-GetNPUsers -dc-ip <ip> -no-pass <domain>/<user>
 
 ### Kerberos SessionError: KRB_AP_ERR_SKEW(Clock skew too great)
 ```bash
+sudo timedatectl set-ntp off
+
 sudo ntpdate <ip>
 ```
 
