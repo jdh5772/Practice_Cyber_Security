@@ -727,3 +727,28 @@ Get-ADObject -filter 'isDeleted -eq $true' -includeDeletedObjects -Properties *
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>Kerberos Ticket Authentication(KRB5CCNAME)</strong></summary>
+
+## Ticket 변환
+```bash
+# kirbi 파일을 ccache로 변환(base64 인코딩 되어있으면 디코딩)
+ticketConverter.py ticket.kirbi ticket.ccache
+
+ticketConverter.py ticket.ccache ticket.kirbi
+```
+
+## 환경변수 설정
+```bash
+export KRB5CCNAME=/path/to/ticket.ccache
+```
+
+## 인증
+```bash
+# KRB5CCNAME 사용하여 psexec 실행
+psexec.py -k -no-pass DOMAIN/USER@TARGET
+```
+  
+</details>
