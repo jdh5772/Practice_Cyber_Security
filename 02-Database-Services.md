@@ -199,6 +199,9 @@ mysqldump --user=theseus --password=iamkingtheseus --host=localhost Magic
 Microsoft의 상용 관계형 데이터베이스 관리 시스템입니다.  
 **기본 포트**: 1433
 
+### nxc login test
+- `--local-auth`를 붙여서 로그인 시도.
+
 ### 기본 데이터베이스 구조
 
 MSSQL 설치 시 기본으로 생성되는 시스템 데이터베이스:
