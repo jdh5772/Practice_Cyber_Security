@@ -42,6 +42,7 @@ enum4linux -U 172.16.5.5 | grep "user:" | cut -f2 -d"[" | cut -f1 -d"]"
 
 ### CrackMapExec
 > 다목적 AD 공격 도구 - 사용자 열거
+> mssql 로그인의 경우 --local-auth를 사용.
 
 ```bash
 # SMB를 통한 사용자 열거
