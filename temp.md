@@ -276,3 +276,11 @@ x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>xlsx</strong></summary>
+
+- `xlsx`파일이 열리지 않으면 압축을 해제해 내부 파일들을 탐색하여 정보를 얻을 수 있다.
+  
+</details>
