@@ -22,7 +22,7 @@
 - gobuster : `txt,md`/`-k(tls)`/`경로를 못찾을 때는 feroxbuster 사용해보기.`
 - dirbuster : `~2017년도까지 대체재.`
 - wordlist : `.git`/`cgi-bin`
-- input : `우회를 시도하여서 다른 공격방법 테스트(command injection만 우회가 되는 것이 아니다.)`/`⭐모든 공격을 전부 시도해봐야 한다.⭐`/`우선 순위를 먼저 테스트해봐야한다.`/`서버로 전송되는 메세지에 링크를 집어넣어서 테스트`
+- input : `우회를 시도하여서 다른 공격방법 테스트(command injection만 우회가 되는 것이 아니다.)`/`⭐모든 공격을 전부 시도해봐야 한다.⭐`/`우선 순위를 먼저 테스트해봐야한다.`/`만약에 링크를 통해서 서버로 전송이 요청된다면 XSRF 공격이 가능할수도 있다.`
 - searchsploit : `버전을 확인할 수 없어도 페이로드 시도.`
 - Docker : `Docker 버전을 확인하여 Privesc 시도.`
 - burpsuite : `요청시 파라미터 전송(위)과 body 전송(아래) 바꿔서 전달해보기. 이에 따라서 Content-Type을 바꿔야할 수도 있음.`
