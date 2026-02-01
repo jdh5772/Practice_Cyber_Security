@@ -174,6 +174,7 @@ str = bytearray(array).decode;
 <details>
   <summary><strong>BASH</strong></summary>
 
+- `bash`에서는 `TRUE/FALSE` 값이 존재하지 않는다.
 
 ```bash
 # 해당 경로 bashrc 내부의 환경변수,함수,명령어 등을 현재 셸에서 실행하는 명령.
@@ -189,14 +190,20 @@ str = bytearray(array).decode;
 [ -z $CHECK_CONTENT ]
 ```
 
-- `bash`에서는 `TRUE/FALSE` 값이 존재하지 않는다.
-- 명령어 실행시 `$()`를 사용하면 먼저 실행이 된다.
+
+
 
 ## ENV
 - 환경변수를 전달할 때 `;`를 사용하면 다르게 해석된다.
 - 공백으로 전달.
 ```bash
 sudo ENV=<env> ./script
+```
+
+## $()
+- 명령어 실행시 `$()`를 사용하면 먼저 실행이 된다.
+```bash
+127.0.0.$(echo 1)
 ```
   
 </details>
