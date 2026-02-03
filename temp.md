@@ -16,7 +16,7 @@
 
 - nmap : `-sU --top-ports 100`/`-Pn`/`subdomain에서도 .git 확인`
 - ffuf : `-mc all`/`http 인지 https 인지 제대로 확인`
-- netexec : `--rid-brute`/`--users(description 확인)`/`mssql의 경우 로컬 인증 방식을 사용하기 때문에 --local-auth를 붙여서 테스트 해봐야 한다.`
+- netexec : `⭐--rid-brute⭐`/`--users(description 확인)`/`mssql의 경우 로컬 인증 방식을 사용하기 때문에 --local-auth를 붙여서 테스트 해봐야 한다.`
 - grep : `-r '@dog.htb'`
 - strings : `raw data catch flag recover deleted files`
 - gobuster : `txt,md`/`-k(tls)`/`경로를 못찾을 때는 feroxbuster 사용해보기.`
