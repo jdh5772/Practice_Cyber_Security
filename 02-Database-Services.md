@@ -352,11 +352,7 @@ sudo impacket-smbserver share ./ -smb2support
 ```mssql
 -- Impersonate 가능한 사용자 확인
 -- server_permissions와 server_principals 조인하여 확인
-SELECT distinct b.name 
-FROM sys.server_permissions a 
-INNER JOIN sys.server_principals b 
-ON a.grantor_principal_id = b.principal_id 
-WHERE a.permission_name = 'IMPERSONATE'
+SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_principals b ON a.grantor_principal_id = b.principal_id WHERE a.permission_name = 'IMPERSONATE'
 6> GO
 
 -- 현재 사용자 및 권한 확인
