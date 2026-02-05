@@ -448,6 +448,12 @@ NAME=x /bin/cp /bin/bash /tmp/rootbash && /bin/chmod +s /tmp/rootbash
 <details>
   <summary><strong>knockd</strong></summary>
 
+- `knockd` 사용 중.
+<img width="1204" height="28" alt="image" src="https://github.com/user-attachments/assets/27ca3ed0-3ba0-4338-a4ec-de00cccac31a" />
+
+<br>
+<br>
+
 - `/etc/knockd`에서  `nftables` 혹은 `iptables` 사용 중인 상태 필요.
 <img width="1204" height="116" alt="image" src="https://github.com/user-attachments/assets/79292836-0500-4131-bf72-02625897bb90" />
 
