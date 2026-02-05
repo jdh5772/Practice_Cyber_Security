@@ -443,3 +443,23 @@ NAME=x /bin/cp /bin/bash /tmp/rootbash && /bin/chmod +s /tmp/rootbash
 - https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html?highlight=ifcf#etcsysconfignetwork-scripts-centosredhat
   
 </details>
+
+---
+<details>
+  <summary><strong>knockd</strong></summary>
+
+- `/etc/knockd`에서  `nftables` 혹은 `iptables` 사용 중인 상태 필요.
+<img width="1204" height="116" alt="image" src="https://github.com/user-attachments/assets/79292836-0500-4131-bf72-02625897bb90" />
+
+<br>
+<br>
+
+```bash
+# 노킹 시도
+nmap -Pn --host-timeout 201 --max-retries 0  -p 1111 host
+
+# SSH 연결 시도
+ssh user@host # Now logins are allowed
+```
+  
+</details>
