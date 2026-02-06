@@ -205,6 +205,7 @@ Microsoft의 상용 관계형 데이터베이스 관리 시스템입니다.
 
 ### nxc login test
 - `--local-auth`를 붙여서 로그인 시도.
+- `AD`환경이 아니면 로그인 시도가 안될 수 있어 `impacket-mssqlclient`로 로그인 테스트.
 
 ### 기본 데이터베이스 구조
 
