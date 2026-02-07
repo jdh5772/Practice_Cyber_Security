@@ -205,7 +205,7 @@ sudo ENV=<env> ./script
 
 ## printf
 ```bash
-for num in $(seq 1 10);do printf '%02d\n' $num;done
+for num in $(seq 1 10);do num=$(printf '%02d' $num);echo $num;done;
 ```
   
 </details>
