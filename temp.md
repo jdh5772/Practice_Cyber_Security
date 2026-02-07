@@ -205,6 +205,7 @@ sudo ENV=<env> ./script
 
 ## printf
 ```bash
+# 변수 할당에 공백이 있으면 안된다.
 for num in $(seq 1 10);do num=$(printf '%02d' $num);echo $num;done;
 ```
   
