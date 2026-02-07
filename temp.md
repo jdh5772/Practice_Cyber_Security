@@ -190,9 +190,6 @@ str = bytearray(array).decode;
 [ -z $CHECK_CONTENT ]
 ```
 
-
-
-
 ## ENV
 - 환경변수를 전달할 때 `;`를 사용하면 다르게 해석된다.
 - 공백으로 전달.
@@ -204,6 +201,11 @@ sudo ENV=<env> ./script
 - 명령어 실행시 `$()`를 사용하면 먼저 실행이 된다.
 ```bash
 127.0.0.$(echo 1)
+```
+
+## printf
+```bash
+for num in $(seq 1 10);do printf '%02d\n' $num;done
 ```
   
 </details>
