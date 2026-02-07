@@ -829,3 +829,19 @@ certipy-ad shadow auto -u p.agila@fluffy.htb -p 'prometheusx-303' -account 'ca_s
 
 
 </details>
+
+---
+<details>
+  <summary><strong>dnstool</strong></summary>
+
+- **Active Directory 통합 DNS에 레코드를 동적으로 추가/수정/삭제**할 수 있는 도구
+- 가짜 DNS를 생성하여 해시 탈취가 가능.
+- `DNS`를 사용하여 인증을 시도하는 코드.
+```powershell
+foreach($record in Get-ChildItem "AD:DC=intelligence.htb,CN=MicrosoftDNS,DC=DomainDnsZones,DC=intelligence,DC=htb" | Where-Object Name -like "web*")  {
+try {
+$request = Invoke-WebRequest -Uri "http://$($record.Name)" -UseDefaultCredentials
+}
+```
+  
+</details>
