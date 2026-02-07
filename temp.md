@@ -209,6 +209,11 @@ sudo ENV=<env> ./script
 # 변수 할당에 공백이 있으면 안된다.
 for num in $(seq 1 10);do num=$(printf '%02d' $num);echo $num;done;
 ```
+
+## date
+```bash
+date -d "2020-01-01 +0 day" +"%Y-%m-%d"
+```
   
 </details>
 
