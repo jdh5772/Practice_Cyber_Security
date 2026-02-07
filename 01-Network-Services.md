@@ -164,6 +164,8 @@ smtp-user-enum -M EXPN -U userlist.txt -D inlanefreight.htb -t 10.129.203.7
 ```bash
 # Hydra를 이용한 SMTP 인증 브루트포스
 hydra -l 'marlin@inlanefreight.htb' -P pws.list smtp://10.129.203.12
+
+swaks --auth-user 'administrator@mailing.htb' --auth LOGIN --auth-password homenetworkingadministrator --quit-after AUTH --server mailing.htb
 ```
 
 #### 열거 방법 비교
