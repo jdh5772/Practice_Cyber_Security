@@ -1,4 +1,19 @@
 <details>
+ <summary><strong>WINRM hidden file download</strong></summary>
+
+- `evil-winrm`으로 접속하여 숨김파일 다운로드시 실패하는 경우 발생.
+```powershell
+# 숨김 속성 제거
+attrib -h -s <file>
+
+# base64인코딩
+[System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("<filename>")) | Out-File <output file name>
+```
+ 
+</details>
+
+---
+<details>
  <summary><strong>NTFS 대체 데이터 스트림(dir /R)</strong></summary>
  
 ## NTFS 대체 데이터 스트림(ADS)이란?
