@@ -301,3 +301,14 @@ x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
 - `xlsx`파일이 열리지 않으면 압축을 해제해 내부 파일들을 탐색하여 정보를 얻을 수 있다.
   
 </details>
+
+---
+<details>
+  <summary><strong>VIM</strong></summary>
+
+```
+# 전부 대문자를 소문자로
+ggguG
+```
+  
+</details>
