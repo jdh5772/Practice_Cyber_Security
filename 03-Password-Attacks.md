@@ -873,6 +873,10 @@ impacket-secretsdump -k -no-pass -dc-ip 10.129.234.109 -just-dc-user Administrat
 <details>
   <summary><strong>KeePass</strong></summary>
 
+### keepass2john
+- https://github.com/ivanmrsulja/keepass2john
+- `keepass2john` 버전이 맞지 않아서 실행되지 않을 때 최신 버전 사용해보기.
+
 ### 파일 찾기
 ```powershell
 Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
