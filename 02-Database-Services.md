@@ -248,6 +248,12 @@ MSSQL 설치 시 기본으로 생성되는 시스템 데이터베이스:
 ```
 
 ---
+### xp_dirtree
+```mssql
+-- 내부 폴더 탐색 가능.
+EXEC xp_dirtree C:\;
+```
+
 
 ### xp_cmdshell을 통한 명령 실행
 
