@@ -168,6 +168,13 @@ array = [e^k^223 for e,k in zip(decoded,itertools.cycle(key))];
 # array = [110, 118, 69, 102, 69, 75, 49, 54, 94, 49, 97, 77, 52, 36, 101, 55, 65, 99, 108, 85, 102, 56, 120, 36, 116, 82, 87, 120, 80, 87, 79, 49, 37, 108, 109, 122]
 str = bytearray(array).decode;
 ```
+
+## python2
+- `python2`에서 `input`함수는 `eval`로 평가하여 실행.
+```python2
+# eval
+__import__('os').system('id')
+```
   
 </details>
 
