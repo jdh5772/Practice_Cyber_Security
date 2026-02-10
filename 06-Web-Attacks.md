@@ -1131,6 +1131,7 @@ aws s3 --endpoint-url=http://s3.thetoppers.htb cp ex.php s3://thetoppers.htb
 <details>
   <summary><strong>PHP</strong></summary>
 
+## strcmp
 ```php
 if (strcmp($username, $_POST['username']) == 0)
 ```
@@ -1139,15 +1140,27 @@ if (strcmp($username, $_POST['username']) == 0)
 - NULL 값은 0
 <img width="775" height="372" alt="image" src="https://github.com/user-attachments/assets/8cfd0a24-61ef-425f-8354-9d05d5c0c5e8" />
 
-<br>
-<br>
-
+## type check
 ```php
 # success
 if ("val" == true) {echo "success";} else {echo "fail";}
 ```
 - `==`만 쓸 경우 타입 검사를 하지 않게 되어서 `success`가 출력 됨.
 - `JSON`데이터를 다룰 때 타입 검사가 제대로 되지 않을 경우 우회가 가능.
+
+## PHAR
+- PHP 파일과 리소스를 하나의 파일로 묶어서 배포하고 실행할 수 있게 해주는 PHP의 아카이브 형식
+- Java의 JAR 파일과 유사한 개념
+- 실행 가능한 ZIP 파일
+
+```bash
+# phar 생성하여 업로드
+zip test.phar test.php
+
+# phar 접근
+curl http://dev.siteisup.htb/?page=phar://uploads/test.phar/test
+```
+
 
 </details>
 
