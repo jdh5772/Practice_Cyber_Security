@@ -1168,6 +1168,9 @@ zip test.phar test.php
 curl http://dev.siteisup.htb/?page=phar://uploads/test.phar/test
 ```
 
+## proc_open web shell
+- https://github.com/d4rkiZ/ProcOpen-PHP-Webshell
+
 
 </details>
 
