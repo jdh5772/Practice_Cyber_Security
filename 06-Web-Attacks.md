@@ -1152,9 +1152,10 @@ if ("val" == true) {echo "success";} else {echo "fail";}
 - PHP 파일과 리소스를 하나의 파일로 묶어서 배포하고 실행할 수 있게 해주는 PHP의 아카이브 형식
 - Java의 JAR 파일과 유사한 개념
 - 실행 가능한 ZIP 파일
+- `phpinfo`로 허용되는 함수 확인 후 실행.
 
 ```bash
-# phar 생성하여 업로드
+# phar 생성하여 업로드(<?php phpinfo(); ?>)
 zip test.phar test.php
 
 # phar 접근
