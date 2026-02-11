@@ -19,7 +19,7 @@
 - netexec : `AD가 아니더라도 윈도우 환경에서 테스트`/`⭐--rid-brute⭐`/`--users(description 확인)`/`mssql의 경우 로컬 인증 방식을 사용하기 때문에 --local-auth를 붙여서 테스트 해봐야 한다.`
 - grep : `-r '@dog.htb'`
 - strings : `raw data catch flag recover deleted files`
-- gobuster : `txt,md`/`-k(tls)`/`경로를 못찾을 때는 feroxbuster 사용해보기.`
+- gobuster : `txt,md`/`-k(tls)`/`경로를 못찾을 때는 feroxbuster 사용해보기.`/`method추가해서 검색`
 - dirbuster : `~2017년도까지 대체재.`
 - wordlist : `.git`/`cgi-bin`
 - input : `우회를 시도하여서 다른 공격방법 테스트(command injection만 우회가 되는 것이 아니다.)`/`⭐모든 공격을 전부 시도해봐야 한다.⭐`/`우선 순위를 먼저 테스트해봐야한다.`/`만약에 링크를 통해서 서버로 전송이 요청된다면 XSRF 공격이 가능할수도 있다.`
