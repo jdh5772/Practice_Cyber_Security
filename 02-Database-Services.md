@@ -574,6 +574,7 @@ db.users.deleteOne({name: "test"})
 - `SQLMAP`으로 웹소켓 인젝션이 가능하다.
 - `JSON` 데이터를 전달할 때는 따옴표를 사용하여 전달해줘야 한다.
 - 덤핑할때는 쓰레드 5개까지는 괜찮은 것 같다.
+- request가 안될때가 있으니 헤더나 데이터를 생성해서 시도.
 ```bash
 sqlmap -u ws://soc-player.soccer.htb:9091 --data '{"id":"1234"}'
 ```
