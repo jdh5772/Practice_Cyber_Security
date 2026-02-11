@@ -507,3 +507,13 @@ echo "[+] Use the SSH key to get access"
 ```
   
 </details>
+
+---
+<details>
+	<summary><strong>Read Link File(tail,head)</strong></summary>
+
+- `root`권한으로 실행되는 파일 읽기에 `/root/.ssh/id_rsa`같은 파일들을 링크를 생성하여 읽을 경우 권한 상승이 가능할 수 있다.
+<img width="1202" height="102" alt="image" src="https://github.com/user-attachments/assets/96e78a8f-4746-482d-9911-15bd45309a85" />
+
+	
+</details>
