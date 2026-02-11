@@ -1594,6 +1594,7 @@ php magescan.phar scan:all swagshop.htb
 <details>
     <summary><strong>Nagios XI</strong></summary>
 
+- https://www.exploit-db.com/exploits/44560
 - `api`를 사용하여 `admin`권한의 계정을 생성할 수 있다.
 
 ## RCE
