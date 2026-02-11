@@ -1589,3 +1589,29 @@ php magescan.phar scan:all swagshop.htb
 - https://github.com/FisMatHack/BackDropScan
     
 </details>
+
+---
+<details>
+    <summary><strong>Nagios XI</strong></summary>
+
+- `api`를 사용하여 `admin`권한의 계정을 생성할 수 있다.
+
+## RCE
+- `Configure -> Core Config Manager -> Commands -> Add New`
+<img width="982" height="590" alt="image" src="https://github.com/user-attachments/assets/b98abbb0-2fd1-4ebf-8cd5-ec483ae8ad04" />
+
+<br>
+<br>
+
+- `Apply Configuration`
+<img width="854" height="276" alt="image" src="https://github.com/user-attachments/assets/f6c9fc3a-af52-4870-8189-6e8fca5d95f5" />
+
+<br>
+<br>
+
+- `Configure -> Core Config Manager -> Services -> Add New`
+- `Run Check Command`
+<img width="669" height="644" alt="image" src="https://github.com/user-attachments/assets/59406f75-0c5a-42c8-9a24-6a758ffadfa8" />
+
+    
+</details>
