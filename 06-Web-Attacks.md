@@ -1596,6 +1596,8 @@ php magescan.phar scan:all swagshop.htb
 
 - https://www.exploit-db.com/exploits/44560
 - `api`를 사용하여 `admin`권한의 계정을 생성할 수 있다.
+<img width="623" height="478" alt="image" src="https://github.com/user-attachments/assets/441431e3-38fc-4969-a1bb-67ace473eb9f" />
+
 
 ## RCE
 - `Configure -> Core Config Manager -> Commands -> Add New`
