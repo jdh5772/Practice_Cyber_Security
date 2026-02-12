@@ -571,10 +571,16 @@ mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
 
 - 공격 대상을 `Administrator`로 잡고 시작.
 - `SharpHound`를 먼저 써보기.
+- `rusthound`도 추가적으로 실행해서 수집.
 
 ## bloodhound-python
 ```bash
 bloodhound-python -u "hrapp-service" -p 'Untimed$Runny' -d hokkaido-aerospace.com -c all --zip -ns 192.168.208.40
+```
+
+## rusthound
+```bash
+rusthound-ce -d tombwatcher.htb -u john -p password
 ```
   
 </details>
