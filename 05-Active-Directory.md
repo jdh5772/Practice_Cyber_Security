@@ -728,11 +728,26 @@ try {
 
 ---
 <details>
-  <summary><strong>AD Recycle Bin Group</strong></summary>
+  <summary><strong>AD Recycle Bin Group(Restore deleted AD objects)</strong></summary>
 
+## Find deleted Objects
 - https://book.hacktricks.wiki/en/windows-hardening/active-directory-methodology/privileged-groups-and-token-privileges.html?highlight=ad%20recycle%20bin#ad-recycle-bin
 ```powershell
+# Object 존재 확인
+Get-ADObject -Identity "S-1-5-21-1392491010-1358638721-2126982587-1111"
+
+# 삭제 되었는지 확인
 Get-ADObject -filter 'isDeleted -eq $true' -includeDeletedObjects -Properties *
+
+Get-ADObject -Filter 'objectsid -eq "S-1-5-21-1392491010-1358638721-2126982587-1111"' -Properties * -IncludeDeletedObjects
+
+# Recycle Bin 기능 확인
+Get-ADOptionalFeature 'Recycle Bin Feature'
+```
+
+## Restore
+```powershell
+Restore-ADObject -Identity <ObjectGUID>
 ```
   
 </details>
