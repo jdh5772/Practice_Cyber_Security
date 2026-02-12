@@ -806,6 +806,10 @@ bloodyAD -d tombwatcher.htb -u sam -p password --host dc01.tombwatcher.htb set p
 
 - `nmap`으로 스캔하여 `CA`를 발견하면 시도.
 - https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation
+```powershell
+# Sid 찾기
+Get-ADUser administrator
+```
 ```bash
 certipy-ad find -u <user> -hashes <hashes> -dc-ip <ip> -vulnerable
 
