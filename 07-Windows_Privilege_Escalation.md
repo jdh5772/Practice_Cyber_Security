@@ -673,3 +673,14 @@ impacket-dpapi credential -file <credential file> -key <복호화된 master key>
 ```
  
 </details>
+
+---
+<details>
+ <summary><strong>list-timers</strong></summary>
+
+- `.timer`가 존재할 때 확인.
+```bash
+systemctl list-timers
+```
+ 
+</details>
