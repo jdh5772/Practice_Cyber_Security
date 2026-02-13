@@ -58,6 +58,8 @@ sed -i '1i /cgi-bin/' test.txt
 <details>
   <summary><strong>tar</strong></summary>
 
+- tar가 소유자/그룹을 유지하려면 압축 해제하는 사용자가 해당 소유자/그룹으로 쓸 권한이 있어야 한다.(`root`유저로 압축하면 `root`유저로 압축을 해제해야 권한 유지)
+
 ```bash
 # 압축
 tar -cf target.tar foo bar
