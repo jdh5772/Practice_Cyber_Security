@@ -1537,6 +1537,7 @@ Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new
 ```
 
 ## Jenkins CLI
+- https://www.jenkins.io/doc/book/managing/cli/#downloading-the-client
 ```bash
 # Download Jenkins CLI from server
 wget http://<jenkins server>/jnlpJars/jenkins-cli.jar
