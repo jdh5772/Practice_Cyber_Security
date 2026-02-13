@@ -492,7 +492,8 @@ http://<SERVER_IP>:<PORT>/index.php?language=/var/log/apache2/access.log&cmd=id
 
 ## RFI (Remote File Inclusion)
 
-> 외부 서버의 악성 파일을 포함시켜 실행하는 공격 기법입니다.
+- 외부 서버의 악성 파일을 포함시켜 실행하는 공격 기법입니다.
+- 특정 파일까지 지정해줘야 제대로 읽어진다.
 
 ### 기본 RFI 공격
 
