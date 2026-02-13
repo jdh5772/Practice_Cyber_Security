@@ -689,7 +689,7 @@ systemctl list-timers
 <details>
  <summary><strong>CHM</strong></summary>
 
-- `.chm`파일을 실행하여 셸을 획득할 수 있음.
+- `.chm`파일을 `admin`계정이 실행할 경우 셸을 획득할 수 있음.
 - `windows`에서 파일 생성.
 
 ```bash
