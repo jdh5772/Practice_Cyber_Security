@@ -502,6 +502,7 @@ http://<SERVER_IP>:<PORT>/index.php?language=/var/log/apache2/access.log&cmd=id
 
 - 외부 서버의 악성 파일을 포함시켜 실행하는 공격 기법입니다.
 - 특정 파일까지 지정해줘야 제대로 읽어진다.
+- `RFI`가 가능할 때 `Responder`를 사용하여 해시 캡쳐가 가능할 수 있다.
 
 ### 기본 RFI 공격
 
