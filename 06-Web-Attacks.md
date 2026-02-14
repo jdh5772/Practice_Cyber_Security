@@ -1548,6 +1548,24 @@ wget http://<jenkins server>/jnlpJars/jenkins-cli.jar
 java -jar jenkins-cli.jar -s 'http://<server>' help
 ```
 
+## Decrypt key
+- 숨겨진 비밀번호
+<img width="1673" height="770" alt="image" src="https://github.com/user-attachments/assets/44516450-090d-4a08-87f5-7af4ddfedfef" />
+
+<br>
+<br>
+
+- 브라우저에서 비밀번호 확인 가능.
+<img width="1596" height="283" alt="image" src="https://github.com/user-attachments/assets/f8820145-916a-4fed-aa92-7a0c94d98b98" />
+
+<br>
+<br>
+
+- 비밀번호 복호화
+```groovy
+println hudson.util.Secret.decrypt("{AQAAABAAAAAQ9Db4FBoIVP6J7HBc2bhBlwjf56/tbk5wtWWQbgD2NC8=}")
+```
+
 </details>
 
 ---
