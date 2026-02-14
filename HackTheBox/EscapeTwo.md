@@ -83,7 +83,8 @@ nxc smb 10.129.232.128 -u users -p passwords
 <br>
 <br>
 
-- `--local-auth`를 붙여서 `mssql` 로그인 테스트.
+- `oscar`유저로는 특별한 정보를 찾을 수 없었음.
+- `MSSQL`의 관리자 계정인 `sa`를 유저목록에 추가한 후 `--local-auth`를 붙여서 `mssql` 로그인 테스트.
 ```bash
 nxc mssql 10.129.232.128 -u users -p passwords --local-auth
 ```
