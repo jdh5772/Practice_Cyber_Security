@@ -317,7 +317,10 @@ x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
 
 ```
 # 전부 대문자를 소문자로
-ggguG
+:ggguG
+
+# 공백 줄 제거
+:%!sed '/^$/d'
 ```
   
 </details>
