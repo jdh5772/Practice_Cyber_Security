@@ -1512,7 +1512,10 @@ curl http://web01.inlanefreight.local:8180/backup/cmd.jsp?cmd=id
 <details>
     <summary><strong>Jenkins</strong></summary>
 
-- `workspace`를 통해서 원격에서 로컬로 파일 공유가 가능.    
+- `workspace`를 통해서 원격에서 로컬로 파일 공유가 가능.
+- https://dev.to/pencillr/spawn-a-jenkins-from-code-gfa
+<img width="784" height="385" alt="image" src="https://github.com/user-attachments/assets/dc6cb047-e24f-4b6c-89fe-72da880f4a2c" />
+
 
 ## New Item
 - `New Item` -> `Freestyle project` -> `Build` -> `Select Windows batch Command`
