@@ -1520,6 +1520,7 @@ curl http://web01.inlanefreight.local:8180/backup/cmd.jsp?cmd=id
 ## New Item
 - `New Item` -> `Freestyle project` -> `Build` -> `Select Windows batch Command`
 - `Build Now` -> `Console Output`
+<img width="1096" height="277" alt="image" src="https://github.com/user-attachments/assets/2635718d-2a82-4375-b78e-6f9771e10673" />
 
 ## Script Console
 - `Manage Jenkins` -> `Script Console`
@@ -1565,6 +1566,27 @@ java -jar jenkins-cli.jar -s 'http://<server>' help
 ```groovy
 println hudson.util.Secret.decrypt("{AQAAABAAAAAQ9Db4FBoIVP6J7HBc2bhBlwjf56/tbk5wtWWQbgD2NC8=}")
 ```
+
+## Pipeline execute command
+- `New Item -> Pipeline`
+```
+node{
+    withCredentials([
+        sshUserPrivateKey(
+            credentialsId: '1',
+            keyFileVariable: 'keyFile'
+            )
+        ]){
+            sh "cat ${keyFile}"
+        }
+}
+```
+<img width="1293" height="457" alt="image" src="https://github.com/user-attachments/assets/da819e90-8647-4a6b-8b5a-5b9ac7394c47" />
+
+- `Build Now -> Console Output`
+<img width="1104" height="620" alt="image" src="https://github.com/user-attachments/assets/7bf6d4ce-4b71-4dee-a9f3-cd19a579eec9" />
+
+
 
 </details>
 
