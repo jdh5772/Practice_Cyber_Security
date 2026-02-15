@@ -763,9 +763,9 @@ Restore-ADObject -Identity <ObjectGUID>
 ## Ticket 변환
 ```bash
 # kirbi 파일을 ccache로 변환(base64 인코딩 되어있으면 디코딩)
-ticketConverter.py ticket.kirbi ticket.ccache
+impacket-ticketConverter ticket.kirbi ticket.ccache
 
-ticketConverter.py ticket.ccache ticket.kirbi
+impacket-ticketConverter ticket.ccache ticket.kirbi
 ```
 
 ## 환경변수 설정
