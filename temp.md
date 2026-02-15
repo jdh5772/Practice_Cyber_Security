@@ -9,7 +9,7 @@
 - https : `tls 인증서 확인`
 - windows : `powershell history`/`whoami`/`⭐inside files(password leaking,source code,configurations)⭐`/`public folder`/`로컬로 어떻게든 접속이 가능하다면 Responder를 사용하여 해시 캡쳐 시도`
 - linux : `⭐inside files(password leaking,source code,configurations)⭐`/`env`/`open ports`/`⭐who have permissions(root or user?)⭐`/`/var/mail`/`login user's group files`/`Unkonwn port telnet or nc banner grabbing`/`process 확인`/`현재 로그인 유저가 아니더라도 다른 유저의 파일들을 확인해서 권한 상승`/`루트경로에서 리눅스에서 기본적으로 만들어진 폴더가 아닌 다른 폴더 확인.`
-- Active Directory : `Privesc > return`/`ntpdate로 먼저 시간을 맞춰주고 시작.`/`유저가 속해 있는 그룹을 잘 살펴 보아야 한다.`/`유저목록 수집하여 소문자 버전도 시도`
+- Active Directory : `Privesc > return`/`ntpdate로 먼저 시간을 맞춰주고 시작.`/`유저가 속해 있는 그룹을 잘 살펴 보아야 한다.`/`유저목록 수집하여 소문자 버전도 시도`/`smbmap에서 제대로 정보가 확인되지 않을 수 있어 nxc로 한번 더 확인해봐야 한다.`
 - SSH : `authorized_keys 변경 여부 확인`/`접속한 셸에서 명령어가 실행되지 않을 수 있으니 SSH 접속 시도.`
 
 <br>
