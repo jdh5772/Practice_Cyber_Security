@@ -258,6 +258,8 @@ select 1,name,id,4,5,6 from streamio..sysobjects where xtype='U';-- -
 1> SELECT table_name FROM htbusers.INFORMATION_SCHEMA.TABLES
 2> GO
 
+-- 컬럼 조회
+select column_name from streamio.information_schema.columns
 select 1,name,id,4,5,6 from streamio..syscolumns where id in (885578193,901578250);-- -
 
 -- 테이블 데이터 조회
