@@ -1273,6 +1273,9 @@ $output = system($cmd);
 ?>
 ```
 
+## file_get_contents
+- 전체 파일을 문자로 읽는 함수
+
 </details>
 
 ---
