@@ -563,6 +563,7 @@ https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-
 ```
 
 #### GET 파라미터 퍼징
+- 유사한 경로에서 여러개의 파라미터가 존재한다면 FUZZING을 시도해볼 것.
 ```bash
 # GET 파라미터 퍼징 - 어떤 파라미터가 파일 포함에 취약한지 탐색
 ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ \
