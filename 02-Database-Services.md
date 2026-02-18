@@ -155,6 +155,10 @@ FILE 권한을 가진 경우 시스템 파일을 읽거나 쓸 수 있습니다.
 
 **기본 포트**: 3306
 
+```bash
+mysql -hlocalhost -uuser -ppass -e "SHOW DATABASES;"
+```
+
 ### 기본 시스템 데이터베이스
 
 ```mysql
