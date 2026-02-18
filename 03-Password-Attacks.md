@@ -1059,3 +1059,15 @@ pwsafe Backup.psafe3
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>SHA1</strong></summary>
+
+- `salt`가 존재할 경우 `salt`를 함께 크래킹 시도.
+```bash
+salt:pass
+pass:salt
+```
+  
+</details>
