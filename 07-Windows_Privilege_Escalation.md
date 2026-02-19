@@ -626,6 +626,9 @@ where.exe /r c:\ bash.exe
 
 # powershell
 Get-ChildItem -Path C:\ -Filter bash.exe -Recurse -ErrorAction SilentlyContinue
+
+# hexdump
+format-hex '.\$IE2XMEG.7z'
 ```
  
 </details>
