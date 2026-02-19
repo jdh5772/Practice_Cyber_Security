@@ -629,6 +629,9 @@ Get-ChildItem -Path C:\ -Filter bash.exe -Recurse -ErrorAction SilentlyContinue
 
 # hexdump
 format-hex '.\$IE2XMEG.7z'
+
+# md5
+get-filehash <file> -alg md5
 ```
  
 </details>
