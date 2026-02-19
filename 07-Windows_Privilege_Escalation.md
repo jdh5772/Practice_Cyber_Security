@@ -684,17 +684,6 @@ impacket-dpapi credential -file <credential file> -key <복호화된 master key>
 
 ---
 <details>
- <summary><strong>list-timers</strong></summary>
-
-- `.timer`가 존재할 때 확인.
-```bash
-systemctl list-timers
-```
- 
-</details>
-
----
-<details>
  <summary><strong>CHM</strong></summary>
 
 - `.chm`파일을 `admin`계정이 실행할 경우 셸을 획득할 수 있음.
