@@ -946,5 +946,11 @@ netexec smb frizzdc.frizz.htb -u f.frizzle -p 'Jenni_Luvs_Magic23' -k --generate
 
 sudo cp krb5.conf /etc/krbt.conf
 ```
+```bash
+impacket-getTGT <domain>/<user>:<pass>
+
+# /etc/hosts에 FQDN이 우선적으로 등록
+KRB5CCNAME=f.frizzle.ccache ssh -K <user>@<domain>
+```
 
 </details>
