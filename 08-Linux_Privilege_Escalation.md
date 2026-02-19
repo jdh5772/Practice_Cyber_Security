@@ -517,3 +517,14 @@ echo "[+] Use the SSH key to get access"
 
 	
 </details>
+
+---
+<details>
+ <summary><strong>list-timers</strong></summary>
+
+- `.timer`가 존재할 때 확인.
+```bash
+systemctl list-timers
+```
+ 
+</details>
