@@ -933,3 +933,18 @@ nxc smb 10.10.11.158 -u JDgodd -p 'JDg0dd1s@d0p3cr3@t0r' --laps --ntds
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>krb5.conf</strong></summary>
+
+- Kerberos 5 인증 시스템의 클라이언트 설정 파일
+- 최신 AD는 NTLM을 비활성화하는 추세
+
+```bash
+netexec smb frizzdc.frizz.htb -u f.frizzle -p 'Jenni_Luvs_Magic23' -k --generate-krb5-file krb5.conf
+
+sudo cp krb5.conf /etc/krbt.conf
+```
+
+</details>
