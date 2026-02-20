@@ -281,12 +281,15 @@ snmpbulkwalk -c <community_string> -v2c <ip> . > result
 ```
 
 ### Community String 찾기
-Community String은 SNMP의 "비밀번호" 역할을 합니다.
+- Community String은 SNMP의 "비밀번호" 역할을 합니다.
+- https://github.com/SECFORCE/SNMP-Brute
 
 ```bash
-# Community String 브루트포스
-# 일반적인 Community String: public, private, manager
+# v1
 onesixtyone -c /opt/useful/seclists/Discovery/SNMP/snmp.txt 10.129.14.128
+
+# v2
+python3 snmpbrute.py -t 10.129.228.102
 ```
 
 > **Note**:  
