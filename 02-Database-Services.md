@@ -277,7 +277,7 @@ SELECT 1,CONCAT(username,':',password),3,4,5,6 from streamio..users;-- -
 
 ### MSSQL 명령
 ```mssql
-# MSSQL에 로그인 가능한 유저 확인
+# MSSQL에 로그인 가능한 유저 확인(sysadmin 활성화 확인)
 enum_logins
 
 # IMPERSONATE 권한 확인
