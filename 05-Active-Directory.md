@@ -815,8 +815,9 @@ bloodyAD -d tombwatcher.htb -u sam -p password --host dc01.tombwatcher.htb set p
 <details>
   <summary><strong>AD CS(CA)</strong></summary>
 
-- `nmap`으로 스캔하여 `CA`를 발견하면 시도.
 - https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation
+- `nmap`으로 스캔하여 `CA`를 발견하면 시도.
+- 계정을 획득할 때마다 사용해보는게 맞다.
 ```powershell
 # Sid 찾기
 Get-ADUser administrator
