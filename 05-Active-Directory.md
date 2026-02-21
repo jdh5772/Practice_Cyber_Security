@@ -973,3 +973,17 @@ gpupdate /force
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>Silver Ticket</strong></summary>
+
+- `GetUserSPNs`를 사용하여 `SPN`이 등록되어 있는지 확인 필요.
+- `NTLM(password to ntlm)`과 `SID` 필요.
+
+```bash
+# password to hash
+python3 -c 'import hashlib; print(hashlib.new("md4", "purPLE9795!@".encode("utf-16le")).hexdigest())'
+```
+  
+</details>
