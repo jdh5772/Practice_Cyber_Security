@@ -287,7 +287,7 @@ enum_impersonate
 select default_domain();
 
 # SID 확인
-select SUER_SID('signed\administrator');
+select SUSER_SID('signed\administrator');
 ```
 ```python3
 from impacket.dcerpc.v5.dtypes import SID
