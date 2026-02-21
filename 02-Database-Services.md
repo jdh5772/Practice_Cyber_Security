@@ -289,6 +289,12 @@ select default_domain();
 # SID 확인
 select SUER_SID('signed\administrator');
 ```
+```python3
+from impacket.dcerpc.v5.dtypes import SID
+
+# MSSQL에서 획득한 SID
+SID(bytes.fromhex('0105000000000005150000005b7bb0f398aa2245ad4a1ca401020000')).formatCanonical()
+```
 
 ### xp_dirtree
 ```mssql
