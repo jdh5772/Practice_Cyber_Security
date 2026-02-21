@@ -261,8 +261,7 @@ ldapsearch -H ldap://10.129.14.128 -x -b "dc=inlanefreight,dc=local" "(objectCla
 <details>
   <summary><strong>🔐 SNMP (Simple Network Management Protocol)</strong></summary>
 
-**포트**: 161 (UDP)  
-**설명**: 네트워크 장비 모니터링 및 관리 프로토콜
+- `/etc/snmp/snmpd.conf`
 
 ### 기본 쿼리
 SNMP를 통해 시스템 정보, 네트워크 설정, 프로세스 정보 등을 수집합니다.
@@ -291,11 +290,6 @@ onesixtyone -c /opt/useful/seclists/Discovery/SNMP/snmp.txt 10.129.14.128
 # v2
 python3 snmpbrute.py -t 10.129.228.102
 ```
-
-> **Note**:  
-> - `snmpbulkwalk`는 SNMP v2c부터 사용 가능  
-> - 타임아웃 발생 시 다른 community string 시도  
-> - 기본 Community String "public"은 읽기 전용, "private"는 읽기/쓰기 가능한 경우가 많습니다.
   
 </details>
 
