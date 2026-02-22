@@ -1,4 +1,13 @@
 <details>
+  <summary><strong>signing</strong></summary>
+
+- `signing:True` : NTLM relay attack 불가.
+- `signing:False` : NTLM relay attack 가능.
+  
+</details>
+
+---
+<details>
   <summary><strong>네트워크 스캔 및 호스트 탐색</strong></summary>
 
 ### FPing
