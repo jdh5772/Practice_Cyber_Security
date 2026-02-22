@@ -3,7 +3,8 @@
 
 - `signing:True` : NTLM relay attack 불가.
 - `signing:False` : NTLM relay attack 가능.
-  
+<img width="1204" height="298" alt="image" src="https://github.com/user-attachments/assets/0db80c51-3ba8-424b-bc5b-3691ed4b2ab0" />
+
 </details>
 
 ---
