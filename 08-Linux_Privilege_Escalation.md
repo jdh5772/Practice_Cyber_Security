@@ -528,3 +528,11 @@ systemctl list-timers
 ```
  
 </details>
+
+---
+<details>
+	<summary><strong>CAP_DAC_READ_SEARCH</strong></summary>
+
+- 파일 소유자나 권한(chmod)에 관계없이 모든 파일을 읽고, 모든 디렉토리를 탐색 가능.
+	
+</details>
