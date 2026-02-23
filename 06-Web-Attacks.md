@@ -1275,6 +1275,9 @@ $output = system($cmd);
 ## file_get_contents
 - 전체 파일을 문자로 읽는 함수
 
+## Imagick Extention
+- https://swarm.ptsecurity.com/exploiting-arbitrary-object-instantiations/
+
 </details>
 
 ---
