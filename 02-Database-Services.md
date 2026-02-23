@@ -173,6 +173,18 @@ performance_schema  # 서버 성능 모니터링 데이터
 sys                 # performance_schema를 쉽게 사용하기 위한 뷰 모음
 ```
 
+### Query
+```mysql
+# 데이터베이스 조회
+SELECT schema_name FROM information_schema.schemata;
+
+# 테이블 조회
+SELECT table_name FROM information_schema.tables WHERE table_schema='<DB name>';
+
+# 컬럼 조회
+SELECT column_name FROM information_schema.columns WHERE table_name='<Table name>'-- -
+```
+
 ### 파일 읽기 (Read Files)
 
 시스템 파일에 접근하여 민감한 정보를 획득할 수 있습니다.
