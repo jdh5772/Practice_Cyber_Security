@@ -296,6 +296,8 @@ mount
 <details>
   <summary><strong>cross compile</strong></summary>
 
+- `lws2_32` : 윈도우 네트워크 통신 링크파일 설정
+
 ```bash
 # 크로스 컴파일
 x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
