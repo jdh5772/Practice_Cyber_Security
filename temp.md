@@ -299,6 +299,8 @@ mount
 ```bash
 # 크로스 컴파일
 x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
+
+x86_64-w64-mingw32-gcc --shared -lws2_32 adduser.c -o adduser.dll
 ```
   
 </details>
