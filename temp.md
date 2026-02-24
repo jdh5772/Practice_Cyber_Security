@@ -300,7 +300,8 @@ mount
 # 크로스 컴파일
 x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
 
-x86_64-w64-mingw32-gcc --shared -lws2_32 adduser.c -o adduser.dll
+# 인자 위치 중요
+x86_64-w64-mingw32-gcc -shared ex.c -lws2_32 -o adduser.dll
 ```
   
 </details>
