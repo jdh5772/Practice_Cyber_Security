@@ -314,7 +314,7 @@ SID(bytes.fromhex('0105000000000005150000005b7bb0f398aa2245ad4a1ca401020000')).f
 ### xp_dirtree
 ```mssql
 -- 내부 폴더 탐색 가능.
-EXEC xp_dirtree "C:\";
+xp_dirtree C:\;
 ```
 
 
