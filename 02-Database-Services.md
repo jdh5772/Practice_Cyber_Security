@@ -231,6 +231,7 @@ mysqldump --user=theseus --password=iamkingtheseus --host=localhost Magic
   <summary><strong>MSSQL (Microsoft SQL Server)</strong></summary>
 
 - `sysadmin` : 최고 권한.
+- `xp_dirtree`나 `xp_cmdshell`를 먼저 테스트.
 
 ### nxc login test
 - `--local-auth`를 붙여서 로그인 시도.
