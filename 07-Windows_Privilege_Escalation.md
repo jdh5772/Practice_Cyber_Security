@@ -193,6 +193,8 @@ Get-Content $historyPath
 icacls root.txt /grant alfred:F
 ```
 - root.txt에 alfred에게 Full 권한을 줌
+- `AD` : Add directory
+- `WD` : Write data / Delete
  
 </details>
 
