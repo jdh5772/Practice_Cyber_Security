@@ -720,7 +720,7 @@ dir /q <directory>
 
 ---
 <details>
- <summary><strong>C Windows Reverse Shell Code</strong></summary>
+ <summary><strong>C - Windows Reverse Shell Code</strong></summary>
 
 - https://github.com/izenynn/c-reverse-shell
 
