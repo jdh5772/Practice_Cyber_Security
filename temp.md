@@ -177,6 +177,11 @@ str = bytearray(array).decode;
 # eval
 __import__('os').system('id')
 ```
+
+## Tuple
+- 파이썬에서 `,`로 연결하면 튜플로 평가.
+- 튜플로 평가할 경우 왼쪽에서 오른쪽으로 내부 연산을 모두 마친 후 튜플로 생성됨.
+- `eval`
   
 </details>
 
