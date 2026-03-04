@@ -1775,3 +1775,14 @@ php magescan.phar scan:all swagshop.htb
 
     
 </details>
+
+---
+<details>
+	<summary><strong>EAR(Executable After Redirect)</strong></summary>
+
+- 웹 애플리케이션에서 리다이렉트 응답 이후에도 서버 측 코드가 계속 실행되는 보안 취약점
+- 경로 탐색 시, 302 리다이렉트 응답임에도 다른 리다이렉트 응답들과 데이터 크기가 다르게 나타나는 것으로 탐지 가능
+<img width="1204" height="319" alt="image" src="https://github.com/user-attachments/assets/1d84dc38-43d5-42ee-b3b3-6f125e401506" />
+
+	
+</details>
