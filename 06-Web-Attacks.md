@@ -1629,7 +1629,9 @@ test.txt;net user prtgadm1 Pwn3d_by_PRTG! /add;net localgroup administrators prt
 <details>
     <summary><strong>osTicket</strong></summary>
 
+- 고객 지원 티켓 시스템.
 - `support portal`에서 새로운 티켓을 요청할 수 있으면 기업에서 사용하는 `email`로 생성이 가능할 수 있다.
+- 티켓 소유권을 증명하는 방식이라서 게스트가 발행한 티켓을 회원가입 없이도 확인이 가능.
 <img width="1481" height="534" alt="image" src="https://github.com/user-attachments/assets/d92a174c-3f84-40d4-9215-0fa2a18060be" />
 <img width="1467" height="968" alt="image" src="https://github.com/user-attachments/assets/ae03cd98-18c5-4c8b-aa23-9f3826447f67" />
     
