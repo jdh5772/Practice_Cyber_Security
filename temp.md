@@ -203,6 +203,9 @@ __import__('os').system('id')
 
 # 문자열 길이가 0인지 검사.
 [ -z $CHECK_CONTENT ]
+
+# 특권모드로 실행시 PATH INJECTION 불가.
+bash -p
 ```
 
 ## ENV
