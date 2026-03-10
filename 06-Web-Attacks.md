@@ -1756,6 +1756,7 @@ php magescan.phar scan:all swagshop.htb
 - https://www.exploit-db.com/exploits/51925
 - https://support.nagios.com/forum/viewtopic.php?t=58783
 - https://www.exploit-db.com/exploits/44560
+- https://rootsecdev.medium.com/notes-from-the-field-exploiting-nagios-xi-sql-injection-cve-2023-40931-9d5dd6563f8c
 - `api`를 사용하여 `admin`권한의 계정을 생성할 수 있다.
 <img width="623" height="478" alt="image" src="https://github.com/user-attachments/assets/441431e3-38fc-4969-a1bb-67ace473eb9f" />
 
