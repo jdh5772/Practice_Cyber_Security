@@ -5,7 +5,7 @@
 - web : `whatweb`/`curl`/`burpsuite crawler`/`⭐html code⭐`/`JS code`/`페이지의 내용 먼저 확인`
 - sql : `injection`/`connect`/`enumeration`/`update`
 - ftp : `upload`/`download`/`hidden files`
-- http : `robots.txt`/`gobuster`/`feroxbuster`/`ffuf`/`error page`/`cookie에 따라서 redirection`/`.git`/`configuration file location`/`link`/`서버 포트가 다르더라도 다른 포트에서 사용하는 언어에 맞는 web shell을 업로드 해볼 것.`/`burpsuite가 실패하는 경우가 있으니 curl로 시도해볼 것.`/`특별한 정보 찾을 수 없을 때 api 검색(login api)`/`CMS를 알아 낸 경우 다른 버전의 RCE를 참조해서 시도할 수 있는지 확인.`
+- http : `robots.txt`/`gobuster`/`feroxbuster`/`ffuf`/`error page`/`cookie에 따라서 redirection`/`.git`/`configuration file location`/`link`/`서버 포트가 다르더라도 다른 포트에서 사용하는 언어에 맞는 web shell을 업로드 해볼 것.`/`burpsuite가 실패하는 경우가 있으니 curl로 시도해볼 것.`/`특별한 정보 찾을 수 없을 때 api 검색(login api)`/`CMS를 알아 낸 경우 다른 버전의 RCE를 참조해서 시도할 수 있는지 확인.`/`⭐내부 내용 확인⭐`
 - https : `tls 인증서 확인`
 - windows : `powershell history`/`whoami`/`⭐inside files(password leaking,source code,configurations)⭐`/`public folder`/`로컬로 어떻게든 접속이 가능하다면 Responder를 사용하여 해시 캡쳐 시도`
 - linux : `⭐inside files(password leaking,source code,configurations)⭐`/`env`/`open ports`/`⭐who have permissions(root or user?)⭐`/`/var/mail`/`login user's group files`/`Unkonwn port telnet or nc banner grabbing`/`process 확인`/`현재 로그인 유저가 아니더라도 다른 유저의 파일들을 확인해서 권한 상승`/`루트경로에서 리눅스에서 기본적으로 만들어진 폴더가 아닌 다른 폴더 확인.`/`Command INjection`/`Path Injection`
