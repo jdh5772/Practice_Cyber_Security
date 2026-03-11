@@ -98,6 +98,9 @@ rpcclient -U "" -N 172.16.5.5
 
 # 도메인 사용자 열거
 rpcclient $> enumdomusers
+
+# Display Query Information
+rpcclient $> querydispinfo
 ```
   
 </details>
