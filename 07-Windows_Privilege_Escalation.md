@@ -790,3 +790,11 @@ int main(void) {
 ```
  
 </details>
+
+---
+<details>
+	<summary><strong>DNSAdmins Group Privesc</strong></summary>
+
+- https://medium.com/techzap/dns-admin-privesc-in-active-directory-ad-windows-ecc7ed5a21a2
+	
+</details>
