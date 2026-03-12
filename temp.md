@@ -352,3 +352,13 @@ http://example.com/graphql?query={user{username,password}}
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>jar</strong></summary>
+
+```bash
+jd-gui <.jar>
+```
+  
+</details>
