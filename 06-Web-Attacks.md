@@ -1803,6 +1803,8 @@ php magescan.phar scan:all swagshop.htb
 	<summary><strong>Node.js</strong></summary>
 
 - `Cannot GET /`를 확인하면 Node.js라고 추측하기.
+- `Express`에서 미들웨어를 사용하여 `json`데이터로 전송이 가능할 수 있음.
+- `Content-Type: application/json`으로 변경한 후 json으로 전송 테스트.
 
-	
+
 </details>
