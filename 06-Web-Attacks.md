@@ -1797,3 +1797,12 @@ php magescan.phar scan:all swagshop.htb
 
 	
 </details>
+
+---
+<details>
+	<summary><strong>Node.js</strong></summary>
+
+- `Cannot GET /`를 확인하면 Node.js라고 추측하기.
+
+	
+</details>
