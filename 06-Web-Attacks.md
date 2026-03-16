@@ -1809,3 +1809,14 @@ php magescan.phar scan:all swagshop.htb
 
 
 </details>
+
+---
+<details>
+	<summary><strong>wpscan</strong></summary>
+
+- 과거 버전의 경우 플러그인이 자동으로 검색되지 않을 수 있어 옵션을 붙여줘야 한다.
+```bash
+wpscan -e vp,vt --url http://metapress.htb --api-token R5KIfgNGaaa9XfeYpJe6LKafb5IGim2Xwpk2awVqoAU --plugins-detection aggressive
+```
+	
+</details>
