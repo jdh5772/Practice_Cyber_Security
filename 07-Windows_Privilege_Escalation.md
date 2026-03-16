@@ -634,6 +634,9 @@ format-hex '.\$IE2XMEG.7z'
 
 # md5
 get-filehash <file> -alg md5
+
+# 레지스트리 값 가져오기
+get-itemproperty -path .
 ```
  
 </details>
