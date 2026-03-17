@@ -537,3 +537,11 @@ systemctl list-timers
 - 파일 소유자나 권한(chmod)에 관계없이 모든 파일을 읽고, 모든 디렉토리를 탐색 가능.
 	
 </details>
+
+---
+<details>
+	<summary><strong>fail2ban</strong></summary>
+
+- https://grumpygeekwrites.wordpress.com/2021/01/29/privilege-escalation-via-fail2ban/
+	
+</details>
