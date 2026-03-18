@@ -1166,6 +1166,7 @@ if ("val" == true) {echo "success";} else {echo "fail";}
 - `JSON`데이터를 다룰 때 타입 검사가 제대로 되지 않을 경우 우회가 가능.
 
 ## PHAR
+- 확장자 PHAR도 존재하기 때문에 구분
 - PHP 파일과 리소스를 하나의 파일로 묶어서 배포하고 실행할 수 있게 해주는 PHP의 아카이브 형식
 - Java의 JAR 파일과 유사한 개념
 - 실행 가능한 ZIP 파일
