@@ -1142,6 +1142,9 @@ aws s3 --endpoint-url=http://s3.thetoppers.htb cp ex.php s3://thetoppers.htb
 <details>
   <summary><strong>PHP</strong></summary>
 
+## Bypass Webshell
+- https://github.com/lcatro/PHP-WebShell-Bypass-WAF
+
 ## Vulnerable Functions test
 - https://github.com/teambi0s/dfunc-bypasser
 ```bash
