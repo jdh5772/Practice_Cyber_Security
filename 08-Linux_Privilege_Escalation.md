@@ -148,6 +148,7 @@ cat /proc/self/cmdline
 ### 프로세스 및 네트워크 상태 확인
 ```bash
 ps aux
+ps -efww --forest
 ifconfig
 
 # 무선 네트워크 인터페이스 정보와 설정 확인
