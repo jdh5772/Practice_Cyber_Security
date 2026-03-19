@@ -1882,7 +1882,7 @@ probably_public_bits = [
 ]
 
 private_bits = [
-    '279275995014060',               # MAC 주소 (10진수)
+    '279275995014060',               # MAC 주소 (python3 -c 'print(0x5600027a23ac)')
     'd4e6cb65d59544f3331ea0425dc555a1'  # machine-id + cgroup
 ]
 
