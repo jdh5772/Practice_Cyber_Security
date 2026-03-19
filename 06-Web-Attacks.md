@@ -1883,7 +1883,7 @@ probably_public_bits = [
 
 private_bits = [
     '279275995014060',               # MAC 주소 (10진수)
-    'd4e6cb65d59544f3331ea0425dc555a1'  # machine-id
+    'd4e6cb65d59544f3331ea0425dc555a1'  # machine-id + cgroup
 ]
 
 # Werkzeug 2.0.0 이상: sha1 / 이하: md5
