@@ -1096,3 +1096,14 @@ impacket-ticketConverter ticket.kirbi ticket.ccache
 
 
 </details>
+
+---
+<details>
+  <summary><strong>STATUS_PASSWORD_MUST_CHANGE</strong></summary>
+
+- https://www.netexec.wiki/smb-protocol/change-user-password
+```bash
+nxc smb <ip> -u user -p pass -M change-password -o NEWPASS=NewPassword
+```
+  
+</details>
