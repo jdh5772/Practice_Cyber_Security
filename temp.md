@@ -260,36 +260,6 @@ XAUTHORITY=/tmp/.Xauthority xwd -root -screen -silent -display :0 > screenshot.x
 
 ---
 <details>
-  <summary><strong>DOCKER</strong></summary>
-
-```bash
-sudo docker images
-
-sudo docker ps -a
-```
-- `image` : 레시피
-- `container` : 레시피로 만든 요리.
-
-<br>
-
-```bash
-sudo docker run -it -v $(pwd):/share <image>:latest
-```
-- `-it` : 대화형 터미널 모드 (interactive + tty)
-- `-v` : 마운트
-
-<br>
-
-```bash
-mount
-```
-- 컨테이너를 실행하면 `Docker`는 `OverlayFS`를 통해서 마운트.
-- `mount`포인트에서 `overlay`를 캡쳐해서 컨테이너 확인.
-  
-</details>
-
----
-<details>
   <summary><strong>7z</strong></summary>
 
 ```bash
