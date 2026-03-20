@@ -63,6 +63,7 @@ netexec smb <ip> -u 'guest' -p '' --rid-brute
 
 ### LDAP Search
 > LDAP 프로토콜을 이용한 사용자 계정 검색
+
 > 특별한 정보만 확인하지 말고 전체 다 확인해야 한다.
 
 ```bash
