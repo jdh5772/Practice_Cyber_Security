@@ -1113,3 +1113,13 @@ nxc smb <ip> -u user -p pass -M change-password -o NEWPASS=NewPassword
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>readGMSAPassword</strong></summary>
+
+```bash
+netexec ldap DC.sendai.vl -u Thomas.Powell -p 0xdf0xdf.... --gmsa
+```
+  
+</details>
