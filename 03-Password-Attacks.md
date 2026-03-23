@@ -1071,3 +1071,11 @@ pass:salt
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>mRemoteNG password decrypt</strong></summary>
+
+- https://github.com/gquere/mRemoteNG_password_decrypt
+  
+</details>
