@@ -312,6 +312,7 @@ x86_64-w64-mingw32-gcc -shared ex.c -lws2_32 -o adduser.dll
 <details>
   <summary><strong>Graphql</strong></summary>
 
+- https://hacktricks.wiki/en/network-services-pentesting/pentesting-web/graphql.html?highlight=graphql
 - `/query`를 붙여서 보기.
 ```bash
 # query 확인
