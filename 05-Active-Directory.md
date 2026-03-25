@@ -592,9 +592,11 @@ mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
 <details>
   <summary><strong>BloodHound</strong></summary>
 
-- 공격 대상을 `Administrator`로 잡고 시작.
+- 공격 대상을 `Administrator`로 잡고 시작. 만약에 찾지 못했다면 도메인 컴퓨터로 확인.
 - `SharpHound`를 먼저 써보기.
 - `rusthound`도 추가적으로 실행해서 수집.
+- Shortest Paths to Domain Admins
+- Enrollment rights on certificate templates
 
 ## bloodhound-python
 ```bash
