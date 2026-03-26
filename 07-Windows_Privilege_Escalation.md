@@ -801,3 +801,25 @@ int main(void) {
 - https://medium.com/techzap/dns-admin-privesc-in-active-directory-ad-windows-ecc7ed5a21a2
 	
 </details>
+
+---
+<details>
+	<summary><strong>nt authority\local service</strong></summary>
+
+- `NT AUTHORITY\LOCAL SERVICE`는 Windows 기본 설계상 원래 `SeImpersonatePrivilege`를 가져야 한다.
+- https://github.com/itm4n/FullPowers
+<img width="1106" height="591" alt="image" src="https://github.com/user-attachments/assets/881020e0-9fde-42f6-8056-ddd6b27a55c6" />
+
+	
+</details>
+
+---
+<details>
+	<summary><strong>Symbolic Link</strong></summary>
+
+- 링크가 걸려 있는 폴더에 저장하면 원본 폴더에 파일이 저장이 된다.
+```powershell
+cmd /c mklink /J C:\Windows\Tasks\Uploads\33d81ad509ef34a2635903babb285882 C:\xampp\htdocs
+```
+	
+</details>
