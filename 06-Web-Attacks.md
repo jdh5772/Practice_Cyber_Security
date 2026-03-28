@@ -1459,13 +1459,15 @@ AddType application/x-httpd-php .php16
     <summary><strong>TOMCAT</strong></summary>
 
 - `JSP`
+- `tomcat-users.xml`
+- https://packages.debian.org/bullseye/all/tomcat9/filelist
+- `tomcat9 all files list`를 검색해서 내부 파일 위치 확인해보기.
 
 ```bash
 curl http://app-dev.inlanefreight.local:8080/invalid
 
 curl -s http://app-dev.inlanefreight.local:8080/docs/ | grep Tomcat 
 ```
-- `tomcat-users.xml`
 ```bash
 git clone https://github.com/b33lz3bub-1/Tomcat-Manager-Bruteforce
 
