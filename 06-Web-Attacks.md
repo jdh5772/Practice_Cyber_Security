@@ -1960,3 +1960,13 @@ chrome://inspect
 
 	
 </details>
+
+---
+<details>
+	<summary><strong>lansweeper</strong></summary>
+
+
+- https://hacktricks.wiki/en/windows-hardening/active-directory-methodology/lansweeper-security.html
+
+	
+</details>
