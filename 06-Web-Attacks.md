@@ -1585,6 +1585,10 @@ java -jar jenkins-cli.jar -s 'http://<server>' help
 println hudson.util.Secret.decrypt("{AQAAABAAAAAQ9Db4FBoIVP6J7HBc2bhBlwjf56/tbk5wtWWQbgD2NC8=}")
 ```
 
+- https://github.com/hoto/jenkins-credentials-decryptor
+<img width="1111" height="147" alt="image" src="https://github.com/user-attachments/assets/12fc9edd-8181-4de2-9ac5-2a91660643b1" />
+
+
 ## Pipeline execute command
 - `New Item -> Pipeline`
 ```
