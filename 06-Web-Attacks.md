@@ -1534,6 +1534,20 @@ curl http://web01.inlanefreight.local:8180/backup/cmd.jsp?cmd=id
 - https://dev.to/pencillr/spawn-a-jenkins-from-code-gfa
 <img width="784" height="385" alt="image" src="https://github.com/user-attachments/assets/dc6cb047-e24f-4b6c-89fe-72da880f4a2c" />
 
+<br>
+<br>
+
+## config.xml
+```
+1. triggers (PeriodicFolderTrigger)
+   → 언제 스캔하는지 (주기/타이밍 파악)
+
+2. navigators (GiteaSCMNavigator)
+   → 어디를 스캔하는지 (타겟 서버/계정)
+
+3. projectFactories (WorkflowMultiBranchProjectFactory)
+   → 발견한 걸 어떻게 job으로 만드는지(실행은 해당 파일의 내용을 확인해야 한다.)
+```
 
 ## New Item
 - `New Item` -> `Freestyle project` -> `Build` -> `Select Windows batch Command`
