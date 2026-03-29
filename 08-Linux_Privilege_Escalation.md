@@ -546,3 +546,21 @@ systemctl list-timers
 - https://grumpygeekwrites.wordpress.com/2021/01/29/privilege-escalation-via-fail2ban/
 	
 </details>
+
+---
+<details>
+	<summary><strong>.rhosts / rlogin</strong></summary>
+
+- `rlogin` : 옛날 Unix에서 쓰던 원격 로그인 프로토콜
+- `.rhosts` : rlogin 접속 시 패스워드 검증을 생략할 호스트/유저 목록을 적어두는 파일
+
+```
+# .rhosts
+admin.build.vl +
+```
+- admin.build.vl 에서 오는 접속이라면 어떤 유저든 패스워드 없이 허용
+```bash
+rlogin -l root <target>
+```
+	
+</details>
