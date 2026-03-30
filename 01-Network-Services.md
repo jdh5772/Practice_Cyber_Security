@@ -263,10 +263,10 @@ ldapsearch -H ldap://10.129.14.128 -x -b "dc=inlanefreight,dc=local" "(objectCla
 <details>
   <summary><strong>🔐 SNMP (Simple Network Management Protocol)</strong></summary>
 
-# SNMP config file location
+## SNMP config file location
 - `/etc/snmp/snmpd.conf`
 
-### 기본 쿼리
+## 기본 쿼리
 SNMP를 통해 시스템 정보, 네트워크 설정, 프로세스 정보 등을 수집합니다.
 
 ```bash
@@ -282,7 +282,7 @@ snmpbulkwalk -c public -v2c 10.10.10.10 . > result
 snmpbulkwalk -c <community_string> -v2c <ip> . > result
 ```
 
-### Community String 찾기
+## Community String 찾기
 - Community String은 SNMP의 "비밀번호" 역할을 합니다.
 - https://github.com/SECFORCE/SNMP-Brute
 
