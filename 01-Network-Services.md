@@ -263,6 +263,7 @@ ldapsearch -H ldap://10.129.14.128 -x -b "dc=inlanefreight,dc=local" "(objectCla
 <details>
   <summary><strong>🔐 SNMP (Simple Network Management Protocol)</strong></summary>
 
+# SNMP config file location
 - `/etc/snmp/snmpd.conf`
 
 ### 기본 쿼리
