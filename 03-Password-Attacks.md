@@ -1090,6 +1090,9 @@ pass:salt
 ```bash
 hashcat -m 13721
 ```
+```bash
+veracrypt <data file>
+```
 
   
 </details>
