@@ -1079,3 +1079,17 @@ pass:salt
 - https://github.com/gquere/mRemoteNG_password_decrypt
   
 </details>
+
+---
+<details>
+  <summary><strong>veracrypt(.hc)</strong></summary>
+
+- `.hc`파일의 경우 `veracrypt`로 암호화된 데이터 파일일 수 있다.
+- 특별한 단서가 없으면 `13721`모드로 크래킹을 진행.
+- 시도하여 실패할시 다른 모드 시도해봐야 한다.
+```bash
+hashcat -m 13721
+```
+
+  
+</details>
