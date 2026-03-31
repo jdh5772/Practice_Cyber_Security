@@ -31,7 +31,7 @@
 - process : `ps 명령어를 사용하여 어떤 프로그램이 실행되고 있는지 의심.(특히나 브라우저)`
 - banner grabbing : `nc 혹은 telnet을 사용할 경우 버전 출력에 시간이 좀 걸릴 수 있다.`
 - 날짜 : `날짜에 따라서 IDOR이 가능할 수 있다.`
-- image file : `exiftool`
+- image file : `exiftool`/`strings`
 
 </details>
 
