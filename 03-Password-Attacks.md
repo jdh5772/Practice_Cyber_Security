@@ -1004,6 +1004,8 @@ ssh -i hype_key_decrypted -o PubkeyAcceptedKeyTypes=+ssh-rsa hype@10.10.10.79
 
 ```bash
 # pip install gpp-decrypt
+gpp-decrypt "<cpassword>"
+
 gpp-decrypt -f groups.xml
 ```
   
