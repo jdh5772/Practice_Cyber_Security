@@ -177,6 +177,9 @@ FILE 권한을 가진 경우 시스템 파일을 읽거나 쓸 수 있습니다.
 
 ```bash
 mysql -hlocalhost -uuser -ppass -e "SHOW DATABASES\G;"
+
+# SSL 연결 비활성화
+mysql -hlocalhost -uuser -ppass --skip-ssl
 ```
 - `\G` : 보기 좋게 만들어주는 역할.
 
