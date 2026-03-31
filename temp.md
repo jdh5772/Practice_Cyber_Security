@@ -18,7 +18,7 @@
 - ffuf : `-mc all`/`http 인지 https 인지 제대로 확인`
 - netexec : `AD가 아니더라도 윈도우 환경에서 테스트`/`⭐--rid-brute⭐`/`--users(description 확인)`/`mssql의 경우 로컬 인증 방식을 사용하기 때문에 --local-auth를 붙여서 테스트 해봐야 한다.`
 - grep : `-r '@dog.htb'`
-- strings : `raw data catch flag recover deleted files`
+- strings : `raw data catch flag recover deleted files`/`의심이 가는 파일의 경우 strings로 먼저 시도해보기.`
 - gobuster : `txt,md`/`-k(tls)`/`경로를 못찾을 때는 feroxbuster 사용해보기.`
 - dirbuster : `~2017년도까지 대체재.`
 - wordlist : `.git`/`cgi-bin`
