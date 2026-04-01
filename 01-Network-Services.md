@@ -42,6 +42,13 @@ smb: \> prompt OFF
 smb: \> mget *
 ```
 
+### mount
+```bash
+sudo mount -t cifs -o 'username=audit2020,password=Summer2026!' //10.10.10.10./forensic /mnt/smb
+
+sudo umount -f /mnt/smb
+```
+
 #### NTLM Relay Attack
 인증 정보를 가로채어 다른 서비스로 전달하는 공격 기법입니다.
 
