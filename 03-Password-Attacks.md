@@ -1053,9 +1053,7 @@ python3 ciscot7.py -d -p '02375012182C1A1D751618034F36415408'
   <summary><strong>psafe3</strong></summary>
 
 ```bash
-pwsafe2john Backup.psafe3 > hash
-
-john hash --wordlist=~/util/rockyou.txt
+hashcat -m 5200 Backup.psafe3 ~/util/rockyou.txt
 
 pwsafe Backup.psafe3
 ```
