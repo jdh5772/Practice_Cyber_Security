@@ -593,7 +593,9 @@ icacls 'C:\Department Shares\Private\IT\cred.txt' /grant htb-student:F
 ---
 <details>
  <summary><strong>Backup Operators group</strong></summary>
- 
+
+- 도메인 환경에서는 `NTDS.dit`가 DC에만 존재하기 때문에 해당 그룹에 속해 있어야 해시 탈취가 가능.
+- 도메인 환경이 아닐 경우 해당 그룹에 속해있지 않더라도 로컬 계정의 해시는 `SeBackupPrivilege`와 `SeRestorePrivilege` 권한만으로 탈취 가능.
 ```
 # vss.dsh
 set context persistent nowriters
