@@ -4,3 +4,7 @@
 - `windows` 권한 상승에서 `dpapi` 폴더 확인.
 - `powershell` 리버스 셸 생성시에 따옴표 신경쓰기.
 - AD에서 특정 폴더 접근 가능 권한도 `icacls`로 확인 가능.
+
+---
+# 2026.04.03
+- `/proc/self/environ`
