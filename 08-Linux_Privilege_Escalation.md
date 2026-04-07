@@ -178,6 +178,8 @@ find / -writable -type d 2>/dev/null
 find /etc -writable -type f 2>/dev/null
 find /usr -writable -type f 2>/dev/null
 find /var -writable -type f 2>/dev/null
+
+find / -type f -user dev -exec grep prod {} \; 2>/dev/null
 ```
 
 ### 마운트 및 디스크 정보 조회
