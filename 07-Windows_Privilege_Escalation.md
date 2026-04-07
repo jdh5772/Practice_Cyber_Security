@@ -292,6 +292,15 @@ Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Ob
 # 파일 접근 권한 확인
 icacls "C:\xampp\apache\bin\httpd.exe"
 ```
+
+```powershell
+# Windows 패치 내역 확인
+wmic qfe list
+
+Get-HotFix
+
+Get-HotFix -Id KB5012345
+```
  
 </details>
 
