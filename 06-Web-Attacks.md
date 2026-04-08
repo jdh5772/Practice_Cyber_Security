@@ -617,6 +617,8 @@ ffuf -w ./LFI-WordList-Linux:FUZZ \
 
 #### 다양한 템플릿 엔진 테스트
 ```html
+${{<%[%'"}}%\.
+
 <!-- Jinja2, Twig (Python, PHP) -->
 {{7*7}}
 
