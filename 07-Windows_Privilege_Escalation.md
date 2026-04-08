@@ -199,6 +199,8 @@ sc.exe start usosvc
 ```
 
 ```powershell
+reg query "HKLM\SYSTEM\CurrentControlSet\Services"
+
 # services로 확인하기 어려울 때
 cd hklm:\system\currentcontrolset\services
 
