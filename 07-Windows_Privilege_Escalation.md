@@ -197,6 +197,13 @@ sc.exe qc usosvc
 
 sc.exe start usosvc
 ```
+
+```powershell
+# services로 확인하기 어려울 때
+cd hklm:\system\currentcontrolset\services
+
+get-childitem .
+```
  
 </details>
 
