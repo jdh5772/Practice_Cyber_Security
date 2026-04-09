@@ -39,3 +39,4 @@
 ---
 # 2026.04.10
 - default credential 찾아보기.
+- `/etc/hostname`으로 hostname 확인.(Docker인지)
