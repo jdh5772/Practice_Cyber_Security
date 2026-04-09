@@ -40,3 +40,4 @@
 # 2026.04.10
 - default credential 찾아보기.
 - `/etc/hostname`으로 hostname 확인.(Docker인지)
+- `git diff --cached <file>` : 커밋 되기 전인 스테이징과 최신 커밋과의 해당 파일의 차이를 나타냄.
