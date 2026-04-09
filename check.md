@@ -42,3 +42,4 @@
 - `/etc/hostname`으로 hostname 확인.(Docker인지)
 - `git diff --cached <file>` : 커밋 되기 전인 스테이징과 최신 커밋과의 해당 파일의 차이를 나타냄.
 - `Dockerfile`에 중요 정보 노출.
+- 파일 소유주가 누구인지 확인할 것.
