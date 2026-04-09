@@ -52,7 +52,12 @@ cat password | xxd -r -p
 
 ```bash
 sed -i '1i /cgi-bin/' test.txt
+
+sed 's/,/\r\n/g' users.table
 ```
+- `-i` : 직접 수정
+- `1i` : 첫번째줄에 insert
+- `s` : substitute
 
 </details>
 
