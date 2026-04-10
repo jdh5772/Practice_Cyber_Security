@@ -724,6 +724,14 @@ GIF87a;
 - 서버가 파일의 매직 바이트(파일 시그니처)만 확인하는 경우
 - GIF 파일의 매직 바이트로 시작하면 이미지로 인식하지만 PHP 코드는 여전히 실행됨
 
+
+#### PNG
+```bash
+head -c 20 image.png > magic_bytes
+
+cat magic_bytes ex.php > ex.php.png
+```
+
 ---
 
 ### 파일명 조작을 통한 우회
