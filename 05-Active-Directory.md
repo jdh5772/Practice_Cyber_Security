@@ -617,6 +617,7 @@ rusthound-ce -d tombwatcher.htb -u john -p password
 
 ## 조건
 - `AD` 환경에서 `AZURE` 서비스를 사용중이어야 한다.
+- `AAD_987d7f2f57d2`
 
 ## Recon
 ```powershell
