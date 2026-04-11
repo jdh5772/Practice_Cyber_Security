@@ -617,6 +617,7 @@ rusthound-ce -d tombwatcher.htb -u john -p password
 
 ## 조건
 - `AD` 환경에서 `AZURE` 서비스를 사용중이어야 한다.
+- Azure AD Connect (AD Sync 서비스) 가 내부적으로 LocalDB 또는 MSSQL을 사용.
 - `AAD_987d7f2f57d2`
 
 ## Recon
