@@ -90,6 +90,20 @@ whois <domain>
 <details>
   <summary><strong>DNS Enumeration</strong></summary>
 
+### nslookup
+```bash
+nslookup
+
+# DNS 서버를 해당 IP로 설정
+server <server ip>
+
+# 127.0.0.1은 외부 조회가 필요 없어서 성공하게 됨.
+127.0.0.1
+
+<server ip>
+```
+  
+
 ### 기본 레코드 조회
 
 DNS는 UDP 53번 포트 사용. 512바이트 초과 시 TCP 전환.
@@ -100,6 +114,8 @@ dig inlanefreight.htb
 
 # PTR 레코드 (역방향 DNS)
 dig -x <ip>
+
+dig -x <ip> @<DNS SERVER IP>
 
 # NS 레코드 (특정 DNS 서버 지정)
 dig ns inlanefreight.htb @10.129.14.128
