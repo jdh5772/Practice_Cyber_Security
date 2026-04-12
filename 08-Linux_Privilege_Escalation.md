@@ -466,7 +466,7 @@ NAME=x /bin/cp /bin/bash /tmp/rootbash && /bin/chmod +s /tmp/rootbash
 <br>
 <br>
 
-- `/etc/knockd`에서  `nftables` 혹은 `iptables` 사용 중인 상태 필요.
+- `/etc/knockd.conf`에서  `nftables` 혹은 `iptables` 사용 중인 상태 필요.
 <img width="1204" height="116" alt="image" src="https://github.com/user-attachments/assets/79292836-0500-4131-bf72-02625897bb90" />
 
 <br>
