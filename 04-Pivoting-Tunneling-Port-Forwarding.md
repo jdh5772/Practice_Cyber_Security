@@ -37,9 +37,9 @@ sudo ./proxy -selfcert
 ```
 ```bash
 # ligolo-ng
-ifconfig
-
 session
+
+ifconfig
 
 start
 ```
