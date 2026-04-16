@@ -24,6 +24,7 @@ for i in {1..254} ;do (ping -c 1 172.16.5.$i | grep "bytes from" &) ;done
   <summary><strong>Ligolo-Ng</strong></summary>
 
 - https://github.com/nicocha30/ligolo-ng
+- `DNS` 관련된 공격에서는 `chisel`을 사용.
 
 ```bash
 # server
