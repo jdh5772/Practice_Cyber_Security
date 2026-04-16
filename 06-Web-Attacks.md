@@ -2008,3 +2008,11 @@ chrome://inspect
 
 	
 </details>
+
+---
+<details>
+	<summary><strong>Bad Characters</strong></summary>
+
+- `/usr/share/seclists/Fuzzing/special-chars.txt`
+	
+</details>
