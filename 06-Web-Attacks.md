@@ -1293,6 +1293,13 @@ $output = system($cmd);
 ## Imagick Extention
 - https://swarm.ptsecurity.com/exploiting-arbitrary-object-instantiations/
 
+## PHP Windows IIS Session Path
+- LFI가 가능할 때 세션을 읽을 수 있게 됨.
+- 만약에 해당 세션을 읽을 때 Code Injection이 가능하다면 RCE가 가능해진다.
+```bash
+c:\windows\temp\sess_<session>
+```
+
 </details>
 
 ---
