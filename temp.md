@@ -345,3 +345,15 @@ jd-gui <.jar>
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>Runas 대체</strong></summary>
+
+```powershell
+$pass = ConvertTo-SecureString <password> -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential("Sniper\\Chris",$pass)
+Invoke-Command -ComputerName Sniper -Credential $cred - ScriptBlock {whoami}
+```
+  
+</details>
