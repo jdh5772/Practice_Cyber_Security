@@ -357,3 +357,24 @@ Invoke-Command -ComputerName Sniper -Credential $cred - ScriptBlock {whoami}
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>Linux dotnet runtimeconf.json</strong></summary>
+
+```json
+{
+  "runtimeOptions": {
+    "tfm": "net8.0",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "8.0.1"
+    }
+  }
+}
+```
+```bash
+dotnet UserInfo.exe
+```
+  
+</details>
