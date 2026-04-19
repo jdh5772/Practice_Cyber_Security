@@ -60,3 +60,8 @@
 ---
 # 2026.04.17
 - 시스템 정보를 확인해서 `x86`인지 `x64`인지 확인해보기.
+
+---
+# 2026.04.19
+- `/proc/self/cwd` : Current Working Directory
+- `/proc/self/cwd/app.py` 이런식으로 사용 가능.
