@@ -1185,6 +1185,7 @@ if ("val" == true) {echo "success";} else {echo "fail";}
 - Java의 JAR 파일과 유사한 개념
 - 실행 가능한 ZIP 파일
 - `phpinfo`로 허용되는 함수 확인 후 실행.
+- 업로드하는 확장자가 `phar`이 아니더라도 `phar` wrapper로 실행이 가능.
 
 ```bash
 # phar 생성하여 업로드(<?php phpinfo(); ?>)
