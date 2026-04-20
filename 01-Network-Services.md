@@ -274,7 +274,8 @@ ldapsearch -H ldap://10.129.14.128 -x -b "dc=inlanefreight,dc=local" "(objectCla
 - `/etc/snmp/snmpd.conf`
 
 ## 기본 쿼리
-SNMP를 통해 시스템 정보, 네트워크 설정, 프로세스 정보 등을 수집합니다.
+- SNMP를 통해 시스템 정보, 네트워크 설정, 프로세스 정보 등을 수집합니다.
+- timeout이 걸리는 경우 있으니 오류 확인.
 
 ```bash
 # SNMP Walk (단일 OID 조회)
