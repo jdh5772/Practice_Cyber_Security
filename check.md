@@ -65,3 +65,7 @@
 # 2026.04.19
 - `/proc/self/cwd` : Current Working Directory
 - `/proc/self/cwd/app.py` 이런식으로 사용 가능.
+
+---
+# 2026.04.20
+- 특정 CMS를 찾았다고 해서 그것에만 매몰되면 안된다.
