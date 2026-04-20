@@ -2,6 +2,7 @@
 	<summary><strong>Recycle Bin</strong></summary>
 
 - 필수적으로 확인해주기.
+- `Format-Hex`로 16진수 확인해보기.
 - 윈도우에서 리눅스로 원본을 그대로 다운로드할 시에 파일이 변형될 수 있어 `Recycle Bin`폴더에서 다른폴더로 복사한 뒤에 다운로드 시도.
 	
 </details>
