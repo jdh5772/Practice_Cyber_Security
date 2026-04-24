@@ -288,9 +288,10 @@ XAUTHORITY=/tmp/.Xauthority xwd -root -screen -silent -display :0 > screenshot.x
 
 ---
 <details>
-  <summary><strong>cross compile</strong></summary>
+  <summary><strong>GCC(cross compile)</strong></summary>
 
 - `lws2_32` : 윈도우 네트워크 통신 링크파일 설정
+- `WinExec` : 리눅스에서 컴파일 오류가 나오면 `windows.h`헤더 파일 확인.
 
 ```bash
 # 크로스 컴파일
