@@ -1,4 +1,12 @@
 <details>
+	<summary><strong>Filezilla</strong></summary>
+
+- `Filezilla`가 설치되어 있을 경우 `/appdata/roaming/filezilla/recentservers.xml.` 확인해볼 것.
+	
+</details>
+
+---
+<details>
 	<summary><strong>Recycle Bin</strong></summary>
 
 - 필수적으로 확인해주기.
