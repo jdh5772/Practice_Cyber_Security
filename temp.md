@@ -206,6 +206,7 @@ pip3 install searchor==2.4.0
   <summary><strong>BASH</strong></summary>
 
 - `bash`에서는 `TRUE/FALSE` 값이 존재하지 않는다.
+- `exit` 명령어 이후의 명령어는 실행되지 않는다.
 
 ```bash
 # 해당 경로 bashrc 내부의 환경변수,함수,명령어 등을 현재 셸에서 실행하는 명령.
