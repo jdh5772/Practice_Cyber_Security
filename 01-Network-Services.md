@@ -419,3 +419,13 @@ echo -n 6bcf2a4b6e5aca0f | xxd -r -p | openssl enc -des-cbc --nopad --nosalt -K 
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>ident(113)</strong></summary>
+
+```bash
+ident-user-enum <ip> <port> <port> ...
+```
+  
+</details>
