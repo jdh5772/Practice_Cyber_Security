@@ -522,6 +522,8 @@ psql -h localhost -p 5432 -U christine
 ### 기본 명령어
 
 ```psql
+select version();
+
 # 데이터베이스 목록 조회
 \l
 
