@@ -32,20 +32,6 @@ echo -n <password> | md5sum
 
 ---
 <details>
-  <summary><strong>CeWL - Custom Wordlist Generator</strong></summary>
-
-대상 웹사이트를 크롤링하여 커스텀 워드리스트 생성
-
-```bash
-cewl -m 2 --with-numbers --lowercase <url>
-```
-- `-m`: 최소 단어 길이
-- `--with-numbers`: 숫자 포함
-  
-</details>
-
----
-<details>
   <summary><strong>Hashcat</strong></summary>
 
 ### 기본 Dictionary Attack
