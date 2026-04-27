@@ -1,5 +1,5 @@
 <details>
-	<summray><strong>쓰기 가능한 파일 및 폴더</strong></summray>
+	<summary><strong>쓰기 가능한 파일 및 폴더</strong></summary>
 
 ```bash
 find / -writable -type d 2>/dev/null
