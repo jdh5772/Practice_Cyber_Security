@@ -1332,6 +1332,7 @@ eyewitness --web -x web_discovery.xml -d inlanefreight_eyewitness
 <details>
     <summary><strong>Wordpress</strong></summary>
 
+- https://codebeautify.org/wordpress-password-hash-generator
 - 과거 버전의 경우 플러그인이 자동으로 검색되지 않기에 옵션을 붙여줘야 검색이 된다.
 	
 ```bash
