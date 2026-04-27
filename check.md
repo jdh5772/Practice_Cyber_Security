@@ -95,3 +95,4 @@
 ---
 # 2026.04.27
 - `bash`에서 `exit` 명령어 이후는 실행되지 않는다.
+- `crontab`에서 `run-parts`를 자주 보게 되는데, PATH Injection이 가능할지 모른다.
