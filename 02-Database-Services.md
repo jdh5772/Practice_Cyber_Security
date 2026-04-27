@@ -677,3 +677,20 @@ sqlmap -r genres.request --second-req feed.request --batch --tamper=space2commen
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>redis</strong></summary>
+
+- `NOAUTH Authentication required.`는 `redis`에 비밀번호가 설정되어 있음을 보여줌.
+- `redis.conf`의 `requirepass`를 확인.
+
+```bash
+redis-cli -h <ip>
+
+AUTH <password>
+
+127.0.0.1:6379> info
+```
+  
+</details>
