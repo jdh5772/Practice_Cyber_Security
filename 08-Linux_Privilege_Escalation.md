@@ -1,4 +1,17 @@
 <details>
+	<summray><strong>쓰기 가능한 파일 및 폴더</strong></summray>
+
+```bash
+find / -writable -type d 2>/dev/null
+
+# 특정 폴더 내부에서 읽을 수 있는 파일 찾기
+find . -type f 2>/dev/null
+```
+	
+</details>
+
+---
+<details>
 	<summary><strong>nohup</strong></summary>
 
 - 리버스 셸이 지속적으로 끊길 때 사용해보기.
