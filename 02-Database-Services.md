@@ -684,6 +684,7 @@ sqlmap -r genres.request --second-req feed.request --batch --tamper=space2commen
 
 - `NOAUTH Authentication required.`는 `redis`에 비밀번호가 설정되어 있음을 보여줌.
 - `redis.conf`의 `requirepass`를 확인.
+- https://github.com/Ridter/redis-rce
 
 ```bash
 redis-cli -h <ip>
