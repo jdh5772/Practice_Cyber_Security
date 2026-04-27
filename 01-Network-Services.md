@@ -28,6 +28,7 @@ wget -m --no-passive ftp://anonymous:anonymous@10.10.10.98
   <summary><strong>🖥️ SMB & RPC Client</strong></summary>
 
 - 특정 폴더가 READ 권한만 있더라도 내부 폴더에 WRITE 권한이 설정되어 있을 수 있음.
+- `smbmap` 업데이트 이후 재귀 탐색이 제대로 되지 않아 `smbclient`사용.
 
 ### SMB (Server Message Block)
 Windows 환경에서 파일 및 프린터 공유에 사용되는 프로토콜입니다.
