@@ -358,6 +358,8 @@ schtasks /query /fo LIST /v
 .\print.exe -i -c cmd.exe
 
 .\print.exe -c shell.exe
+
+.\print.exe -i -c "cmd /c cmd.exe"
 ```
 
 ### JuicyPotato
