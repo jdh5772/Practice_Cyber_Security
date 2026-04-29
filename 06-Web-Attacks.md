@@ -2025,3 +2025,11 @@ chrome://inspect
 - `/usr/share/seclists/Fuzzing/special-chars.txt`
 	
 </details>
+
+---
+<details>
+	<summary><strong>Web Application Firewall bypass(WAF)</strong></summary>
+
+- `X-Forwarded-For: 127.0.0.1` 헤더를 생성하여 전달.
+	
+</details>
