@@ -1153,6 +1153,8 @@ aws s3 --endpoint-url=http://s3.thetoppers.htb cp ex.php s3://thetoppers.htb
 <details>
   <summary><strong>PHP</strong></summary>
 
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion/Wrappers.md
+
 ## Bypass Webshell
 - https://github.com/lcatro/PHP-WebShell-Bypass-WAF
 
