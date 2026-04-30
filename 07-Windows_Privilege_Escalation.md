@@ -511,7 +511,7 @@ rdesktop 192.168.81.165
 <details>
  <summary><strong>SeManageVolume</strong></summary>
 
-## SeManageVolumeExploit
+## SeManageVolume(SeManageVolumePrivilege)
 - https://github.com/CsEnox/SeManageVolumeExploit
 - 실행하더라도 표시는 일반유저로 표시가 되나 실제로는 시스템 파일에 쓰기가 가능.
 
