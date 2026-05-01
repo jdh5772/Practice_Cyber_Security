@@ -1,4 +1,19 @@
 <details>
+	<summary><strong>Windows 패치 내역 확인</strong></summary>
+
+```powershell
+wmic qfe list
+
+Get-HotFix
+
+Get-HotFix -Id KB5012345
+```
+	
+</details>
+
+
+---
+<details>
 	<summary><strong>Filezilla</strong></summary>
 
 - `Filezilla`가 설치되어 있을 경우 `/appdata/roaming/filezilla/recentservers.xml.` 확인해볼 것.
