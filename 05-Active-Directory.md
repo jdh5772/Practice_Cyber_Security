@@ -1005,6 +1005,32 @@ gpupdate /force
 <details>
   <summary><strong>Silver Ticket</strong></summary>
 
+## Silver Ticket이 성립하는 3가지 전제
+
+### 1. KDC가 재검증하지 않음
+- Kerberos의 설계 철학 자체가 **분산 인증**
+- 매번 KDC에 검증 요청하면 병목이 발생하므로 서비스가 자체 검증
+- 서비스가 오프라인이어도 인증이 작동하도록 설계된 부분도 원인
+
+### 2. IP 주소 검증 없음
+- Kerberos 티켓 내부에 IP 주소는 선택적 필드이며 보통 포함되지 않음
+- **도메인명과 SPN만 맞으면** 어디서든 티켓 제출 가능
+
+```
+TGS 주요 내용:
+- 사용자명
+- 도메인명
+- 서비스 SPN (Service Principal Name)
+- 권한 정보 (PAC)
+- 유효기간
+※ IP 주소는 미포함
+```
+
+### 3. PAC 내용을 무조건 신뢰
+- PAC(Privilege Attribute Certificate)에는 사용자 권한 정보가 담겨 있음
+- 서비스는 PAC 내용을 별도 검증 없이 신뢰하므로 **권한 정보도 위조 가능**
+
+
 ## 티켓 발행
 - `GetUserSPNs`를 사용하여 `SPN`이 등록되어 있는지 확인 필요.
 - `NTLM(password to ntlm)`과 `SID` 필요.
