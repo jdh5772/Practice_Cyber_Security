@@ -271,6 +271,15 @@ ldapsearch -H ldap://10.129.14.128 -x -b "dc=inlanefreight,dc=local" "(objectCla
 <details>
   <summary><strong>🔐 SNMP (Simple Network Management Protocol)</strong></summary>
 
+## mibs
+```bash
+apt install snmp-mibs-downloader
+download-mibs
+# Finally comment the line saying "mibs :" in /etc/snmp/snmp.conf
+sudo vi /etc/snmp/snmp.conf
+```
+  
+
 ## SNMP config file location
 - `/etc/snmp/snmpd.conf`
 
