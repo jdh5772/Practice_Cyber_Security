@@ -1,43 +1,4 @@
 <details>
-  <summary><strong>CHECK</strong></summary>
-  
-
-- web : `whatweb`/`curl`/`burpsuite crawler`/`⭐html code⭐`/`JS code`/`페이지의 내용 먼저 확인`
-- sql : `injection`/`connect`/`enumeration`/`update`
-- ftp : `upload`/`download`/`hidden files`
-- http : `robots.txt`/`gobuster`/`feroxbuster`/`ffuf`/`error page`/`cookie에 따라서 redirection`/`.git`/`configuration file location`/`link`/`서버 포트가 다르더라도 다른 포트에서 사용하는 언어에 맞는 web shell을 업로드 해볼 것.`/`burpsuite가 실패하는 경우가 있으니 curl로 시도해볼 것.`/`특별한 정보 찾을 수 없을 때 api 검색(login api)`/`CMS를 알아 낸 경우 다른 버전의 RCE를 참조해서 시도할 수 있는지 확인.`/`⭐내부 내용 확인⭐`
-- https : `tls 인증서 확인`
-- windows : `powershell history`/`whoami`/`⭐inside files(password leaking,source code,configurations)⭐`/`public folder`/`로컬로 어떻게든 접속이 가능하다면 Responder를 사용하여 해시 캡쳐 시도`
-- linux : `⭐inside files(password leaking,source code,configurations)⭐`/`env`/`open ports`/`⭐who have permissions(root or user?)⭐`/`/var/mail`/`login user's group files`/`Unkonwn port telnet or nc banner grabbing`/`process 확인`/`현재 로그인 유저가 아니더라도 다른 유저의 파일들을 확인해서 권한 상승`/`루트경로에서 리눅스에서 기본적으로 만들어진 폴더가 아닌 다른 폴더 확인.`/`Command INjection`/`Path Injection`
-- Active Directory : `Privesc > return`/`ntpdate로 먼저 시간을 맞춰주고 시작.`/`유저가 속해 있는 그룹을 잘 살펴 보아야 한다.`/`유저목록 수집하여 소문자 버전도 시도`/`smbmap에서 제대로 정보가 확인되지 않을 수 있어 nxc로 한번 더 확인해봐야 한다.`
-- SSH : `authorized_keys 변경 여부 확인`/`접속한 셸에서 명령어가 실행되지 않을 수 있으니 SSH 접속 시도.`
-
-<br>
-
-- nmap : `-sU --top-ports 100`/`-Pn`/`subdomain에서도 .git 확인`
-- ffuf : `-mc all`/`http 인지 https 인지 제대로 확인`
-- netexec : `AD가 아니더라도 윈도우 환경에서 테스트`/`⭐--rid-brute⭐`/`--users(description 확인)`/`mssql의 경우 로컬 인증 방식을 사용하기 때문에 --local-auth를 붙여서 테스트 해봐야 한다.`
-- grep : `-r '@dog.htb'`/`빈줄 제외하고 나머지 출력 grep .`
-- strings : `raw data catch flag recover deleted files`/`의심이 가는 파일의 경우 strings로 먼저 시도해보기.`
-- gobuster : `txt,md`/`-k(tls)`/`경로를 못찾을 때는 feroxbuster 사용해보기.`
-- dirbuster : `~2017년도까지 대체재.`
-- wordlist : `.git`/`cgi-bin`
-- input : `우회를 시도하여서 다른 공격방법 테스트(command injection만 우회가 되는 것이 아니다.)`/`⭐모든 공격을 전부 시도해봐야 한다.⭐`/`우선 순위를 먼저 테스트해봐야한다.`/`만약에 링크를 통해서 서버로 전송이 요청된다면 XSRF 공격이 가능할수도 있다.`
-- searchsploit : `버전을 확인할 수 없어도 페이로드 시도.`/`Unauthenticated 취약점이 존재할 수 있으니 막히면 찾아보기`/`버전이 같지 않더라도 관리자 계정으로 실행되는 취약점을 다른 버전에서도 실행해볼 것.`
-- Docker : `Docker 버전을 확인하여 Privesc 시도.`
-- burpsuite : `요청시 파라미터 전송(위)과 body 전송(아래) 바꿔서 전달해보기. 이에 따라서 Content-Type을 바꿔야할 수도 있음.`/`요청시에 공백은 한줄만.`
-- man page : `익숙하지 않은 프로그램의 경우 man page를 찾아볼 것.`
-- code script : `입력 검증이 제대로 되고 있는지 확인.`
-- process : `ps 명령어를 사용하여 어떤 프로그램이 실행되고 있는지 의심.(특히나 브라우저)`
-- banner grabbing : `nc 혹은 telnet을 사용할 경우 버전 출력에 시간이 좀 걸릴 수 있다.`
-- 날짜 : `날짜에 따라서 IDOR이 가능할 수 있다.`
-- image file : `exiftool`/`strings`
-- 압축 : `unzip -> 7z`
-
-</details>
-
----
-<details>
   <summary><strong>Hex to ASCII</strong></summary>
 
 ```bash
