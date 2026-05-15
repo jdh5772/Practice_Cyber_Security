@@ -126,6 +126,7 @@
 
 ## POST EXPLOITATION
 - 유저 계정으로 `winpeas` 실행시켜보기
+- 셸을 획득할 때마다 내부 파일 살펴보기
 - powershell history
 - pypykatz/secretsdump
 - mimikatz
