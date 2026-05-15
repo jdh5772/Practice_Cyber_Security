@@ -129,6 +129,8 @@
 - ⭐ **inside files (password leaking, source code, configurations)**
 - `env` / open ports 확인
 - ⭐ **who have permissions (root or user?)**
+- - `LD_LIBRARY_PATH`가 잡혔을 때 특정한 프로그램에 대해서 하이재킹이 가능할 수 있다 *(04.29)*
+- `ldd`로 확인해주기 *(04.29)*
 - `/var/mail` 확인
 - login user's group files 확인
 - Unknown port → `telnet` 또는 `nc` banner grabbing
