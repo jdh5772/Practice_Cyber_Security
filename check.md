@@ -87,6 +87,7 @@
 <details>
   <summary><strong>windows</strong></summary>
 
+- ⭐⭐`administrator`라고 해서 확인하지 않는다는 것을 버려라 !⭐⭐
 - ⭐`powershell history` 확인⭐
 - `whoami` 확인
 - `whoami /priv` — SeImpersonatePrivilege, SeAssignPrimaryTokenPrivilege 등 확인 → Potato 계열 공격
