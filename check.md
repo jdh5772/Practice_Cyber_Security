@@ -135,7 +135,7 @@
 - `ldd`로 확인해주기 *(04.29)*
 - `/var/mail` 확인
 - login user's group files 확인
-- Unknown port → `telnet` 또는 `nc` banner grabbing
+- Unknown port → `telnet` 또는 `nc` banner grabbing → help
 - `process` 확인 (`ps aux`로 어떤 프로그램이 실행되고 있는지 의심, 특히 브라우저)
 - 현재 로그인 유저가 아니더라도 다른 유저의 파일들을 확인해서 권한 상승
 - 루트 경로에서 리눅스에서 기본적으로 만들어진 폴더가 아닌 다른 폴더 확인
