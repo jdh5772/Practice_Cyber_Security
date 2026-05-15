@@ -123,6 +123,12 @@
 - `C:\Windows\Panther\Unattend.xml`, `sysprep.xml` — 자동 설치 파일에 크레덴셜
 - Credential Manager: `cmdkey /list`
 - WinPEAS 실행하여 종합 점검
+
+## POST EXPLOITATION
+- 유저 계정으로 `winpeas` 실행시켜보기
+- powershell history
+- pypykatz/secretsdump
+- mimikatz
   
 </details>
 
