@@ -89,6 +89,8 @@
 
 - ⭐⭐`administrator`라고 해서 확인하지 않는다는 것을 버려라 !⭐⭐
 - ⭐`powershell history` 확인⭐
+- 다른 유저의 `powershell history`파일도 확인해야 한다.
+- `type C:\Users\*\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt`
 - `whoami` 확인
 - `whoami /priv` — SeImpersonatePrivilege, SeAssignPrimaryTokenPrivilege 등 확인 → Potato 계열 공격
 - `whoami /groups` — 속한 그룹 확인
