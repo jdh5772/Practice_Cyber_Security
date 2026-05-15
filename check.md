@@ -88,6 +88,8 @@
   <summary><strong>windows</strong></summary>
 
 - ⭐⭐`administrator`라고 해서 확인하지 않는다는 것을 버려라 !⭐⭐
+- `powershell`을 관리자 권한으로 실행시킬 수 있는지 확인.
+- `powershell -ep bypass`
 - ⭐`powershell history` 확인⭐
 - 다른 유저의 `powershell history`파일도 확인해야 한다.
 - `type C:\Users\*\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt`
@@ -444,3 +446,6 @@
 - 크레덴셜 재사용 — 획득한 패스워드를 다른 서비스/유저에도 시도
 - 패스워드 변형 시도: `Password1`, `Password123`, `Password!`, `P@ssw0rd`
 - 서비스별 기본 포트 암기: FTP(21), SSH(22), SMTP(25), DNS(53), HTTP(80), SMB(445), MSSQL(1433), MySQL(3306), RDP(3389), WinRM(5985/5986)
+
+<img width="1010" height="151" alt="image" src="https://github.com/user-attachments/assets/e711e3f2-1700-4c9e-a7ef-ab02b8c2d85e" />
+
