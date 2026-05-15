@@ -87,7 +87,7 @@
 <details>
   <summary><strong>windows</strong></summary>
 
-- `powershell history` 확인
+- ⭐`powershell history` 확인⭐
 - `whoami` 확인
 - `whoami /priv` — SeImpersonatePrivilege, SeAssignPrimaryTokenPrivilege 등 확인 → Potato 계열 공격
 - `whoami /groups` — 속한 그룹 확인
