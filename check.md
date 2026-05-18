@@ -193,6 +193,7 @@
 <details>
   <summary><strong>Active Directory</strong></summary>
 
+- `SMB` 로그인시 도메인 지정해줘야 제대로 로그인이 가능한 경우가 발생.
 - Privesc → return 고려
 - `ntpdate`로 먼저 시간을 맞춰주고 시작
 - 유저가 속해 있는 그룹을 잘 살펴보아야 한다
