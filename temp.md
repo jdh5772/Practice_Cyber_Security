@@ -289,6 +289,9 @@ x86_64-w64-mingw32-gcc -shared ex.c -lws2_32 -o adduser.dll
 
 # 공백 줄 제거
 :%!sed '/^$/d'
+
+# PYTHON unindent does not match any outer indentation level
+:retab
 ```
   
 </details>
