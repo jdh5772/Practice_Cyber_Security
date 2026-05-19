@@ -399,6 +399,8 @@ Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
 > BloodHound 데이터 수집 도구 (Windows 네이티브)
 
 ```powershell
+SharpHound.exe -d 도메인.com --ldapusername 유저 --ldappassword 패스워드
+
 # 모든 AD 정보 수집 및 ZIP 파일로 저장
 .\SharpHound.exe -c All --zipfilename ILFREIGHT
 ```
