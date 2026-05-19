@@ -193,6 +193,7 @@
 <details>
   <summary><strong>Active Directory</strong></summary>
 
+- `Sharphound`는 도메인에 연결되어 있으면 사용이 가능하다. 단, `ldap` 유저와 비밀번호를 지정해줘야 제대로 작동할 수 있다.
 - `SMB` 로그인시 도메인 지정해줘야 제대로 로그인이 가능한 경우가 발생.
 - `NTLM relay`가 가능할까 ?
 - Privesc → return 고려
