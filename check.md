@@ -381,6 +381,9 @@
 ### man page
 - 익숙하지 않은 프로그램의 경우 man page를 찾아볼 것
 
+### PDF file
+- `exiftool`을 사용하여 정보 확인..
+
 ### image file
 - `exiftool`
 - `strings`
