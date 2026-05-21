@@ -246,6 +246,16 @@ mysqldump --user=theseus --password=iamkingtheseus --host=localhost Magic
 
 mysqldump -u user --all-databases > db.sql
 ```
+```bash
+# UTF-16 으로 덤핑되었을 경우 UTF-8로 변경 필요
+iconv -f UTF-16 -t UTF-8 db.sql > db.sql.utf8
+
+sudo systemctl start mysql
+
+mysql -u root -p -e "CREATE DATABASE tempdb;"
+
+mysql -u root -p tempdb < db.sql.utf8
+```
 
 </details>
 
