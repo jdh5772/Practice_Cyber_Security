@@ -185,6 +185,8 @@ Find-AllVulns
 tasklist /v |findstr -i cloudme
 ```
 ```powershell
+Get-WinEvent -MaxEvents 30 | findstr backup
+
 # tasklist로 확인 불가능할 때 이벤트 로그로 확인.
 Get-WinEvent -LogName "Microsoft-Windows-TaskScheduler/Operational" -MaxEvents 30
 ```
