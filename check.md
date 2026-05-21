@@ -128,6 +128,10 @@
 - 유저 계정으로 `winpeas` 실행시켜보기
 - 셸을 획득할 때마다 내부 파일 살펴보기
 - powershell history
+```powershell
+# 관리자 그룹에 추가
+net localgroup administrators username /add
+```
 - pypykatz/secretsdump
 ```bash
 # 기본 로컬 인증
