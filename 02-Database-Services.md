@@ -252,9 +252,9 @@ iconv -f UTF-16 -t UTF-8 db.sql > db.sql.utf8
 
 sudo systemctl start mysql
 
-mysql -u root -p -e "CREATE DATABASE tempdb;"
+sudo mysql -u root -p -e "CREATE DATABASE tempdb;"
 
-mysql -u root -p tempdb < db.sql.utf8
+sudo mysql -u root -p tempdb < db.sql.utf8
 ```
 
 </details>
