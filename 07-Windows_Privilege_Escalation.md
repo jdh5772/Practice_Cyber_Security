@@ -184,12 +184,6 @@ Find-AllVulns
 ```powershell
 tasklist /v |findstr -i cloudme
 ```
-```powershell
-Get-WinEvent -MaxEvents 30 | findstr backup
-
-# tasklist로 확인 불가능할 때 이벤트 로그로 확인.
-Get-WinEvent -LogName "Microsoft-Windows-TaskScheduler/Operational" -MaxEvents 30
-```
  
 </details>
 
@@ -366,6 +360,12 @@ Get-HotFix -Id KB5012345
 
 ```powershell
 schtasks /query /fo LIST /v
+```
+```powershell
+Get-WinEvent -MaxEvents 30 | findstr backup
+
+# tasklist로 확인 불가능할 때 이벤트 로그로 확인.
+Get-WinEvent -LogName "Microsoft-Windows-TaskScheduler/Operational" -MaxEvents 30
 ```
  
 </details>
