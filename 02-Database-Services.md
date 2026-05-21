@@ -257,6 +257,17 @@ sudo mysql -u root -p -e "CREATE DATABASE tempdb;"
 sudo mysql -u root -p tempdb < db.sql.utf8
 ```
 
+### reset
+```bash
+sudo systemctl stop mariadb
+
+sudo rm -rf /var/lib/mysql
+
+sudo mysql_install_db --user=mysql --datadir=/var/lib/mysql
+
+sudo systemctl start mariadb
+```
+
 </details>
 
 ---
