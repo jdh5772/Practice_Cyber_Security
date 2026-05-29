@@ -169,6 +169,24 @@ FILE 권한을 가진 경우 시스템 파일을 읽거나 쓸 수 있습니다.
 500';EXECUTE xp_cmdshell 'ping 10.10.14.22';-- -
 ```
 
+## Second order Injection
+- 악의적인 데이터가 처음 입력될 때는 안전하게 저장되지만, 나중에 그 데이터가 다시 사용(retrieve)될 때 공격이 실행되는 보안 취약점
+
+### 예방법
+- 입력값을 저장하기 전에 검증.
+- DB에서 꺼낸 데이터를 신뢰하지 않는다는 생각을 해야 한다.(Parameterized Query)
+```python3
+# ❌ 나쁜 예 - DB 조회값을 그대로 쿼리에 삽입
+username = db.fetchone("SELECT username FROM users WHERE id=%s", user_id)
+query = f"UPDATE users SET password='{new_pw}' WHERE username='{username}'"
+
+# ✅ 좋은 예 - DB 조회값도 반드시 바인딩
+cursor.execute(
+    "UPDATE users SET password=%s WHERE username=%s",
+    (new_pw, username)
+)
+```
+
 </details>
 
 ---
