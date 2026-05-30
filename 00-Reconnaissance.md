@@ -16,6 +16,8 @@ sudo nmap --top-ports 100 -sU <ip>
 ```
 
 **주요 옵션**
+- `-sC`: `nmap`의 기본 스크립트 실행. 추가 정보 수집.
+- `-sV`: 서비스 버전 정보 탐색
 - `-sn`: 포트 스캔 생략, 호스트 발견만 수행
 - `-PE`: ICMP Echo Request 사용
 - `--disable-arp-ping`: ARP 비활성화 (Layer 3 라우팅 환경)
