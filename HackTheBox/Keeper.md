@@ -139,19 +139,5 @@ python3 poc.py ../KeePassDumpFull.dmp
 - `/root/root.txt`
 <img width="1104" height="288" alt="image" src="https://github.com/user-attachments/assets/f602fba3-ebf3-463d-9697-f60fb233ad81" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
+> 개념 정리 : [CVE-2023-32784](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/03-Password-Attacks.md)
