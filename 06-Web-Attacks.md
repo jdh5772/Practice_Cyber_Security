@@ -1676,6 +1676,7 @@ tar -cvzf updater.tar.gz splunk_shell/
 <details>
     <summary><strong>PRTG Network Monitor</strong></summary>
 
+- Network Monitor Service.
 - `nmap` 스캔으로 발견됨.
 - `https://codewatch.org/2018/06/25/prtg-18-2-39-command-injection-vulnerability/`
 - `setup > account settings > Notifications`
