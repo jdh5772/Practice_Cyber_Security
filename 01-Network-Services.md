@@ -1,7 +1,6 @@
 <details>
   <summary><strong>📡 FTP SSL Certificate</strong></summary>
 
-## FTP
 - File Transfer Protocol
 
 ### FTP over SSL 연결 테스트
