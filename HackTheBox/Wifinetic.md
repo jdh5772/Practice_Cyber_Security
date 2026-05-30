@@ -101,12 +101,5 @@ reaver -i mon0 -b 02:00:00:00:00:00 -v
 - `/root/root.txt`
 <img width="1104" height="275" alt="image" src="https://github.com/user-attachments/assets/0ddf1e0c-3a41-4cdb-8273-f39dcc832eec" />
 
-
-
-
-
-
-
-
-
-
+---
+> 개념 참조 : [WPS 취약점](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/Concepts/wifi.md#wps-%EC%B7%A8%EC%95%BD%EC%A0%90)
