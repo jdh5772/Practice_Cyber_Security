@@ -54,10 +54,7 @@ echo 'hi!' | md5sum
 <summary><strong>XSS (Cross-Site Scripting)</strong></summary>
 
 ## XSS (Cross-Site Scripting)
-
-> 웹 애플리케이션에 악성 스크립트를 주입하여 사용자의 브라우저에서 실행시키는 공격 기법입니다.
-
-> `HEADER`를 조작하여 `XSS`시도 가능.
+- 브라우저가 서버 응답(HTML/JS)을 파싱할 때, 공격자가 주입한 문자열을 "데이터"가 아닌 "코드"로 해석하게 만드는 것
 
 ### 기본 공격 페이로드
 
