@@ -441,3 +441,13 @@ ident-user-enum <ip> <port> <port> ...
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>WINRM</strong></summary>
+
+# WINRM
+- Windows에서 원격으로 명령을 실행하기 위한 프로토콜
+- Linux의 SSH와 비슷한 역할
+  
+</details>
