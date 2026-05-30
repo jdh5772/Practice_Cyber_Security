@@ -82,8 +82,4 @@ getcap -r / 2>/dev/null
 <img width="1103" height="251" alt="image" src="https://github.com/user-attachments/assets/8aa405f3-a1cb-45f2-8664-43e72f71d706" />
 
 ---
-## SUID / CAP_*
-- SUID : 파일 소유자의 권한으로 실행되게 해주는 속성. python3를 포함한 인터프리터에 걸더라도 보안상 커널에서 무시함.
-- CAP_* : root나 SUID를 주기엔 권한이 너무 많으니, 필요한 권한만 딱 잘라서 부여할 때 사용. (최소 권한 원칙)
-- CAP_SETUID : 프로세스가 실행 중에 스스로 UID를 변경할 수 있는 권한.
-- SUID가 "실행 시 자동으로 소유자 권한"이라면, CAP_SETUID는 "실행 중에 능동적으로 root로 전환 가능". 결과적으로 root 탈취가 가능하므로 사실상 root와 동일한 위험도를 가짐.
+> 개념 참고 : [SUID / CAP_SETUID](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/Concepts/Linux.md#suid--cap_)
