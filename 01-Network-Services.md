@@ -1,8 +1,7 @@
 <details>
   <summary><strong>📡 FTP SSL Certificate</strong></summary>
 
-## FTP
-- File Transfer Protocol
+## FTP(File Transfer Protocol)
 
 ### FTP over SSL 연결 테스트
 FTP 서버가 SSL/TLS를 지원하는지 확인하고 암호화된 연결을 수립합니다.
