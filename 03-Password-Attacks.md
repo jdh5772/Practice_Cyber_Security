@@ -891,14 +891,15 @@ hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/has
 
 ---
 
-## KeePass Dump File Cracking
-```bash
-python3 poc.py <file.dmp>
+## KeePass Dump File Cracking (CVE-2023-32784)
+- https://github.com/matro7sh/keepass-dump-masterkey
+- .NET에서 string 타입은 불변(immutable)하여,  문자가 입력될 때마다 새로운 string 객체를 생성하고 이전 객체는 메모리에 그대로 잔류함.
+- GC(Garbage Collector)가 메모리를 수거하더라도 0으로 덮어쓴다는 보장이 없어, 메모리 덤프 시 입력 단계별 문자열이 순차적으로 노출되어 마스터 패스워드 복구가 가능한 취약점.
+- 다른 언어로 작성이 되었더라도 해당 메모리에 0(NULL)으로 덮어쓴 것이 아니면 같은 취약점이 발생할 수 있다.
 
 # sudo apt install keepassxc
 keepassxc <file.kdbx>
 ```
-- https://github.com/matro7sh/keepass-dump-masterkey
 
 ## kpcli
 ```bash
