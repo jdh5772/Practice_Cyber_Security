@@ -35,6 +35,7 @@ curl -IL http://10.10.11.108
 <br>
 
 - `responder`를 사용해서 해당 요청을 가로챌 수 있는지 확인.
+- `LDAP` 인증을 서버에서 암호화 없이 시도하여 평문으로 계정 획득.
 ```bash
 sudo responder -I tun0 -v
 ```
