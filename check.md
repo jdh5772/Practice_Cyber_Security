@@ -153,6 +153,7 @@ nxc smb 192.168.150.0/24 -u 'Admin' -p 'Password' -M lsassy
   <summary><strong>linux</strong></summary>
 
 - ⭐ **inside files (password leaking, source code, configurations)**
+- `.git` 혹은 `backup`을 찾아내어도 내부 파일에서 다를 수 있어 md5 해시값을 확이해보고 판단.
 - `env` / open ports 확인
 - ⭐ **who have permissions (root or user?)**
 - `LD_LIBRARY_PATH`가 잡혔을 때 특정한 프로그램에 대해서 하이재킹이 가능할 수 있다 *(04.29)*
