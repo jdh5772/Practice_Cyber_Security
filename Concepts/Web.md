@@ -4,3 +4,8 @@
   - Java → Tomcat
   - Python → gunicorn
   - PHP → php-fpm (Apache 내장 가능)
+
+---
+## SSRF(Server-Side Request Forgery)
+- 서버가 공격자가 지정한 내부/외부 URL로 요청을 보내도록 유도하는 공격.
+- 서버가 외부 리소스를 가져오는 기능을 악용합니다.
