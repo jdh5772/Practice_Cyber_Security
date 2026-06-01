@@ -1,9 +1,9 @@
 # Baby
-- [Port Scanning](https://github.com/jdh5772/Practice_Cyber_Security/new/main/HackTheBox#port-scanning)
-- [SMB](https://github.com/jdh5772/Practice_Cyber_Security/new/main/HackTheBox#smb)
-- [LDAP](https://github.com/jdh5772/Practice_Cyber_Security/new/main/HackTheBox#ldap)
-- [Login as Caroline.Robinson](https://github.com/jdh5772/Practice_Cyber_Security/new/main/HackTheBox#login-as-carolinerobinson)
-- [Privesc](https://github.com/jdh5772/Practice_Cyber_Security/new/main/HackTheBox#privesc)
+- [Port Scanning](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Baby.md#port-scanning)
+- [SMB](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Baby.md#smb)
+- [LDAP](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Baby.md#ldap)
+- [Login as Caroline.Robinson](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Baby.md#login-as-carolinerobinson)
+- [Privesc](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Baby.md#privesc)
 
 
 ## Port Scanning
