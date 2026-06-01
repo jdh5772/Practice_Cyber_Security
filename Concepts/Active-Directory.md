@@ -43,3 +43,27 @@ dc=company,dc=com          ← 루트 (도메인)
 - 도메인 환경 내부라도 IP로 직접 접근 혹은 Kerberos 실패시 NTLM 인증 진행.
 - 도메인이 아닌 로컬로 인증을 진행할 경우 NTLM 인증으로 진행.
 - 도메인 환경이 아니라면 LDAP 인증으로 진행되며, 티켓 발급은 되지 않음.
+
+---
+## Backup Operators Group
+-  백업 및 복원 작업을 수행하기 위한 특수 권한.
+-  사실상 관리자에 준하는 권한을 가져 `NTDS.dit`에 접근을 하여 도메인 계정의 패스워드 해시 추출 가능.
+-  `SAM`, `SYSTEM`, `SECURITY` 레지스트리 하이브 백업 가능.
+
+### 핵심 파일 비교표
+- `NTDS.dit` → `C:\Windows\NTDS\NTDS.dit`
+- `SAM`      → `C:\Windows\System32\config\SAM`
+- `SYSTEM`   → `C:\Windows\System32\config\SYSTEM`
+- `SECURITY` → `C:\Windows\System32\config\SECURITY`
+- `LSA (Local Security Authority)`: Windows가 자동화를 위해 의도적으로 저장하는 자격증명 모음. 사용자는 존재를 잘 모르나, 서비스 자동 실행·오프라인 로그인 등에 활용된다.
+
+| 항목 | NTDS.dit | SAM | SYSTEM | SECURITY |
+|------|----------|-----|--------|----------|
+| **존재 위치** | 도메인 컨트롤러(DC)만 | 모든 Windows 시스템 | 모든 Windows 시스템 | 모든 Windows 시스템 |
+| **파일 형식** | ESE DB (데이터베이스) | 레지스트리 하이브 | 레지스트리 하이브 | 레지스트리 하이브 |
+| **핵심 역할** | 도메인 전체 계정 DB | 로컬 계정 해시 저장 | 복호화 키(Boot Key) 보관 | LSA(Local Security Authority) Secrets 저장 |
+| **저장 정보** | 도메인 계정 NT Hash, krbtgt 해시, 그룹/OU 구조 | 로컬 계정 NT Hash | Boot Key (SysKey) | 캐시 도메인 해시(DCC2), 서비스 계정 PW |
+| **단독 사용 가능 여부** | ❌ SYSTEM 필요 | ❌ SYSTEM 필요 | ❌ SAM/NTDS.dit 필요 | △ 일부 정보만 |
+| **필요한 조합** | NTDS.dit + SYSTEM | SAM + SYSTEM | SAM or NTDS.dit와 조합 | SYSTEM과 조합 |
+| **공격 임팩트** | 💀 도메인 전체 장악 가능 | 로컬 계정 탈취 | 해시 복호화 가능 | 서비스 계정·캐시 탈취 |
+| **실행 중 잠금** | ✅ (VSS로 우회 가능) | ✅ (SeBackupPrivilege로 우회) | ✅ (SeBackupPrivilege로 우회) | ✅ (SeBackupPrivilege로 우회) |
