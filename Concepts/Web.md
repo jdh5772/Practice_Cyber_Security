@@ -13,7 +13,7 @@
 ```bash
 nc -vnlp 80
 ```
-
+- [CURL SSRF](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/09-Exploitation.md#curl-ssrf)
 ---
 ## XSS(Cross Site Scripting)
 - 신뢰되지 않은 외부 데이터가 검증 없이 HTML에 삽입되어, 브라우저가 이를 실행하는 공격
