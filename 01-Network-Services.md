@@ -295,6 +295,8 @@ sudo vi /etc/snmp/snmp.conf
 # -c public: Community String 지정
 snmpwalk -v2c -c public 10.129.14.128
 
+snmpwalk -v2c -c public 10.10.11.107 .1.3.6.1.4.1.11.2.3.9.1.1.13.0
+
 # SNMP Bulk Walk (대량 데이터 수집, 더 효율적)
 snmpbulkwalk -c public -v2c 10.10.10.10 . > result
 
