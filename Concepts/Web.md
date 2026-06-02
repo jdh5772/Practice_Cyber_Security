@@ -9,6 +9,10 @@
 ## SSRF(Server-Side Request Forgery)
 - 서버가 공격자가 지정한 내부/외부 URL로 요청을 보내도록 유도하는 공격.
 - 서버가 외부 리소스를 가져오는 기능을 악용합니다.
+- `nc`를 사용하여 서버에서 보내오는 헤더를 먼저 분석.
+```bash
+nc -vnlp 80
+```
 
 ---
 ## XSS(Cross Site Scripting)
