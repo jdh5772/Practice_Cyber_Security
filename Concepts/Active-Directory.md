@@ -67,3 +67,30 @@ dc=company,dc=com          ← 루트 (도메인)
 | **필요한 조합** | NTDS.dit + SYSTEM | SAM + SYSTEM | SAM or NTDS.dit와 조합 | SYSTEM과 조합 |
 | **공격 임팩트** | 💀 도메인 전체 장악 가능 | 로컬 계정 탈취 | 해시 복호화 가능 | 서비스 계정·캐시 탈취 |
 | **실행 중 잠금** | ✅ (VSS로 우회 가능) | ✅ (SeBackupPrivilege로 우회) | ✅ (SeBackupPrivilege로 우회) | ✅ (SeBackupPrivilege로 우회) |
+
+---
+## AD CS (Active Directory Certificate Services)
+
+### CA(Certificate Authority)
+- `AD CS`의 핵심 구성 요소
+- 디지털 인증서를 발급하고 관리하는 신뢰할 수 있는 기관.
+- `CA`자체는 인터넷에서 보편적으로 사용되는 기술이나, AD와 결합해서 사용하기도 하는 것.
+
+#### 실제 활용 예시
+- 사내 HTTPS (SSL/TLS) 인증서 발급
+- 스마트카드 로그인 인증
+- VPN 클라이언트 인증
+- 이메일 서명/암호화 (S/MIME)
+- Wi-Fi 802.1X 인증
+
+### 인증서 템플릿
+- 인증서를 발급할 때 어떤 규칙으로 만들어라고 정의한 설정 양식.
+- 아래 3가지 조건이 동시에 충족되면 취약한 템플릿이 됨.
+  1. 낮은 권한 사용자도 인증서 요청 가능 (Enrollment Rights = Domain Users)
+  2. SAN(Subject Alternative Name)을 요청자가 직접 지정 가능
+  3. 발급된 인증서로 Kerberos 인증 가능 (Client Authentication)
+
+### 권한 상승
+- `CA`가 잘못된 계정에 인증서를 발급하면 그 인증서로 다른 계정인 척을 할 수 있게 되어서 권한 상승이 일어남.
+- 취약한 템플릿의 경우 특정 계정이 `Administrator`라고 직접 입력하면 `CA`가 그냥 믿고 발급을 해주게 된다.
+- 이후 해당 인증서로 `Kerberos` 인증이 가능해진다.
