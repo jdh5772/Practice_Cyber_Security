@@ -87,10 +87,5 @@ dc=company,dc=com          ← 루트 (도메인)
 - 인증서를 발급할 때 어떤 규칙으로 만들어라고 정의한 설정 양식.
 - 아래 3가지 조건이 동시에 충족되면 취약한 템플릿이 됨.
   1. 낮은 권한 사용자도 인증서 요청 가능 (Enrollment Rights = Domain Users)
-  2. SAN(Subject Alternative Name)을 요청자가 직접 지정 가능
-  3. 발급된 인증서로 Kerberos 인증 가능 (Client Authentication)
-
-### 권한 상승
-- `CA`가 잘못된 계정에 인증서를 발급하면 그 인증서로 다른 계정인 척을 할 수 있게 되어서 권한 상승이 일어남.
-- 취약한 템플릿의 경우 특정 계정이 `Administrator`라고 직접 입력하면 `CA`가 그냥 믿고 발급을 해주게 된다.
-- 이후 해당 인증서로 `Kerberos` 인증이 가능해진다.
+  3. SAN(Subject Alternative Name)을 요청자가 직접 지정 가능(`Administrator`를 지정하여 요청)
+  4. 발급된 인증서로 Kerberos 인증 가능 (Client Authentication)
