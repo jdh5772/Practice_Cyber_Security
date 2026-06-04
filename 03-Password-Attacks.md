@@ -926,13 +926,18 @@ ssh -i <file.pem> host@local
 
 ---
 <details>
-  <summary><strong>pbkdf2(GITEA)</strong></summary>
+  <summary><strong>pbkdf2</strong></summary>
 
 - `Hashcat`의 `PBKDF2-HMAC-SHA256` 모드(-m 10900)가 `Base64` 형식을 요구
 - `username:sha256:iterations:base64_salt:base64_digest`
+
+## GITEA
 ```bash
 sqlite3 gitea.db "select passwd,salt,name from user" | while read data; do digest=$(echo "$data" | cut -d'|' -f1 | xxd -r -p | base64); salt=$(echo "$data" | cut -d'|' -f2 | xxd -r -p | base64); name=$(echo $data | cut -d'|' -f 3); echo "${name}:sha256:50000:${salt}:${digest}"; done | tee gitea.hashes
 ```
+
+## Grafana
+- https://github.com/iamaldi/grafana2hashcat
 
 </details>
 
