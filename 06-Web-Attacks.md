@@ -1,4 +1,29 @@
 # 웹 취약점 공격 기법 모음
+<details>
+	<summary><strong>특수문자와 취약점 - 컨텍스트 기반 사고</strong></summary>
+
+- 특수문자는 힌트일 뿐, 취약점은 컨텍스트가 결정한다.
+- 개행문자 이후에 새로운 페이로드를 작성할 수 있고, 해당 페이로드가 어디로 흘러들어갈지 생각.
+
+## 컨텍스트 기반 사고 과정
+```
+특수문자 입력
+    │
+    ▼
+"이 입력이 서버 어디에 도달하는가?"
+    │
+    ├─→ Shell           → Command Injection
+    ├─→ 템플릿 엔진     → SSTI
+    ├─→ SQL 쿼리        → SQL Injection
+    ├─→ HTTP 헤더       → CRLF Injection
+    └─→ 로그            → Log Injection
+```
+	
+</details>
+
+
+---
+
 
 <details><summary><strong>Encoding</strong></summary>
 
