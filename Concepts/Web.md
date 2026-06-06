@@ -39,3 +39,48 @@ nc -vnlp 80
 | HTML 이스케이프 | `<` → `&lt;`, `>` → `&gt;` 등으로 치환 |
 | CSP 헤더 | `Content-Security-Policy`로 허용 스크립트 출처 제한 |
 | HttpOnly 쿠키 | JS에서 쿠키 접근 차단 |
+
+---
+## XSLT(eXtensible Stylesheet Language Transformations)
+- XML 문서를 다른 형식(HTML, 다른 XML, 텍스트 등)으로 변환하기 위한 언어
+
+### 동작원리
+```
+XML 문서
+    +
+XSLT 스타일시트  →  XSLT 프로세서  →  출력 결과 (HTML/XML/Text)
+    +
+XPath 표현식
+```
+
+### XSLT Injection
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XSLT%20Injection/README.md
+```
+# 서버에서 사용자 입력을 XSLT에 직접 삽입하는 경우
+<?xml version="1.0" encoding="UTF-8"?>
+<html xsl:version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:php="http://php.net/xsl">
+<body>
+<br />Version: <xsl:value-of select="system-property('xsl:version')" />
+<br />Vendor: <xsl:value-of select="system-property('xsl:vendor')" />
+<br />Vendor URL: <xsl:value-of select="system-property('xsl:vendor-url')" />
+</body>
+</html>
+```
+
+### 예방법
+```
+✅ 입력값 검증 및 이스케이핑
+   → < > & ' " 등 특수문자 이스케이프 처리
+
+✅ 사용자 입력을 XSLT에 직접 삽입 금지
+   → XPath 파라미터로 안전하게 전달
+
+✅ XSLT 프로세서 보안 설정
+   → 외부 엔티티, document() 함수 비활성화
+   → 확장 기능(Java/C# 스크립트) 비활성화
+
+✅ 최소 권한 원칙
+   → XSLT 프로세서가 실행되는 프로세스 권한 최소화
+
+✅ 화이트리스트 방식으로 허용된 XSLT만 사용
+```
