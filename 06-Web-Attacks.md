@@ -1821,9 +1821,24 @@ php magescan.phar scan:all swagshop.htb
 
 ---
 <details>
-    <summary><strong>JS 난독화 해제</strong></summary>
+    <summary><strong>JS</strong></summary>
 
+## 난독화 해제
 - `eval()`를 `console.log()`로 바꿔서 콘솔에서 실행.
+
+## Cookie / Local Stroage / Session Storage
+- 사이트마다 인증 토큰을 어디에 저장하는지 다름.
+- `js`파일에서 어떤 스토리지를 사용하는지 확인해서 설정.
+
+| 구분 | Cookie | SessionStorage | LocalStorage |
+|------|--------|---------------|--------------|
+| **수명** | 설정값에 따라 다름 | 탭 닫으면 삭제 | 명시적 삭제 전까지 영구 |
+| **서버 자동 전송** | ✅ | ❌ | ❌ |
+| **탭 간 공유** | ✅ | ❌ | ✅ |
+| **용량** | 약 4KB | 약 5MB | 약 5~10MB |
+| **JS 접근** | `document.cookie` | `sessionStorage` | `localStorage` |
+
+---
     
 </details>
 
