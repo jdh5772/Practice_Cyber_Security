@@ -1,6 +1,6 @@
 # Validation
 - [Port-Scanning](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Validation.md#port-scanning)
-- [HTTP](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Validation.md#http)
+- [HTTP](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Validation.md#http80)
 - [Login as www-data](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Validation.md#login-as-www-data)
 - [Privesc](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Validation.md#privesc)
 
