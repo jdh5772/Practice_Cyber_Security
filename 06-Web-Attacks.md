@@ -2081,3 +2081,21 @@ chrome://inspect
 - `X-Forwarded-For: 127.0.0.1` 헤더를 생성하여 전달.
 	
 </details>
+
+---
+<details>
+	<summary><strong>SSRF(Server-Side Request Forgery)</strong></summary>
+
+- 서버 측 요청 위조.
+- 공격자가 서버로 하여금 의도하지 않은 목적지로 요청을 보내도록 유도하는 공격 기법.
+- SSRF의 공격 범위는 `http://`에 국한되지 않는다.
+- 서버가 사용하는 라이브러리(curl, urllib 등)가 지원하는 모든 URL 스킴이 잠재적 공격 벡터가 된다.
+
+## file://
+- `file://` wrapper를 사용하여 내부 파일을 읽을 수 있게 됨.
+```bash
+curl file:///etc/passwd
+curl file:///var/www/html/config.php
+```
+	
+</details>
