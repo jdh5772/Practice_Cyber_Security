@@ -931,6 +931,15 @@ ssh -i <file.pem> host@local
 - `Hashcat`의 `PBKDF2-HMAC-SHA256` 모드(-m 10900)가 `Base64` 형식을 요구
 - `username:sha256:iterations:base64_salt:base64_digest`
 
+## SALT + HASH
+```
+password = u/+LBBOUnadiyFBsMOoIDPLbUR0rk59kEkPU17itdrVWA/kLMt3w+w==
+
+# SALT가 앞 8자리일 경우
+cat password|base64 -d|head -c 8|base64 -w0
+cat password|base64 -d|tail -c +9|base64 -w0
+```
+
 ## GITEA
 ```bash
 sqlite3 gitea.db "select passwd,salt,name from user" | while read data; do digest=$(echo "$data" | cut -d'|' -f1 | xxd -r -p | base64); salt=$(echo "$data" | cut -d'|' -f2 | xxd -r -p | base64); name=$(echo $data | cut -d'|' -f 3); echo "${name}:sha256:50000:${salt}:${digest}"; done | tee gitea.hashes
