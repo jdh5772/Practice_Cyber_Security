@@ -453,3 +453,14 @@ ident-user-enum <ip> <port> <port> ...
 - Linux의 SSH와 비슷한 역할
   
 </details>
+
+---
+<details>
+  <summary><strong>CUPS(631)</strong></summary>
+
+- Unix/Linux 계열 운영체제에서 사용되는 인쇄 시스템
+- IPP(Internet Printing Protocol)를 사용하며, IPP는 HTTP 위에서 동작
+- HTTP 기반이므로 웹 요청 방식으로 통신 가능 (Content-Type: application/ipp)
+- 웹 UI 제공 (http://localhost:631)
+  
+</details>
