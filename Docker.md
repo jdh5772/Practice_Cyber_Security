@@ -53,7 +53,15 @@ mount
 ## 컨테이너 내부 접근 (exec)
 
 ```bash
+sudo docker buildx build -t <image name> .
+
+container_id=$(sudo docker create <image name>)
+
+# 실행 중인 컨테이너에 root로 접속
 sudo docker exec -it --privileged --user root <container_id> bash
+
+# 새 컨테이너 띄우면서 현재 디렉토리를 /share로 마운트
+sudo docker run -it -v $(pwd):/share <image>:latest
 ```
 
 - `--privileged` + `--user root` 옵션으로 루트 권한 획득 가능.
