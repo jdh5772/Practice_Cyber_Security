@@ -50,11 +50,10 @@ mount
 
 ---
 
-## 컨테이너 내부 접근 (exec)
+## 컨테이너 내부 접근
 
 ```bash
 sudo docker buildx build -t <image name> .
-
 container_id=$(sudo docker create <image name>)
 
 # 실행 중인 컨테이너에 root로 접속
