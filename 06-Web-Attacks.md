@@ -4,6 +4,7 @@
 
 - 특수문자는 힌트일 뿐, 취약점은 컨텍스트가 결정한다.
 - 개행문자 이후에 새로운 페이로드를 작성할 수 있고, 해당 페이로드가 어디로 흘러들어갈지 생각.
+- 응답의 크기 차이를 눈여겨 봐야 한다.
 
 ## 컨텍스트 기반 사고 과정
 ```
@@ -1091,11 +1092,9 @@ curl -i -X OPTIONS http://SERVER_IP:PORT/
 <details>
 <summary><strong>IDOR</strong></summary>
 
-## IDOR (Insecure Direct Object Reference)
-
-> 사용자가 접근 권한 없는 객체에 직접 참조하여 접근할 수 있는 취약점입니다.
-
-> `ffuf`를 사용하여 `Username` fuzzing 가능.
+- 사용자가 접근 권한 없는 객체에 직접 참조하여 접근할 수 있는 취약점입니다.
+- `ffuf`를 사용하여 `Username` fuzzing 가능.
+- 각각의 응답의 크기 차이로 판별을 해야 한다.
 
 ### 기본 공격 기법
 
