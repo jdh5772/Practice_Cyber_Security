@@ -12,3 +12,14 @@ fping -asgq 172.16.5.0/23
 ```bash
 sudo nmap -v -A -iL hosts.txt -oA /home/htb-student/Documents/host-enum
 ```
+
+## Kerbrute
+```bash
+sudo git clone https://github.com/ropnop/kerbrute.git
+
+make help
+
+sudo make all
+
+kerbrute userenum -d INLANEFREIGHT.LOCAL --dc 172.16.5.5 jsmith.txt -o valid_ad_users
+```
