@@ -108,7 +108,8 @@ server <server ip>
 
 ### 기본 레코드 조회
 
-DNS는 UDP 53번 포트 사용. 512바이트 초과 시 TCP 전환.
+- DNS는 UDP 53번 포트 사용. 512바이트 초과 시 TCP 전환.
+- 공개 DNS 서버에 먼저 질의를 시도해본 후 NS 서버에 시도.
 
 ```bash
 # A, AAAA 레코드 조회
