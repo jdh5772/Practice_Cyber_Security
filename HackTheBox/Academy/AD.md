@@ -47,6 +47,7 @@ C(0:0) NTLMv1(0:0) NTLMv2(3:9)> STOP
 ### 예방법
 - Computer Configuration --> Administrative Templates --> Network --> DNS Client and enabling "Turn OFF Multicast Name Resolution."
 - Control Panel → Network and Sharing Center → Change adapter settings → 어댑터 우클릭 → Properties → Internet Protocol Version 4 (TCP/IPv4) → Properties → Advanced → WINS 탭 → Disable NetBIOS over TCP/IP
+- `HKLM\Software\Policies\Microsoft\Windows NT\DNSClient` 값 모니터링(1이 활성화 상태)
 - SMB 서명 강제 적용 (Relay 공격 방어)
 - 네트워크 접근 제어 (NAC) : 물리 장비 혹은 소프트웨어로 해당 네트워크에 접속하기 위한 인증서를 요구하는 시스템 구축.
 
