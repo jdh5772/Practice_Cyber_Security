@@ -28,7 +28,43 @@ kerbrute userenum -d INLANEFREIGHT.LOCAL --dc 172.16.5.5 jsmith.txt -o valid_ad_
 - DNS 실패 시 브로드캐스트로 물어보는 특성을 이용해서 중간에서 가짜 응답을 날리는 공격
 - NTLMv2 해시 획득이 크랙 or NTLM Relay 공격으로 이어짐
 
+### MITM
+```bash
+sudo responder -I tun0 -v
+```
+```powershell
+# Not updated
+Import-Module .\Inveigh.ps1
+(Get-Command Invoke-Inveigh).Parameters
+Invoke-Inveigh Y -NBNS Y -ConsoleOutput Y -FileOutput Y
+```
+```
+.\Inveigh.exe
+Press ESC -> C(0:0) NTLMv1(0:0) NTLMv2(3:9)> HELP
+C(0:0) NTLMv1(0:0) NTLMv2(3:9)> STOP
+```
+
 ### 예방법
-- LLMNR/NBT-NS 완전 비활성화 (GPO로 설정)
+- Computer Configuration --> Administrative Templates --> Network --> DNS Client and enabling "Turn OFF Multicast Name Resolution."
+- Control Panel → Network and Sharing Center → Change adapter settings → 어댑터 우클릭 → Properties → Internet Protocol Version 4 (TCP/IPv4) → Properties → Advanced → WINS 탭 → Disable NetBIOS over TCP/IP
 - SMB 서명 강제 적용 (Relay 공격 방어)
 - 네트워크 접근 제어 (NAC) : 물리 장비 혹은 소프트웨어로 해당 네트워크에 접속하기 위한 인증서를 요구하는 시스템 구축.
+
+#### LLMNR/NBT-NS 완전 비활성화 (GPO로 설정)
+1. 스크립트 준비.(\\inlanefreight.local\SYSVOL\INLANEFREIGHT.LOCAL\scripts 경로 저장)
+```powershell
+$regkey = "HKLM:SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces"
+Get-ChildItem $regkey | foreach { 
+    Set-ItemProperty -Path "$regkey\$($_.pschildname)" -Name NetbiosOptions -Value 2 -Verbose
+}
+```
+
+2. Local Group Policy Editor 설정
+Computer Configuration → Windows Settings → Script (Startup/Shutdown) → Startup 더블클릭
+→ PowerShell Scripts 탭 선택 → Run Windows PowerShell scripts first 선택→ Add → 스크립트 경로(UNC path) 입력
+
+3. 도메인 전체 배포 (Domain Controller)
+Group Policy Management → GPO 생성 → 특정 OU에 적용 → 스크립트는 SYSVOL share의 UNC path로 호출
+
+4. 적용 완료
+대상 호스트 재부팅 or 네트워크 어댑터 재시작 → 다음 부팅 시 스크립트 실행 → NBT-NS 비활성화
