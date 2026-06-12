@@ -13,17 +13,6 @@ fping -asgq 172.16.5.0/23
 sudo nmap -v -A -iL hosts.txt -oA /home/htb-student/Documents/host-enum
 ```
 
-## Kerbrute
-```bash
-sudo git clone https://github.com/ropnop/kerbrute.git
-
-make help
-
-sudo make all
-
-kerbrute userenum -d INLANEFREIGHT.LOCAL --dc 172.16.5.5 jsmith.txt -o valid_ad_users
-```
-
 ## LLMNR/NBT-NS Poisoning
 - DNS 실패 시 브로드캐스트로 물어보는 특성을 이용해서 중간에서 가짜 응답을 날리는 공격
 - NTLMv2 해시 획득이 크랙 or NTLM Relay 공격으로 이어짐
@@ -98,4 +87,34 @@ net accounts
 import-module .\PowerView.ps1
 
 Get-DomainPolicy
+```
+
+## Enumerate Users
+```bash
+enum4linux -U 172.16.5.5  | grep "user:" | cut -f2 -d"[" | cut -f1 -d"]"
+```
+```
+rpcclient -U "" -N 172.16.5.5
+
+rpcclient $> enumdomusers 
+```
+```bash
+crackmapexec smb 172.16.5.5 --users
+
+sudo crackmapexec smb 172.16.5.5 -u htb-student -p Academy_student_AD! --users
+```
+```bash
+ldapsearch -h 172.16.5.5 -x -b "DC=INLANEFREIGHT,DC=LOCAL" -s sub "(&(objectclass=user))"  | grep sAMAccountName: | cut -f2 -d" "
+```
+```bash
+./windapsearch.py --dc-ip 172.16.5.5 -u "" -U
+```
+```bash
+sudo git clone https://github.com/ropnop/kerbrute.git
+
+make help
+
+sudo make all
+
+kerbrute userenum -d INLANEFREIGHT.LOCAL --dc 172.16.5.5 jsmith.txt -o valid_ad_users
 ```
