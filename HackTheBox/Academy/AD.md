@@ -52,7 +52,7 @@ C(0:0) NTLMv1(0:0) NTLMv2(3:9)> STOP
 - 네트워크 접근 제어 (NAC) : 물리 장비 혹은 소프트웨어로 해당 네트워크에 접속하기 위한 인증서를 요구하는 시스템 구축.
 
 #### LLMNR/NBT-NS 완전 비활성화 (GPO로 설정)
-1. 스크립트 준비.(\\inlanefreight.local\SYSVOL\INLANEFREIGHT.LOCAL\scripts 경로 저장)
+1. 스크립트 준비.(\\\\inlanefreight.local\SYSVOL\INLANEFREIGHT.LOCAL\scripts 경로 저장)
 ```powershell
 $regkey = "HKLM:SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces"
 Get-ChildItem $regkey | foreach { 
