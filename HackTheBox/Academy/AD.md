@@ -152,6 +152,7 @@ Invoke-DomainPasswordSpray -Password Welcome1 -OutFile spray_success -ErrorActio
 
 
 ## Enumerate
+### Linux
 ```bash
 sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --users
 
@@ -175,6 +176,47 @@ python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmc
 ```
 ```bash
 sudo bloodhound-python -u 'forend' -p 'Klmcargo2' -ns 172.16.5.5 -d inlanefreight.local -c all 
+```
+
+### Windows
+```powershell
+Import-Module ActiveDirectory
+
+Get-Module
+
+Get-ADDomain
+
+Get-ADUser -Filter {ServicePrincipalName -ne "$null"} -Properties ServicePrincipalName
+
+Get-ADTrust -Filter *
+
+Get-ADGroup -Filter * | select name
+
+Get-ADGroup -Identity "Backup Operators"
+
+Get-ADGroupMember -Identity "Backup Operators"
+```
+```powershell
+Import-Module .\PowerView.ps1
+
+Get-DomainUser -Identity mmorgan -Domain inlanefreight.local | Select-Object -Property
+
+Get-DomainGroupMember -Identity "Domain Admins" -Recurse
+
+Get-DomainTrustMapping
+
+Test-AdminAccess -ComputerName ACADEMY-EA-MS01
+
+Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
+```
+```powershell
+.\SharpView.exe Get-DomainUser -Identity forend
+```
+```powershell
+.\Snaffler.exe  -d INLANEFREIGHT.LOCAL -s -v data
+```
+```powershell
+.\SharpHound.exe -c All --zipfilename ILFREIGHT
 ```
 
 ## impacket
