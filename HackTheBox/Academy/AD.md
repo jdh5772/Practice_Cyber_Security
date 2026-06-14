@@ -504,3 +504,26 @@ restart-service winrm
 
 Enter-PSSession -ComputerName DEV01 -Credential INLANEFREIGHT\backupadm -ConfigurationName  backupadmsess
 ```
+
+## Trust
+```powershell
+Import-Module activedirectory
+
+Get-ADTrust -Filter *
+```
+```powershell
+import-module .\powerview.ps1
+
+Get-DomainTrust
+
+Get-DomainTrustMapping
+
+Get-DomainUser -Domain LOGISTICS.INLANEFREIGHT.LOCAL | select SamAccountName
+```
+```powershell
+netdom query /domain:inlanefreight.local trust
+
+netdom query /domain:inlanefreight.local dc
+
+netdom query /domain:inlanefreight.local workstation
+```
