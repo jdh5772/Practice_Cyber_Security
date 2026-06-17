@@ -281,6 +281,8 @@ net user /domain wrouse
 net1 user
 
 net localgroup administrators
+
+net localgroup administrators /domain
 ```
 ```powershell
 dsquery user
