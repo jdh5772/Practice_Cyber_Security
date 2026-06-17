@@ -90,6 +90,10 @@ s.info
 ldapsearch -H ldap://10.129.1.207 -x -b
 
 ldapsearch -v -x -b 'dc=inlanefreight,dc=local' -H 'ldap://10.129.42.188' "(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=524288) (memberOf:1.2.840.113556.1.4.1941:=CN=Protected Users,CN=Users,DC=inlanefreight,DC=local))"
+
+ldapsearch -v -x -b 'dc=inlanefreight,dc=local' -H 'ldap://10.129.42.188' '(&(objectclass=user)(userAccountControl:1.2.840.113556.1.4.803:=262144))'
+
+ldapsearch -v -x -b 'dc=inlanefreight,dc=local' -H 'ldap://10.129.42.188' "(&(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=128))"
 ```
 ```bash
 python3 windapsearch.py --dc-ip 10.129.1.207 -u "" --functionality
