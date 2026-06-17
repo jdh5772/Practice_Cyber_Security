@@ -87,7 +87,9 @@ c.bind()
 s.info
 ```
 ```bash
-ldapsearch -H ldap://10.129.1.207 -x -b 
+ldapsearch -H ldap://10.129.1.207 -x -b
+
+ldapsearch -v -x -b 'dc=inlanefreight,dc=local' -H 'ldap://10.129.42.188' "(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=524288) (memberOf:1.2.840.113556.1.4.1941:=CN=Protected Users,CN=Users,DC=inlanefreight,DC=local))"
 ```
 ```bash
 python3 windapsearch.py --dc-ip 10.129.1.207 -u "" --functionality
@@ -95,7 +97,17 @@ python3 windapsearch.py --dc-ip 10.129.1.207 -u "" --functionality
 python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -U
 
 python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -C
+
+python3 windapsearch.py --dc-ip 10.129.1.207 -u inlanefreight\\james.cross --da
+
+python3 windapsearch.py --dc-ip 10.129.1.207 -d inlanefreight.local -u inlanefreight\\james.cross --unconstrained-users
 ```
 ```bash
 python3 ldapsearch-ad.py -l 10.129.1.207 -t info
+
+python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t pass-pols
+
+python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t kerberoast | grep servicePrincipalName:
+
+python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t asreproast
 ```
