@@ -77,3 +77,25 @@ Get-WmiObject -Class win32_group -Filter "Domain='INLANEFREIGHT'" | Select Capti
 
 ([adsisearcher]"(&(objectClass=Computer))").FindAll() | select Path
 ```
+
+## Enumerating
+```python3
+from ldap3 import *
+s = Server('10.129.1.207',get_info = ALL)
+c =  Connection(s, '', '')
+c.bind()
+s.info
+```
+```bash
+ldapsearch -H ldap://10.129.1.207 -x -b 
+```
+```bash
+python3 windapsearch.py --dc-ip 10.129.1.207 -u "" --functionality
+
+python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -U
+
+python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -C
+```
+```bash
+python3 ldapsearch-ad.py -l 10.129.1.207 -t info
+```
