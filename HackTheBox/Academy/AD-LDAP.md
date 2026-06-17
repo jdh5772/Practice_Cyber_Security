@@ -1,3 +1,6 @@
+# LDAP
+- `(userAccountControl:1.2.840.113556.1.4.803:=2)` : 보통 이렇게 사용을 많이 하며, `userAccountControl`에서 【비트값】에 해당하는 플래그가 켜져 있는 객체를 찾는 명령어.
+
 ## LDAP Queries
 ```powershell
 Get-ADObject -LDAPFilter '(objectClass=group)' | select name
