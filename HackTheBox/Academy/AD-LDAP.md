@@ -36,6 +36,9 @@ Get-ADUser -Filter "adminCount -eq '1'" -Properties * | where servicePrincipalNa
 get-adcomputer -filter 'name -eq "ws01"'|select sid
 
 Get-ADGroup -Filter 'member -RecursiveMatch "CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL"' | select name
+
+# OU
+Get-ADOrganizationalUnit -Filter *
 ```
 
 ## Searchbase
