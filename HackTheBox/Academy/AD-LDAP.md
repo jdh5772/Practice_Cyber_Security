@@ -20,4 +20,6 @@ Get-ADGroup -Filter "adminCount -eq 1" | select Name
 Get-ADUser -Filter {adminCount -eq '1' -and DoesNotRequirePreAuth -eq 'True'}
 
 Get-ADUser -Filter "adminCount -eq '1'" -Properties * | where servicePrincipalName -ne $null | select SamAccountName,MemberOf,ServicePrincipalName | fl
+
+get-adcomputer -filter 'name -eq "ws01"'|select sid
 ```
