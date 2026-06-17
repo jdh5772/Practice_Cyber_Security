@@ -50,3 +50,27 @@ Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -SearchScope 1 -
 
 (Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -SearchScope Subtree -Filter *).count
 ```
+
+## UAC
+```
+Get-ADUser -Filter {adminCount -gt 0} -Properties admincount,useraccountcontrol | select Name,useraccountcontrol
+
+.\Convert-UserAccountControlValues.ps1
+
+Please provide the userAccountControl value: : 4260384
+```
+```powershell
+import-module .\powerview.ps1
+
+Get-DomainUser * -AdminCount | select samaccountname,useraccountcontrol
+```
+```powershell
+dsquery user "OU=Employees,DC=inlanefreight,DC=local" -name * -scope subtree -limit 0 | dsget user -samid -pwdneverexpires | findstr /V no
+```
+```powershell
+Get-ADUser -Filter * -SearchBase 'OU=Admin,DC=inlanefreight,dc=local'
+
+Get-WmiObject -Class win32_group -Filter "Domain='INLANEFREIGHT'" | Select Caption,Name
+
+([adsisearcher]"(&(objectClass=Computer))").FindAll() | select Path
+```
