@@ -107,4 +107,7 @@ Get-ObjectACL "DC=inlanefreight,DC=local" -ResolveGUIDs | ? { ($_.ActiveDirector
 $dcsync = Get-ObjectACL "DC=inlanefreight,DC=local" -ResolveGUIDs | ? { ($_.ActiveDirectoryRights -match 'GenericAll') -or ($_.ObjectAceType -match 'Replication-Get')} | Select-Object -ExpandProperty SecurityIdentifier | Select -ExpandProperty value
 
 Convert-SidToName $dcsync
+
+# 권한을 가진 주체가 SecurityIdentifier에 출력됨.
+get-objectacl -samaccountname 'joe.evans' -resolveguids|?{$_.activedirectoryrights -eq 'genericall'}|Select-Object SecurityIdentifier
 ```
