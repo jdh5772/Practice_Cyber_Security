@@ -38,6 +38,7 @@ Get-DomainUser * -Domain inlanefreight.local | Select-Object -Property name,sama
 
 .\SharpView.exe Get-DomainUser -KerberosPreauthNotRequired -Properties samaccountname,useraccountcontrol,memberof
 
+# 위임 권한이 있는 계정 확인
 .\SharpView.exe Get-DomainUser -TrustedToAuth -Properties samaccountname,useraccountcontrol,memberof
 
 .\SharpView.exe Get-DomainUser -LDAPFilter "(userAccountControl:1.2.840.113556.1.4.803:=524288)"
@@ -51,4 +52,29 @@ Find-ForeignGroup
 Get-DomainUser -Properties samaccountname,pwdlastset,lastlogon -Domain InlaneFreight.local | select samaccountname, pwdlastset, lastlogon | Sort-Object -Property pwdlastset
 
 Get-DomainUser -Properties samaccountname,pwdlastset,lastlogon -Domain InlaneFreight.local | select samaccountname, pwdlastset, lastlogon | where { $_.pwdlastset -lt (Get-Date).addDays(-90) }
+```
+
+## AD Groups
+```powershell
+.\SharpView.exe Get-DomainGroupMember -Identity 'Help Desk'
+
+# AdminCount - 관리자 권한을 가지고 있거나, 가졌던 계정에 대하여 1이 부여됨.
+.\SharpView.exe Get-DomainGroup -AdminCount
+
+Find-ManagedSecurityGroups | select GroupName
+
+# Manager로 지정된 계정은 경우에 따라 그룹 멤버를 추가/제거할 수 있는 권한이 부여되는 경우가 있다.
+Get-DomainManagedSecurityGroup
+
+$sid = ConvertTo-SID joe.evans
+
+Get-DomainObjectAcl -Identity 'Security Operations' | ?{ $_.SecurityIdentifier -eq $sid}
+
+Get-NetLocalGroup -ComputerName WS01 | select GroupName
+
+$sid = Convert-NameToSid harry.jones
+
+$computers = Get-DomainComputer -Properties dnshostname | select -ExpandProperty dnshostname
+
+foreach ($line in $computers) {Get-NetLocalGroupMember -ComputerName $line | ? {$_.SID -eq $sid}}
 ```
