@@ -87,3 +87,24 @@ Get-DomainComputer -Properties dnshostname,operatingsystem,lastlogontimestamp,us
 
 .\SharpView.exe Get-DomainComputer -Unconstrained -Properties dnshostname,useraccountcontrol
 ```
+
+## ACLs
+```powershell
+(Get-ACL "AD:$((Get-ADUser daniel.carter).distinguishedname)").access  | ? {$_.IdentityReference -eq "INLANEFREIGHT\cliff.moore"}
+
+(Get-ACL "AD:$((Get-ADUser daniel.carter).distinguishedname)").access  | ? {$_.ActiveDirectoryRights -match "WriteProperty" -or $_.ActiveDirectoryRights -match "GenericAll"} | Select IdentityReference,ActiveDirectoryRights -Unique | ft -W
+
+Get-DomainObjectAcl -Identity harry.jones -Domain inlanefreight.local -ResolveGUIDs
+
+Find-InterestingDomainAcl -Domain inlanefreight.local -ResolveGUIDs
+
+Get-NetShare -ComputerName SQL01
+
+Get-PathAcl "\\SQL01\DB_backups"
+
+Get-ObjectACL "DC=inlanefreight,DC=local" -ResolveGUIDs | ? { ($_.ActiveDirectoryRights -match 'GenericAll') -or ($_.ObjectAceType -match 'Replication-Get')} | Select-Object SecurityIdentifier | Sort-Object -Property SecurityIdentifier -Unique
+
+$dcsync = Get-ObjectACL "DC=inlanefreight,DC=local" -ResolveGUIDs | ? { ($_.ActiveDirectoryRights -match 'GenericAll') -or ($_.ObjectAceType -match 'Replication-Get')} | Select-Object -ExpandProperty SecurityIdentifier | Select -ExpandProperty value
+
+Convert-SidToName $dcsync
+```
