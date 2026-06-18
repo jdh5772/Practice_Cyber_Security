@@ -1,0 +1,28 @@
+## Enumerating
+- 기존 LDAP 쿼리 결과는 .NET 객체로 반환되어 파이프로 findstr을 사용할 수 없다.
+- PowerView / SharpView는 결과를 평탄화된 문자열 속성(PSObject)으로 변환해 주기 때문에 findstr을 파이프로 사용할 수 있다.
+```poweshell
+.\SharpView.exe ConvertTo-SID -Name sally.jones
+
+.\SharpView.exe Convert-ADName -ObjectName S-1-5-21-2974783224-3764228556-2640795941-1724
+
+Get-DomainUser harry.jones  | ConvertFrom-UACValue -showall
+
+.\SharpView.exe Get-Domain
+
+.\SharpView.exe Get-DomainOU | findstr /b "name"
+
+.\SharpView.exe Get-DomainUser -KerberosPreauthNotRequired
+
+Get-DomainComputer | select dnshostname, useraccountcontrol
+
+.\SharpView.exe Get-DomainGPO | findstr displayname
+
+Test-AdminAccess -ComputerName SQL01
+
+.\SharpView.exe Get-NetShare -ComputerName DC01
+
+Find-DomainUserLocation
+
+Get-DomainTrust
+```
