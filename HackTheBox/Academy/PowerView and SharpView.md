@@ -111,3 +111,25 @@ Convert-SidToName $dcsync
 # 권한을 가진 주체가 SecurityIdentifier에 출력됨.
 get-objectacl -samaccountname 'joe.evans' -resolveguids|?{$_.activedirectoryrights -eq 'genericall'}|Select-Object SecurityIdentifier
 ```
+
+## GPO
+```powershell
+Get-DomainGPO | select displayname
+
+Get-DomainGPO -ComputerName WS01 | select displayname
+
+gpresult /r /user:harry.jones
+
+gpresult /r /S WS01
+
+Get-DomainGPO | Get-ObjectAcl | ? {$_.SecurityIdentifier -eq 'S-1-5-21-2974783224-3764228556-2640795941-513'}
+
+Get-GPO -Guid 831DE3ED-40B1-4703-ABA7-8EA13B2EB118
+```
+
+## Trusts
+```powershell
+Get-DomainTrust
+
+Get-DomainTrustMapping
+```
