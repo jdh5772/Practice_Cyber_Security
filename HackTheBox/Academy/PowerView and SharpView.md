@@ -27,3 +27,9 @@ Find-DomainUserLocation
 
 Get-DomainTrust
 ```
+```powershell
+(Get-DomainUser).count
+
+Get-DomainUser -Identity harry.jones -Domain inlanefreight.local | Select-Object -Property name,samaccountname,description,memberof,whencreated,pwdlastset,lastlogontimestamp,accountexpires,admincount,userprincipalname,serviceprincipalname,mail,useraccountcontrol
+
+```
