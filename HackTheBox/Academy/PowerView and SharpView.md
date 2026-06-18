@@ -1,4 +1,5 @@
 ## Enumerating
+- Sharpview는 파라미터 전달시에 대소문자 구분을 함으로, 정확하게 써 줘야 한다.
 - 기존 LDAP 쿼리 결과는 .NET 객체로 반환되어 파이프로 findstr을 사용할 수 없다.
 - PowerView / SharpView는 결과를 평탄화된 문자열 속성(PSObject)으로 변환해 주기 때문에 findstr을 파이프로 사용할 수 있다.
 ```poweshell
