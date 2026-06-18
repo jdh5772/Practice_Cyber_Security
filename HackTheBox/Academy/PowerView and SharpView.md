@@ -78,3 +78,12 @@ $computers = Get-DomainComputer -Properties dnshostname | select -ExpandProperty
 
 foreach ($line in $computers) {Get-NetLocalGroupMember -ComputerName $line | ? {$_.SID -eq $sid}}
 ```
+
+## AD Computers
+```powershell
+.\SharpView.exe Get-DomainComputer -Properties dnshostname,operatingsystem,lastlogontimestamp,useraccountcontrol
+
+Get-DomainComputer -Properties dnshostname,operatingsystem,lastlogontimestamp,useraccountcontrol | Export-Csv .\inlanefreight_computers.csv -NoTypeInformation
+
+.\SharpView.exe Get-DomainComputer -Unconstrained -Properties dnshostname,useraccountcontrol
+```
