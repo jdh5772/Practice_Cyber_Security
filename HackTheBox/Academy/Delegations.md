@@ -225,7 +225,8 @@ psexec.py -k -no-pass dc01.inlanefreight.local
 ```
 
 #### RBCD from Linux When MachineAccountQuota Is Set to 0
-- RC4 암호화 체계에서는 세션키의 해시 자체가 비밀번호의 해시와 동일한 역할을 할 수 있게 된다.
+- RC4 Kerberos(etype 23)에서는 세션키가 NT 해시와 동일한 16바이트 키 형식을 가지므로, 세션키 자체를 SamrChangePasswordUser의 "구 비밀번호" 자리에 NT 해시 대신 제출할 수 있다.
+- 이 RPC는 권한이 아니라 "해당 형식의 키 값을 정확히 아는가"만 검증하기 때문에 비밀번호 변경이 통과된다.
 - 따라서 `SamrChangePasswordUser`함수 호출 시 "현재 비밀번호" 자리에 세션키의 해시를 제출하면, 시스템이 이를 실제 현재 비밀번호로 착각하고 Administrator의 비밀번호를 변경할 수 있게 된다.
 - 이는 `SamrChangePasswordUser`함수가 별도의 관리자 권한이 아니라 "현재 비밀번호를 안다"는 사실만으로 변경을 허용하는 구조이기 때문에 가능하다.
 ```bash
