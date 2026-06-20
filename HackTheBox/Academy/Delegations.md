@@ -103,6 +103,7 @@ secretsdump.py -k -no-pass dc01.inlanefreight.local
 - 단, 서비스(A)의 `msDS-AllowedToDelegateTo` 속성에 서비스(B)가 명시되어 있어야만 발급 가능
 - (S4U2Self) User가 실제로 서비스(A)에 접근한 적이 없어도, A가 자신의 TGT를 근거로 KDC에 직접 요청해 "User가 A에 인증했다"는 TGS를 새로 발급받을 수 있다
 - 가장 높은 권한을 얻는 것이 공격에 가장 부합하기 때문에 `Administrator` 유저로 사칭해서 요청.
+- `Administrator`의 TGS를 보여주면서 목적지로 가는 TGS 요청.
 
 ### Windows
 ```powershell
@@ -140,6 +141,7 @@ psexec.py -k -no-pass INLANEFREIGHT.LOCAL/administrator@DC01 -debug
 ## Resource-Based Constrained Delegation
 - 위임 가능 여부를 자원을 가진 쪽(B)이 자기 객체 속성(msDS-AllowedToActOnBehalfOfOtherIdentity)에 "A를 신뢰한다"고 설정하는 방식.
 - Domain Admin 권한 없이도 B에 대한 쓰기 권한만 있으면 수정 가능하다.
+- `Constrained Delegation`처럼 한번의 TGT 발급, 두번의 TGS 발급이 이루어진다.
 
 ### Windows
 ```powershell
