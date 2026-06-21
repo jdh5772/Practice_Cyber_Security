@@ -1,5 +1,6 @@
 ## Golden Ticket
 - krbtgt의 NTLM 해시를 사용하여 임의의 사용자에 대해 Domain Admins 권한이 담긴 PAC를 위조하고, 이를 기반으로 TGT를 직접 생성하는 공격.
+- KDC 입장에서는 `krbtgt`키로 복호화가 가능하면 정상적인 티켓으로 확인하기 때문에 발생하는 구조적인 문제.
 
 ### Windows
 ```powershell
