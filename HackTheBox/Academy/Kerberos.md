@@ -1,3 +1,10 @@
+## Enumerating
+```bash
+kerbrute userenum users.txt --dc dc01.inlanefreight.local -d inlanefreight.local
+
+kerbrute passwordspray users.txt inlanefreight2020 --dc dc01.inlanefreight.local -d inlanefreight.local
+```
+
 ## AS-REPRoasting
 - 사전인증 비활성화 계정은 `Authenticator`를 KDC에 제공할 필요가 없어진다.
 - 유저명으로 `AS-REQ`를 요청하면 인증 없이도 `AS-REP`응답을 받게 된다.
