@@ -7,7 +7,9 @@
 
 ### Enumeration
 ```bash
-nxc ldap 10.129.234.44 -u trainee -p trainee -M pre2k
+nxc smb ip -u server$ -p server -k
+
+nxc smb ip -u server$ -p server -k --generate-tgt ticket
 ```
 
 ### Abusing
