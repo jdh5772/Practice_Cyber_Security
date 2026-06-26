@@ -265,7 +265,7 @@ KRB5CCNAME=gabriel.ccache smbclient.py -k -no-pass LAB-DC.LAB.LOCAL
 - read property
 - write property
 
-### Abusing
+### Enumeration
 ```bash
 python3 pywerview get-objectacl --name 'eric' -w inlanefreight.local -t 10.129.229.224 -u 'david' -p 'SecurePassDav!d5' --resolve-sids --resolve-guids
 
@@ -273,10 +273,22 @@ pywerview get-objectacl --name 'eric' -w inlanefreight.local -t 10.129.229.224 -
 
 python3 examples/dacledit.py -principal 'david' -target 'eric' -dc-ip 10.129.229.224 inlanefreight.local/'david':'SecurePassDav!d5'
 ```
-
-### Adalanche
 ```bash
 ./adalanche-linux-x64-v2024.1.11-43-g7774681 collect activedirectory --domain inlanefreight.local --server 10.129.229.224  --username 'david' --password 'SecurePassDav!d5'
 
 ./adalanche-linux-x64-v2024.1.11-44-gf1573f2 analyze --datapath data
+```
+```powershell
+Import-Module .\PowerView.ps1
+
+$DavidSID = (Get-DomainUser -Identity david).objectSID
+
+Get-DomainObjectAcl -Identity eric -ResolveGUIDs | ?{$_.SecurityIdentifier -eq $DavidSID}
+```
+
+### Abusing
+```bash
+# 쓰기 권한 폴더 찾기
+smbclient //10.129.229.224/NETLOGON -U david%'SecurePassDav!d5' -c "ls"
+smbcacls //10.129.229.224/NETLOGON /EricsScripts -U David%'SecurePassDav!d5'
 ```
