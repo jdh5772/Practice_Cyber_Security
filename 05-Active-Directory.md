@@ -88,6 +88,8 @@ netexec smb <ip> -u 'guest' -p '' --rid-brute
 
 > 특별한 정보만 확인하지 말고 전체 다 확인해야 한다.
 
+> `dn(Distingushed Name)`을 확인해서 해당 객체가 어느 도메인/부서에 속하는지 확인할 수 있다.
+
 ```bash
 ldapsearch -v -x -b "DC=hutch,DC=offsec" -H "ldap://192.168.160.122" "(objectclass=*)"
 
