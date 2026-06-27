@@ -33,6 +33,7 @@ psexec.py -k -no-pass dc01.inlanefreight.local
 ## Silver Ticket
 - 서비스 계정의 NTLM 해시를 탈취한 경우, administrator 권한이 담긴 PAC를 위조하여 TGS를 직접 생성하고, 이를 서비스에 제출해 KDC 없이 접근 권한을 얻는 공격.
 - 서비스 입장에서는 자신의 키로 복호화가 가능하면 정상적인 티켓으로 확인하기 때문에 발생한 취약점.
+- 해당 서비스 계정으로 발급을 하기 때문에, 해당 서비스의 권한을 상승된 상태로 이용이 가능해진다.
 
 ### Windows
 ```powershell
