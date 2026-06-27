@@ -897,6 +897,10 @@ certipy-ad auth -pfx administrator.pfx -dc-ip 10.10.11.51
 ### key size error
 - `certipy`에서 `-key-size`옵션으로 해결.
 
+### PKINIT 인증 불가
+- `DC`에 인증서가 없을 경우 `PKINIT` 인증이 불가.
+- `PFX`파일 내부에 인증서와 개인키가 모두 포함되어 있어 `LDAPS`인증 가능.
+
 
 </details>
 
