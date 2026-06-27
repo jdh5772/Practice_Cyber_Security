@@ -875,7 +875,8 @@ bloodyAD -d tombwatcher.htb -u sam -p password --host dc01.tombwatcher.htb set p
 
 - https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation
 - `nmap`으로 스캔하여 `CA`를 발견하면 시도.
-- 계정을 획득할 때마다 사용해보는게 맞다.
+- 열거는 모든 유저로도 가능.
+- 공격을 시도할 때는 권한이 있는 유저로만 가능.
 ```powershell
 # Sid 찾기
 Get-ADUser administrator
