@@ -1,5 +1,5 @@
 <details>
-  <summary><strong>pre2K</strong></summary>
+  <summary><strong>pre2k</strong></summary>
 
 - Windows 2000 이전 시스템과의 호환성을 위해 만든 정책
 - 당시 오래된 클라이언트들이 Kerberos를 못 쓰는 경우를 위한 레거시 옵션
