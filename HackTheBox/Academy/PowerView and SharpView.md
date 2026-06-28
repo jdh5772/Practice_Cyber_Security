@@ -133,3 +133,42 @@ Get-DomainTrust
 
 Get-DomainTrustMapping
 ```
+
+## Abusing
+```powershell
+$sid = (Get-DomainUser -Identity "olivia").objectsid
+
+# 1단계. 소속 확인 후 OU 추출
+$olivia = Get-DomainUser -Identity "olivia"
+$olivia.memberof | ForEach-Object {
+    # CN=Builtin 같은 기본 컨테이너 제외, OU만 처리
+    if ($_ -match "OU=") {
+        Get-DomainObjectAcl -SearchBase $_ -ResolveGUIDs |
+            Where-Object { $_.SecurityIdentifier -eq $sid } |
+            Select-Object ObjectDN, ActiveDirectoryRights, ObjectAceType
+    }
+}
+
+# 2단계. 고권한 그룹 자체 ACL
+$groups = Get-DomainGroup -LDAPFilter "(admincount=1)"
+
+$groups | ForEach-Object {
+    Get-DomainObjectAcl -Identity $_.distinguishedname -ResolveGUIDs |
+        Where-Object { $_.SecurityIdentifier -eq $sid }
+} | Select-Object ObjectDN, ActiveDirectoryRights, ObjectAceType
+
+# 3단계. 고권한 그룹 멤버 ACL (중복 제거)
+$members = $groups | ForEach-Object {
+    Get-DomainGroupMember -Identity $_.name
+} | Sort-Object MemberDistinguishedName -Unique
+
+$members | ForEach-Object {
+    Get-DomainObjectAcl -Identity $_.MemberDistinguishedName -ResolveGUIDs |
+        Where-Object { $_.SecurityIdentifier -eq $sid }
+} | Select-Object ObjectDN, ActiveDirectoryRights, ObjectAceType
+
+# 4단계. 전체 스캔
+Get-DomainObjectAcl -SearchBase "DC=administrator,DC=htb" -ResolveGUIDs |
+    Where-Object { $_.SecurityIdentifier -eq $sid } | 
+    Select-Object ObjectDN, ActiveDirectoryRights, ObjectAceType
+```
