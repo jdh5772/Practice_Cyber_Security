@@ -136,6 +136,8 @@ Get-DomainTrustMapping
 
 ## Abusing
 ```powershell
+get-domainuser -ldapfilter '(cn=benjamin brown)'|select-object samaccountname
+
 $sid = (Get-DomainUser -Identity "olivia").objectsid
 
 # 1단계. 소속 확인 후 OU 추출
