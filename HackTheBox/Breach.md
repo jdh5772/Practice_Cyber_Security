@@ -1,8 +1,9 @@
 # Breach
-- Port Scanning
-- Auth as julia.wong
-- Shell as svc_mssql
-- Shell as authority\system
+- [Port Scanning](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Breach.md#port-scanning)
+- [SMB](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Breach.md#smb)
+- [Auth as julia.wong](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Breach.md#auth-as-juliawong)
+- [Shell as svc_mssql](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Breach.md#shell-as-svc_mssql)
+- [Shell as authority\system](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Breach.md#shell-as-authoritysystem)
 
 ## Port Scanning
 ```bash
