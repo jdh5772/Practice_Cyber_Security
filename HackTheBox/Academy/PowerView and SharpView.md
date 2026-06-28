@@ -145,7 +145,7 @@ $olivia.memberof | ForEach-Object {
     if ($_ -match "OU=") {
         Get-DomainObjectAcl -SearchBase $_ -ResolveGUIDs |
             Where-Object { $_.SecurityIdentifier -eq $sid } |
-            Select-Object ObjectDN, ActiveDirectoryRights, ObjectAceType, AceType
+            Select-Object ObjectDN, AceType, ObjectAceType, ActiveDirectoryRights
     }
 }
 
@@ -155,7 +155,7 @@ $groups = Get-DomainGroup -LDAPFilter "(admincount=1)"
 $groups | ForEach-Object {
     Get-DomainObjectAcl -Identity $_.distinguishedname -ResolveGUIDs |
         Where-Object { $_.SecurityIdentifier -eq $sid }
-} | Select-Object ObjectDN, ActiveDirectoryRights, ObjectAceType, AceType
+} | Select-Object ObjectDN, AceType, ObjectAceType, ActiveDirectoryRights
 
 # 3단계. 고권한 그룹 멤버 ACL (중복 제거)
 $members = $groups | ForEach-Object {
@@ -165,10 +165,10 @@ $members = $groups | ForEach-Object {
 $members | ForEach-Object {
     Get-DomainObjectAcl -Identity $_.MemberDistinguishedName -ResolveGUIDs |
         Where-Object { $_.SecurityIdentifier -eq $sid }
-} | Select-Object ObjectDN, ActiveDirectoryRights, ObjectAceType, AceType
+} | Select-Object ObjectDN, AceType, ObjectAceType, ActiveDirectoryRights
 
 # 4단계. 전체 스캔
 Get-DomainObjectAcl -SearchBase "DC=administrator,DC=htb" -ResolveGUIDs |
     Where-Object { $_.SecurityIdentifier -eq $sid } | 
-    Select-Object ObjectDN, ActiveDirectoryRights, ObjectAceType, AceType
+    Select-Object ObjectDN, AceType, ObjectAceType, ActiveDirectoryRights
 ```
