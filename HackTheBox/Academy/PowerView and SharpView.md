@@ -143,7 +143,6 @@ $sid = (Get-DomainUser -Identity "olivia").objectsid
 # 1단계. 소속 확인 후 OU 추출
 $olivia = Get-DomainUser -Identity "olivia"
 $olivia.memberof | ForEach-Object {
-    # CN=Builtin 같은 기본 컨테이너 제외, OU만 처리
     if ($_ -match "OU=") {
         Get-DomainObjectAcl -SearchBase $_ -ResolveGUIDs |
             Where-Object { $_.SecurityIdentifier -eq $sid } |
