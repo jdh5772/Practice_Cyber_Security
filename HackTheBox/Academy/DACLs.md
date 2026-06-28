@@ -305,6 +305,7 @@ smbcacls //10.129.229.224/NETLOGON /EricsScripts -U David%'SecurePassDav!d5'
 - DC는 요청자가 실제 DC인지 확인하지 않고 `GetChanges` + `GetChangesAll` ACE가 있는 주체의 복제 요청을 허용.
 - `ntds.dit`에 저장된 모든 계정의 자격증명(해시)을 복제하게 됨.
 - 물리적 파일 접근 없이 네트워크를 통해 원격으로 추출 가능.
+- WriteDACL
 
 ### Abusing
 ```
