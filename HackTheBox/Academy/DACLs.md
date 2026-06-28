@@ -105,6 +105,7 @@ Set-ADAccountPassword yolanda -NewPassword $((ConvertTo-SecureString 'Newpasswor
 ```
 
 ### ReadLAPSPassword
+- 대상이 컴퓨터 객체일 경우에 시도.
 - GenericAll
 - AllExtendedRights
 - ReadProperty
