@@ -134,7 +134,7 @@ Get-DomainTrust
 Get-DomainTrustMapping
 ```
 
-## Abusing
+## Examples
 ```powershell
 get-domainuser -ldapfilter '(cn=benjamin brown)'|select-object samaccountname
 
