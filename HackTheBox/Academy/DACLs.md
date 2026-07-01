@@ -109,7 +109,7 @@ Set-ADAccountPassword yolanda -NewPassword $((ConvertTo-SecureString 'Newpasswor
 - GenericAll
 - AllExtendedRights
 - ReadProperty
-- ms-Mcs-AdmPwd
+- ms-Mcs-AdmPwd(레거시 Microsoft LAPS가 각 컴퓨터 객체에 붙여서 로컬 관리자 계정 비밀번호를 평문 그대로 저장하는 속성)
 
 #### Enumerating
 ```bash
