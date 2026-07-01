@@ -173,9 +173,7 @@ $userDN = $olivia.distinguishedname
 $recursiveGroups = Get-DomainGroup -LDAPFilter "(member:1.2.840.113556.1.4.1941:=$userDN)"
 $allSids = @($sid) + $recursiveGroups.objectsid | Sort-Object -Unique
 
-$domainDN = (Get-Domain).Name -split '\.' | ForEach-Object { "DC=$_" } | Join-String -Separator ','
-
-Get-DomainObjectAcl -SearchBase $domainDN -ResolveGUIDs |
+Get-DomainObjectAcl -SearchBase 'dc=timelapse,dc=htb' -ResolveGUIDs |
     Where-Object { $allSids -contains $_.SecurityIdentifier } | 
     Select-Object ObjectDN, AceType, ObjectAceType, ActiveDirectoryRights
 ```
