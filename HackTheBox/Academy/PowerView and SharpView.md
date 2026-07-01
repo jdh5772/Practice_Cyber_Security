@@ -169,7 +169,15 @@ $members | ForEach-Object {
 } | Select-Object ObjectDN, AceType, ObjectAceType, ActiveDirectoryRights
 
 # 4단계. 전체 스캔
-Get-DomainObjectAcl -SearchBase "DC=administrator,DC=htb" -ResolveGUIDs |
-    Where-Object { $_.SecurityIdentifier -eq $sid } | 
+# ★수정1: SearchBase 오타 수정 (도메인 자동 계산)
+# ★수정2: 본인 SID뿐 아니라 재귀적으로 속한 모든 그룹 SID까지 포함 (LDAP_MATCHING_RULE_IN_CHAIN)
+$userDN = $olivia.distinguishedname
+$recursiveGroups = Get-DomainGroup -LDAPFilter "(member:1.2.840.113556.1.4.1941:=$userDN)"
+$allSids = @($sid) + $recursiveGroups.objectsid | Sort-Object -Unique
+
+$domainDN = (Get-Domain).Name -split '\.' | ForEach-Object { "DC=$_" } | Join-String -Separator ','
+
+Get-DomainObjectAcl -SearchBase $domainDN -ResolveGUIDs |
+    Where-Object { $allSids -contains $_.SecurityIdentifier } | 
     Select-Object ObjectDN, AceType, ObjectAceType, ActiveDirectoryRights
 ```
