@@ -875,7 +875,7 @@ bloodyAD -d tombwatcher.htb -u sam -p password --host dc01.tombwatcher.htb set p
 - 보안의 이유로 관리자급의 유저에게 인증서를 통해서 로그인을 하도록 하는 시스템.
 - PKINIT 로그인을 허용해야 가능.
 - 설정을 잘못할시에 악용이 가능.
-- 열거는 모든 유저로도 가능.
+- `vulnerable` 옵션을 주지 않고 열거는 모든 유저로도 가능.
 - 공격을 시도할 때는 권한이 있는 유저로만 가능. 단, Domain Users 전체에 권한이 열려있으면 일반 유저로도 공격 가능.
 - https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation
 
