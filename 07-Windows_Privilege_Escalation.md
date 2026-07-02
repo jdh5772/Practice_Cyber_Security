@@ -246,6 +246,8 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Services"
 cd hklm:\system\currentcontrolset\services
 
 get-childitem .
+
+Get-CimInstance Win32_Service | Where-Object { $_.PathName -match "ec2" } | Select-Object Name, PathName
 ```
  
 </details>
