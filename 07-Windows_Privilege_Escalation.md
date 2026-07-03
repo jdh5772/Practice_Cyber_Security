@@ -245,9 +245,9 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Services"
 # services로 확인하기 어려울 때
 cd hklm:\system\currentcontrolset\services
 
-get-childitem .
+Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services | ForEach-Object { $subKey = $_.Name; Get-ItemProperty -Path "Registry::$_" -ErrorAction SilentlyContinue | Where-Object { $_.ImagePath -like "*helpdesk*" } | ForEach-Object { Write-Output "[+] 진짜 서비스 이름: $subKey" } }
 
-Get-CimInstance Win32_Service | Where-Object { $_.PathName -match "ec2" } | Select-Object Name, PathName
+Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\support"
 ```
  
 </details>
