@@ -1,4 +1,11 @@
 # Sendai
+- [Port Scanning](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#port-scanning)
+- [SMB](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#smb)
+- [Auth as Elliot.Yates/Thomas.Powell](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#auth-as-elliotyatesthomaspowell)
+- [Shell as MGTSVC$](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#shell-as-mgtsvc)
+- [Auth as Clifford.davey](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#auth-as-clifforddavey)
+- [Shell as Administrator](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#shell-as-administrator)
+
 ## Port Scanning
 ```bash
 sudo nmap -p 53,80,88,135,139,389,443,445,464,593,636,3268,3269,3389,5985,9389,49664,49668,59349,59371,61516,61518,61533 -sC -sV -vv -oA sendai 10.129.234.66
