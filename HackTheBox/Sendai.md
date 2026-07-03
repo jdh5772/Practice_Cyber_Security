@@ -1,10 +1,10 @@
 # Sendai
-- [Port Scanning](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#port-scanning)
-- [SMB](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#smb)
-- [Auth as Elliot.Yates/Thomas.Powell](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#auth-as-elliotyatesthomaspowell)
-- [Shell as MGTSVC$](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#shell-as-mgtsvc)
-- [Auth as Clifford.davey](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#auth-as-clifforddavey)
-- [Shell as Administrator](https://github.com/jdh5772/Practice_Cyber_Security/edit/main/HackTheBox/Sendai.md#shell-as-administrator)
+- [Port Scanning](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Sendai.md#port-scanning)
+- [SMB](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Sendai.md#smb)
+- [Auth as Elliot.Yates/Thomas.Powell](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Sendai.md#auth-as-elliotyatesthomaspowell)
+- [Shell as MGTSVC$](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Sendai.md#shell-as-mgtsvc)
+- [Auth as Clifford.davey](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Sendai.md#auth-as-clifforddavey)
+- [Shell as Administrator](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Sendai.md#shell-as-administrator)
 
 ## Port Scanning
 ```bash
