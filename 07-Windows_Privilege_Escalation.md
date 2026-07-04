@@ -1,4 +1,14 @@
 <details>
+	<summary><strong>AutoLogon Credential</strong></summary>
+
+```powershell
+Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" | Select-Object DefaultDomainName, DefaultUserName, DefaultPassword, AutoAdminLogon
+```
+
+</details>
+
+---
+<details>
 	<summary><strong>Windows 패치 내역 확인</strong></summary>
 
 ```powershell
