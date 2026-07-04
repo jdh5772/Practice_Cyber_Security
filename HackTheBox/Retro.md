@@ -1,5 +1,10 @@
 # Retro
-- [Port Scanning]
+- [Port Scanning](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Retro.md#port-scanning)
+- [SMB](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Retro.md#smb)
+- [Auth as Trainee](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Retro.md#auth-as-trainee)
+- [Auth as Banking$](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Retro.md#auth-as-banking)
+- [Shell as Administrator](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/Retro.md#shell-as-administrator)
+
 ## Port Scanning
 ```bash
 sudo nmap -p 53,88,135,139,389,445,464,593,636,3268,3269,3389,9389,49664,49667,49668,51977,51990,52005,56668,56677 -sC -sV -vv -oA retro 10.129.11.72
