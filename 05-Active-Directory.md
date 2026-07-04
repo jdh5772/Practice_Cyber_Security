@@ -1,4 +1,18 @@
 <details>
+  <summary><strong>Logon Script</strong></summary>
+
+- 사용자가 컴퓨터에 로그인하는 순간 자동으로 환경을 세팅해주기 위해 사용.
+- 네트워크 드라이브 연결 / 프린터 연결 등.
+- AD에서 이 logon 스크립트들은 보통 SYSVOL이라는 공유 폴더에 저장.
+```powershell
+Set cmdshell = CreateObject("Wscript.Shell")
+cmdshell.run "<reverse shell>"
+```
+  
+</details>
+
+---
+<details>
   <summary><strong>pre2k</strong></summary>
 
 - Windows 2000 이전 시스템과의 호환성을 위해 만든 정책
