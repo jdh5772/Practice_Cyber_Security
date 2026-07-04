@@ -32,8 +32,12 @@ wget -m --no-passive ftp://anonymous:anonymous@10.10.10.98
 - 특정 폴더가 READ 권한만 있더라도 내부 폴더에 WRITE 권한이 설정되어 있을 수 있음.
 - `smbmap` 업데이트 이후 재귀 탐색이 제대로 되지 않아 `smbclient`사용.
 
-### SMB (Server Message Block)
-Windows 환경에서 파일 및 프린터 공유에 사용되는 프로토콜입니다.
+### Recurse
+```bash
+nxc smb <ip> -u guest -p '' -M spider_plus
+
+cat /home/kali/.nxc/modules/nxc_spider_plus/10.129.234.72.json|jq 'with_entries({key, value: (.value | keys)})'
+```
 
 ### SMB 일괄 다운로드
 ```
