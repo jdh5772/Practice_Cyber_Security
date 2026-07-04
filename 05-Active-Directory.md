@@ -3,6 +3,7 @@
 
 - Windows 2000 이전 시스템과의 호환성을 위해 만든 정책
 - 당시 오래된 클라이언트들이 Kerberos를 못 쓰는 경우를 위한 레거시 옵션
+- 초기 생성 시 컴퓨터 이름과 동일한 임시 패스워드가 설정되거나 취약한 인증 기본값이 적용되는 특성
 - https://www.hackingarticles.in/pre2k-active-directory-misconfigurations/
 
 ### Enumeration
