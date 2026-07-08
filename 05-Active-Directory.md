@@ -1621,3 +1621,11 @@ netexec smb dc1.delegate.vl -u 'oxdf$' -p 0xdf0xdf. -M coerce_plus -o LISTENER=o
 ```
 
 </details>
+
+---
+<details>
+  <summary><strong>ZeroLogin</strong></summary>
+
+- https://github.com/dirkjanm/CVE-2020-1472
+  
+</details>
