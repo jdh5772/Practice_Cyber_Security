@@ -209,6 +209,7 @@ python3 addusertogroup.py -d inlanefreight.local -g "Finance" -a luna -u luna -p
 
 ## WriteOwner
 - bloodhound로 확인
+- 유권을 변경할 수만 있을 뿐, 실질적으로 객체를 통제하지 못하는 껍데기 권한(WriteOwner)이라서 소유권을 내 앞으로 돌려놓은 뒤 실질적인 마스터 권한(GenericAll)을 직접 획득하는 과정.
 
 ### Abusing
 ```bash
