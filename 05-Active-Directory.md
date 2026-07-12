@@ -1643,3 +1643,11 @@ Set-DomainUserPassword GPOADM -AccountPassword $cred
 ```
   
 </details>
+
+---
+<details>
+  <summary><strong>DNS Admins Group</strong></summary>
+
+- https://www.hackingarticles.in/windows-privilege-escalation-dnsadmins-to-domainadmin/
+  
+</details>
