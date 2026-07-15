@@ -948,6 +948,36 @@ sqlite3 gitea.db "select passwd,salt,name from user" | while read data; do diges
 ## Grafana
 - https://github.com/iamaldi/grafana2hashcat
 
+## Werkzeug Hash Format
+- Werkzeug는 PBKDF2-HMAC-SHA256으로 생성한 비밀번호 해시와 검증에 필요한 정보를 자체 형식으로 묶어 저장.
+- 반복 횟수, 솔트, 해시값을 저장하는 형식이 Hashcat의 입력 형식과 다르다.
+- `pbkdf2:sha256:반복횟수$솔트$해시값`
+```python3
+#!/usr/bin/env python3
+
+import base64
+import codecs
+import re
+import sys
+
+
+if len(sys.argv) != 2:
+    print(f'usage: {sys.argv[0]} <werkzeug hash file>')
+    print('Input file has Werkzeug hashes one per line')
+    sys.exit(1)
+
+with open(sys.argv[1], 'r') as f:
+    hashes = f.readlines()
+
+for h in hashes:
+    m = re.match(r'pbkdf2:sha256:(\d*)\$([^\$]*)\$(.*)', h)
+    iterations =  m.group(1)
+    salt = m.group(2)
+    hashe = m.group(3)
+    print(f"sha256:{iterations}:{base64.b64encode(salt.encode()).decode()}:{base64.b64encode(codecs.decode(hashe,'hex')).decode()}")
+```
+
+
 </details>
 
 ---
