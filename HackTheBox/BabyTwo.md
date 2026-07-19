@@ -1,4 +1,11 @@
 # baby2
+- [Port Scanning](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/BabyTwo.md#port-scanning)
+- [SMB](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/BabyTwo.md#smb)
+- [Auth as Carl.Moore](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/BabyTwo.md#auth-as-carlmoore)
+- [Shell as amelia.griffiths](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/BabyTwo.md#shell-as-ameliagriffiths)
+- [Auth as GPOADM](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/BabyTwo.md#auth-as-gpoadm)
+- [Shell as nt authority/system](https://github.com/jdh5772/Practice_Cyber_Security/blob/main/HackTheBox/BabyTwo.md#shell-as-nt-authoritysystem)
+
 ## Port Scanning
 ```bash
 sudo nmap -p 53,88,135,139,389,445,464,593,636,3268,3269,3389,9389,49664,49668,51787,51788,51806,54802,54838 -sC -sV -vv -oA baby2 10.129.234.72
