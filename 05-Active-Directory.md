@@ -931,7 +931,7 @@ certipy-ad auth -pfx administrator.pfx -dc-ip 10.129.234.44 -ldap-shell
 - PKINIT 로그인을 허용해야 가능.
 - 설정을 잘못할시에 악용이 가능.
 - `vulnerable` 옵션을 주지 않고 열거는 모든 유저로도 가능.
-- 공격을 시도할 때는 권한이 있는 유저로만 가능. 단, Domain Users 전체에 권한이 열려있으면 일반 유저로도 공격 가능.
+- 사라진 오브젝트에 대해서 확인.
 - https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation
 
 ### Abusing
