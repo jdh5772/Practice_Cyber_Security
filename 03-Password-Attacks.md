@@ -859,6 +859,9 @@ impacket-secretsdump -k -no-pass -dc-ip 10.129.234.109 -just-dc-user Administrat
 <details>
   <summary><strong>KeePass</strong></summary>
 
+- `keepass2john`으로 해시화할 경우 앞에 파일이름이 붙여져서 제대로 작동하지 않는 경우 발생.
+- 최신 keepass는 `hashcata -m 34300`으로 사용.
+
 ### Keepass
 ```bash
 # flatpak 실행 별칭
