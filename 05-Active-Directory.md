@@ -3,6 +3,8 @@
 
 - `systeminfo`로 확인이 불가능할 때 도메인 및 포리스트 기능 수준을 확인하여 AD 환경의 최소 기능·호환성 기준을 간접적으로 확인.
 ```
+Get-Module ActiveDirectory -ListAvailable
+
 Get-ADDomain | Select Name, DomainMode
 
 Get-ADForest | Select Name, ForestMode
