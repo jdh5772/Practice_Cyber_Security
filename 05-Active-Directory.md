@@ -134,6 +134,9 @@ crackmapexec smb 172.16.5.5 --users
 netexec smb <ip> -u 'guest' -p '' --rid-brute
 
 nxc mssql -u <user> -p <pass> --rid-brute
+
+# 도메인 환경이 Kerberos 인증을 요구할 경우
+nxc smb <ip> -u <user> -p <pass> -k
 ```
 
 ### LDAP Search
