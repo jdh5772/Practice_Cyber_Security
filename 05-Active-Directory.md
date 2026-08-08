@@ -19,6 +19,7 @@ Get-ADForest | Select Name, ForestMode
 - dMSA: 기존 서비스 계정을 자동 관리형 계정으로 안전하게 대체·이관하기 위해 Windows Server 2025에서 도입된 계정 유형
 - 공격자가 자신이 제어하는 dMSA를 Administrator의 정상적인 후계 계정인 것처럼 조작하여 Domain Admin 권한을 획득할 수 있었던 취약점
 - https://github.com/akamai/BadSuccessor
+- https://github.com/Pennyw0rth/NetExec/pull/1163
 ```bash
 # OU 확인
 .\Get-BadSuccessorOUPermissions.ps1
