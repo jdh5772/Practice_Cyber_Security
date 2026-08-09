@@ -1125,7 +1125,8 @@ pass:salt
 hashcat -m 13721
 ```
 ```bash
-veracrypt <data file>
+# root 권한 필요
+sudo veracrypt <data file>
 ```
 
   
