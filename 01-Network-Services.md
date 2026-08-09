@@ -32,6 +32,15 @@ wget -m --no-passive ftp://anonymous:anonymous@10.10.10.98
 - 특정 폴더가 READ 권한만 있더라도 내부 폴더에 WRITE 권한이 설정되어 있을 수 있음.
 - `smbmap` 업데이트 이후 재귀 탐색이 제대로 되지 않아 `smbclient`사용.
 
+### SMB Kerberos authentication
+```bash
+netexec smb 10.10.11.76 --generate-krb5-file krb5.conf
+
+sudo cp krb5.conf /etc/krb5.conf
+
+smbclient --realm=voleur.htb -U '<domain>/<user>' //<FQDN>/it
+```
+
 ### Recurse
 ```bash
 nxc smb <ip> -u guest -p '' -M spider_plus
