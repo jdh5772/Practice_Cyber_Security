@@ -34,6 +34,7 @@ wget -m --no-passive ftp://anonymous:anonymous@10.10.10.98
 
 ### SMB Kerberos authentication
 ```bash
+# Kerberos 티켓을 어디에서 받아야 하는지 알려주는 라우팅 설정
 netexec smb 10.10.11.76 --generate-krb5-file krb5.conf
 
 sudo cp krb5.conf /etc/krb5.conf
