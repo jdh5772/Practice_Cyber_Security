@@ -14,6 +14,7 @@
 - https://blog.naver.com/chance0432/221857790015
 - https://blog.naver.com/chance0432/221859882241
 - https://blog.naver.com/chance0432/221861859036
+- https://blog.false.kr/posts/Computing/OS/Windows/Windows-Server-Update-Services-Client-Set-up.html
   
 </details>
 
