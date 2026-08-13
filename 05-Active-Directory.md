@@ -869,7 +869,7 @@ Get-ADObject -Identity "S-1-5-21-1392491010-1358638721-2126982587-1111"
 Get-ADObject -Filter 'objectSid -eq "S-1-5-21-1392491010-1358638721-2126982587-1111"' -Properties objectSid
 
 # 삭제 되었는지 확인
-Get-ADObject -filter 'isDeleted -eq $true' -includeDeletedObjects -Properties *
+Get-ADObject -filter 'isDeleted -eq $true -and name -ne "Deleted Objects"' -includeDeletedObjects
 
 Get-ADObject -Filter 'objectsid -eq "S-1-5-21-1392491010-1358638721-2126982587-1111"' -Properties * -IncludeDeletedObjects
 
