@@ -15,6 +15,7 @@
 - https://blog.naver.com/chance0432/221859882241
 - https://blog.naver.com/chance0432/221861859036
 - https://blog.false.kr/posts/Computing/OS/Windows/Windows-Server-Update-Services-Client-Set-up.html
+- `https`로 설정해주면 `8531`로 포트도 변경해줘야 한다.
   
 </details>
 
