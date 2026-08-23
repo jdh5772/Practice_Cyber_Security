@@ -1,4 +1,26 @@
 <details>
+  <summary><strong>krb5.conf(최신 AD 인증)</strong></summary>
+
+- Kerberos 5 인증 시스템의 클라이언트 설정 파일
+- 최신 AD는 NTLM을 비활성화하는 추세
+- `winrm`을 사용하지 못할 경우에 `krb5.conf`를 사용해서 `SSH`를 포함한 다른 프로토콜로 접속 가능.
+
+```bash
+netexec smb frizzdc.frizz.htb -u f.frizzle -p 'Jenni_Luvs_Magic23' -k --generate-krb5-file krb5.conf
+
+sudo cp krb5.conf /etc/krbt.conf
+```
+```bash
+impacket-getTGT <domain>/<user>:<pass>
+
+# /etc/hosts에 FQDN이 우선적으로 등록
+KRB5CCNAME=f.frizzle.ccache ssh -K <user>@<domain>
+```
+
+</details>
+
+---
+<details>
   <summary><strong>AD 기능 수준 확인</strong></summary>
 
 - `systeminfo`로 확인이 불가능할 때 도메인 및 포리스트 기능 수준을 확인하여 AD 환경의 최소 기능·호환성 기준을 간접적으로 확인.
@@ -1078,26 +1100,7 @@ nxc smb 10.10.11.158 -u JDgodd -p 'JDg0dd1s@d0p3cr3@t0r' --laps --ntds
 </details>
 
 ---
-<details>
-  <summary><strong>krb5.conf(최신 AD 인증)</strong></summary>
 
-- Kerberos 5 인증 시스템의 클라이언트 설정 파일
-- 최신 AD는 NTLM을 비활성화하는 추세
-- `winrm`을 사용하지 못할 경우에 `krb5.conf`를 사용해서 `SSH`를 포함한 다른 프로토콜로 접속 가능.
-
-```bash
-netexec smb frizzdc.frizz.htb -u f.frizzle -p 'Jenni_Luvs_Magic23' -k --generate-krb5-file krb5.conf
-
-sudo cp krb5.conf /etc/krbt.conf
-```
-```bash
-impacket-getTGT <domain>/<user>:<pass>
-
-# /etc/hosts에 FQDN이 우선적으로 등록
-KRB5CCNAME=f.frizzle.ccache ssh -K <user>@<domain>
-```
-
-</details>
 
 ---
 <details>
