@@ -6,9 +6,9 @@
 - `winrm`을 사용하지 못할 경우에 `krb5.conf`를 사용해서 `SSH`를 포함한 다른 프로토콜로 접속 가능.
 
 ```bash
-netexec smb frizzdc.frizz.htb -u f.frizzle -p 'Jenni_Luvs_Magic23' -k --generate-krb5-file krb5.conf
+nxc smb <FQDN> --generate-krb5file krb5.conf
 
-sudo cp krb5.conf /etc/krbt.conf
+sudo cp krb5.conf /etc/krb5.conf
 ```
 ```bash
 impacket-getTGT <domain>/<user>:<pass>
