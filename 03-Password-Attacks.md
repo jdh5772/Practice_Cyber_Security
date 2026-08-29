@@ -1129,5 +1129,25 @@ hashcat -m 13721
 sudo veracrypt <data file>
 ```
 
+</details>
+
+---
+<details>
+  <summary><strong>ansible valut</strong></summary>
+
+- `ansible vault` 형식
+- `ansible2john` 사용
+```
+$ANSIBLE_VAULT;1.1;AES256
+<hex encoded value>
+```
+```bash
+python ansible2john.py ldap_admin_password_vault pwm_admin_login_vault pwm_admin_password_vault | tee vault_hashes
+
+hashcat vault_hashes /opt/SecLists/Passwords/Leaked-Databases/rockyou.txt --user
+
+cat ldap_admin_password_vault | ansible-vault decrypt
+```
+
   
 </details>
